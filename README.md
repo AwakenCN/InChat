@@ -2,7 +2,7 @@
 
 ## 简介
 基于SpringBoot-WebSocket通用框架,结合Netty进行聊天社交，并记录聊天日志，异步存储
-
+ 
 ## 特点
 异步处理，netty实时消息通信，JPA，WebSocket，数据库操作记录，聊天历史等
 
@@ -36,7 +36,7 @@ SpringBoot集成了WebSocket所以开发通信流比较简单，Netty是一个�
     application.yml 数据库配置
     http://localhost:8080/chat/netty 启动访问路径
 
-## 效果图
+## 效果图 
 
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180818143835.png)
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180818143838.png)
