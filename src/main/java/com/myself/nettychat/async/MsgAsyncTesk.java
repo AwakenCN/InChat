@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Future;
 
@@ -29,7 +30,7 @@ public class MsgAsyncTesk {
     @Async
     public Future<Boolean> saveChatMsgTask() throws Exception{
 //        System.out.println("启动异步任务");
-        Set<UserMsg> set = cacheTemplate.cloneCacheMap();
+        List<UserMsg> set = cacheTemplate.cloneCacheMap();
         for (UserMsg item:set){
             userMsgRepository.save(item);
         }

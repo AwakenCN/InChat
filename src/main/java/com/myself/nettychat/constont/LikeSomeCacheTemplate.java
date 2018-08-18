@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class LikeSomeCacheTemplate {
 
-    private Set<UserMsg> SomeCache = new LinkedHashSet<>();
+    private List<UserMsg> SomeCache = new LinkedList<>();
 
     public void save(Object user,Object msg){
         UserMsg userMsg = new UserMsg();
@@ -26,7 +26,7 @@ public class LikeSomeCacheTemplate {
         SomeCache.add(userMsg);
     }
 
-    public Set<UserMsg> cloneCacheMap(){
+    public List<UserMsg> cloneCacheMap(){
         return SomeCache;
     }
 

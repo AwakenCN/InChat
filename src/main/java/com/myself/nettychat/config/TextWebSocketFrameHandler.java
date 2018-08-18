@@ -42,12 +42,12 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
                                 TextWebSocketFrame msg) throws Exception {
         Channel incoming = ctx.channel();
         String uName = String.valueOf(redisTemplate.get(incoming.id()));
+        cacheTemplate.save(uName,msg.text());
+        System.out.println("存储数据："+uName+"-"+msg.text());
         for (Channel channel : channels) {
             //将当前每个聊天内容进行存储
-            System.out.println("存储数据："+uName+"-"+msg.text());
-            cacheTemplate.save(uName,msg.text());
             if (channel != incoming){
-                channel.writeAndFlush(new TextWebSocketFrame("[" + uName + "]" + msg.text()));
+                channel.writeAndFlush(new TextWebSocketFrame( msg.text() + "[" + uName + "]"));
             } else {
                 channel.writeAndFlush(new TextWebSocketFrame("[you]" + msg.text() ));
             }

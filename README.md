@@ -1,4 +1,4 @@
-# SBToNettyChat
+# SBToNettyChat（当前版本1.2.0）
 
 ## 简介
 基于SpringBoot-WebSocket通用框架,结合Netty进行聊天社交，并记录聊天日志，异步存储
@@ -11,6 +11,7 @@
     实时聊天
     异步CRUD处理消息日志
     获取聊天历史
+    下版（1.3.0）：用户登录
 
 ## 项目思路
 
@@ -25,13 +26,20 @@ SpringBoot集成了WebSocket所以开发通信流比较简单，Netty是一个�
 因为每次要最新的聊天历史，那么我暂时想到的是每个用户离开聊天室的时候，针对于它们的聊天记录进行异步执行。
 好在SpringBoot对于异步任务的兼容也很好处理。
 
+## 版本迭代介绍
+
+* 1.2.0版本
+修复聊天记录功能，实现重复信息录入，完善前端页面，回车监听等
+
 ## 配置
 
     application.yml 数据库配置
+    http://localhost:8080/chat/netty 启动访问路径
 
 ## 效果图
 
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180814155902.png)
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180818143835.png)
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180818143838.png)
 
 ## 下载地址
 
