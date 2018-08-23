@@ -47,7 +47,7 @@
 </div>
 </body>
 
-<script src='/susu/js/jQuery-1.12.4.js'></script>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src='/susu/js/newChat.js'></script>
 <script>
     var msg = '\n';
