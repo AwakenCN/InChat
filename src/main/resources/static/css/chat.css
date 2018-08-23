@@ -1,0 +1,43 @@
+form {
+	width: 406px;
+	height: 650px;
+	border: 4px solid #98bcde;
+	border-radius: 10px;
+	margin: 0 auto;
+	background-color: #eceff9;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+h3 {
+	color: #92acdc;
+	text-align: center;
+	font-size: 26px;
+}
+
+textarea {
+	resize: none;
+	font-size: 20px;
+	width: 401px;
+	height: 511px;
+}
+
+.msg {
+	width: 324px;
+	height: 40px;
+	text-indent: 10px;
+	font-size: 20px;
+	outline: none;
+}
+
+.btn {
+	width: 78px;
+	height: 46px;
+	background-color: #d8f1f9;
+	border-radius: 6px;
+	border: 1px solid #98bcde;
+	font-size: 18px;
+	color: #92acdc;
+	font-weight: bold;
+}

@@ -1,17 +1,19 @@
-# SBToNettyChat（当前版本1.2.0）
+# SBToNettyChat（当前版本1.3.0）
 
 ## 简介
-基于SpringBoot-WebSocket通用框架,结合Netty进行聊天社交，并记录聊天日志，异步存储
+仿微信聊天应用，一步一步更新，基于SpringBoot-WebSocket通用框架,结合Netty进行聊天社交，并记录聊天日志，异步存储
  
 ## 特点
-异步处理，netty实时消息通信，JPA，WebSocket，数据库操作记录，聊天历史等
+异步处理，netty实时消息通信，JPA，WebSocket，数据库操作记录，聊天历史等，1.2（修复bug），1.3（用户登录、防止二次登录）
 
 ## 功能
 
     实时聊天
     异步CRUD处理消息日志
     获取聊天历史
-    下版（1.3.0）：用户登录
+    用户登录、记录登录用户聊天历史
+    防止二次登录
+    下版（1.5.0）：好友功能等
 
 ## 相关项目
 
@@ -45,17 +47,24 @@ SpringBoot集成了WebSocket所以开发通信流比较简单，Netty是一个�
 ## 版本迭代介绍
 
 * 1.2.0版本
+
 修复聊天记录功能，实现重复信息录入，完善前端页面，回车监听等
+
+* 1.3.0版本
+
+用户注册登录功能，系统聊天绑定用户，禁止二次登录等，前端页面大改
 
 ## 配置
 
     application.yml 数据库配置
-    http://localhost:8080/chat/netty 启动访问路径
+    http://localhost:8080/susu/admin/login 启动访问路径
 
 ## 效果图 
 
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180818143835.png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180818143838.png)
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/1.png)
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/2.png)
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/3.png)
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/4.png)
 
 ## 下载地址
 

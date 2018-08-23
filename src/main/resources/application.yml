@@ -7,7 +7,12 @@ spring:
   jpa:
     show-sql: true
 #    database: oracle
-
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.Oracle12cDialect
+server:
+  servlet:
+    context-path: /susu
 netty:
   port: 8090
   bossThread: 2

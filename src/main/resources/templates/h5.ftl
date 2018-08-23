@@ -1,116 +1,59 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
-    <title>WebSocket Chat</title>
+    <title>Su Su</title>
 </head>
-<style>
-    form {
-        width: 406px;
-        height: 650px;
-        border: 4px solid #98bcde;
-        border-radius: 10px;
-        margin: 0 auto;
-        background-color: #eceff9;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
+<link rel="stylesheet" type="text/css" href="/susu/css/newChat.css" />
 
-    }
-    h3 {
-        color: #92acdc;
-        text-align: center;
-        font-size: 26px;
-    }
-    textarea {
-        resize: none;
-        font-size: 20px;
-        width: 401px;
-        height: 511px;
-    }
-    .msg {
-        width: 324px;
-        height: 40px;
-        text-indent: 10px;
-        font-size: 20px;
-        outline: none;
-    }
-    .btn {
-        width: 78px;
-        height: 46px;
-        background-color: #d8f1f9;
-        border-radius: 6px;
-        border: 1px solid #98bcde;
-        font-size: 18px;
-        color: #92acdc;
-        font-weight: bold;
-    }
-
-</style>
 <body>
-<script type="text/javascript">
+<#--<form onsubmit="return false;">-->
+    <#--<input hidden id="userName" value="${userName!''}">-->
+    <#--<h3>“酥酥”聊天室</h3>-->
+    <#--<textarea id="responseText"></textarea>-->
+    <#--<br>-->
+    <#--<input class='msg' type="text" name="message" placeholder='发送消息' value="">-->
+    <#--<input class='btn' type="button" value="回车发送">-->
+<#--</form>-->
+<div class="container">
+    <!--左侧列表-->
+    <div class="left_content">
+        <div class="nickName">${userName!''}</div>
+    </div>
+    <input hidden id="userName" value="${userName!''}">
+    <!--主体内容-->
+    <div class="content">
+        <div class="content_top">
+            <div class="tips"></div>
+            <span class="openHistory">历史记录</span>
+        </div>
+        <div class="content_bodyer">
+            <div class="history" id="TTHistory">
+
+            </div>
+            <div class="scrollbar">
+                <div class="thumb" id="thumb"></div>
+            </div>
+            <div class="chat">
+
+            </div>
+        </div>
+        <form>
+            <textarea class='msg' type="text" name="message" placeholder='发送消息' value=""></textarea>
+            <input class="btn" type="button" value="回车发送"/>
+        </form>
+    </div>
+</div>
+</body>
+
+<script src='/susu/js/jQuery-1.12.4.js'></script>
+<script src='/susu/js/newChat.js'></script>
+<script>
     var msg = '\n';
     <#list userMsgList as userMsg>
-    msg = msg + '${userMsg.name!''}'+':'+'${userMsg.msg!''}' +'\n';
+    msg = msg +'<div>'+ '${userMsg.name!''}'+':'+'${userMsg.msg!''}' +'</div>';
     </#list>
-    msg = msg+'\n'+'--- 以上为历史记录 ---'+'\n';
-    var socket;
-    if (!window.WebSocket) {
-        window.WebSocket = window.MozWebSocket;
-    }
-    if (window.WebSocket) {
-        socket = new WebSocket("ws://localhost:8090/ws");
-        socket.onmessage = function(event) {
-            var ta = document.getElementById('responseText');
-            ta.value = ta.value + '\n' + event.data
-        };
-        socket.onopen = function(event) {
-            var ta = document.getElementById('responseText');
-            if(msg.length > 0){
-                ta.value = "--- 连接开启! ---"+'\n'+msg;
-            }else{
-                ta.value = "--- 连接开启! ---"
-            }
-        };
-        socket.onclose = function(event) {
-            var ta = document.getElementById('responseText');
-            ta.value = ta.value + "连接被关闭";
-        };
-    } else {
-        alert("你的浏览器不支持 WebSocket！");
-    }
-
-    function send(message) {
-        if (!window.WebSocket) {
-            return;
-        }
-        if (socket.readyState == WebSocket.OPEN) {
-            socket.send(message);
-        } else {
-            alert("连接没有开启.");
-        }
-    }
-    window.onbeforeunload = function(event) {
-        event.returnValue = "刷新提醒";
-    };
-
-    document.onkeydown=function(e) {
-        if (e.keyCode == 13) {
-            var message = document.getElementsByClassName('msg')[0].value;
-            socket.send(message);
-            console.log(message);
-            document.getElementsByClassName('msg')[0].value = "";
-        }
-    }
+    msg = msg+'<div>--- 以上为历史记录 ---</div>';
 </script>
-<form onsubmit="return false;">
-    <h3>SpringBoot netty 聊天室</h3>
-    <textarea id="responseText"></textarea>
-    <br>
-    <input class='msg' type="text" name="message" placeholder='发送消息' value="">
-    <input class='btn' type="button" value="回车发送">
-</form>
-<br>
-<br>
-</body>
 </html>

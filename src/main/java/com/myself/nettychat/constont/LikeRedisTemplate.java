@@ -1,6 +1,5 @@
 package com.myself.nettychat.constont;
 
-import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -17,15 +16,30 @@ public class LikeRedisTemplate {
 
     private Map<Object,Object> RedisMap = new ConcurrentHashMap<>();
 
+    private Map<Object,Object> SecondRedisMap = new ConcurrentHashMap<>();
+
     public void save(Object id,Object name){
         RedisMap.put(id,name);
+        SecondRedisMap.put(name,id);
+    }
+
+    public boolean check(Object id,Object name){
+        if (SecondRedisMap.get(name) == null){
+            return true;
+        }
+        if (id.equals(SecondRedisMap.get(name))){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public void delete(Object id){
-        RedisMap.remove(id);
-    }
-
-    public Object get(Object id){
-        return RedisMap.get(id);
+        try {
+            SecondRedisMap.remove(RedisMap.get(id));
+            RedisMap.remove(id);
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
     }
 }

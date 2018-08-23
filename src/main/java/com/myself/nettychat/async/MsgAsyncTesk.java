@@ -1,8 +1,10 @@
 package com.myself.nettychat.async;
 
 import com.myself.nettychat.constont.LikeSomeCacheTemplate;
+import com.myself.nettychat.dataobject.User;
 import com.myself.nettychat.dataobject.UserMsg;
 import com.myself.nettychat.repository.UserMsgRepository;
+import com.myself.nettychat.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -27,12 +29,19 @@ public class MsgAsyncTesk {
     @Autowired
     private UserMsgRepository userMsgRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Async
     public Future<Boolean> saveChatMsgTask() throws Exception{
-//        System.out.println("启动异步任务");
-        List<UserMsg> set = cacheTemplate.cloneCacheMap();
-        for (UserMsg item:set){
-            userMsgRepository.save(item);
+
+        List<UserMsg> userMsgList = cacheTemplate.cloneCacheMap();
+        for (UserMsg item:userMsgList){
+            //保护措施
+            User user = userRepository.findByUserName(item.getName());
+            if (user != null){
+                userMsgRepository.save(item);
+            }
         }
         //清空临时缓存
         cacheTemplate.clearCacheMap();
