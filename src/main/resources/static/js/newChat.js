@@ -62,6 +62,13 @@ document.onkeydown = function(e) {
 	}
 }
 
+function sendd() {
+    var userName = $('#userName');
+    var message = userName.val() + '-' + $('.msg').val().trim();
+    send(message);
+    $('.msg').val('');
+}
+
 $('.openHistory').click(function() {
     $('.history').fadeToggle();
 });

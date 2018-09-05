@@ -1,0 +1,49 @@
+.history{
+    width: 90%;
+}
+
+.his{
+    margin-right: auto;
+    border-left: 20px;
+    padding-left: 20px;
+}
+
+.chat {
+    width: 100%;
+    position: absolute;
+    box-sizing: border-box;
+    padding: 10px 4px;
+    padding-top: 20px;
+    bottom: 0;
+}
+
+.msgRight {
+    text-align: right;
+}
+
+.msgLeft {
+    text-align: left;
+}
+
+.msgLeft,
+.msgRight {
+    margin-bottom: 26px;
+}
+
+.msgLeft>span,
+.msgRight>span {
+    padding: 10px;
+    font-size: 16px;
+    line-height: 20px;
+    border-radius: 10px;
+}
+
+.msgLeft>span {
+    background-color: #d8f1f9;
+    box-shadow: inset -2px -3px 8px 1px #75ddff;
+}
+
+.msgRight>span {
+    background-color: #FFF;
+    box-shadow: inset -2px -3px 8px 1px #d8d8d8;
+}

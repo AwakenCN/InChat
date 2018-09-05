@@ -53,9 +53,19 @@ public class NcLoginController {
      * 登录页面
      * @return
      */
-    @GetMapping("/login")
-    public ModelAndView login(Map<String,Object> map){
-        return new ModelAndView(H5Constant.LOGIN);
+//    @GetMapping("/login")
+//    public ModelAndView login(Map<String,Object> map){
+//        return new ModelAndView(H5Constant.LOGIN);
+//    }
+
+
+    /**
+     * 登录页面SUI
+     * @return
+     */
+    @GetMapping("/loginsui")
+    public ModelAndView loginSui(Map<String,Object> map){
+        return new ModelAndView(H5Constant.LOGIN_SUI);
     }
 
     /**
@@ -64,7 +74,7 @@ public class NcLoginController {
      */
     @GetMapping("/regis")
     public ModelAndView register(){
-        return new ModelAndView(H5Constant.LOGIN);
+        return new ModelAndView(H5Constant.LOGIN_SUI);
     }
 
 
@@ -82,13 +92,13 @@ public class NcLoginController {
                                    Map<String, Object> map){
         if (bindingResult.hasErrors()){
             map.put("msg",bindingResult.getFieldError().getDefaultMessage());
-            return new ModelAndView(H5Constant.LOGIN,map);
+            return new ModelAndView(H5Constant.LOGIN_SUI,map);
         }
         List<User> userList = userService.findAll();
         for (User item:userList){
-            if (item.getUserName().equals(form.getUserName())){
+            if (item.getUserName().equals(form.getFUserName())){
                 map.put("msg","用户名已存在，请重新填写唯一用户名");
-                return new ModelAndView(H5Constant.LOGIN,map);
+                return new ModelAndView(H5Constant.LOGIN_SUI,map);
             }
         }
         User user = new User();
@@ -96,7 +106,7 @@ public class NcLoginController {
         userService.save(user);
         map.put("userName",user.getUserName());
         map.put("passWord",user.getPassWord());
-        return new ModelAndView(H5Constant.LOGIN,map);
+        return new ModelAndView(H5Constant.LOGIN_SUI,map);
     }
 
     /**
@@ -110,35 +120,35 @@ public class NcLoginController {
                                 Map<String, Object> map){
         if (bindingResult.hasErrors()){
             map.put("msg",bindingResult.getFieldError().getDefaultMessage());
-            return new ModelAndView(H5Constant.LOGIN,map);
+            return new ModelAndView(H5Constant.LOGIN_SUI,map);
         }
         try {
-            User user = userService.findByUserName(form.getUserName());
-            if (user.getPassWord().equals(form.getPassWord())){
+            User user = userService.findByUserName(form.getFUserName());
+            if (user.getPassWord().equals(form.getFPassWord())){
                 //登录成功
                 String token = UUID.randomUUID().toString();
                 //将token信息添加到系统缓存中
                 TokenStore.add(token,user.getId());
                 //将Token信息添加到Cookie中
                 CookieUtil.set(response, CookieConstant.TOKEN,token,CookieConstant.EXPIRE);
-                Sort sort = new Sort(Sort.Direction.DESC,"id");
-                Pageable pageable = new PageRequest(page-1,size,sort);
-                Page<UserMsg> userMsgPage = userMsgRepository.findAll(pageable);
-                //日期颠倒
-                List<UserMsg> userMsgList = new ArrayList<>();
-                for (int i = 0,j = userMsgPage.getContent().size()-1; i < userMsgPage.getContent().size();i++,j--){
-                    userMsgList.add(userMsgPage.getContent().get(j));
-                }
-                map.put("userMsgList",userMsgList);
-                map.put("userName",user.getUserName());
-                return new ModelAndView(H5Constant.CHAT);
+//                Sort sort = new Sort(Sort.Direction.DESC,"id");
+//                Pageable pageable = new PageRequest(page-1,size,sort);
+//                Page<UserMsg> userMsgPage = userMsgRepository.findAll(pageable);
+//                //日期颠倒
+//                List<UserMsg> userMsgList = new ArrayList<>();
+//                for (int i = 0,j = userMsgPage.getContent().size()-1; i < userMsgPage.getContent().size();i++,j--){
+//                    userMsgList.add(userMsgPage.getContent().get(j));
+//                }
+//                map.put("userMsgList",userMsgList);
+//                map.put("userName",user.getUserName());
+                return new ModelAndView(H5Constant.HOME);
             }else{
                 map.put("msg","密码错误");
-                return new ModelAndView(H5Constant.LOGIN,map);
+                return new ModelAndView(H5Constant.LOGIN_SUI,map);
             }
         }catch (Exception e){
             map.put("msg","用户不存在");
-            return new ModelAndView(H5Constant.LOGIN,map);
+            return new ModelAndView(H5Constant.LOGIN_SUI,map);
         }
     }
 
