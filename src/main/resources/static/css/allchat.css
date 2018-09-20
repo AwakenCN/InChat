@@ -17,6 +17,16 @@
     bottom: 0;
 }
 
+.msgCente{
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.chatimg{
+    height: 90px;
+    width: 90px;
+}
+
 .msgRight {
     text-align: right;
 }

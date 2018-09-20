@@ -20,10 +20,10 @@ import java.util.Set;
  * @Author:UncleCatMySelf
  * @Email：zhupeijie_java@126.com
  * @QQ:1341933031
- * @Date:Created in 11:00 2018\8\14 0014
+ * @Date:Created in 19:27 2018\9\20 0020
  */
 @Component
-public class NettyConfig {
+public class NettyTcpConfig {
 
     @Autowired
     private NettyAccountConfig nettyAccountConfig;
@@ -38,14 +38,14 @@ public class NettyConfig {
         return new NioEventLoopGroup(nettyAccountConfig.getWorkerThread());
     }
 
-    @Bean(name = "webSocketAddress")
+    @Bean(name = "tcpSocketAddress")
     public InetSocketAddress tcpPost(){
-        return new InetSocketAddress(nettyAccountConfig.getWebport());
+        return new InetSocketAddress(nettyAccountConfig.getTcpport());
     }
 
     @Bean(name = "tcpChannelOptions")
     public Map<ChannelOption<?>, Object> tcpChannelOptions(){
-        Map<ChannelOption<?>, Object> options = new HashMap<ChannelOption<?>, Object>();
+        Map<ChannelOption<?>, Object> options = new HashMap<>();
         options.put(ChannelOption.TCP_NODELAY,nettyAccountConfig.isNodelay());
         options.put(ChannelOption.SO_KEEPALIVE, nettyAccountConfig.isKeepalive());
         options.put(ChannelOption.SO_BACKLOG, nettyAccountConfig.getBacklog());
@@ -54,16 +54,16 @@ public class NettyConfig {
     }
 
     @Autowired
-    @Qualifier("somethingChannelInitializer")
-    private NettyWebSocketChannelInitializer nettyWebSocketChannelInitializer;
+    @Qualifier("tcpChannelInitializer")
+    private NettyTcpChannelInitializer nettyTcpChannelInitializer;
 
-    @Bean(name = "serverBootstrap")
+    @Bean(name = "tcpServerBootstrap")
     public ServerBootstrap bootstrap(){
         ServerBootstrap b = new ServerBootstrap();
         b.group(bossGroup(), workerGroup())
                 .channel(NioServerSocketChannel.class)
                 .handler(new LoggingHandler(LogLevel.DEBUG))
-                .childHandler(nettyWebSocketChannelInitializer);
+                .childHandler(nettyTcpChannelInitializer);
         Map<ChannelOption<?>, Object> tcpChannelOptions = tcpChannelOptions();
         Set<ChannelOption<?>> keySet = tcpChannelOptions.keySet();
         for (@SuppressWarnings("rawtypes") ChannelOption option : keySet) {
@@ -71,4 +71,5 @@ public class NettyConfig {
         }
         return b;
     }
+
 }

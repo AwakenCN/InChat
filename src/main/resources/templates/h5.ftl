@@ -6,16 +6,14 @@
     <title>Su Su</title>
 </head>
 <link rel="stylesheet" type="text/css" href="/susu/css/newChat.css" />
-
+<script type='text/javascript'
+        src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript'
+        src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript'
+        src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript">
 <body>
-<#--<form onsubmit="return false;">-->
-    <#--<input hidden id="userName" value="${userName!''}">-->
-    <#--<h3>“酥酥”聊天室</h3>-->
-    <#--<textarea id="responseText"></textarea>-->
-    <#--<br>-->
-    <#--<input class='msg' type="text" name="message" placeholder='发送消息' value="">-->
-    <#--<input class='btn' type="button" value="回车发送">-->
-<#--</form>-->
 <div class="container">
     <!--左侧列表-->
     <div class="left_content">
@@ -41,7 +39,8 @@
         </div>
         <form>
             <textarea class='msg' type="text" name="message" placeholder='发送消息' value=""></textarea>
-            <input class="btn" type="button" value="回车发送"/>
+            <input class="btn" type="button" value="回车发送" onclick="send(this.form.message.value)"/>
+            <input class="btn" type="file" id="file"/>
         </form>
     </div>
 </div>

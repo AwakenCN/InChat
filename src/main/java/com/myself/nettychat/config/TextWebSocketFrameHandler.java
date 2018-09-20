@@ -5,17 +5,22 @@ import com.myself.nettychat.constont.LikeRedisTemplate;
 import com.myself.nettychat.constont.LikeSomeCacheTemplate;
 import com.myself.nettychat.utils.RandomNameUtil;
 import com.myself.nettychat.utils.StringUtil;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
+import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
+import java.io.FileOutputStream;
 
 
 /**
@@ -27,7 +32,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Qualifier("textWebSocketFrameHandler")
 @ChannelHandler.Sharable
-public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>{
+public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<Object>{
 
     public static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
@@ -40,10 +45,41 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx,
-                                TextWebSocketFrame msg) throws Exception {
+                                Object msg) throws Exception {
+        if(msg instanceof TextWebSocketFrame){
+            textWebSocketFrame(ctx, (TextWebSocketFrame) msg);
+        }else if(msg instanceof WebSocketFrame){ //websocket帧类型 已连接
+            handleWebSocketFrame(ctx, (WebSocketFrame) msg);
+        }
+    }
+
+    private void handleWebSocketFrame(ChannelHandlerContext ctx, WebSocketFrame frame) {
+        if(frame instanceof BinaryWebSocketFrame){
+            //返回客户端
+            BinaryWebSocketFrame imgBack= (BinaryWebSocketFrame) frame.copy();
+            for (Channel channel : channels){
+                channel.writeAndFlush(imgBack.retain());
+            }
+            //保存服务器
+            BinaryWebSocketFrame img= (BinaryWebSocketFrame) frame;
+            ByteBuf byteBuf=img.content();
+            try {
+                FileOutputStream outputStream=new FileOutputStream("D:\\a.jpg");
+                byteBuf.readBytes(outputStream,byteBuf.capacity());
+                byteBuf.clear();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void textWebSocketFrame(ChannelHandlerContext ctx, TextWebSocketFrame msg) {
         Channel incoming = ctx.channel();
         String rName = StringUtil.getName(msg.text());
         String rMsg = StringUtil.getMsg(msg.text());
+        if (rMsg.equals("")){
+            return;
+        }
         if (redisTemplate.check(incoming.id(),rName)){
             cacheTemplate.save(rName,rMsg);
             redisTemplate.save(incoming.id(),rName);

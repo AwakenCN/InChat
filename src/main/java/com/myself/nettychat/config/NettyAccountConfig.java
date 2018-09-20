@@ -15,7 +15,9 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "netty")
 public class NettyAccountConfig {
 
-    private int port;
+    private int webport;
+
+    private int tcpport;
 
     private int bossThread;
 
@@ -24,4 +26,8 @@ public class NettyAccountConfig {
     private boolean keepalive;
 
     private int backlog;
+
+    private boolean nodelay;
+
+    private boolean reuseaddr;
 }

@@ -14,8 +14,11 @@ server:
   servlet:
     context-path: /susu
 netty:
-  port: 8090
-  bossThread: 2
+  webport: 8090
+  tcpport: 8092
+  bossThread: 1
   workerThread: 2
   keepalive: true
-  backlog: 100
+  backlog: 128
+  nodelay: true
+  reuseaddr: true

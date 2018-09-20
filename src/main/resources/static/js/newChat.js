@@ -3,26 +3,52 @@ if(!window.WebSocket) {
 	window.WebSocket = window.MozWebSocket;
 }
 
+var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+
+function generateMixed(n) {
+    var res = "";
+    for(var i = 0; i < n ; i ++) {
+        var id = Math.ceil(Math.random()*35);
+        res += chars[id];
+    }
+    return res;
+}
+
 if(window.WebSocket) {
 	socket = new WebSocket("ws://localhost:8090/ws");
 	socket.onmessage = function(event) {
-		// var ta = "<div>"+event.data+"</div>";
-		// $('.content_bodyer').append(ta);
         var msg = event.data;
-        if(msg.substring(0, 1) != '[') {
-            var ta = "<div class='msgRight'><span>"+event.data+"</span></div>";
+        console.log(msg);
+        if(msg instanceof Blob){
+            console.log("blobs");
+            var idran = generateMixed(3);
+            var ta = "<div class='msgCente'><img id='"+idran+"' src='' class='chatimg'></div>";
+            $('.chat').append(ta);
+            //var previewImg = document.querySelector('img');
+            var previewImg = document.getElementById(idran);
+
+            var reader = new FileReader();
+            // 监听reader对象的的onload事件，当图片加载完成时，把base64编码賦值给预览图片
+            reader.addEventListener("load", function () {
+                previewImg.src = reader.result;
+            }, false);
+            // 调用reader.readAsDataURL()方法，把图片转成base64
+            reader.readAsDataURL(msg);
+        }
+        if(msg.substring(0, 1) == '[') {
+            var ta = "<div class='msgLeft'><span>"+event.data+"</span></div>";
             $('.chat').append(ta);
         } else {
-            var ta = "<div class='msgLeft'><span>"+event.data+"</span></div>";
+            var ta = "<div class='msgRight'><span>"+event.data+"</span></div>";
             $('.chat').append(ta);
         }
 	};
 	socket.onopen = function(event) {
         $('.tips').html('连接开启！');
         $('.tips').css('color', 'green');
-        // var his = document.getElementById('TTHistory');
+
 		var his = $('#TTHistory');
-        // his.innerHTML = msg;
+
 		console.log(msg);
 		his.html(msg);
 	};
@@ -51,21 +77,22 @@ window.onbeforeunload = function(event) {
 }
 
 ;
-document.onkeydown = function(e) {
-    // var userName = document.getElementById('userName');
-	var userName = $('#userName');
-	if(e.keyCode == 13) {
-        $('.chat').css('bottom', 0);
-		var message = userName.val() + '-' + $('.msg').val().trim();
-		send(message);
-        $('.msg').val('');
-	}
-}
+// document.onkeydown = function(e) {
+//
+// 	var userName = $('#userName');
+// 	if(e.keyCode == 13) {
+//         $('.chat').css('bottom', 0);
+// 		var message = userName.val() + '-' + $('.msg').val().trim();
+// 		send(message);
+//         $('.msg').val('');
+// 	}
+// }
 
 function sendd() {
     var userName = $('#userName');
     var message = userName.val() + '-' + $('.msg').val().trim();
     send(message);
+    sendFile();
     $('.msg').val('');
 }
 
@@ -80,6 +107,25 @@ $('.content_bodyer').mouseenter(function() {
 $('.content_bodyer').mouseleave(function() {
     $('.scrollbar').fadeOut();
 })
+
+function sendFile(){
+    var thum = $('#file')[0].files[0];
+    if(!thum) return;
+    console.log(thum);
+    var reader = new FileReader();
+    //以二进制形式读取文件
+    reader.readAsArrayBuffer(thum);
+    //文件读取完毕后该函数响应
+    reader.onload = function loaded(evt) {
+        console.log(evt);
+        var blob = evt.target.result;
+        //发送二进制表示的文件
+        socket.send(blob);
+        console.log(blob);
+
+        console.log("finnish");
+    }
+}
 
 var thumb = $('.thumb');
 var scrollBar = $('.scrollbar');
@@ -115,4 +161,5 @@ $(window).on('mousemove', function(e) {
         chat.css("top", -top + "px");
     }
 })
+
 

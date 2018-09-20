@@ -1,10 +1,18 @@
-# SBToNettyChat（当前版本1.4.1）
+# SBToNettyChat（当前版本1.5.2）
 
 ## 简介
-仿微信聊天应用，一步一步更新，基于SpringBoot-WebSocket通用框架,结合Netty进行聊天社交，并记录聊天日志，异步存储，前端暂用SUI Mobile
+仿微信聊天应用，一步一步更新，基于SpringBoot-WebSocket通用框架,结合Netty进行聊天社交，并记录聊天日志，
+异步存储，前端暂用SUI Mobile,添加实现TCP/IP后端通信端口（可实时与单片机等TCP硬件通信）、加入图片处理流，
+聊天实现文字与图片发送功能
  
 ## 特点
-异步处理，netty实时消息通信，JPA，WebSocket，数据库操作记录，聊天历史等，1.2（修复bug），1.3（用户登录、防止二次登录）,1.4.1(前端模块确定SUI Mobile，仿微信样式)
+异步处理，netty实时消息通信，JPA，WebSocket，数据库操作记录，聊天历史等，1.2（修复bug），
+1.3（用户登录、防止二次登录）,1.4.1(前端模块确定SUI Mobile，仿微信样式)，
+1.5.2（TCP/IP软硬件通信-单片机等应用的TCP通信，Netty处理二进制图片发送聊天功能）
+
+## 基本架构图
+
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/ggg1.png)
 
 ## 功能
 
@@ -14,23 +22,9 @@
     用户登录、记录登录用户聊天历史
     防止二次登录
     SUI Mobile仿微信样式
-    下版（1.5.0）：好友功能等
-
-## 相关项目
-
-你可能还想了解的项目：
-
-* ssmnetty： https://github.com/UncleCatMySelf/ssmnetty
-
-基于SSM与Netty结合实现软硬件通信（TCP）、API向指定链接发送消息
-
-* SBToNettyChat： https://github.com/UncleCatMySelf/SBToNettyChat
-
-基于SpringBoot-WebSocket通用框架,结合Netty进行聊天社交，并记录聊天日志，异步数据库存储，记录聊天历史等
-
-* NettyPremission： https://github.com/UncleCatMySelf/NettyPremission
-
-运用Netty为主进行权限消息分发的组件，两种权限机制（Circle圈子模式，同等级的一个社交圈、Grade等级模式，每一个等级可以消费到比自己低等级的消息）
+    TCP/IP软硬件通信（8092）
+    图片发送聊天功能
+    下版（1.6.0）：好友功能等
 
 ## 项目思路
 
@@ -59,9 +53,15 @@ SpringBoot集成了WebSocket所以开发通信流比较简单，Netty是一个�
 
 本人主导SUI Mobile构建仿微信样式页面版，使用时开F12手机界面
 
+* 1.5.2版本
+
+TCP/IP软硬件通信-单片机等应用的TCP通信，Netty处理二进制图片发送聊天功能
+
 ## 配置
 
-    application.yml 数据库配置
+    application.yml 数据库配置、Netty参数配置
+    TCP需先去com.myself.nettychat.tcptest包下执行CRC16myself获取发送数据，
+    再执行TCPTestClient发送数据，请勿随意更改发送格式（通信协议来的）
     http://localhost:8080/susu/admin/loginsui 启动访问路径
 
 ## 效果图 
@@ -71,6 +71,22 @@ SpringBoot集成了WebSocket所以开发通信流比较简单，Netty是一个�
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(4).png)
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(2).png)
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(1).png)
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/9.png)
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/10.png)
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/11.png)
+
+## 预留BUG
+
+```
+io.netty.handler.codec.CorruptedFrameException: Max frame length of 65536 has been exceeded.
+图片过大，需要在前端做图片上传压缩
+
+Uncaught TypeError: msg.substring is not a function at WebSocket.socket.onmessage (newChat.js:38)
+前端代码的一点问题，不影响项目正常运行
+
+java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+TCP客户端连接主动关闭，不影响，良性报错
+```
 
 ## 下载地址
 
