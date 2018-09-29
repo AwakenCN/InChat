@@ -18,6 +18,23 @@ import java.net.SocketTimeoutException;
 public class TCPTestClient {
 
     public static void main(String[] args) throws IOException {
+        //10万测试
+        for (int i = 0;i<100000;i++){
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        runtest();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+            sleep(100);
+        }
+    }
+
+    private static void runtest() throws IOException{
         //客户端请求与本机在18866端口建立TCP连接
         Socket client = new Socket("127.0.0.1", 8092);
         client.setSoTimeout(10000);
@@ -31,9 +48,8 @@ public class TCPTestClient {
         int i = 1;
         while(flag){
             //if (i == 1){
-            System.out.print("输入信息：");
             //帧头+ID+数据类型+24把锁状态+crc校验+帧尾
-            String str = input.readLine();
+            String str = "test";
             //发送数据到服务端
             out.println(str);
             if("bye".equals(str)){
@@ -47,7 +63,7 @@ public class TCPTestClient {
                     System.out.println("Time out, No response");
                 }
             }
-
+            sleep(5000);
         }
         input.close();
         if(client != null){
@@ -56,4 +72,11 @@ public class TCPTestClient {
         }
     }
 
+    private static void sleep(Integer time){
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -1,10 +1,9 @@
 package com.myself.nettychat.config;
 
-import com.myself.nettychat.async.MsgAsyncTesk;
+import com.myself.nettychat.task.MsgAsyncTesk;
 import com.myself.nettychat.constont.LikeRedisTemplate;
 import com.myself.nettychat.constont.LikeSomeCacheTemplate;
-import com.myself.nettychat.utils.RandomNameUtil;
-import com.myself.nettychat.utils.StringUtil;
+import com.myself.nettychat.common.utils.StringUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;

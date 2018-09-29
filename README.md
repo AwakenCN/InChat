@@ -1,14 +1,15 @@
-# SBToNettyChat（当前版本1.5.2）
+# SBToNettyChat（当前版本1.5.8）
 
 ## 简介
 仿微信聊天应用，一步一步更新，基于SpringBoot-WebSocket通用框架,结合Netty进行聊天社交，并记录聊天日志，
-异步存储，前端暂用SUI Mobile,添加实现TCP/IP后端通信端口（可实时与单片机等TCP硬件通信）、加入图片处理流，
+异步存储，前端暂用SUI Mobile,添加实现TCP/IP后端通信端口（MQTT协议、可实时与单片机等TCP硬件通信）、加入图片处理流，
 聊天实现文字与图片发送功能
  
 ## 特点
 异步处理，netty实时消息通信，JPA，WebSocket，数据库操作记录，聊天历史等，1.2（修复bug），
 1.3（用户登录、防止二次登录）,1.4.1(前端模块确定SUI Mobile，仿微信样式)，
-1.5.2（TCP/IP软硬件通信-单片机等应用的TCP通信，Netty处理二进制图片发送聊天功能）
+1.5.2（TCP/IP软硬件通信-单片机等应用的TCP通信，Netty处理二进制图片发送聊天功能），
+1.5.8（MQTT协议的Iot物联网通信）
 
 ## 基本架构图
 
@@ -23,6 +24,7 @@
     防止二次登录
     SUI Mobile仿微信样式
     TCP/IP软硬件通信（8092）
+    MQTT协议下的Iot物联网通信（8094）
     图片发送聊天功能
     下版（1.6.0）：好友功能等
 
@@ -57,12 +59,17 @@ SpringBoot集成了WebSocket所以开发通信流比较简单，Netty是一个�
 
 TCP/IP软硬件通信-单片机等应用的TCP通信，Netty处理二进制图片发送聊天功能
 
+* 1.5.8版本
+
+MQTT协议软硬件通信等，Iot物联网
+
 ## 配置
 
     application.yml 数据库配置、Netty参数配置
     TCP需先去com.myself.nettychat.tcptest包下执行CRC16myself获取发送数据，
     再执行TCPTestClient发送数据，请勿随意更改发送格式（通信协议来的）
     http://localhost:8080/susu/admin/loginsui 启动访问路径
+    mqtt协议测试在mqttclient包下
 
 ## 效果图 
 
@@ -100,12 +107,6 @@ QQ群：628793702（仅供交流，不提供问题解答）
 
 ## 关于作者
 
-博客园：https://www.cnblogs.com/UncleCatMySelf/
-
 个人公众号：UncleCatMySelf
 
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/%E5%85%AC%E4%BC%97%E5%8F%B7.png)
-
-个人开发，感谢支持！
-
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/%E4%BB%98%E6%AC%BE.png)

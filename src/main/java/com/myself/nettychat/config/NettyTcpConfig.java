@@ -1,5 +1,6 @@
 package com.myself.nettychat.config;
 
+import com.myself.nettychat.common.properties.InitNetty;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -26,7 +27,7 @@ import java.util.Set;
 public class NettyTcpConfig {
 
     @Autowired
-    private NettyAccountConfig nettyAccountConfig;
+    private InitNetty nettyAccountConfig;
 
     @Bean(name = "bossGroup", destroyMethod = "shutdownGracefully")
     public NioEventLoopGroup bossGroup(){

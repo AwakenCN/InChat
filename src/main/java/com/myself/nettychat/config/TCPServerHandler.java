@@ -1,6 +1,6 @@
 package com.myself.nettychat.config;
 
-import com.myself.nettychat.utils.*;
+import com.myself.nettychat.common.utils.*;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;

@@ -5,7 +5,7 @@ import com.myself.nettychat.constont.H5Constant;
 import com.myself.nettychat.dataobject.User;
 import com.myself.nettychat.service.UserService;
 import com.myself.nettychat.store.TokenStore;
-import com.myself.nettychat.utils.CookieUtil;
+import com.myself.nettychat.common.utils.CookieUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
