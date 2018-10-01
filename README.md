@@ -1,6 +1,9 @@
 # InChat（当前版本1.5.8）
 
 ## 简介
+
+>(InChat)Iot Netty Chat
+
 仿微信聊天应用，一步一步更新，基于SpringBoot-WebSocket通用框架,结合Netty进行聊天社交，并记录聊天日志，
 异步存储，前端暂用SUI Mobile,添加实现TCP/IP后端通信端口（MQTT协议、可实时与单片机等TCP硬件通信）、加入图片处理流，
 聊天实现文字与图片发送功能
