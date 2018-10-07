@@ -79,9 +79,14 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<Objec
         if (rMsg.equals("")){
             return;
         }
+        //用户登录判断
         if (redisTemplate.check(incoming.id(),rName)){
+            //临时存储聊天数据
             cacheTemplate.save(rName,rMsg);
+            //存储随机链接ID与对应登录用户名
             redisTemplate.save(incoming.id(),rName);
+            //存储登录用户名与链接实例，方便API调用链接实例
+            redisTemplate.saveChannel(rName,incoming);
         }else{
             incoming.writeAndFlush(new TextWebSocketFrame("存在二次登陆，系统已为你自动断开本次链接"));
             channels.remove(ctx.channel());
@@ -106,6 +111,10 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<Objec
 
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+        //删除存储池对应实例
+        String name = (String) redisTemplate.getName(ctx.channel().id());
+        redisTemplate.deleteChannel(name);
+        //删除默认存储对应关系
         redisTemplate.delete(ctx.channel().id());
         channels.remove(ctx.channel());
     }
