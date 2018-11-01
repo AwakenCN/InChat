@@ -1,0 +1,16 @@
+<!--pages/publish/publish.wxml-->
+<view class='container'>
+  <input placeholder='topic' bindinput='pub_topic_input'></input>
+  <view class="picker">
+      <picker value='{{qos_index}}' range='{{qos_array}}' bindchange='qos_picker_change'>
+        <view >qos：{{qos_array[qos_index]}}</view>
+      </picker>
+  </view>
+  <view class="picker">
+      <picker value='{{retained_index}}' range='{{retained_array}}' bindchange='retained_picker_change'>
+        <view >retained：{{retained_array[retained_index]}}</view>
+      </picker>
+  </view>
+  <textarea placeholder='message' bindinput='message_input'></textarea>
+  <button type='primary' bindtap='btn_publish'>publish</button>
+</view>

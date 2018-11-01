@@ -1,0 +1,32 @@
+{
+  "pages":[
+    "pages/connect/connect",
+    "pages/message/message",
+    "pages/publish/publish",
+    "pages/subscribe/subscribe",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#353535",
+    "navigationBarTitleText": "MQTT 客户端",
+    "navigationBarTextStyle":"white"
+  },
+  "tabBar":{
+    "selectedColor": "#e64340",
+    "backgroundColor":"#f0f0f0",
+    "list":[{
+      "pagePath":"pages/subscribe/subscribe",
+      "text":"subscribe"
+    },{
+      "pagePath":"pages/publish/publish",
+      "text":"publish"
+    },
+    {
+      "pagePath": "pages/message/message",
+      "text": "message"
+    }]
+  }
+
+}

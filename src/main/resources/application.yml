@@ -1,21 +1,4 @@
-spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    username: root
-    password: root
-    url: jdbc:mysql://localhost:3306/nettychat?characterEncoding=utf-8&useSSL=false
-  jpa:
-    show-sql: true
-#    database: oracle
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.Oracle12cDialect
-server:
-  servlet:
-    context-path: /susu
 netty:
-  webport: 8090 #web聊天室端口
-  tcpport: 8092 #tcp协议端口
   mqttport: 8094 #mqtt协议端口
   bossThread: 1
   workerThread: 2
@@ -30,7 +13,7 @@ netty:
   ssl: false # 使用ssl加密
   mqttHander: com.myself.nettychat.bootstrap.handler.DefaultMqttHandler # 默认处理
   initalDelay: 10 # mqtts qos1 qos2 消息 重发延迟
-  protocol: MQTT  # MQTT  MQTT_WS_MQTT(mqtts.js)   MQTT_WS_PAHO(paho.js)
+  protocol: MQTT_WS_PAHO  # MQTT  MQTT_WS_MQTT(mqtts.js)   MQTT_WS_PAHO(paho.js)
   period: 10 # mqtts qos1 qos2 消息 重发周期
   jksFile:  /securesocket.jks # ssl 加密 jks文件地址
   jksStorePassword: mu$tch8ng3 # 读取jks密码

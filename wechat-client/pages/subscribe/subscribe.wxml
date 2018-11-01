@@ -1,0 +1,26 @@
+<!--pages/subscribe/subscribe.wxml-->
+<view class='swiper_tab'>
+  <view class="tab_item {{current_tab==0?'on':''}}" data-current='0' bindtap='switch_tab'>subscribe</view>
+  <view class="tab_item {{current_tab==1?'on':''}}" data-current='1' bindtap='switch_tab'>unsubscribe</view>
+</view>
+<view>
+  <swiper current='{{current_tab}}' bindchange='swiper_change' style='height:400px'>
+    <swiper-item>
+      <view class='container'>
+        <input placeholder='topic' bindinput='sub_input'></input>
+        <view class="picker">
+          <picker value='{{index}}' range='{{qos_array}}' bindchange='picker_change'>
+            <view >qos：{{qos_array[index]}}</view>
+          </picker>
+        </view>
+        <button type='primary' bindtap='btn_subscribe'>subscribe</button>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class='container'>
+        <input placeholder='topic' bindinput='unsub_input'></input>
+        <button type='primary' bindtap='btn_unsubscribe'>unsubscribe</button>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

@@ -1,116 +1,54 @@
-# InChat（当前版本1.6.0）
+## paho-mqtt 分支介绍
 
-## 分支介绍 im-api
+本Demo是小程序端的Iot案例简单实现。
 
-腾讯IM（云通信）后端模仿项目，均以API形式对接，如果有前端想要对接的可以运行本分支，本分支预计终版为一个单服务并发30万用户的IM后台项目
+### 一
 
-## 简介
+首先是配置修改，你可以在本分支的yml配置文件进行mqtt的配置，核心的参数是：
 
->(InChat)Iot Netty Chat
+> ssl: false # 使用ssl加密
+>
+> protocol: MQTT_WS_PAHO  # MQTT  MQTT_WS_MQTT(mqtts.js)   MQTT_WS_PAHO(paho.js)
 
-仿微信聊天应用，一步一步更新，基于SpringBoot-WebSocket通用框架,结合Netty进行聊天社交，并记录聊天日志，
-异步存储，前端暂用SUI Mobile,添加实现TCP/IP后端通信端口（MQTT协议、可实时与单片机等TCP硬件通信）、加入图片处理流，
-聊天实现文字与图片发送功能、API调用Netty长链接执行发送消息（在线数、用户列表）
+本项目使用的paho.js的mqtt连接形式，所以protocol要选择MQTT_WS_PAHO。项目目前是未加密的，启动ssl本案例暂时不能通讯。
+默认直接启动项目就好。
 
-## 基本架构图(1.5.2版)
+> 项目启动后的地址 ：ws://192.168.1.121:8094/mqtt
 
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/ggg1.png)
+ws、与后缀mqtt是com.myself.nettychat.bootstrap.AbstractBootstrapServer.java中的配置
 
-## 功能
+### 二
 
->实时聊天
->异步CRUD处理消息日志
->获取聊天历史
->用户登录、记录登录用户聊天历史
->防止二次登录
->SUI Mobile仿微信样式
->TCP/IP软硬件通信（8092）
->MQTT协议下的Iot物联网通信（8094）
->图片发送聊天功能
->API调用Netty长链接执行发送消息（在线用户数、用户列表）
->下版（1.7.0）：好友功能等
+你需要小程序开发者工具，并默认认定你是具备基本的小程序开发经验的开发者，这里省略部分的基本配置，你只需要将本分支中**wechat-client**文件夹中的文件完全复制到你新建的小程序项目即可，调试情况下无需AppID
+你需要注意的是pages/connect/connect.js中的第78行
 
-## 版本迭代介绍
-
-* 1.0.0版本
-
-用户登录，聊天历史，随机用户名，异步数据写入：https://segmentfault.com/a/1190000016615063
-
-* 1.2.0版本
-
-修复聊天记录功能，实现重复信息录入，完善前端页面，回车监听等：https://segmentfault.com/a/1190000016637814
-
-* 1.3.0版本
-
-用户注册登录功能，系统聊天绑定用户，禁止二次登录等，前端页面大改
-
-* 1.4.1版本
-
-本人主导SUI Mobile构建仿微信样式页面版，使用时开F12手机界面
-
-* 1.5.2版本
-
-TCP/IP软硬件通信-单片机等应用的TCP通信，Netty处理二进制图片发送聊天功能
-
-* 1.5.8版本
-
-MQTT协议软硬件通信等，Iot物联网
-
-* 1.6.0版本
-
-API调用Netty长链接执行发送消息（在线数、用户列表）：https://segmentfault.com/a/1190000016603392
-
-
-## 配置
-
->application.yml 数据库配置、Netty参数配置
-
->TCP需先去com.myself.nettychat.tcptest包下执行CRC16myself获取发送数据，
-
->再执行TCPTestClient发送数据，请勿随意更改发送格式（通信协议来的）
-
->http://localhost:8080/susu/admin/loginsui 启动访问路径
-
->mqtt协议测试在mqttclient包下
-
->http://localhost:8080/susu/swagger-ui.html 查看API文档
-
-## 效果图 
-
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(5).png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(3).png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(4).png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(2).png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(1).png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/9.png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/10.png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/11.png)
-
-## 预留BUG
-
-```
-io.netty.handler.codec.CorruptedFrameException: Max frame length of 65536 has been exceeded.
-图片过大，需要在前端做图片上传压缩
-
-Uncaught TypeError: msg.substring is not a function at WebSocket.socket.onmessage (newChat.js:38)
-前端代码的一点问题，不影响项目正常运行
-
-java.io.IOException: 远程主机强迫关闭了一个现有的连接。
-TCP客户端连接主动关闭，不影响，良性报错
+```javascript
+var client = new MQTT.Client("ws://" + this.data.server_addr+"/mqtt", "clientId_" + Math.random().toString(36).substr(2));
 ```
 
-## 下载地址
+这里就是小程序的连接地址配置，默认和项目启动的一致，你需要在小程序的连接页面填写你的
+**IP：端口**
 
-下载地址：https://github.com/UncleCatMySelf/SBToNettyChat/releases
+然后就连接成功了，接着你可以在subscribe页面订阅一个主题，本Demo是订阅TEST。
 
-## 交流与提问
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchat-mqtt/TIM%E5%9B%BE%E7%89%8720181101151707.png)
 
-提问与Bug上报：https://github.com/UncleCatMySelf/SBToNettyChat/issues
+### 三
 
-QQ群：628793702（仅供交流，不提供问题解答）
+运行test中的com.myself.nettychat.MqttPublishSample，你需要修改成本机的配置，类似连接地址等
 
-## 关于作者
+> String broker       = "ws://192.168.1.121:8094/mqtt";//地址
 
-个人公众号：UncleCatMySelf
+需要注意的是，你的topic也要与小程序订阅的主题一致哦！
 
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/%E5%85%AC%E4%BC%97%E5%8F%B7.png)
+运行测试用例，模拟硬件发送信息
+
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchat-mqtt/TIM%E5%9B%BE%E7%89%8720181101151715.png)
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchat-mqtt/TIM%E5%9B%BE%E7%89%8720181101151719.png)
+
+
+### 四
+
+回到小程序的message页面，你可以看到接收到了消息
+
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchat-mqtt/TIM%E5%9B%BE%E7%89%8720181101151723.png)

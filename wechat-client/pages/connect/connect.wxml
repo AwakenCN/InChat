@@ -1,0 +1,14 @@
+<!--pages/connect/connect.wxml-->
+<view class="error_view" wx:if="{{error_message}}">
+  <text>{{error_message}}</text>
+</view>
+<view class="container">
+  <input bindinput='server_addr_input' placeholder='server address'></input>
+  <switch bindchange='switch_change'>Username/Password Auth </switch>
+  <view wx:if="{{switch_checked}}">
+    <input bindinput='user_name_input' placeholder='user name'></input>
+    <input bindinput='user_psw_input' placeholder='user password'></input>
+  </view>
+  <button type='primary' bindtap='btn_connect' loading="{{btn_loading}}">connect</button>
+</view>
+

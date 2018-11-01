@@ -1,0 +1,13 @@
+<!--pages/message/message.wxml-->
+<view class='header'>
+  <view class='head_item' style='width:30%'>Topic</view>
+  <view class='border_item'></view>
+  <view class='head_item' style='width:70%'>Message</view>
+</view>
+
+<view class='content_list' wx:key='*this' wx:for="{{message_objects}}">
+  <view class='items'>
+    <view class='item_topic'>{{item.topic}}</view>
+    <view class='item_message'>{{item.message}}</view>
+  </view>
+</view>

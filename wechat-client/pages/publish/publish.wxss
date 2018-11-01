@@ -1,0 +1,14 @@
+/* pages/publish/publish.wxss */
+textarea, input{
+  border: 1px solid red;
+  width: 80%;
+  margin: 4%;
+  padding: 6px;
+}
+
+.picker{
+  width:80%;
+  border:1px solid red;
+  margin:4%;
+  padding:6px;
+}

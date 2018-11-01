@@ -1,0 +1,43 @@
+/* pages/message/message.wxss */
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  line-height: 40px;
+  border-bottom: 1px solid red;
+  background-color: #f0f0f0;
+}
+.head_item{
+  text-align: center;
+}
+.border_item{
+  width: 1px;
+  background-color: red;
+}
+.content_list{
+  display: flex;
+  flex-direction: column;
+}
+.items{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid red;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.item_topic{
+  padding-left: 10px;
+  word-break: break-all;
+  width: 30%;
+  white-space: pre-line;
+  border-right: 1px solid #f0f0f0;
+}
+.item_message{
+  padding-left: 10px;
+  word-break: break-all;
+  width:70%;
+}
+.test{
+  word-break: break-all;
+}
