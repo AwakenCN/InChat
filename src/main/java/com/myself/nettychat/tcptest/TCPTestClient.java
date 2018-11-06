@@ -19,7 +19,7 @@ public class TCPTestClient {
 
     public static void main(String[] args) throws IOException {
         //10万测试
-        for (int i = 0;i<100000;i++){
+        for (int i = 0;i<10;i++){
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -49,7 +49,7 @@ public class TCPTestClient {
         while(flag){
             //if (i == 1){
             //帧头+ID+数据类型+24把锁状态+crc校验+帧尾
-            String str = "test";
+            String str = "gzF5690137563CC8syyyyyyyyyyyyyyyyynnnnnnnf92fxr";
             //发送数据到服务端
             out.println(str);
             if("bye".equals(str)){

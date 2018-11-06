@@ -13,6 +13,7 @@ import com.myself.nettychat.common.mqtts.MqttHander;
  * @Date:Created in 10:54 2018\8\14 0014
  */
 @Data
+@Component
 @ConfigurationProperties(prefix = "netty")
 public class InitNetty {
 
