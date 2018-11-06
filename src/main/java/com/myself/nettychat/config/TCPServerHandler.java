@@ -47,10 +47,8 @@ public class TCPServerHandler extends ChannelInboundHandlerAdapter {
                         String realChannelID = Const.isChannel(ctx.channel());
                         System.out.println(realChannelID);
                         Const.ChangeClientId(realChannelID,ChannelID);
-                    }
-                    //检查重复链接ID 不同实例 切换实例
-                    if(Const.hasChannelID(ChannelID)){
-                        Const.changeChannel(ChannelID,ctx.channel());
+                    }else if(Const.hasChannelID(ChannelID) && !ctx.channel().equals(Const.get(ChannelID))){
+                        ctx.close();
                     }
                     data =  DataResction.ResctionDataNoID(data);
                     String type = DataResction.ResctionType(data);
@@ -208,11 +206,9 @@ public class TCPServerHandler extends ChannelInboundHandlerAdapter {
                     @Override
                     public void run() {
                         System.out.println("-------尝试执行SQL操作--------控制类型");
-//
+
                     }
                 },0,TimeUnit.SECONDS);
-//        ctx.writeAndFlush(CallBackMessage.sendString(
-//                CRC16MySelf.getAllString(ChannelID,Const.RESULT_TYPE,Const.SUCCESS)));
         ctx.writeAndFlush(CallBackMessage.Check1_test.duplicate());
     }
 
