@@ -1,5 +1,7 @@
 # InChat（当前版本1.6.0）
 
+> 当前主要更新分支，master将会再所有分支开放一定阶段后整改为maven包，提供给大家使用
+
 ## 分支介绍 im-api
 
 腾讯IM（云通信）后端模仿项目，均以API形式对接，如果有前端想要对接的可以运行本分支，本分支预计终版为一个单服务并发30万用户的IM后台项目
@@ -8,9 +10,13 @@
 
 基于小程序端或移动web端的paho.js与[java MQTT 客户端模拟](https://github.com/eclipse/paho.mqtt.java)的消息订阅与通信，小程序Iot的Demo，目前支持ws格式
 
+## 分支介绍 tcp-wechat
+
+基于小程序端与单片机等硬件的TCP/IP的主要通信，Iot中心作为中转，本demo将完全实现具体功能，详情请看分支主页
+
 ## 简介
 
->(InChat)Iot Netty Chat
+***(InChat)Iot Netty Chat***
 
 仿微信聊天应用，一步一步更新，基于SpringBoot-WebSocket通用框架,结合Netty进行聊天社交，并记录聊天日志，
 异步存储，前端暂用SUI Mobile,添加实现TCP/IP后端通信端口（MQTT协议、可实时与单片机等TCP硬件通信）、加入图片处理流，
