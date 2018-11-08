@@ -1,6 +1,6 @@
 package com.myself.nettychat;
 
-
+import com.myself.nettychat.config.NettyConfig;
 import com.myself.nettychat.config.NettyTcpConfig;
 import com.myself.nettychat.config.TCPServer;
 import org.springframework.boot.SpringApplication;
@@ -17,10 +17,21 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class NettychatApplication {
 
 	public static void main(String[] args) throws Exception{
-//		SpringApplication.run(NettychatApplication.class, args);
 		ConfigurableApplicationContext context = SpringApplication.run(NettychatApplication.class, args);
+		NettyConfig nettyConfig = context.getBean(NettyConfig.class);
 		NettyTcpConfig nettyTcpConfig = context.getBean(NettyTcpConfig.class);
 		TCPServer tcpServer = context.getBean(TCPServer.class);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					System.out.println("Web端Netty通信服务端启动成功！端口：8090");
+					tcpServer.startWeb();
+				}catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+		}).start();
 		new Thread(new Runnable() {
 			@Override
 			public void run() {

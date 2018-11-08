@@ -34,6 +34,48 @@ public class SendUtil {
     }
 
     /**
+     * 消息测试
+     * @param channel
+     * @param result
+     * @return
+     */
+    public boolean send(Channel channel, String result){
+        try {
+            if (channel != null){
+                System.out.println("send:" + result);
+                ByteBuf msg = Unpooled.unreleasableBuffer(
+                        Unpooled.copiedBuffer(result, Charset.forName("UTF-8")));
+                channel.writeAndFlush(msg.duplicate());
+                return true;
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return false;
+    }
+
+    /**
+     * 向websocket端发送信息
+     * @param channel
+     * @param result
+     * @return
+     */
+    public boolean sendWebSocket(Channel channel, String result){
+        try {
+            if (channel != null){
+                System.out.println("send:" + result);
+                channel.writeAndFlush(new TextWebSocketFrame(result));
+                return true;
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return false;
+    }
+
+    /**
      * 广播发送事件
      * @param items
      * @param channel

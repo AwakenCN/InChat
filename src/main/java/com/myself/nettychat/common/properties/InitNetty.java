@@ -3,8 +3,6 @@ package com.myself.nettychat.common.properties;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
-import com.myself.nettychat.common.enums.ProtocolEnum;
-import com.myself.nettychat.common.mqtts.MqttHander;
 
 /**
  * @Author:UncleCatMySelf
@@ -16,8 +14,6 @@ import com.myself.nettychat.common.mqtts.MqttHander;
 @Component
 @ConfigurationProperties(prefix = "netty")
 public class InitNetty {
-
-    private ProtocolEnum protocol;
 
     private int webport;
 
@@ -52,8 +48,6 @@ public class InitNetty {
     private String jksStorePassword;
 
     private String jksCertificatePassword;
-
-    private Class<MqttHander> mqttHander ;
 
     private int  initalDelay ;
 

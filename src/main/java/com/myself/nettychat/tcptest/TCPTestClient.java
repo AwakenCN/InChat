@@ -19,7 +19,7 @@ public class TCPTestClient {
 
     public static void main(String[] args) throws IOException {
         //10万测试
-        for (int i = 0;i<2;i++){
+        for (int i = 0;i<1;i++){
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -47,21 +47,21 @@ public class TCPTestClient {
         boolean flag = true;
         int i = 1;
         while(flag){
-            //if (i == 1){
-            //帧头+ID+数据类型+24把锁状态+crc校验+帧尾
-            String str = "gzF5690137563CC8syyyyyyyyyyyyyyyyynnnnnnnf92fxr";
-            //发送数据到服务端
-            out.println(str);
-            if("bye".equals(str)){
-                flag = false;
-            }else{
-                try{
-                    //从服务器端接收数据有个时间限制（系统自设，也可以自己设置），超过了这个时间，便会抛出该异常
-                    String echo = buf.readLine();
-                    System.out.println(echo);
-                }catch(SocketTimeoutException e){
-                    System.out.println("Time out, No response");
+            try{
+                out.println("4400_test");
+                //从服务器端接收数据有个时间限制（系统自设，也可以自己设置），超过了这个时间，便会抛出该异常
+                String echo = buf.readLine();
+                System.out.println(echo);
+                if ("stop".equals(echo)){
+                    flag = false;
+                }else if("c".equals(echo.substring(0,1))){
+                    System.err.println(echo);
+                    String str = "4400c"+echo.substring(1,2);
+                    //发送数据到服务端
+                    out.println(str);
                 }
+            }catch(SocketTimeoutException e){
+                System.out.println("Time out, No response");
             }
             sleep(5000);
         }
