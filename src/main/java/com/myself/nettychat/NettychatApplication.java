@@ -17,7 +17,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class NettychatApplication {
 
 	public static void main(String[] args) throws Exception{
-//		SpringApplication.run(NettychatApplication.class, args);
 		ConfigurableApplicationContext context = SpringApplication.run(NettychatApplication.class, args);
 		NettyConfig nettyConfig = context.getBean(NettyConfig.class);
 		NettyTcpConfig nettyTcpConfig = context.getBean(NettyTcpConfig.class);

@@ -5,11 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * API 统一返回对象
- * @Author:UncleCatMySelf
- * @Email：zhupeijie_java@126.com
- * @QQ:1341933031
- * @Date:Created in 20:58 2018\10\7 0007
+ * Created by MySelf on 2018/11/6.
  */
 @Data
 public class ResultVo<T> implements Serializable {
