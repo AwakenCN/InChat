@@ -1,5 +1,7 @@
 # InChat（当前版本1.6.0）
 
+### [在线咨询与留言](https://gitter.im/In-Chat/Lobby)
+
 > 当前主要更新分支，master将会再所有分支开放一定阶段后整改为maven包，提供给大家使用
 
 ## 分支介绍 im-api
