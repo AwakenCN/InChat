@@ -13,6 +13,7 @@ spring:
 server:
   servlet:
     context-path: /susu
+  port: 8888
 netty:
   webport: 8090 #web聊天室端口
   tcpport: 8092 #tcp协议端口
