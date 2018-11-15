@@ -15,3 +15,6 @@ netty:
   sndbuf: 10485760 # TCP data send buffer size.
   revbuf: 10485760 # TCP data receive buffer size.
   heart: 180 # Read timeout
+  period: 10 # Cycle of re-hair
+  serverName: iot-netty-chat
+  initalDelay: 10 # Reset delay

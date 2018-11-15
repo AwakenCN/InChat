@@ -16,13 +16,7 @@ import com.myself.nettychat.common.mqtts.MqttHander;
 @ConfigurationProperties(prefix = "netty")
 public class InitNetty {
 
-    private ProtocolEnum protocol;
-
     private int webport;
-
-    private int tcpport;
-
-    private int mqttport;
 
     private int bossThread;
 
@@ -32,30 +26,16 @@ public class InitNetty {
 
     private int backlog;
 
-    private boolean nodelay;
+    private  int  sndbuf;
 
-    private boolean reuseaddr;
+    private int revbuf;
 
-    private String serverName ;
+    private int heart;
 
-    private  int  sndbuf ;
+    private int period;
 
-    private int revbuf ;
+    private String serverName;
 
-    private int heart ;
-
-    private boolean ssl ;
-
-    private String jksFile;
-
-    private String jksStorePassword;
-
-    private String jksCertificatePassword;
-
-    private Class<MqttHander> mqttHander ;
-
-    private int  initalDelay ;
-
-    private  int period ;
+    private int initalDelay;
 
 }
