@@ -17,7 +17,7 @@ A lightweight, efficient communication framework that supports chat and the Inte
 Original Project Core demo, you can first run to understand, imitation WeChat chat application, step by step update, based on Springboot-websocket General framework, combined with Netty to chat social, and record chat logs, asynchronous storage, front-end provisional sui Mobile, add implementation tcp/
 IP back-end communication port (MQTT protocol, real-time and single-chip computer and other TCP hardware communication), add picture processing stream, chat implementation text and picture sending function, API call Netty long link execution Send message (number of online, user list)
 
-## Demo Effect Diagram(效果图) 
+## Demo Effect Diagram
 
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(5).png)
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(3).png)
