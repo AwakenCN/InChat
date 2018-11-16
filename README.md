@@ -4,6 +4,8 @@
 
 >The entire MAVEN toolkit is still under construction.... 
 
+**master项目目前在重新构建，运行可能报错，请转到demo分支运行项目。其为原核心项目**
+
 ## Summery
 
 ***(InChat)Iot Netty Chat***
