@@ -1,32 +1,36 @@
-# InChat-IM-API（当前版本0.0.2）
+# InChat-IM-API（0.0.2 Version）
 
-## 简介
+## Summery
 
-本项目为InChat核心项目，服务端项目，以API形式作为对外功能，类似腾讯IM的服务端作用，本文也将着重讲解本项目的各个API，目前还没有嵌入Iot通信模块，仅以WebSocket的聊天室作为初期发展，需要使用到Iot的朋友可以先去[Master](https://github.com/UncleCatMySelf/InChat/tree/master)项目了解。
+This project is Inchat core project, server-side project, in the form of APIs as external functions, similar to Tencent IM service-side role, this article will also focus on the various APIs of this project, there is no embedded IoT communication module, only websocket chat room as the initial development,
+Friends who need to use IoT can first go to the [Master](Https://github.com/UncleCatMySelf/InChat/tree/master) project to learn.
+
+## 中文文档
+
+* [中文文档](doc/doc.md)
 
 ## swagger-ui
 
-前端对接公告，目前推出API，请均已此文档说明的为主，其余API非正式版或测试版，误用
-查看API列表
+Front end docking announcement, currently launched API, please have this document description of the main, the rest of the API informal or beta version, misuse View the list of APIs
 > http://localhost:8080/susu/swagger-ui.html
 
-## API列表详情
+## API List Details
 
-* 1、账号注册
+* 1、Account Registration
 > POST  http://loclhost:8080/susu/user/to_register
-- username（用户名）
-- password（密码）
-- 前端Tip:传值判断，参数均不能为空，密码限制在前端做判断
+- Params：username
+- Params：password
+- Front End tip: Pass value judgment, parameters can not be empty, password limit in the front end to do judgment
 
 
-## 返回码与信息值
+## Return code and information values
 
-| 返回码 | 信息内容 | 备注 |
+| Return code | Content of information | Note |
 |------|---------|------|
-| 200  |  成功   |      |
-| 555  | 参数错误|      |
-| 556  | 用户名存在|    |
+| 200  |  Success   |      |
+| 555  | Parameter error|      |
+| 556  | User name exists|    |
 
-## 提示
+## Tips
 
-仅API列表详情中的API处于可用状态，其余API请勿使用，暂未基本完成，使用请详看文档
+Only the APIs in the API list details are available, and the remaining APIs are not used, are not basically complete, please look at the documentation in detail
