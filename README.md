@@ -1,81 +1,87 @@
-# InChat-Demo（当前版本1.6.0）
+# InChat-Demo（1.6.0 Version）
 
-### [在线咨询与留言](https://gitter.im/In-Chat/Lobby)
-
-> 当前主要更新分支，master将会再所有分支开放一定阶段后整改为maven包，提供给大家使用
-
-> 每周六日下午更新项目或分支，项目尚未结束，欢迎加入与提供建议
+### [Developer Chat](https://gitter.im/In-Chat/Lobby)
 
 ## 简介
 
 ***(InChat)Iot Netty Chat***
 
-仿微信聊天应用，一步一步更新，基于SpringBoot-WebSocket通用框架,结合Netty进行聊天社交，并记录聊天日志，
-异步存储，前端暂用SUI Mobile,添加实现TCP/IP后端通信端口（MQTT协议、可实时与单片机等TCP硬件通信）、加入图片处理流，
-聊天实现文字与图片发送功能、API调用Netty长链接执行发送消息（在线数、用户列表）
+Imitation WeChat chat app, one step update, based on Springboot-websocket General framework, combined with Netty for chat social, and record chat logs,
+Asynchronous storage, front-end provisional sui Mobile, add TCP/IP back-end communication ports (MQTT protocol, real-time communication with single-chip computer and other TCP hardware), add picture processing flow, Chat implementation text and picture sending function, API call Netty long link execution Send message (number of online, user list)
 
-## 基本架构图(1.5.2版)
+## 中文文档
+
+* [中文文档](doc/doc.md)
+
+## Basic architecture Diagram(1.5.2 Version)
 
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/ggg1.png)
 
-## 功能
+## Configuration
 
->实时聊天
->异步CRUD处理消息日志
->获取聊天历史
->用户登录、记录登录用户聊天历史
->防止二次登录
->SUI Mobile仿微信样式
->TCP/IP软硬件通信（8092）
->MQTT协议下的Iot物联网通信（8094）
->图片发送聊天功能
->API调用Netty长链接执行发送消息（在线用户数、用户列表）
->下版（1.7.0）：好友功能等
+>application.yml Database configuration, netty parameter configuration
 
-## 版本迭代介绍
+>TCP must first go to the Com.myself.nettychat.tcptest package to perform crc16myself get send data
 
-* 1.0.0版本
+>Do tcptestclient send data again, do not change the sending format at will (communication protocol)
 
-用户登录，聊天历史，随机用户名，异步数据写入：https://segmentfault.com/a/1190000016615063
+>http://localhost:8080/susu/admin/loginsui Start Access Path
 
-* 1.2.0版本
+>http://localhost:8080/susu/swagger-ui.html View API Documentation
 
-修复聊天记录功能，实现重复信息录入，完善前端页面，回车监听等：https://segmentfault.com/a/1190000016637814
+## Function
 
-* 1.3.0版本
+>Live Chat
 
-用户注册登录功能，系统聊天绑定用户，禁止二次登录等，前端页面大改
+>Asynchronous CRUD handles message logs
 
-* 1.4.1版本
+>Get Chat History
 
-本人主导SUI Mobile构建仿微信样式页面版，使用时开F12手机界面
+>User login, record login user chat history
 
-* 1.5.2版本
+>Prevent two logins
 
-TCP/IP软硬件通信-单片机等应用的TCP通信，Netty处理二进制图片发送聊天功能
+>SUI Mobile imitation WeChat style
 
-* 1.5.8版本
+>TCP/IP hardware and software communication (8092)
 
-MQTT协议软硬件通信等，Iot物联网
+>IoT communications under the MQTT Protocol (8094)
 
-* 1.6.0版本
+>Picture Sending chat function
 
-API调用Netty长链接执行发送消息（在线数、用户列表）：https://segmentfault.com/a/1190000016603392
+>API call Netty Long link execution Send message (number of online users, list of users)
 
+>Next edition (1.7.0): Friends features, etc.
 
-## 配置
+## Version Iteration Introduction(Tags)
 
->application.yml 数据库配置、Netty参数配置
+* 1.0.0 Version
 
->TCP需先去com.myself.nettychat.tcptest包下执行CRC16myself获取发送数据，
+User login, Chat history, random username, asynchronous data write
 
->再执行TCPTestClient发送数据，请勿随意更改发送格式（通信协议来的）
+* 1.2.0 Version
 
->http://localhost:8080/susu/admin/loginsui 启动访问路径
+Repair Chat recording function, realize duplicate information entry, perfect front-end page, return monitor, etc.
 
->mqtt协议测试在mqttclient包下
+* 1.3.0 Version
 
->http://localhost:8080/susu/swagger-ui.html 查看API文档
+User Registration login function, system chat binding users, prohibition of two logins, etc., front-end page Large change
+
+* 1.4.1 Version
+
+I lead Sui mobile to build imitation WeChat style page version, when using the F12 mobile phone interface
+
+* 1.5.2 Version
+
+TCP/IP hardware and software communication-single-chip computer and other applications of TCP communication, Netty processing binary pictures send chat function
+
+* 1.5.8 Version
+
+MQTT protocol hardware and software communication, IoT Internet of Things
+
+* 1.6.0 Version
+
+API call Netty Long link execution Send message (number of online, user list)
 
 ## 效果图 
 
@@ -88,31 +94,29 @@ API调用Netty长链接执行发送消息（在线数、用户列表）：https:
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/10.png)
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/11.png)
 
-## 预留BUG
+## Reserved bugs
 
 ```
 io.netty.handler.codec.CorruptedFrameException: Max frame length of 65536 has been exceeded.
-图片过大，需要在前端做图片上传压缩
+Picture is too large, need to do picture upload compression at the front end
 
 Uncaught TypeError: msg.substring is not a function at WebSocket.socket.onmessage (newChat.js:38)
-前端代码的一点问题，不影响项目正常运行
+A bit of a problem with front-end code that doesn't affect the normal operation of the project
 
 java.io.IOException: 远程主机强迫关闭了一个现有的连接。
-TCP客户端连接主动关闭，不影响，良性报错
+TCP Client Connection active shutdown, no impact, benign error
 ```
 
-## 下载地址
+## Download Address
 
-下载地址：https://github.com/UncleCatMySelf/SBToNettyChat/releases
+https://github.com/UncleCatMySelf/SBToNettyChat/releases
 
-## 交流与提问
+## Communication & questions
 
-提问与Bug上报：https://github.com/UncleCatMySelf/SBToNettyChat/issues
+https://github.com/UncleCatMySelf/SBToNettyChat/issues
 
-QQ群：628793702（仅供交流，不提供问题解答）
+QQ Group ：628793702
 
-## 关于作者
-
-个人公众号：UncleCatMySelf
+## About the author
 
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/%E5%85%AC%E4%BC%97%E5%8F%B7.png)
