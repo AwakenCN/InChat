@@ -22,7 +22,7 @@ A lightweight, efficient communication framework that supports chat and the Inte
 
 * [netty4通信原理](doc/netty-study.md)
 
-## Branch demo:Stop updates
+## Branch demo
 
 Original Project Core demo, you can first run to understand, imitation WeChat chat application, step by step update, based on Springboot-websocket General framework, combined with Netty to chat social, and record chat logs, asynchronous storage, front-end provisional sui Mobile, add implementation tcp/
 IP back-end communication port (MQTT protocol, real-time and single-chip computer and other TCP hardware communication), add picture processing stream, chat implementation text and picture sending function, API call Netty long link execution Send message (number of online, user list)
@@ -38,15 +38,15 @@ IP back-end communication port (MQTT protocol, real-time and single-chip compute
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/10.png)
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/11.png)
 
-## Branch im-api:Stop updates
+## Branch im-api
 
 Tencent im (cloud communications) backend imitation project, are docked in the form of APIs, if there is a front-end want to dock can run this branch, this branch is expected to end up for a single service concurrent 300,000 users of IM background project
 
-## Branch paho-mqtt:Stop updates
+## Branch paho-mqtt
 
 Based on the small program end or mobile Web end of the Paho.js and Java MQTT Client simulation of message subscriptions and communications, small program IoT demo, currently supports WS format
 
-## Branch tcp-wechat:Stop updates
+## Branch tcp-wechat
 
 Based on the main communication between the small program end and the single chip computer and other hardware TCP/IP, IoT Center as a relay, this demo will fully implement the specific functions, please see the Branch home page for details
 
