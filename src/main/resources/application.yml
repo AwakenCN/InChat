@@ -7,14 +7,17 @@ spring:
   jpa:
     show-sql: true
 netty:
-  webport: 8090 # Websocket port
+  webport: 8090 # Websocket 监听端口
   bossThread: 1
   workerThread: 2
-  keepalive: true # Socket parameter, connection warranty, default value is False. When this feature is enabled, TCP proactively detects the validity of idle connections. You can consider this feature as a heartbeat mechanism for TCP, and it is important to note that the default heartbeat interval is 7200s, or 2 hours. Netty Turn off this feature by default
-  backlog: 1024 # Socket parameter, server accepts the queue length of the connection, and if the queue is full, the client connection will be rejected
-  sndbuf: 10485760 # TCP data send buffer size.
-  revbuf: 10485760 # TCP data receive buffer size.
-  heart: 180 # Read timeout
-  period: 10 # Cycle of re-hair
+  keepalive: true # 套接字参数, 连接保修, 默认值为 false。启用此功能后, tcp 会主动检测空闲连接的有效性。您可以将此功能视为 tcp 的检测信号机制, 请务必注意, 默认检测信号间隔为 7200s, 即2小时。netty 默认关闭此功能
+  backlog: 1024 # 套接字参数, 服务器接受连接的队列长度, 如果队列已满, 则客户端连接将被拒绝
+  sndbuf: 10485760 # tcp 数据发送缓冲区大小。
+  revbuf: 10485760 # tcp 数据接收缓冲区大小。
+  heart: 180 # 读取超时
+  period: 10 # 重新发送周期
   serverName: iot-netty-chat
-  initalDelay: 10 # Reset delay
+  initalDelay: 10 # 重置延迟
+  maxContext: 65536
+  webSocketPath: "/ws"
+  webSocketHandler: com.myself.nettychat.bootstrap.handler.DefaultWebSocketHandler # WebSocket 默认处理

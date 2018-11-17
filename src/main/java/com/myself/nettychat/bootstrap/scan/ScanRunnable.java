@@ -24,7 +24,6 @@ public abstract class ScanRunnable implements Runnable{
         return queue.addAll(ts);
     }
 
-
     @Override
     public void run() {
         for(;;){

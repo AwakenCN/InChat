@@ -1,10 +1,8 @@
 package com.myself.nettychat.common.properties;
 
+import com.myself.nettychat.common.websockets.WebSocketHandler;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
-import com.myself.nettychat.common.enums.ProtocolEnum;
-import com.myself.nettychat.common.mqtts.MqttHander;
 
 /**
  * @Author:UncleCatMySelf
@@ -37,5 +35,11 @@ public class InitNetty {
     private String serverName;
 
     private int initalDelay;
+
+    private int maxContext;
+
+    private String webSocketPath;
+
+    private Class<WebSocketHandler> webSocketHandler;
 
 }

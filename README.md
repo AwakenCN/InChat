@@ -14,6 +14,10 @@
 
 A lightweight, efficient communication framework that supports chat and the Internet of things, you can use it to quickly build a chat server with the background and quickly customize your own communication APIs, including physical networks with different protocols that can be supported.
 
+## Tutorial
+
+* [中文文档说明](doc/document.md)
+
 ## Branch demo:Stop updates
 
 Original Project Core demo, you can first run to understand, imitation WeChat chat application, step by step update, based on Springboot-websocket General framework, combined with Netty to chat social, and record chat logs, asynchronous storage, front-end provisional sui Mobile, add implementation tcp/
