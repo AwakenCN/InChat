@@ -1,54 +1,57 @@
-## paho-mqtt 分支介绍
+## paho-mqtt
 
-本Demo是小程序端的Iot案例简单实现。
+This demo is a simple implementation of a small program-side IoT case.
 
-### 一
+## 中文文档说明
 
-首先是配置修改，你可以在本分支的yml配置文件进行mqtt的配置，核心的参数是：
+* [中文文档说明](doc/doc.md)
+
+### Server-side configuration
+
+The first is configuration modifications, which you can configure for MQTT in the YML configuration file in this branch, and the core parameters are:
 
 > ssl: false # 使用ssl加密
 >
 > protocol: MQTT_WS_PAHO  # MQTT  MQTT_WS_MQTT(mqtts.js)   MQTT_WS_PAHO(paho.js)
 
-本项目使用的paho.js的mqtt连接形式，所以protocol要选择MQTT_WS_PAHO。项目目前是未加密的，启动ssl本案例暂时不能通讯。
-默认直接启动项目就好。
+This project uses the Paho.js mqtt connection form, so protocol to select Mqtt_ws_paho.
+The project is currently unencrypted, starting SSL this case is temporarily unable to communicate. It is good to start the project directly by default.
 
-> 项目启动后的地址 ：ws://192.168.1.121:8094/mqtt
+> Address after the project starts ：ws://192.168.1.121:8094/mqtt
 
-ws、与后缀mqtt是com.myself.nettychat.bootstrap.AbstractBootstrapServer.java中的配置
+WS, and Suffix MQTT is the configuration in Com.myself.nettychat.bootstrap.AbstractBootstrapServer.java
 
-### 二
+### Small program Configuration
 
-你需要小程序开发者工具，并默认认定你是具备基本的小程序开发经验的开发者，这里省略部分的基本配置，你只需要将本分支中**wechat-client**文件夹中的文件完全复制到你新建的小程序项目即可，调试情况下无需AppID
-你需要注意的是pages/connect/connect.js中的第78行
+You need a small program developer tool, and by default that you are a developer with basic small program development experience, omit the basic configuration of the section here, you just need to completely copy the files in the **wechat-client** folder in this branch to your new small program project, debugging conditions do not need to AppID What you need to be aware of is the 78th line in Pages/connect/connect.js.
 
 ```javascript
 var client = new MQTT.Client("ws://" + this.data.server_addr+"/mqtt", "clientId_" + Math.random().toString(36).substr(2));
 ```
 
-这里就是小程序的连接地址配置，默认和项目启动的一致，你需要在小程序的连接页面填写你的
-**IP：端口**
+Here is the small program connection address configuration, the default and project startup consistent, you need to fill in the small program on the connection page of your
+**IP：Port**
 
-然后就连接成功了，接着你可以在subscribe页面订阅一个主题，本Demo是订阅TEST。
+Then the connection succeeds, and then you can subscribe to a topic on the Subscribe page, and this demo is subscribed to test.
 
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchat-mqtt/TIM%E5%9B%BE%E7%89%8720181101151707.png)
 
-### 三
+### Java Analog MQTT Client
 
-运行test中的com.myself.nettychat.MqttPublishSample，你需要修改成本机的配置，类似连接地址等
+To run the com.myself.nettychat.MqttPublishSample in test, you need to modify the configuration of the cost machine, similar to the connection address, etc.
 
 > String broker       = "ws://192.168.1.121:8094/mqtt";//地址
 
-需要注意的是，你的topic也要与小程序订阅的主题一致哦！
+It is important to note that your topic should also be consistent with the theme of the small program subscription Oh!
 
-运行测试用例，模拟硬件发送信息
+Run test cases to simulate hardware sending information
 
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchat-mqtt/TIM%E5%9B%BE%E7%89%8720181101151715.png)
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchat-mqtt/TIM%E5%9B%BE%E7%89%8720181101151719.png)
 
 
-### 四
+### Test
 
-回到小程序的message页面，你可以看到接收到了消息
+Back to the Message page of the small program, you can see that the message was received
 
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchat-mqtt/TIM%E5%9B%BE%E7%89%8720181101151723.png)
