@@ -18,6 +18,10 @@ A lightweight, efficient communication framework that supports chat and the Inte
 
 * [中文文档说明](doc/document.md)
 
+## Learning Resources（欢迎贡献）
+
+* [netty4通信原理](doc/netty-study.md)
+
 ## Branch demo:Stop updates
 
 Original Project Core demo, you can first run to understand, imitation WeChat chat application, step by step update, based on Springboot-websocket General framework, combined with Netty to chat social, and record chat logs, asynchronous storage, front-end provisional sui Mobile, add implementation tcp/
@@ -59,3 +63,4 @@ QQ Group：628793702
 ## About the author
 
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/%E5%85%AC%E4%BC%97%E5%8F%B7.png)
+
