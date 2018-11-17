@@ -1,5 +1,4 @@
 package com.myself.nettychat.config;
-
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import lombok.Data;
@@ -25,16 +24,8 @@ public class TCPServer {
     private ServerBootstrap serverBootstrap;
 
     @Autowired
-    @Qualifier("tcpServerBootstrap")
-    private ServerBootstrap tcpServerBootstrap;
-
-    @Autowired
     @Qualifier("webSocketAddress")
     private InetSocketAddress webPort;
-
-    @Autowired
-    @Qualifier("tcpSocketAddress")
-    private InetSocketAddress tcpTcpPort;
 
     private Channel serverChannel;
 
@@ -42,10 +33,6 @@ public class TCPServer {
 
     public void startWeb() throws Exception {
         serverChannel =  serverBootstrap.bind(webPort).sync().channel().closeFuture().sync().channel();
-    }
-
-    public void startTcp() throws Exception {
-        tcpServerChannel = tcpServerBootstrap.bind(tcpTcpPort).sync().channel().closeFuture().sync().channel();
     }
 
     @PreDestroy
