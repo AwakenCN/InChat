@@ -1,41 +1,47 @@
 # tcp-wechat
 
-## 项目介绍
+## Summery
 
-针对小程序与单片机硬件执行Iot物联网通讯（TCP/IP）的一套完整Demo。
+A complete demo of IoT IoT Communications (TCP/IP) for small programs and single-chip hardware.
 
-## 项目配置
+## 中文说明
+
+* [中文说明](doc/doc.md)
+
+## Project configuration
+
+> The following instructions are for tag V0.9.1
 
 > application.xml 
 
-配置tcp端口：8092
+Configuring TCP Ports：8092
 
 > com.myself.nettychat.tcptest.TCPTestClient
 
-配置连接IP与端口，修改代码中的参数
+Configure connection IP and ports to modify parameters in code
 
-## 启动流程
+## Startup Process
 
-1、启动项目，tcp监听成功
+1、Startup Project, TCP listening succeeded
 
-2、运行com.myself.nettychat.tcptest.TCPTestClient （记得先改ip或端口，如果你有修改的话）
+2、Run Com.myself.nettychat.tcptest.TCPTestClient (Remember to change the IP or port first, if you have any changes)
 
-3、运行PostMan，请求下方的API 进行通信测试
+3、Run postman to request communication testing at the API below
 
-## Demo场景
+## Demo Scene
 
-小程序端选购售货机中的商品，点击购买（小程序API向Iot中心发送对应商品的开锁信息），Iot中心中转开锁信息给单片机，单片机接收信息打开对应的锁。
+Small terminal purchase of goods in the vending machine, click to Buy (small program API to the IoT center to send the unlock information of the corresponding product), IoT Center Transit unlock information to the MCU, single-chip computer receiving information to open the corresponding lock.
 
-通信机制：帧头+ID+数据类型+24把锁状态+crc校验+帧尾（可以按照需求进行定制）
+Communication mechanism: Frame head +id+ data type +24 lock state +CRC Check + frame tail (can be customized according to demand)
 
-> com.myself.nettychat.config.TCPServerHandler (通信接收的处理类)
+> com.myself.nettychat.config.TCPServerHandler (Processing classes for communication reception)
 
 
-## API（小程序调用接口）
+## API（Small program Call interface）
 
 > http://localhost:8080/susu/back/get_channel_size  GET
 
-请求Iot中心，获取当前连接存活状态下的链接实例
+Request IoT hub to get a link instance in the current connection survival state
 
 ```
 {
@@ -47,7 +53,7 @@
 
 > http://localhost:8080/susu/back/get_channel_id_list  GET
 
-请求Iot中心，当前存活状态下的链接Id列表
+Request IoT hub, List of link IDs in current surviving state
 
 ```
 {
@@ -61,9 +67,9 @@
 
 > http://localhost:8080/susu/back/send_to_channel  POST
 
-参数
-* channelId //第二个API获取到的链接Id 
-* lock //将要打开的第几把锁   1-24（看单片机接入的锁的数量）
+Parameters
+* channelId //The link ID obtained by the second API 
+* lock //Lock 1-24 to be opened (see the number of locks connected by a single chip computer)
 
 ```
 {
