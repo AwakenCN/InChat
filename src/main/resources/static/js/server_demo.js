@@ -39,7 +39,7 @@ wss.on('connection', function(connection) {
          //when a user tries to login
          case "login": 
             console.log("User logged", data.name); 
-				
+
             //if anyone is logged in with this username then refuse 
             if(users[data.name]) { 
                sendTo(connection, { 
@@ -49,8 +49,7 @@ wss.on('connection', function(connection) {
             } else { 
                //save user connection on the server 
                users[data.name] = connection; 
-               connection.name = data.name; 
-					
+               connection.name = data.name;
                sendTo(connection, { 
                   type: "login", 
                   success: true 

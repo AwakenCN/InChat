@@ -84,6 +84,21 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.9.2</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.51</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.5</version>
+		</dependency>
+
 		<!--Oracle数据库-->
 		<!--<dependency>-->
 		<!--<groupId>com.github.noraui</groupId>-->

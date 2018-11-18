@@ -1,13 +1,20 @@
 package com.myself.nettychat.config;
 
+import com.alibaba.fastjson.JSON;
+import com.google.gson.Gson;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -19,14 +26,25 @@ import org.springframework.stereotype.Component;
 @Component
 @Qualifier("textWebSocketFrameHandler")
 @ChannelHandler.Sharable
-public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<Object>{
+public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>{
 
     public static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx,
-                                Object msg) throws Exception {
-
+                                TextWebSocketFrame frame) throws Exception {
+        System.out.println(frame.text());
+        String result = frame.text();
+        Gson gson = new Gson();
+        Map<String,String> maps = (Map<String,String>) JSON.parse(result);
+        switch (maps.get("type")){
+            case "login":
+                Map<String,String> backs = new HashMap<String,String>();
+                backs.put("type","login");
+                backs.put("success","true");
+                ctx.writeAndFlush(new TextWebSocketFrame(gson.toJson(backs)));
+                break;
+        }
     }
 
     @Override
