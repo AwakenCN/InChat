@@ -44,7 +44,7 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
         }else{
             throw new NoFindHandlerException("Server Handler 不匹配");
         }
-        System.out.println("textdoMessage--"+msg.text());
+
     }
 
     @Override

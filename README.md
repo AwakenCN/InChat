@@ -18,6 +18,8 @@ A lightweight, efficient communication framework that supports chat and the Inte
 
 * [中文文档说明](doc/document.md)
 * [业务场景技术实现分析](doc/work.md)
+* [Project design Ideas](doc/design.md)
+* [项目设计思路](doc/design_cn.md)
 
 ## Learning Resources（欢迎贡献）
 
