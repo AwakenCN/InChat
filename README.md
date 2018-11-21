@@ -17,6 +17,7 @@ A lightweight, efficient communication framework that supports chat and the Inte
 ## Tutorial
 
 * [中文文档说明](doc/document.md)
+* [业务场景技术实现分析](doc/work.md)
 
 ## Learning Resources（欢迎贡献）
 
