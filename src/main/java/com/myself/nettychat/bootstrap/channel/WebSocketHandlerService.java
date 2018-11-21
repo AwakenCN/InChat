@@ -41,12 +41,12 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService imple
 
     @Override
     public void pong(Channel channel) {
-
+        log.info("【pong】"+channel.remoteAddress());
     }
 
     @Override
     public void disconnect(Channel channel) {
-
+        log.info("【disconnect】"+channel.remoteAddress());
     }
 
     @Override
@@ -57,6 +57,6 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService imple
 
     @Override
     public void close(Channel channel) {
-
+        log.info("【close】"+channel.remoteAddress());
     }
 }
