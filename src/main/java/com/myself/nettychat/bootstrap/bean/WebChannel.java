@@ -3,7 +3,6 @@ package com.myself.nettychat.bootstrap.bean;
 import com.myself.nettychat.common.enums.SessionStatus;
 import io.netty.channel.Channel;
 import io.netty.util.AttributeKey;
-import io.swagger.models.auth.In;
 import lombok.Builder;
 import lombok.Data;
 
@@ -44,6 +43,19 @@ public class WebChannel {
         }).orElse(false);
     }
 
+    /**
+     * 非正常关闭
+     */
+    public void close(){
+        Optional.ofNullable(this.channel).ifPresent(channel1 -> channel1.close());
+    }
 
+    /**
+     * 通过是否活跃
+     * @return
+     */
+    public boolean isActive(){
+        return channel!=null&&this.channel.isActive();
+    }
 
 }
