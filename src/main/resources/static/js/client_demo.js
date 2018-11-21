@@ -125,8 +125,8 @@ function handleLogin(success) {
 
          //when a remote user adds stream to the peer connection, we display it
          yourConn.onaddstream = function (e) {
-           remoteVideo.src = window.URL.createObjectURL(e.stream);
-             //  remoteVideo.mozSrcObject = e.stream;
+           //remoteVideo.src = window.URL.createObjectURL(e.stream);
+           remoteVideo.mozSrcObject = e.stream;
          };
 
          // Setup ice handling

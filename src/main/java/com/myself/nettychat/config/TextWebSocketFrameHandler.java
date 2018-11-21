@@ -2,6 +2,8 @@ package com.myself.nettychat.config;
 
 import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
+import com.myself.nettychat.common.properties.CacheTemplate;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -10,6 +12,7 @@ import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import io.netty.util.concurrent.GlobalEventExecutor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -30,19 +33,47 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
 
     public static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
+    @Autowired
+    private CacheTemplate cacheTemplate;
+
     @Override
     protected void channelRead0(ChannelHandlerContext ctx,
                                 TextWebSocketFrame frame) throws Exception {
         System.out.println(frame.text());
+        Channel inchannel = ctx.channel();
         String result = frame.text();
         Gson gson = new Gson();
         Map<String,String> maps = (Map<String,String>) JSON.parse(result);
+        Map<String,String> backs = new HashMap<String,String>();
         switch (maps.get("type")){
             case "login":
-                Map<String,String> backs = new HashMap<String,String>();
                 backs.put("type","login");
                 backs.put("success","true");
+                cacheTemplate.add(maps.get("name"),inchannel);
                 ctx.writeAndFlush(new TextWebSocketFrame(gson.toJson(backs)));
+                break;
+            case "offer":
+                backs.put("type","offer");
+                backs.put("offer",maps.get("offer"));
+                backs.put("name","bbb");
+                Channel other = cacheTemplate.get("bbb");
+                other.writeAndFlush(new TextWebSocketFrame(gson.toJson(backs)));
+                break;
+            case "answer":
+                backs.put("type","answer");
+                backs.put("answer",maps.get("answer"));
+                break;
+            case "candidate":
+                backs.put("type","candidate");
+                backs.put("candidate",maps.get("candidate"));
+                ctx.writeAndFlush(new TextWebSocketFrame(gson.toJson(backs)));
+                break;
+            case "leave":
+                backs.put("type","leave");
+                break;
+            default:
+                backs.put("type","error");
+                backs.put("message","Command not found:"+maps.get("type"));
                 break;
         }
     }
