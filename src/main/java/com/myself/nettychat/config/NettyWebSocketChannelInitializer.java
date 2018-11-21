@@ -18,8 +18,8 @@ import org.springframework.stereotype.Component;
  * @QQ:1341933031
  * @Date:Created in 11:00 2018\8\14 0014
  */
-@Component
-@Qualifier("somethingChannelInitializer")
+//@Component
+//@Qualifier("somethingChannelInitializer")
 public class NettyWebSocketChannelInitializer extends ChannelInitializer<SocketChannel> {
 
     @Autowired

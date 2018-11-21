@@ -1,8 +1,7 @@
 package com.myself.nettychat.config;
 
-import com.myself.nettychat.task.MsgAsyncTesk;
+
 import com.myself.nettychat.constont.LikeRedisTemplate;
-import com.myself.nettychat.constont.LikeSomeCacheTemplate;
 import com.myself.nettychat.common.utils.StringUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
@@ -28,19 +27,19 @@ import java.io.FileOutputStream;
  * @QQ:1341933031
  * @Date:Created in 11:01 2018\8\14 0014
  */
-@Component
-@Qualifier("textWebSocketFrameHandler")
-@ChannelHandler.Sharable
+//@Component
+//@Qualifier("textWebSocketFrameHandler")
+//@ChannelHandler.Sharable
 public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<Object>{
 
     public static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
     @Autowired
     private LikeRedisTemplate redisTemplate;
-    @Autowired
-    private LikeSomeCacheTemplate cacheTemplate;
-    @Autowired
-    private MsgAsyncTesk msgAsyncTesk;
+//    @Autowired
+//    private LikeSomeCacheTemplate cacheTemplate;
+//    @Autowired
+//    private MsgAsyncTesk msgAsyncTesk;
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx,
@@ -82,7 +81,7 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<Objec
         //用户登录判断
         if (redisTemplate.check(incoming.id(),rName)){
             //临时存储聊天数据
-            cacheTemplate.save(rName,rMsg);
+           // cacheTemplate.save(rName,rMsg);
             //存储随机链接ID与对应登录用户名
             redisTemplate.save(incoming.id(),rName);
             //存储登录用户名与链接实例，方便API调用链接实例
@@ -128,7 +127,7 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<Objec
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         //掉线
-        msgAsyncTesk.saveChatMsgTask();
+        //msgAsyncTesk.saveChatMsgTask();
     }
 
     @Override

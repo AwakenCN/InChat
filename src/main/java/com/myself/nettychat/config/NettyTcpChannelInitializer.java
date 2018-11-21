@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
  * @QQ:1341933031
  * @Date:Created in 19:26 2018\9\20 0020
  */
-@Component
-@Qualifier("tcpChannelInitializer")
+//@Component
+//@Qualifier("tcpChannelInitializer")
 public class NettyTcpChannelInitializer extends ChannelInitializer<SocketChannel> {
 
     @Autowired

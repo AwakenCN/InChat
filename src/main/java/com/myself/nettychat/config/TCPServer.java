@@ -17,7 +17,7 @@ import java.net.InetSocketAddress;
  * @Date:Created in 11:00 2018\8\14 0014
  */
 @Data
-@Component
+//@Component
 public class TCPServer {
 
     @Autowired

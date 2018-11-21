@@ -23,54 +23,54 @@ import java.util.Set;
  * @QQ:1341933031
  * @Date:Created in 19:27 2018\9\20 0020
  */
-@Component
+//@Component
 public class NettyTcpConfig {
 
-    @Autowired
-    private InitNetty nettyAccountConfig;
-
-    @Bean(name = "bossGroup", destroyMethod = "shutdownGracefully")
-    public NioEventLoopGroup bossGroup(){
-        return new NioEventLoopGroup(nettyAccountConfig.getBossThread());
-    }
-
-    @Bean(name = "workerGroup", destroyMethod = "shutdownGracefully")
-    public NioEventLoopGroup workerGroup(){
-        return new NioEventLoopGroup(nettyAccountConfig.getWorkerThread());
-    }
-
-    @Bean(name = "tcpSocketAddress")
-    public InetSocketAddress tcpPost(){
-        return new InetSocketAddress(nettyAccountConfig.getTcpport());
-    }
-
-    @Bean(name = "tcpChannelOptions")
-    public Map<ChannelOption<?>, Object> tcpChannelOptions(){
-        Map<ChannelOption<?>, Object> options = new HashMap<>();
-        options.put(ChannelOption.TCP_NODELAY,nettyAccountConfig.isNodelay());
-        options.put(ChannelOption.SO_KEEPALIVE, nettyAccountConfig.isKeepalive());
-        options.put(ChannelOption.SO_BACKLOG, nettyAccountConfig.getBacklog());
-        options.put(ChannelOption.SO_REUSEADDR,nettyAccountConfig.isReuseaddr());
-        return options;
-    }
-
-    @Autowired
-    @Qualifier("tcpChannelInitializer")
-    private NettyTcpChannelInitializer nettyTcpChannelInitializer;
-
-    @Bean(name = "tcpServerBootstrap")
-    public ServerBootstrap bootstrap(){
-        ServerBootstrap b = new ServerBootstrap();
-        b.group(bossGroup(), workerGroup())
-                .channel(NioServerSocketChannel.class)
-                .handler(new LoggingHandler(LogLevel.DEBUG))
-                .childHandler(nettyTcpChannelInitializer);
-        Map<ChannelOption<?>, Object> tcpChannelOptions = tcpChannelOptions();
-        Set<ChannelOption<?>> keySet = tcpChannelOptions.keySet();
-        for (@SuppressWarnings("rawtypes") ChannelOption option : keySet) {
-            b.option(option, tcpChannelOptions.get(option));
-        }
-        return b;
-    }
+//    @Autowired
+//    private InitNetty nettyAccountConfig;
+//
+//    @Bean(name = "bossGroup", destroyMethod = "shutdownGracefully")
+//    public NioEventLoopGroup bossGroup(){
+//        return new NioEventLoopGroup(nettyAccountConfig.getBossThread());
+//    }
+//
+//    @Bean(name = "workerGroup", destroyMethod = "shutdownGracefully")
+//    public NioEventLoopGroup workerGroup(){
+//        return new NioEventLoopGroup(nettyAccountConfig.getWorkerThread());
+//    }
+//
+//    @Bean(name = "tcpSocketAddress")
+//    public InetSocketAddress tcpPost(){
+//        return new InetSocketAddress(nettyAccountConfig.getTcpport());
+//    }
+//
+//    @Bean(name = "tcpChannelOptions")
+//    public Map<ChannelOption<?>, Object> tcpChannelOptions(){
+//        Map<ChannelOption<?>, Object> options = new HashMap<>();
+//        options.put(ChannelOption.TCP_NODELAY,nettyAccountConfig.isNodelay());
+//        options.put(ChannelOption.SO_KEEPALIVE, nettyAccountConfig.isKeepalive());
+//        options.put(ChannelOption.SO_BACKLOG, nettyAccountConfig.getBacklog());
+//        options.put(ChannelOption.SO_REUSEADDR,nettyAccountConfig.isReuseaddr());
+//        return options;
+//    }
+//
+//    @Autowired
+//    @Qualifier("tcpChannelInitializer")
+//    private NettyTcpChannelInitializer nettyTcpChannelInitializer;
+//
+//    @Bean(name = "tcpServerBootstrap")
+//    public ServerBootstrap bootstrap(){
+//        ServerBootstrap b = new ServerBootstrap();
+//        b.group(bossGroup(), workerGroup())
+//                .channel(NioServerSocketChannel.class)
+//                .handler(new LoggingHandler(LogLevel.DEBUG))
+//                .childHandler(nettyTcpChannelInitializer);
+//        Map<ChannelOption<?>, Object> tcpChannelOptions = tcpChannelOptions();
+//        Set<ChannelOption<?>> keySet = tcpChannelOptions.keySet();
+//        for (@SuppressWarnings("rawtypes") ChannelOption option : keySet) {
+//            b.option(option, tcpChannelOptions.get(option));
+//        }
+//        return b;
+//    }
 
 }

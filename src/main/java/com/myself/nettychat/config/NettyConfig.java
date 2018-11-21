@@ -23,7 +23,7 @@ import java.util.Set;
  * @QQ:1341933031
  * @Date:Created in 11:00 2018\8\14 0014
  */
-@Component
+//@Component
 public class NettyConfig {
 
     @Autowired

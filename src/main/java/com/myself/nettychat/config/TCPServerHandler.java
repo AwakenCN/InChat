@@ -23,9 +23,9 @@ import java.util.concurrent.TimeUnit;
  * @QQ:1341933031
  * @Date:Created in 19:29 2018\9\20 0020
  */
-@Component
-@Qualifier("tcpServerHandler")
-@ChannelHandler.Sharable
+//@Component
+//@Qualifier("tcpServerHandler")
+//@ChannelHandler.Sharable
 public class TCPServerHandler extends ChannelInboundHandlerAdapter {
 
     static final ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
