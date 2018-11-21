@@ -17,6 +17,8 @@ public interface ChannelService {
 
     MqttChannel getMqttChannel(String deviceId);
 
+
+
     boolean connectSuccess(String s, MqttChannel build);
 
     void suscribeSuccess(String deviceId, Set<String> topics);

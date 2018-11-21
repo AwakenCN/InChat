@@ -24,6 +24,10 @@ public class InitNetty {
 
     private int backlog;
 
+    private boolean nodelay;
+
+    private boolean reuseaddr;
+
     private  int  sndbuf;
 
     private int revbuf;

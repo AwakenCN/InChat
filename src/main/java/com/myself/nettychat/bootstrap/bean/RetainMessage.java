@@ -11,6 +11,7 @@ public class RetainMessage {
     private byte[]  byteBuf;
 
     private MqttQoS qoS;
+
     public String getString(){
         return new String(byteBuf);
     }

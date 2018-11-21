@@ -1,6 +1,5 @@
 package com.myself.nettychat.bootstrap.bean;
 
-
 import io.netty.channel.Channel;
 import io.netty.handler.codec.mqtt.MqttQoS;
 import lombok.Builder;
@@ -9,14 +8,13 @@ import lombok.Data;
 import com.myself.nettychat.common.enums.ConfirmStatus;
 
 /**
- * @author  MySelf
- * @create  2018/9/22
+ * @author MySelf
+ * @create 2018/9/22
  * @desc mqtts 消息
  **/
 @Builder
 @Data
 public class SendMqttMessage {
-
 
     private int messageId;
 
@@ -26,7 +24,7 @@ public class SendMqttMessage {
 
     private long time;
 
-    private byte[]  byteBuf;
+    private byte[] byteBuf;
 
     private boolean isRetain;
 
