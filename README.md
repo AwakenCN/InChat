@@ -14,6 +14,11 @@
 
 A lightweight, efficient communication framework that supports chat and the Internet of things, you can use it to quickly build a chat server with the background and quickly customize your own communication APIs, including physical networks with different protocols that can be supported.
 
+## Project Log
+
+* [Project Log](doc/Project-Log.md)
+* [项目研发日志更新](doc/Project-Log-cn.md)
+
 ## Tutorial
 
 * [中文文档说明](doc/document.md)

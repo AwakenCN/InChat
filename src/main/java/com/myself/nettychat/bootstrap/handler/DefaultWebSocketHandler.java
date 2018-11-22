@@ -1,5 +1,6 @@
 package com.myself.nettychat.bootstrap.handler;
 
+import com.alibaba.fastjson.JSON;
 import com.myself.nettychat.common.exception.NoFindHandlerException;
 import com.myself.nettychat.common.websockets.ServerWebSocketHandlerService;
 import com.myself.nettychat.common.websockets.WebSocketHandler;
@@ -11,6 +12,8 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
  * @Author:UncleCatMySelf
@@ -44,7 +47,14 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
         }else{
             throw new NoFindHandlerException("Server Handler 不匹配");
         }
-
+        Map<String,String> maps = (Map) JSON.parse(msg.text());
+        switch (maps.get("type")){
+            case "login":
+                serverWebSocketHandlerService.login(channel,msg);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
