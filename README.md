@@ -29,6 +29,7 @@ A lightweight, efficient communication framework that supports chat and the Inte
 ## Learning Resources（欢迎贡献）
 
 * [netty4通信原理](doc/netty-study.md)
+* [QQ群建议贡献](doc/advice/advice.md)
 
 ## Branch demo
 
