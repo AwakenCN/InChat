@@ -2,6 +2,7 @@ package com.myself.nettychat.bootstrap.channel;
 
 import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
+import com.myself.nettychat.backmsg.InChatBackMapService;
 import com.myself.nettychat.bootstrap.BaseApi;
 import com.myself.nettychat.bootstrap.BaseAuthService;
 import com.myself.nettychat.bootstrap.ChannelService;
@@ -28,6 +29,9 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService imple
     InChatVerifyService inChatVerifyService;
 
     @Autowired
+    InChatBackMapService inChatBackMapService;
+
+    @Autowired
     ChannelService websocketChannelService;
 
     private final BaseAuthService baseAuthService;
@@ -40,19 +44,13 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService imple
     public boolean login(Channel channel, TextWebSocketFrame textWebSocketFrame) {
         //校验规则，自定义校验规则
         Map<String,String> maps = (Map<String, String>) JSON.parse(textWebSocketFrame.text());
-        System.out.println("login-"+textWebSocketFrame.text());
-        String token = maps.get("token");
+        String token = maps.get(inChatVerifyService.getVerifyLogin());
         Gson gson = new Gson();
-        Map<String,String> backMap = new HashMap<>();
         if (inChatVerifyService.verifyToken(token)){
-            backMap.put("type","login");
-            backMap.put("success","true");
-            channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(backMap)));
+            channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginSuccess())));
             return true;
         }
-        backMap.put("type","login");
-        backMap.put("success","false");
-        channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(backMap)));
+        channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginError())));
         close(channel);
         return false;
     }

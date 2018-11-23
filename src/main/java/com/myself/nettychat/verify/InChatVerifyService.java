@@ -8,4 +8,5 @@ public interface InChatVerifyService {
 
     boolean verifyToken(String token);
 
+    String getVerifyLogin();
 }

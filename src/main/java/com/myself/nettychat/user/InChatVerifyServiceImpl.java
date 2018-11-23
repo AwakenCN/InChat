@@ -19,4 +19,13 @@ public class InChatVerifyServiceImpl implements InChatVerifyService {
         }
         return false;
     }
+
+    /**
+     * 用户期望校验的自定义名称、openid、token、cookie、或者公司自定义的名称等
+     * @return
+     */
+    @Override
+    public String getVerifyLogin() {
+        return "token";
+    }
 }
