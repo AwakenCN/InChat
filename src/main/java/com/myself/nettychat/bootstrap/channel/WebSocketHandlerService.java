@@ -60,13 +60,13 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
 
     @Override
     public void sendMeText(Channel channel, Map<String,String> maps) {
-
-
+        channel.writeAndFlush(new TextWebSocketFrame(
+                gson.toJson(inChatBackMapService.sendTo(maps.get("value")))));
     }
 
     @Override
     public void sendToText(Channel channel, Map<String, String> maps) {
-        System.out.println("sendText-"+maps.get("value"));
+        System.out.println("sendTOText-"+maps.get("value"));
     }
 
 

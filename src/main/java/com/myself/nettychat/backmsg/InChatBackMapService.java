@@ -12,4 +12,5 @@ public interface InChatBackMapService {
 
     Map<String,String> loginError();
 
+    Map<String,String> sendTo(String value);
 }

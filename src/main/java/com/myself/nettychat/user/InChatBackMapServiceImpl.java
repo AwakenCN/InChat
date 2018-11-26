@@ -13,7 +13,6 @@ import java.util.Map;
 @Service
 public class InChatBackMapServiceImpl implements InChatBackMapService {
 
-
     @Override
     public Map<String, String> loginSuccess() {
         Map<String,String> backMap = new HashMap<>();
@@ -27,6 +26,14 @@ public class InChatBackMapServiceImpl implements InChatBackMapService {
         Map<String,String> backMap = new HashMap<>();
         backMap.put("type","login");
         backMap.put("success","false");
+        return backMap;
+    }
+
+    @Override
+    public Map<String, String> sendTo(String value) {
+        Map<String,String> backMap = new HashMap<>();
+        backMap.put("type","send");
+        backMap.put("value",value);
         return backMap;
     }
 }
