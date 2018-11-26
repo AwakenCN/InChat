@@ -13,7 +13,9 @@ public abstract class ServerWebSocketHandlerService implements WebSocketHandlerA
 
     public abstract boolean login(Channel channel, Map<String,String> map);
 
-    public abstract void sendText(Channel channel,Map<String,String> maps);
+    public abstract void sendMeText(Channel channel,Map<String,String> maps);
+
+    public abstract void sendToText(Channel channel, Map<String,String> maps);
 
     public abstract void pong(Channel channel);
 

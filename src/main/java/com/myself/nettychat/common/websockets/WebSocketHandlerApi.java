@@ -16,7 +16,9 @@ public interface WebSocketHandlerApi {
 
     void close(Channel channel);
 
-    void sendText(Channel channel, Map<String,String> maps);
+    void sendMeText(Channel channel, Map<String,String> maps);
+
+    void sendToText(Channel channel, Map<String,String> maps);
 
     void doTimeOut(Channel channel, IdleStateEvent evt);
 

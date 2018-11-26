@@ -85,6 +85,22 @@
             alert("连接没有开启.");
         }
     }
+
+    function sendToMe(value) {
+        if (!window.WebSocket) {
+            return;
+        }
+        if (socket.readyState == WebSocket.OPEN) {
+            var message = {
+                type: "sendMe",
+                value: value
+            }
+            socket.send(JSON.stringify(message));
+        } else {
+            alert("连接没有开启.");
+        }
+    }
+
     window.onbeforeunload = function(event) {
         event.returnValue = "刷新提醒";
     };
@@ -95,6 +111,7 @@
     <br>
     <input class='msg' type="text" name="message" placeholder='发送消息' value="">
     <input class='btn' type="button" value="发送" onclick="send(this.form.message.value)">
+    <input class='btn' type="button" value="发送给自己" onclick="sendToMe(this.form.message.value)">
 </form>
 <br>
 <br>

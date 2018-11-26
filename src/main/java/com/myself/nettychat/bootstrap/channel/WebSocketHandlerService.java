@@ -57,10 +57,16 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     }
 
     @Override
-    public void sendText(Channel channel, Map<String,String> maps) {
+    public void sendMeText(Channel channel, Map<String,String> maps) {
         System.out.println("sendText-"+maps.get("value"));
 
     }
+
+    @Override
+    public void sendToText(Channel channel, Map<String, String> maps) {
+        System.out.println("sendText-"+maps.get("value"));
+    }
+
 
     @Override
     public void pong(Channel channel) {

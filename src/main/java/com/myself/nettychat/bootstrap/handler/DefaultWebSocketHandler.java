@@ -52,6 +52,9 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
             case "login":
                 serverWebSocketHandlerService.login(channel,maps);
                 break;
+            case "sendMe":
+                serverWebSocketHandlerService.sendMeText(channel,maps);
+                break;
             default:
                 break;
         }
