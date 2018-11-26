@@ -1,8 +1,10 @@
 package com.myself.nettychat.common.properties;
 
 import com.myself.nettychat.common.websockets.WebSocketHandler;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 /**
  * @Author:UncleCatMySelf
@@ -11,7 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @Date:Created in 10:54 2018\8\14 0014
  */
 @Data
-@ConfigurationProperties(prefix = "netty")
+@ConfigurationProperties(prefix = "inchat")
 public class InitNetty {
 
     private int webport;

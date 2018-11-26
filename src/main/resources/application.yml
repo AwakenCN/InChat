@@ -1,4 +1,4 @@
-netty:
+inchat:
   webport: 8090 # Websocket 监听端口
   bossThread: 1
   workerThread: 2

@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Slf4j
 @Component
-public class WebSocketHandlerService extends ServerWebSocketHandlerService implements BaseApi {
+public class WebSocketHandlerService extends ServerWebSocketHandlerService{
 
     @Autowired
     InChatVerifyService inChatVerifyService;
@@ -42,9 +42,8 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService imple
     }
 
     @Override
-    public boolean login(Channel channel, TextWebSocketFrame textWebSocketFrame) {
+    public boolean login(Channel channel, Map<String,String> maps) {
         //校验规则，自定义校验规则
-        Map<String,String> maps = (Map<String, String>) JSON.parse(textWebSocketFrame.text());
         String token = maps.get(inChatVerifyService.getVerifyLogin());
         Gson gson = new Gson();
         if (inChatVerifyService.verifyToken(token)){
@@ -58,13 +57,15 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService imple
     }
 
     @Override
-    public void sendText(Channel channel, TextWebSocketFrame webSocketFrame) {
-        System.out.println("sendText-"+webSocketFrame.text());
+    public void sendText(Channel channel, Map<String,String> maps) {
+        System.out.println("sendText-"+maps.get("value"));
+
     }
 
     @Override
     public void pong(Channel channel) {
         log.info("【pong】"+channel.remoteAddress());
+
     }
 
     @Override

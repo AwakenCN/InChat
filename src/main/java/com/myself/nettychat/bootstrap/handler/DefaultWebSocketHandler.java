@@ -50,7 +50,7 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
         Map<String,String> maps = (Map) JSON.parse(msg.text());
         switch (maps.get("type")){
             case "login":
-                serverWebSocketHandlerService.login(channel,msg);
+                serverWebSocketHandlerService.login(channel,maps);
                 break;
             default:
                 break;
