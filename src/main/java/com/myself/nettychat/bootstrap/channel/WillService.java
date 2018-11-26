@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
-@Component
+//@Component
 @Data
 @NoArgsConstructor
 public class WillService implements BaseApi {

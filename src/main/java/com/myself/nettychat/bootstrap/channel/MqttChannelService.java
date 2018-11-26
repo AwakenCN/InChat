@@ -31,7 +31,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @desc Channel事件处理service
  **/
 @Slf4j
-@Component
+//@Component
 public class MqttChannelService extends AbstractChannelService {
 
     @Autowired

@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
  * @desc 默认MQTTHandler处理
  **/
 @Slf4j
-@Component
+//@Component
 @ChannelHandler.Sharable
 public class DefaultMqttHandler extends MqttHander {
 

@@ -6,6 +6,7 @@ import com.myself.nettychat.backmsg.InChatBackMapService;
 import com.myself.nettychat.bootstrap.BaseApi;
 import com.myself.nettychat.bootstrap.BaseAuthService;
 import com.myself.nettychat.bootstrap.ChannelService;
+import com.myself.nettychat.bootstrap.WsChannelService;
 import com.myself.nettychat.common.websockets.ServerWebSocketHandlerService;
 import com.myself.nettychat.verify.InChatVerifyService;
 import io.netty.channel.Channel;
@@ -32,7 +33,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService imple
     InChatBackMapService inChatBackMapService;
 
     @Autowired
-    ChannelService websocketChannelService;
+    WsChannelService websocketChannelService;
 
     private final BaseAuthService baseAuthService;
 
@@ -48,6 +49,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService imple
         Gson gson = new Gson();
         if (inChatVerifyService.verifyToken(token)){
             channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginSuccess())));
+            websocketChannelService.loginWsSuccess(channel,token);
             return true;
         }
         channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginError())));
