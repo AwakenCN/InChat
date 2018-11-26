@@ -35,17 +35,19 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     @Autowired
     WsChannelService websocketChannelService;
 
+    private final Gson gson;
+
     private final BaseAuthService baseAuthService;
 
-    public WebSocketHandlerService(BaseAuthService baseAuthService){
+    public WebSocketHandlerService(BaseAuthService baseAuthService,Gson gson){
         this.baseAuthService = baseAuthService;
+        this.gson = gson;
     }
 
     @Override
     public boolean login(Channel channel, Map<String,String> maps) {
         //校验规则，自定义校验规则
         String token = maps.get(inChatVerifyService.getVerifyLogin());
-        Gson gson = new Gson();
         if (inChatVerifyService.verifyToken(token)){
             channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginSuccess())));
             websocketChannelService.loginWsSuccess(channel,token);
@@ -58,7 +60,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
 
     @Override
     public void sendMeText(Channel channel, Map<String,String> maps) {
-        System.out.println("sendText-"+maps.get("value"));
+
 
     }
 
