@@ -19,6 +19,8 @@
 * [业务场景技术实现分析](doc/work.md)
 * [项目设计思路](doc/design_cn.md)
 
+> * [登录模块详细设计](doc/detail/Login-cn.md)
+
 ## 相关资料（欢迎贡献）
 
 * [netty4通信原理](doc/netty-study.md)
