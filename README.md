@@ -1,42 +1,34 @@
 # InChat
 
-#### [Developer Chat](https://gitter.im/In-Chat/Lobby)
-
->The entire MAVEN toolkit is still under construction.... 
+#### [在线通讯](https://gitter.im/In-Chat/Lobby)
 
 **master项目目前在重新构建，运行可能报错，请转到demo分支运行项目。其为原核心项目**
 
-## Summery
+## 简介
 
 ***(InChat)Iot Netty Chat***
 
-> 2018-11-15 began to change to MAVEN project package, currently not released, please see the demo branch for details, thank you.
+一个轻量级、高效的通信框架, 支持聊天和物联网, 您可以使用它来快速构建具有后台的聊天服务器, 并快速自定义自己的通信 api, 包括具有不同的通讯可以支持的协议。
 
-A lightweight, efficient communication framework that supports chat and the Internet of things, you can use it to quickly build a chat server with the background and quickly customize your own communication APIs, including physical networks with different protocols that can be supported.
+## 项目日志
 
-## Project Log
-
-* [Project Log](doc/Project-Log.md)
 * [项目研发日志更新](doc/Project-Log-cn.md)
 
-## Tutorial
+## 教程
 
-* [中文文档说明](doc/document.md)
 * [业务场景技术实现分析](doc/work.md)
-* [Project design Ideas](doc/design.md)
 * [项目设计思路](doc/design_cn.md)
 
-## Learning Resources（欢迎贡献）
+## 相关资料（欢迎贡献）
 
 * [netty4通信原理](doc/netty-study.md)
 * [QQ群建议贡献](doc/advice/advice.md)
 
-## Branch demo
+## demo分支介绍
 
-Original Project Core demo, you can first run to understand, imitation WeChat chat application, step by step update, based on Springboot-websocket General framework, combined with Netty to chat social, and record chat logs, asynchronous storage, front-end provisional sui Mobile, add implementation tcp/
-IP back-end communication port (MQTT protocol, real-time and single-chip computer and other TCP hardware communication), add picture processing stream, chat implementation text and picture sending function, API call Netty long link execution Send message (number of online, user list)
+原始项目核心演示, 您可以先运行了解, 模仿微聊天聊天应用程序, 逐步更新, 基于 springbot-web 套接字的一般框架, 结合 netty 聊天社交, 并记录聊天日志, 异步存储, 前端临时 sui mobile, 添加实现 tcp/后端通信端口 (mqtt 协议、实时和单片机等 tcp 硬件通信), 添加图片处理流、聊天实现文本和图片发送功能,api 调用 netty 长链接执行发送消息 (联机、用户列表的数量)
 
-## Demo Effect Diagram
+## demo分支效果演示
 
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(5).png)
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(3).png)
@@ -47,35 +39,35 @@ IP back-end communication port (MQTT protocol, real-time and single-chip compute
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/10.png)
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/11.png)
 
-## Branch webrtc 
+## webrtc分支介绍
 
-A Netty and web RTC combined to achieve Voice video communication function Branch.
+一个基于web RTC和Netty相结合的例子，实现语音与视频流通讯。
 
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/webrtc/TIM%E5%9B%BE%E7%89%8720181121150540.png)
 
-## Branch im-api
+## im-api分支介绍
 
-Tencent im (cloud communications) backend imitation project, are docked in the form of APIs, if there is a front-end want to dock can run this branch, this branch is expected to end up for a single service concurrent 300,000 users of IM background project
+腾讯 im (云通信) 后端仿真项目, 以 api 的形式对接, 如果有前端想要停靠可以运行此分支, 预计该分支最终将为一个单一的服务并发 300, 000个用户的 im 后台项目
 
-## Branch paho-mqtt
+## paho-mqtt分支介绍
 
-Based on the small program end or mobile Web end of the Paho.js and Java MQTT Client simulation of message subscriptions and communications, small program IoT demo, currently supports WS format
+基于 paho. js 和 java mqtt 客户端消息订阅和通信的小型程序端或移动 web 端, 小程序物联网演示目前支持 ws 格式
 
-## Branch tcp-wechat
+## tcp-wechat分支介绍
 
-Based on the main communication between the small program end and the single chip computer and other hardware TCP/IP, IoT Center as a relay, this demo will fully implement the specific functions, please see the Branch home page for details
+基于小程序端与单片机等硬件 tcp/ip 的主要通信, 将物联网中心作为中转, 本演示将充分实现具体功能
 
-## Download Address
+## 下载地址
 
-Download Address：https://github.com/UncleCatMySelf/SBToNettyChat/releases
+下载地址：https://github.com/UncleCatMySelf/SBToNettyChat/releases
 
-## Issues & Questions
+## 下载 & 问题
 
 https://github.com/UncleCatMySelf/SBToNettyChat/issues
 
 QQ Group：628793702
 
-## About the author
+## 关于作者
 
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/%E5%85%AC%E4%BC%97%E5%8F%B7.png)
 
