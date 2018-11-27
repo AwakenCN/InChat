@@ -1,6 +1,6 @@
 # InChat
 
-#### [在线通讯](https://gitter.im/In-Chat/Lobby)
+#### [开发者在线交流室](https://gitter.im/In-Chat/Lobby)
 
 **master项目目前在重新构建，运行可能报错，请转到demo分支运行项目。其为原核心项目**
 
@@ -20,6 +20,7 @@
 * [项目设计思路](doc/design_cn.md)
 
 > * [登录模块详细设计](doc/detail/Login-cn.md)
+> * [登录模块整改版V0.1](doc/detail/login_rect.md)
 
 ## 相关资料（欢迎贡献）
 
