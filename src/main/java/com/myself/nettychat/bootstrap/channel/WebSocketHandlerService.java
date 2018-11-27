@@ -99,6 +99,11 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     }
 
     @Override
+    public void sendGroupText(Channel channel, Map<String, String> maps) {
+
+    }
+
+    @Override
     public void close(Channel channel) {
         log.info("【close】"+channel.remoteAddress());
         channel.close();

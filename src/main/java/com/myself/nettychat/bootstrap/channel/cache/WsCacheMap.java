@@ -23,7 +23,7 @@ public class WsCacheMap {
      * @param channel {@link Channel} 链接实例
      */
     public void saveWs(String token,Channel channel){
-        log.info("【新增用户链接：】"+token);
+        log.info("【新增用户链接实例：】"+token);
         maps.put(token,channel);
     }
 
@@ -33,7 +33,7 @@ public class WsCacheMap {
      * @return {@link Channel} 链接实例
      */
     public Channel getByToken(String token){
-        log.info("【获取用户链接：】"+token);
+        log.info("【获取用户链接实例：】"+token);
         return maps.get(token);
     }
 
@@ -42,7 +42,7 @@ public class WsCacheMap {
      * @param token {@link String} 用户标识
      */
     public void deleteWs(String token){
-        log.info("【删除用户链接：】"+token);
+        log.info("【删除用户链接实例：】"+token);
         maps.remove(token);
     }
 

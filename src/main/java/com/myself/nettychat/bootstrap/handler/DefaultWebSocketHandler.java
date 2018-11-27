@@ -50,13 +50,22 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
         Map<String,String> maps = (Map) JSON.parse(msg.text());
         switch (maps.get("type")){
             case "login":
+                log.info("【用户链接登录操作】");
                 serverWebSocketHandlerService.login(channel,maps);
                 break;
+            //针对个人，发送给自己
             case "sendMe":
+                log.info("【用户链接发送给自己】");
                 serverWebSocketHandlerService.sendMeText(channel,maps);
                 break;
+            //针对个人，发送给某人
             case "sendTo":
+                log.info("【用户链接发送给某人】");
                 serverWebSocketHandlerService.sendToText(channel,maps);
+                break;
+            case "sendGroup":
+                log.info("【用户链接发送给群聊】");
+                serverWebSocketHandlerService.sendGroupText(channel,maps);
                 break;
             default:
                 break;
