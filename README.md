@@ -22,6 +22,10 @@
 > * [登录模块详细设计](doc/detail/Login-cn.md)
 > * [登录模块整改版V0.1](doc/detail/login_rect.md)
 
+## 里程碑
+
+* [InChat项目里程碑](doc/goal/goal.md)
+
 ## 相关资料（欢迎贡献）
 
 * [netty4通信原理](doc/netty-study.md)
