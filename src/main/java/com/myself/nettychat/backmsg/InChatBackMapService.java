@@ -8,9 +8,38 @@ import java.util.Map;
  */
 public interface InChatBackMapService {
 
+    /**
+     * 登录成功返回信息
+     * @return {@link Map} Json
+     */
     Map<String,String> loginSuccess();
 
+    /**
+     * 登录失败返回信息
+     * @return {@link Map} Json
+     */
     Map<String,String> loginError();
 
-    Map<String,String> sendTo(String value);
+    /**
+     * 发送给自己
+     * @param value {@link String} 通讯消息
+     * @return {@link Map} Json
+     */
+    Map<String,String> sendMe(String value);
+
+    /**
+     * 发送给某人的信息，返回给自己
+     * @param otherOne {@link String} 某人Token
+     * @param value {@link String} 通讯消息
+     * @return {@link Map} Json
+     */
+    Map<String,String> sendBack(String otherOne, String value);
+
+    /**
+     * 某人接收到他人发送给他的消息
+     * @param me {@link String} 发送人的标签
+     * @param value {@link String} 通讯消息
+     * @return
+     */
+    Map<String,String> getMsg(String me, String value);
 }

@@ -61,12 +61,23 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     @Override
     public void sendMeText(Channel channel, Map<String,String> maps) {
         channel.writeAndFlush(new TextWebSocketFrame(
-                gson.toJson(inChatBackMapService.sendTo(maps.get("value")))));
+                gson.toJson(inChatBackMapService.sendMe(maps.get("value")))));
     }
 
     @Override
     public void sendToText(Channel channel, Map<String, String> maps) {
-        System.out.println("sendTOText-"+maps.get("value"));
+        String otherOne = maps.get("one");
+        String value = maps.get("value");
+        String me = maps.get("me");
+        if (websocketChannelService.hasOther(otherOne)){
+            //发送给对方
+            Channel other = websocketChannelService.getChannel(otherOne);
+            other.writeAndFlush(new TextWebSocketFrame(
+                    gson.toJson(inChatBackMapService.getMsg(me,value))));
+            //返回给自己
+            channel.writeAndFlush(new TextWebSocketFrame(
+                    gson.toJson(inChatBackMapService.sendBack(otherOne,value))));
+        }
     }
 
 

@@ -14,10 +14,11 @@ public class InChatVerifyServiceImpl implements InChatVerifyService {
     public boolean verifyToken(String token) {
         //与Redis中的Token做比较，请用户自己实现,查找是否存在该Token值
         System.out.println("verify---"+token);
-        if ("3333".equals(token)){
-            return true;
-        }
-        return false;
+        //为了方便多人登录，暂不校验
+//        if ("3333".equals(token)){
+//            return true;
+//        }
+        return true;
     }
 
     /**

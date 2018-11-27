@@ -55,6 +55,9 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
             case "sendMe":
                 serverWebSocketHandlerService.sendMeText(channel,maps);
                 break;
+            case "sendTo":
+                serverWebSocketHandlerService.sendToText(channel,maps);
+                break;
             default:
                 break;
         }

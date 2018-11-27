@@ -22,5 +22,15 @@ public class WebSocketChannelService implements WsChannelService {
         wsCacheMap.saveWs(token,channel);
     }
 
+    @Override
+    public boolean hasOther(String otherOne) {
+        return wsCacheMap.hasToken(otherOne);
+    }
+
+    @Override
+    public Channel getChannel(String otherOne) {
+        return wsCacheMap.getByToken(otherOne);
+    }
+
 
 }
