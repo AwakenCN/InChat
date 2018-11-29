@@ -90,6 +90,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     @Override
     public void disconnect(Channel channel) {
         log.info("【disconnect】"+channel.remoteAddress());
+
     }
 
     @Override
