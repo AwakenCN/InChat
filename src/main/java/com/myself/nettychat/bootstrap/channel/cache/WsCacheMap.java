@@ -15,7 +15,15 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class WsCacheMap {
 
+    /**
+     * 存储用户标识与链接实例
+     */
     Map<String,Channel> maps = new ConcurrentHashMap<String,Channel>();
+
+    /**
+     * 存储链接地址与用户标识
+     */
+    Map<String,String> addMaps = new ConcurrentHashMap<>();
 
     /**
      * 存储链接
@@ -25,6 +33,10 @@ public class WsCacheMap {
     public void saveWs(String token,Channel channel){
         log.info("【新增用户链接实例】"+token);
         maps.put(token,channel);
+    }
+
+    public void saveAd(String address,String token){
+        addMaps.put(address, token);
     }
 
     /**
