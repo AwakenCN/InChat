@@ -2,7 +2,6 @@ package com.myself.nettychat.auto;
 
 import com.myself.nettychat.bootstrap.scan.SacnScheduled;
 import com.myself.nettychat.bootstrap.scan.ScanRunnable;
-import com.myself.nettychat.common.enums.ProtocolEnum;
 import com.myself.nettychat.common.properties.InitNetty;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ public class ServerAutoConfigure {
 
     @Bean
     @ConditionalOnMissingBean(name = "sacnScheduled")
-    public ScanRunnable initRunable(@Autowired  InitNetty serverBean){
+    public ScanRunnable initRunable(@Autowired InitNetty serverBean){
         long time =(serverBean==null || serverBean.getPeriod()<5)?10:serverBean.getPeriod();
         ScanRunnable sacnScheduled = new SacnScheduled(time);
         Thread scanRunnable = new Thread(sacnScheduled);
