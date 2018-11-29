@@ -107,6 +107,6 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     @Override
     public void close(Channel channel) {
         log.info("【close】"+channel.remoteAddress());
-        channel.close();
+        websocketChannelService.close(channel);
     }
 }

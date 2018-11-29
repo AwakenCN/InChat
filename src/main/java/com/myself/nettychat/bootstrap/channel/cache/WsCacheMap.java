@@ -35,6 +35,11 @@ public class WsCacheMap {
         maps.put(token,channel);
     }
 
+    /**
+     * 存储登录信息
+     * @param address 登录地址
+     * @param token 用户标签
+     */
     public void saveAd(String address,String token){
         addMaps.put(address, token);
     }
@@ -50,12 +55,29 @@ public class WsCacheMap {
     }
 
     /**
+     * 获取对应token标签
+     * @param address {@link String} 链接地址
+     * @return {@link String}
+     */
+    public String getByAddress(String address){
+        return addMaps.get(address);
+    }
+
+    /**
      * 删除链接数据
      * @param token {@link String} 用户标识
      */
     public void deleteWs(String token){
         log.info("【删除用户链接实例】"+token);
         maps.remove(token);
+    }
+
+    /**
+     * 删除链接地址
+     * @param address
+     */
+    public void deleteAd(String address){
+        addMaps.remove(address);
     }
 
     /**

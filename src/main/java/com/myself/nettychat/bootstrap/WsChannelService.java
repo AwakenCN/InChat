@@ -28,4 +28,10 @@ public interface WsChannelService {
      * @return {@link Channel} 链接实例
      */
     Channel getChannel(String otherOne);
+
+    /**
+     * 删除链接与本地存储信息
+     * @param channel {@link Channel} 链接实例
+     */
+    void close(Channel channel);
 }

@@ -20,6 +20,7 @@ public class WebSocketChannelService implements WsChannelService {
     @Override
     public void loginWsSuccess(Channel channel, String token) {
         wsCacheMap.saveWs(token,channel);
+        wsCacheMap.saveAd(channel.remoteAddress().toString(),token);
     }
 
     @Override
@@ -30,6 +31,15 @@ public class WebSocketChannelService implements WsChannelService {
     @Override
     public Channel getChannel(String otherOne) {
         return wsCacheMap.getByToken(otherOne);
+    }
+
+    @Override
+    public void close(Channel channel) {
+        log.info("【退出统一移除】");
+        String token = wsCacheMap.getByAddress(channel.remoteAddress().toString());
+        wsCacheMap.deleteAd(channel.remoteAddress().toString());
+        wsCacheMap.deleteWs(token);
+        channel.close();
     }
 
 
