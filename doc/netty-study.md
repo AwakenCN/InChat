@@ -1,6 +1,6 @@
 ## netty4通信步骤，原理
 
-> 感谢 贡献者：@@Noseparte
+> 感谢 贡献者：[Noseparte](https://github.com/noseparte)
 
 ### 服务端依次发生的步骤
     
