@@ -1,14 +1,11 @@
 package com.myself.nettychat.bootstrap.channel;
 
-import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
-import com.myself.nettychat.backmsg.InChatBackMapService;
-import com.myself.nettychat.bootstrap.BaseApi;
+import com.myself.nettychat.bootstrap.backmsg.InChatBackMapService;
 import com.myself.nettychat.bootstrap.BaseAuthService;
-import com.myself.nettychat.bootstrap.ChannelService;
 import com.myself.nettychat.bootstrap.WsChannelService;
 import com.myself.nettychat.common.websockets.ServerWebSocketHandlerService;
-import com.myself.nettychat.verify.InChatVerifyService;
+import com.myself.nettychat.bootstrap.verify.InChatVerifyService;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -16,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**

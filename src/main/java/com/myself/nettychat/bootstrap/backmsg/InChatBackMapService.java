@@ -1,4 +1,4 @@
-package com.myself.nettychat.backmsg;
+package com.myself.nettychat.bootstrap.backmsg;
 
 import java.util.Map;
 

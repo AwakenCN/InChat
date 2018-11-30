@@ -1,6 +1,6 @@
 package com.myself.nettychat.user;
 
-import com.myself.nettychat.backmsg.InChatBackMapService;
+import com.myself.nettychat.bootstrap.backmsg.InChatBackMapService;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

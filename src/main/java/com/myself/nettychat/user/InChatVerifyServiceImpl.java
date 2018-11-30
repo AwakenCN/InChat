@@ -1,6 +1,6 @@
 package com.myself.nettychat.user;
 
-import com.myself.nettychat.verify.InChatVerifyService;
+import com.myself.nettychat.bootstrap.verify.InChatVerifyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

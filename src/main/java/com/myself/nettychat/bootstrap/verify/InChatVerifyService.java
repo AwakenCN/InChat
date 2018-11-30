@@ -1,4 +1,4 @@
-package com.myself.nettychat.verify;
+package com.myself.nettychat.bootstrap.verify;
 
 /**
  * 用户校验层
