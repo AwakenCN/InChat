@@ -2,6 +2,8 @@ package com.myself.nettychat.bootstrap;
 
 import io.netty.channel.Channel;
 
+import java.util.Map;
+
 /**
  * WebSocket 聊天业务消息处理
  * Created by MySelf on 2018/11/26.
@@ -34,4 +36,12 @@ public interface WsChannelService {
      * @param channel {@link Channel} 链接实例
      */
     void close(Channel channel);
+
+    /**
+     * 以服务端API调用向链接发送信息
+     * @param channel {@link }
+     * @param map
+     * @return
+     */
+    boolean sendFromServer(Channel channel, Map<String,String> map);
 }
