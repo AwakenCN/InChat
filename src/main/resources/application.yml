@@ -14,4 +14,4 @@ inchat:
   initalDelay: 10 # 重置延迟
   maxContext: 65536
   webSocketPath: "/ws"
-  webSocketHandler: com.myself.unclecatmyselfyself.bootstrap.handler.DefaultWebSocketHandler # WebSocket 默认处理
+  webSocketHandler: com.myself.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler # WebSocket 默认处理
