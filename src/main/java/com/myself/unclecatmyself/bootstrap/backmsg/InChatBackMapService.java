@@ -42,4 +42,13 @@ public interface InChatBackMapService {
      * @return
      */
     Map<String,String> getMsg(String me, String value);
+
+    /**
+     * 发送消息到群里
+     * @param me {@link String} 发送人的标签
+     * @param value {@link String} 通讯消息
+     * @param groupId {@link String} 群聊Id
+     * @return
+     */
+    Map<String,String> sendGroup(String me,String value,String groupId);
 }

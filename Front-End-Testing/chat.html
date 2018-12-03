@@ -118,14 +118,16 @@
         }
     }
 
-    function addGroup(value) {
+    function sendGroup(value) {
         if (!window.WebSocket) {
             return;
         }
         if (socket.readyState == WebSocket.OPEN) {
             var message = {
-                type: "addGroup",
-                value: ["1111","2222","3333"]
+                type: "sendGroup",
+                groupId: "2",
+                me: "3333",
+                value: value
             }
             socket.send(JSON.stringify(message));
         } else {
@@ -145,7 +147,7 @@
     <input class='btn' type="button" value="发送" onclick="send(this.form.message.value)">
     <input class='btn' type="button" value="发送给自己" onclick="sendToMe(this.form.message.value)">
     <input class='btn' type="button" value="发送给某人" onclick="sendToOne(this.form.message.value)">
-    <input class='btn' type="button" value="组件群聊" onclick="addGroup(this.form.message.value)">
+    <input class='btn' type="button" value="发送到群组" onclick="sendGroup(this.form.message.value)">
 </form>
 <br>
 <br>

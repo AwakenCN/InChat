@@ -44,7 +44,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     @Override
     public boolean login(Channel channel, Map<String,Object> maps) {
         //校验规则，自定义校验规则
-        String token = (String) maps.get(inChatVerifyService.getVerifyLogin());
+        String token = (String) maps.get("token");
         if (inChatVerifyService.verifyToken(token)){
             channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginSuccess())));
             websocketChannelService.loginWsSuccess(channel,token);
@@ -98,13 +98,17 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
 
     @Override
     public void sendGroupText(Channel channel, Map<String, Object> maps) {
-
-    }
-
-    @Override
-    public void addGroup(Channel channel, Map<String, Object> maps) {
-        JSONArray value = (JSONArray) maps.get("value");
-        //TODO 群聊数据业务
+        String groupId = (String) maps.get("groupId");
+        String me = (String) maps.get("me");
+        String value = (String) maps.get("value");
+        JSONArray array = inChatVerifyService.getArrayByGroupId(groupId);
+        for (Object item:array) {
+            if (websocketChannelService.hasOther((String) item)){
+                Channel other = websocketChannelService.getChannel((String) item);
+                other.writeAndFlush(new TextWebSocketFrame(
+                        gson.toJson(inChatBackMapService.sendGroup(me,value,groupId))));
+            }
+        }
     }
 
     @Override

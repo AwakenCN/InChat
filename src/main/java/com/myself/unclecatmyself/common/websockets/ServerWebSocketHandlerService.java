@@ -49,11 +49,4 @@ public abstract class ServerWebSocketHandlerService implements WebSocketHandlerA
      */
     public abstract void sendGroupText(Channel channel, Map<String, Object> maps);
 
-
-    /**
-     * 组件群聊
-     * @param channel {@link Channel} 链接实例
-     * @param maps {@link Map} 数据信息
-     */
-    public abstract void addGroup(Channel channel, Map<String, Object> maps);
 }

@@ -68,11 +68,6 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
                 log.info("【用户链接发送给群聊】");
                 serverWebSocketHandlerService.sendGroupText(channel,maps);
                 break;
-            //组件群组
-            case "addGroup":
-                log.info("【组件群组】");
-                serverWebSocketHandlerService.addGroup(channel,maps);
-                break;
             default:
                 break;
         }

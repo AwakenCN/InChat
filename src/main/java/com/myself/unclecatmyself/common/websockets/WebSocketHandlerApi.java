@@ -20,6 +20,4 @@ public interface WebSocketHandlerApi {
     void sendToText(Channel channel, Map<String,Object> maps);
 
     void doTimeOut(Channel channel, IdleStateEvent evt);
-
-    void addGroup(Channel channel, Map<String, Object> maps);
 }
