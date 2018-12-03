@@ -15,3 +15,6 @@ inchat:
   maxContext: 65536
   webSocketPath: "/ws"
   webSocketHandler: com.myself.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler # WebSocket 默认处理
+spring:
+  rabbitmq:
+    host: 192.168.192.132
