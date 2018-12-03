@@ -32,7 +32,7 @@ public class InChatBackMapServiceImpl implements InChatBackMapService {
     @Override
     public Map<String, String> sendMe(String value) {
         Map<String,String> backMap = new HashMap<>();
-        backMap.put("type","send");
+        backMap.put("type","sendMe");
         backMap.put("value",value);
         return backMap;
     }
@@ -52,6 +52,16 @@ public class InChatBackMapServiceImpl implements InChatBackMapService {
         backMap.put("type","get");
         backMap.put("from",me);
         backMap.put("value",value);
+        return backMap;
+    }
+
+    @Override
+    public Map<String, String> sendGroup(String me, String value, String groupId) {
+        Map<String,String> backMap = new HashMap<>();
+        backMap.put("type","sendGroup");
+        backMap.put("from",me);
+        backMap.put("value",value);
+        backMap.put("groupId",groupId);
         return backMap;
     }
 

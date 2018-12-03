@@ -7,6 +7,7 @@ import com.myself.unclecatmyself.bootstrap.BaseAuthService;
 import com.myself.unclecatmyself.bootstrap.WsChannelService;
 import com.myself.unclecatmyself.common.websockets.ServerWebSocketHandlerService;
 import com.myself.unclecatmyself.bootstrap.verify.InChatVerifyService;
+import com.myself.unclecatmyself.task.DataAsynchronousTask;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -31,6 +32,9 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
 
     @Autowired
     WsChannelService websocketChannelService;
+
+    @Autowired
+    DataAsynchronousTask dataAsynchronousTask;
 
     private final Gson gson;
 
@@ -59,6 +63,11 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     public void sendMeText(Channel channel, Map<String,Object> maps) {
         channel.writeAndFlush(new TextWebSocketFrame(
                 gson.toJson(inChatBackMapService.sendMe((String) maps.get("value")))));
+        try {
+            dataAsynchronousTask.writeData(maps);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -74,6 +83,11 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
             //返回给自己
             channel.writeAndFlush(new TextWebSocketFrame(
                     gson.toJson(inChatBackMapService.sendBack(otherOne,value))));
+        }
+        try {
+            dataAsynchronousTask.writeData(maps);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -108,6 +122,11 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
                 other.writeAndFlush(new TextWebSocketFrame(
                         gson.toJson(inChatBackMapService.sendGroup(me,value,groupId))));
             }
+        }
+        try {
+            dataAsynchronousTask.writeData(maps);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
