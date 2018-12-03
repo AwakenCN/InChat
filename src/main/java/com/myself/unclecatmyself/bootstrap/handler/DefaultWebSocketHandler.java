@@ -47,8 +47,8 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
         }else{
             throw new NoFindHandlerException("Server Handler 不匹配");
         }
-        Map<String,String> maps = (Map) JSON.parse(msg.text());
-        switch (maps.get("type")){
+        Map<String,Object> maps = (Map) JSON.parse(msg.text());
+        switch ((String)maps.get("type")){
             case "login":
                 log.info("【用户链接登录操作】");
                 serverWebSocketHandlerService.login(channel,maps);
@@ -63,9 +63,15 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
                 log.info("【用户链接发送给某人】");
                 serverWebSocketHandlerService.sendToText(channel,maps);
                 break;
+            //发送给群组
             case "sendGroup":
                 log.info("【用户链接发送给群聊】");
                 serverWebSocketHandlerService.sendGroupText(channel,maps);
+                break;
+            //组件群组
+            case "addGroup":
+                log.info("【组件群组】");
+                serverWebSocketHandlerService.addGroup(channel,maps);
                 break;
             default:
                 break;

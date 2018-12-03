@@ -11,3 +11,7 @@ AOP、DI为主，基于Spring Boot快速搭建，尽量减少用户的二次搭�
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/design/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6(12).png)
 
 * 【2018-11-22】 编码实现和[详细实现文档](detail/Login-cn.md)
+
+## 离线消息模板
+
+一版采用RabbitMQ

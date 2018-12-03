@@ -1,4 +1,4 @@
-package com.myself.unclecatmyself.user;
+package com.myself.unclecatmyself.bootstrap.backmsg;
 
 import com.myself.unclecatmyself.bootstrap.backmsg.InChatBackMapService;
 import org.springframework.stereotype.Service;

@@ -15,10 +15,11 @@ public interface WebSocketHandlerApi {
 
     void close(Channel channel);
 
-    void sendMeText(Channel channel, Map<String,String> maps);
+    void sendMeText(Channel channel, Map<String,Object> maps);
 
-    void sendToText(Channel channel, Map<String,String> maps);
+    void sendToText(Channel channel, Map<String,Object> maps);
 
     void doTimeOut(Channel channel, IdleStateEvent evt);
 
+    void addGroup(Channel channel, Map<String, Object> maps);
 }

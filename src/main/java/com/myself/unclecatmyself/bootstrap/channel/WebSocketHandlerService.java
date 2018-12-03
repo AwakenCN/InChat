@@ -1,5 +1,6 @@
 package com.myself.unclecatmyself.bootstrap.channel;
 
+import com.alibaba.fastjson.JSONArray;
 import com.google.gson.Gson;
 import com.myself.unclecatmyself.bootstrap.backmsg.InChatBackMapService;
 import com.myself.unclecatmyself.bootstrap.BaseAuthService;
@@ -41,9 +42,9 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     }
 
     @Override
-    public boolean login(Channel channel, Map<String,String> maps) {
+    public boolean login(Channel channel, Map<String,Object> maps) {
         //校验规则，自定义校验规则
-        String token = maps.get(inChatVerifyService.getVerifyLogin());
+        String token = (String) maps.get(inChatVerifyService.getVerifyLogin());
         if (inChatVerifyService.verifyToken(token)){
             channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginSuccess())));
             websocketChannelService.loginWsSuccess(channel,token);
@@ -55,16 +56,16 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     }
 
     @Override
-    public void sendMeText(Channel channel, Map<String,String> maps) {
+    public void sendMeText(Channel channel, Map<String,Object> maps) {
         channel.writeAndFlush(new TextWebSocketFrame(
-                gson.toJson(inChatBackMapService.sendMe(maps.get("value")))));
+                gson.toJson(inChatBackMapService.sendMe((String) maps.get("value")))));
     }
 
     @Override
-    public void sendToText(Channel channel, Map<String, String> maps) {
-        String otherOne = maps.get("one");
-        String value = maps.get("value");
-        String me = maps.get("me");
+    public void sendToText(Channel channel, Map<String, Object> maps) {
+        String otherOne = (String) maps.get("one");
+        String value = (String) maps.get("value");
+        String me = (String) maps.get("me");
         if (websocketChannelService.hasOther(otherOne)){
             //发送给对方
             Channel other = websocketChannelService.getChannel(otherOne);
@@ -96,7 +97,14 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     }
 
     @Override
-    public void sendGroupText(Channel channel, Map<String, String> maps) {
+    public void sendGroupText(Channel channel, Map<String, Object> maps) {
+
+    }
+
+    @Override
+    public void addGroup(Channel channel, Map<String, Object> maps) {
+        JSONArray value = (JSONArray) maps.get("value");
+        log.info(value.getString(0));
 
     }
 

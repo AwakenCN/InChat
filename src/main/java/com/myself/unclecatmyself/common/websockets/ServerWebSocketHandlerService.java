@@ -16,21 +16,21 @@ public abstract class ServerWebSocketHandlerService implements WebSocketHandlerA
      * @param map {@link Map} 数据信息
      * @return {@link Boolean} 成功失败
      */
-    public abstract boolean login(Channel channel, Map<String,String> map);
+    public abstract boolean login(Channel channel, Map<String,Object> map);
 
     /**
      * 发送给自己
      * @param channel {@link Channel} 链接实例
      * @param maps {@link Map} 数据信息
      */
-    public abstract void sendMeText(Channel channel,Map<String,String> maps);
+    public abstract void sendMeText(Channel channel,Map<String,Object> maps);
 
     /**
      * 发送给某人
      * @param channel {@link Channel} 链接实例
      * @param maps {@link Map} 数据信息
      */
-    public abstract void sendToText(Channel channel, Map<String,String> maps);
+    public abstract void sendToText(Channel channel, Map<String,Object> maps);
 
     public abstract void pong(Channel channel);
 
@@ -47,5 +47,13 @@ public abstract class ServerWebSocketHandlerService implements WebSocketHandlerA
      * @param channel {@link Channel} 链接实例
      * @param maps {@link Map} 数据信息
      */
-    public abstract void sendGroupText(Channel channel, Map<String, String> maps);
+    public abstract void sendGroupText(Channel channel, Map<String, Object> maps);
+
+
+    /**
+     * 组件群聊
+     * @param channel {@link Channel} 链接实例
+     * @param maps {@link Map} 数据信息
+     */
+    public abstract void addGroup(Channel channel, Map<String, Object> maps);
 }

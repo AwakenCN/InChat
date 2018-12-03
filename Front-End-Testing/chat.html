@@ -118,6 +118,21 @@
         }
     }
 
+    function addGroup(value) {
+        if (!window.WebSocket) {
+            return;
+        }
+        if (socket.readyState == WebSocket.OPEN) {
+            var message = {
+                type: "addGroup",
+                value: ["1111","2222","3333"]
+            }
+            socket.send(JSON.stringify(message));
+        } else {
+            alert("连接没有开启.");
+        }
+    }
+
     window.onbeforeunload = function(event) {
         event.returnValue = "刷新提醒";
     };
@@ -130,6 +145,7 @@
     <input class='btn' type="button" value="发送" onclick="send(this.form.message.value)">
     <input class='btn' type="button" value="发送给自己" onclick="sendToMe(this.form.message.value)">
     <input class='btn' type="button" value="发送给某人" onclick="sendToOne(this.form.message.value)">
+    <input class='btn' type="button" value="组件群聊" onclick="addGroup(this.form.message.value)">
 </form>
 <br>
 <br>
