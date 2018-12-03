@@ -104,8 +104,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     @Override
     public void addGroup(Channel channel, Map<String, Object> maps) {
         JSONArray value = (JSONArray) maps.get("value");
-        log.info(value.getString(0));
-
+        //TODO 群聊数据业务
     }
 
     @Override
