@@ -34,7 +34,6 @@
 
 ## 相关资料（欢迎贡献）
 
-* [netty4通信原理](doc/netty-study.md)
 * [QQ群建议贡献](doc/advice/advice.md)
 
 ## demo分支介绍

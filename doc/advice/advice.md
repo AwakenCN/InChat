@@ -20,4 +20,8 @@
 * RabbitMQ 基本操作
 * https://github.com/chanjjaeseo/rabbitMQ-sample
 
+> 贡献者：[noseparte](https://github.com/noseparte)
 
+* [netty4通信原理](../netty-study.md)
+* MongoDB的基本操作
+* https://github.com/noseparte/mongoTeam
