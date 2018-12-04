@@ -14,4 +14,16 @@ AOP、DI为主，基于Spring Boot快速搭建，尽量减少用户的二次搭�
 
 ## 离线消息模板
 
-一版采用RabbitMQ
+一版采用RabbitMQ----移除
+
+## 整体设计
+
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchat/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6(19).png)
+
+1、移除原本Token概念，用户均以唯一标识登录并存储在线键值对于系统本地Cache。（登录存储、退出移除）
+2、DefaultWebSocketHandler，是框架默认的处理，数据均已json格式，拆分业务点
+3、由InChat内部的服务（WebSocketHandlerService  ）进行具体的业务实现并回写
+4、对于数据的存储与写入，默认是异步写入数据，用户可以重写InChatToDataBaseService，获取实时数据
+5、在高并发情况下，我们不推荐异步处理数据，可以通过配置化启动mq（目前支持RabbitMq），框架自动注入对应Bean，并由MQ来执行数据写入
+6、关于数据库连接池，我们不会绑定用户使用，而是支持用户自定义。
+

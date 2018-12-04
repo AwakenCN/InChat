@@ -44,6 +44,8 @@ public class InitNetty {
 
     private String webSocketPath;
 
+    private Boolean rabbitmq;
+
     private Class<WebSocketHandler> webSocketHandler;
 
 }
