@@ -1,5 +1,6 @@
 package com.myself.unclecatmyself.common.properties;
 
+import com.myself.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler;
 import com.myself.unclecatmyself.common.websockets.WebSocketHandler;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -14,38 +15,36 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "inchat")
 public class InitNetty {
 
-    private int webport;
+    private int webport = 8090;
 
-    private int bossThread;
+    private int bossThread = 1;
 
-    private int workerThread;
+    private int workerThread = 2;
 
-    private boolean keepalive;
+    private boolean keepalive = true;
 
-    private int backlog;
+    private int backlog = 1024;
 
-    private boolean nodelay;
+    private boolean nodelay = true;
 
-    private boolean reuseaddr;
+    private boolean reuseaddr = true;
 
-    private  int  sndbuf;
+    private  int  sndbuf = 10485760;
 
-    private int revbuf;
+    private int revbuf = 10485760;
 
-    private int heart;
+    private int heart = 180;
 
-    private int period;
+    private int period = 10;
 
-    private String serverName;
+    private String serverName = "iot-netty-chat";
 
-    private int initalDelay;
+    private int initalDelay = 10;
 
-    private int maxContext;
+    private int maxContext = 65536;
 
-    private String webSocketPath;
+    private String webSocketPath = "/ws";
 
-    private Boolean rabbitmq;
-
-    private Class<WebSocketHandler> webSocketHandler;
+    private Class<DefaultWebSocketHandler> webSocketHandler = DefaultWebSocketHandler.class;
 
 }
