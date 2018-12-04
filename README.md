@@ -1,8 +1,10 @@
 # InChat
 
+[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-628793702-yellow.svg)](https://jq.qq.com/?_wv=1027&k=57X4L74)
+
 #### [开发者在线交流室](https://gitter.im/In-Chat/Lobby)
 
-#### QQ群：628793702（欢迎参与交流与提供建议、业务场景、需求功能等）
+#### 欢迎参与QQ群交流与提供建议、业务场景、需求功能等
 
 **master项目目前在重新构建，运行可能报错，请转到demo分支运行项目。其为原核心项目**
 
