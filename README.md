@@ -21,7 +21,7 @@
 
 ## 教程
 
-* [业务场景技术实现分析](doc/work.md)
+* [netty源码讲解](doc/study/mulu.md)
 * [项目设计思路](doc/design_cn.md)
 
 > * [登录模块详细设计](doc/detail/Login-cn.md)

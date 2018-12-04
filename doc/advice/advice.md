@@ -15,4 +15,9 @@
 * 对上方项目的修改
 * https://github.com/JaryZhen/rulegin
 
+> 贡献者：[ELLIOT](https://github.com/chanjjaeseo)
+
+* RabbitMQ 基本操作
+* https://github.com/chanjjaeseo/rabbitMQ-sample
+
 
