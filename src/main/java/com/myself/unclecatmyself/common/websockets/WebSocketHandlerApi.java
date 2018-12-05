@@ -18,6 +18,4 @@ public interface WebSocketHandlerApi {
     void sendMeText(Channel channel, Map<String,Object> maps);
 
     void sendToText(Channel channel, Map<String,Object> maps);
-
-    void doTimeOut(Channel channel, IdleStateEvent evt);
 }

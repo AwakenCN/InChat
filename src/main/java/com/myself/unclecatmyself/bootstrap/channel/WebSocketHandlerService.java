@@ -4,16 +4,17 @@ import com.alibaba.fastjson.JSONArray;
 import com.google.gson.Gson;
 import com.myself.unclecatmyself.bootstrap.backmsg.InChatBackMapService;
 import com.myself.unclecatmyself.bootstrap.WsChannelService;
+import com.myself.unclecatmyself.common.utils.ConstansUtil;
 import com.myself.unclecatmyself.common.websockets.ServerWebSocketHandlerService;
 import com.myself.unclecatmyself.bootstrap.verify.InChatVerifyService;
 import com.myself.unclecatmyself.task.DataAsynchronousTask;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-import io.netty.handler.timeout.IdleStateEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -44,7 +45,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     @Override
     public boolean login(Channel channel, Map<String,Object> maps) {
         //校验规则，自定义校验规则
-        String token = (String) maps.get("token");
+        String token = (String) maps.get(ConstansUtil.TOKEN);
         if (inChatVerifyService.verifyToken(token)){
             channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginSuccess())));
             websocketChannelService.loginWsSuccess(channel,token);
@@ -58,7 +59,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     @Override
     public void sendMeText(Channel channel, Map<String,Object> maps) {
         channel.writeAndFlush(new TextWebSocketFrame(
-                gson.toJson(inChatBackMapService.sendMe((String) maps.get("value")))));
+                gson.toJson(inChatBackMapService.sendMe((String) maps.get(ConstansUtil.VALUE)))));
         try {
             dataAsynchronousTask.writeData(maps);
         } catch (Exception e) {
@@ -68,61 +69,52 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
 
     @Override
     public void sendToText(Channel channel, Map<String, Object> maps) {
-        String otherOne = (String) maps.get("one");
-        String value = (String) maps.get("value");
-        String me = (String) maps.get("me");
+        String otherOne = (String) maps.get(ConstansUtil.ONE);
+        String value = (String) maps.get(ConstansUtil.VALUE);
+        String me = (String) maps.get(ConstansUtil.ME);
+        //返回给自己
+        channel.writeAndFlush(new TextWebSocketFrame(
+                gson.toJson(inChatBackMapService.sendBack(otherOne,value))));
         if (websocketChannelService.hasOther(otherOne)){
-            //返回给自己
-            channel.writeAndFlush(new TextWebSocketFrame(
-                    gson.toJson(inChatBackMapService.sendBack(otherOne,value))));
-            //发送给对方
+            //发送给对方--在线
             Channel other = websocketChannelService.getChannel(otherOne);
             other.writeAndFlush(new TextWebSocketFrame(
                     gson.toJson(inChatBackMapService.getMsg(me,value))));
+        }else {
+            maps.put(ConstansUtil.ON_ONLINE,otherOne);
         }
         try {
             dataAsynchronousTask.writeData(maps);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
-    }
-
-
-    @Override
-    public void pong(Channel channel) {
-        log.info("【pong】"+channel.remoteAddress());
-
-    }
-
-    @Override
-    public void disconnect(Channel channel) {
-        log.info("【disconnect】"+channel.remoteAddress());
-
-    }
-
-    @Override
-    public void doTimeOut(Channel channel, IdleStateEvent evt) {
-        log.info("【PingPongService：doTimeOut 心跳超时】" + channel.remoteAddress() + "【channel 关闭】");
-
     }
 
     @Override
     public void sendGroupText(Channel channel, Map<String, Object> maps) {
-        String groupId = (String) maps.get("groupId");
-        String me = (String) maps.get("me");
-        String value = (String) maps.get("value");
+        String groupId = (String) maps.get(ConstansUtil.GROUPID);
+        String me = (String) maps.get(ConstansUtil.ME);
+        String value = (String) maps.get(ConstansUtil.VALUE);
+        List<String> no_online = new ArrayList<>();
         JSONArray array = inChatVerifyService.getArrayByGroupId(groupId);
+        channel.writeAndFlush(new TextWebSocketFrame(
+                gson.toJson(inChatBackMapService.sendGroup(me,value,groupId))));
         for (Object item:array) {
-            if (websocketChannelService.hasOther((String) item)){
-                Channel other = websocketChannelService.getChannel((String) item);
-                other.writeAndFlush(new TextWebSocketFrame(
-                        gson.toJson(inChatBackMapService.sendGroup(me,value,groupId))));
+            if (!me.equals(item)){
+                if (websocketChannelService.hasOther((String) item)){
+                    Channel other = websocketChannelService.getChannel((String) item);
+                    other.writeAndFlush(new TextWebSocketFrame(
+                            gson.toJson(inChatBackMapService.sendGroup(me,value,groupId))));
+                }else{
+                    no_online.add((String) item);
+                }
             }
         }
+        maps.put(ConstansUtil.ON_ONLINE,no_online);
         try {
             dataAsynchronousTask.writeData(maps);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
     }
 

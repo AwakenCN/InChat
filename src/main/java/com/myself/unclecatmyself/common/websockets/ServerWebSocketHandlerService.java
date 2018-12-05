@@ -32,15 +32,6 @@ public abstract class ServerWebSocketHandlerService implements WebSocketHandlerA
      */
     public abstract void sendToText(Channel channel, Map<String,Object> maps);
 
-    public abstract void pong(Channel channel);
-
-    /**
-     * 主动关闭
-     * @param channel {@link Channel} 链接实例
-     */
-    public abstract void disconnect(Channel channel);
-
-    public abstract void doTimeOut(Channel channel, IdleStateEvent evt);
 
     /**
      * 发送给群聊

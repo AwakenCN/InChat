@@ -43,9 +43,9 @@ public abstract class WebSocketHandler extends SimpleChannelInboundHandler<Objec
 
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-        if(evt instanceof IdleStateEvent){
-            webSocketHandlerApi.doTimeOut(ctx.channel(),(IdleStateEvent)evt);
-        }
+//        if(evt instanceof IdleStateEvent){
+//            webSocketHandlerApi.doTimeOut(ctx.channel(),(IdleStateEvent)evt);
+//        }
         super.userEventTriggered(ctx, evt);
     }
 }
