@@ -2,6 +2,7 @@ package com.myself.unclecatmyself.bootstrap.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.myself.unclecatmyself.common.exception.NoFindHandlerException;
+import com.myself.unclecatmyself.common.utils.ConstansUtil;
 import com.myself.unclecatmyself.common.websockets.ServerWebSocketHandlerService;
 import com.myself.unclecatmyself.common.websockets.WebSocketHandler;
 import com.myself.unclecatmyself.common.websockets.WebSocketHandlerApi;
@@ -48,23 +49,23 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
             throw new NoFindHandlerException("Server Handler 不匹配");
         }
         Map<String,Object> maps = (Map) JSON.parse(msg.text());
-        switch ((String)maps.get("type")){
-            case "login":
+        switch ((String)maps.get(ConstansUtil.TYPE)){
+            case ConstansUtil.LOGIN:
                 log.info("【用户链接登录操作】");
                 serverWebSocketHandlerService.login(channel,maps);
                 break;
             //针对个人，发送给自己
-            case "sendMe":
+            case ConstansUtil.SENDME:
                 log.info("【用户链接发送给自己】");
                 serverWebSocketHandlerService.sendMeText(channel,maps);
                 break;
             //针对个人，发送给某人
-            case "sendTo":
+            case ConstansUtil.SENDTO:
                 log.info("【用户链接发送给某人】");
                 serverWebSocketHandlerService.sendToText(channel,maps);
                 break;
             //发送给群组
-            case "sendGroup":
+            case ConstansUtil.SENDGROUP:
                 log.info("【用户链接发送给群聊】");
                 serverWebSocketHandlerService.sendGroupText(channel,maps);
                 break;

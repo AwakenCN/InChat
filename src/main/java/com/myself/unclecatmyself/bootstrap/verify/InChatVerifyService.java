@@ -11,4 +11,5 @@ public interface InChatVerifyService {
     boolean verifyToken(String token);
 
     JSONArray getArrayByGroupId(String groupId);
+
 }
