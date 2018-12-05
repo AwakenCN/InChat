@@ -3,7 +3,6 @@ package com.myself.unclecatmyself.bootstrap.channel;
 import com.alibaba.fastjson.JSONArray;
 import com.google.gson.Gson;
 import com.myself.unclecatmyself.bootstrap.backmsg.InChatBackMapService;
-import com.myself.unclecatmyself.bootstrap.BaseAuthService;
 import com.myself.unclecatmyself.bootstrap.WsChannelService;
 import com.myself.unclecatmyself.common.websockets.ServerWebSocketHandlerService;
 import com.myself.unclecatmyself.bootstrap.verify.InChatVerifyService;
@@ -38,10 +37,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
 
     private final Gson gson;
 
-    private final BaseAuthService baseAuthService;
-
-    public WebSocketHandlerService(BaseAuthService baseAuthService,Gson gson){
-        this.baseAuthService = baseAuthService;
+    public WebSocketHandlerService(Gson gson){
         this.gson = gson;
     }
 
@@ -76,13 +72,13 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
         String value = (String) maps.get("value");
         String me = (String) maps.get("me");
         if (websocketChannelService.hasOther(otherOne)){
+            //返回给自己
+            channel.writeAndFlush(new TextWebSocketFrame(
+                    gson.toJson(inChatBackMapService.sendBack(otherOne,value))));
             //发送给对方
             Channel other = websocketChannelService.getChannel(otherOne);
             other.writeAndFlush(new TextWebSocketFrame(
                     gson.toJson(inChatBackMapService.getMsg(me,value))));
-            //返回给自己
-            channel.writeAndFlush(new TextWebSocketFrame(
-                    gson.toJson(inChatBackMapService.sendBack(otherOne,value))));
         }
         try {
             dataAsynchronousTask.writeData(maps);

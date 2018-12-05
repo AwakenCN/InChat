@@ -1,10 +1,7 @@
 package com.myself.unclecatmyself.auto;
 
-import com.myself.unclecatmyself.bootstrap.scan.SacnScheduled;
-import com.myself.unclecatmyself.bootstrap.scan.ScanRunnable;
 import com.myself.unclecatmyself.common.properties.InitNetty;
 import org.apache.commons.lang3.ObjectUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -37,16 +34,16 @@ public class ServerAutoConfigure {
 
     }
 
-    @Bean
-    @ConditionalOnMissingBean(name = "sacnScheduled")
-    public ScanRunnable initRunable(@Autowired InitNetty serverBean){
-        long time =(serverBean==null || serverBean.getPeriod()<5)?10:serverBean.getPeriod();
-        ScanRunnable sacnScheduled = new SacnScheduled(time);
-        Thread scanRunnable = new Thread(sacnScheduled);
-        scanRunnable.setDaemon(true);
-        scanRunnable.start();
-        return sacnScheduled;
-    }
+//    @Bean
+//    @ConditionalOnMissingBean(name = "sacnScheduled")
+//    public ScanRunnable initRunable(@Autowired InitNetty serverBean){
+//        long time =(serverBean==null || serverBean.getPeriod()<5)?10:serverBean.getPeriod();
+//        ScanRunnable sacnScheduled = new SacnScheduled(time);
+//        Thread scanRunnable = new Thread(sacnScheduled);
+//        scanRunnable.setDaemon(true);
+//        scanRunnable.start();
+//        return sacnScheduled;
+//    }
 
 
     @Bean(initMethod = "open", destroyMethod = "close")

@@ -11,9 +11,11 @@ import java.util.Map;
  */
 @Service
 public class InChatToDataBaseServiceImpl implements InChatToDataBaseService {
+
     @Override
     public Boolean writeMapToDB(Map<String, Object> maps) {
         //TODO  写入数据库
         return true;
     }
+
 }
