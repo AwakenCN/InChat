@@ -5,6 +5,9 @@
 [![Netty入门](https://img.shields.io/badge/%E5%AD%A6%E4%B9%A0-Netty%E5%85%A5%E9%97%A8-ff69b4.svg)](doc/study/mulu.md)
 
 
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchat/login.png)
+
+
 #### 欢迎参与QQ群交流与提供建议、业务场景、需求功能等
 
 **master项目目前在重新构建，运行可能报错，请转到demo分支运行项目。其为原核心项目**
