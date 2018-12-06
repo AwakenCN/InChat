@@ -1,6 +1,9 @@
 
+<div align=center>
 
-<div align=center>![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchat/logo.png)
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchat/logo.png)
+
+</div>
 
 [![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-628793702-yellow.svg)](https://jq.qq.com/?_wv=1027&k=57X4L74)
 [![作者](https://img.shields.io/badge/%E4%BD%9C%E8%80%85-MySelf-blue.svg)](https://github.com/UncleCatMySelf)
