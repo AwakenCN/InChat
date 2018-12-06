@@ -3,9 +3,7 @@ package com.myself.unclecatmyself.common.pool;
 import java.util.concurrent.ScheduledFuture;
 
 /**
- * @author  MySelf
- * @create  2018/9/22
- * @desc 接口
+ * Create by UncleCatMySelf in 2018/12/06
  **/
 @FunctionalInterface
 public interface Scheduled {

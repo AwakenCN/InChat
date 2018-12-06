@@ -16,10 +16,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 /**
- * @Author:UncleCatMySelf
- * @Email：zhupeijie_java@126.com
- * @QQ:1341933031
- * @Date:Created in 20:15 2018\11\16 0016
+ * Create by UncleCatMySelf in 2018/12/06
  */
 @Component
 @ChannelHandler.Sharable

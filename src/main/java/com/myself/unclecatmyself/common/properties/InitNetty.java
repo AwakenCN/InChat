@@ -4,10 +4,7 @@ import com.myself.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @Author:UncleCatMySelf
- * @Email：zhupeijie_java@126.com
- * @QQ:1341933031
- * @Date:Created in 10:54 2018\8\14 0014
+ * Create by UncleCatMySelf in 2018/12/06
  */
 @ConfigurationProperties(prefix = "inchat")
 public class InitNetty {

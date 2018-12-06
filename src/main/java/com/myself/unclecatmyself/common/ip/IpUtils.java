@@ -6,9 +6,7 @@ import java.net.NetworkInterface;
 import java.util.Enumeration;
 
 /**
- * @author  MySelf
- * @create  2018/9/22
- * @desc ip操作
+ * Create by UncleCatMySelf in 2018/12/06
  **/
 public class IpUtils {
 

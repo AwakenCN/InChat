@@ -6,9 +6,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
- * @author  MySelf
- * @create  2018/9/22
- * @desc 获取spring当前Bean
+ * Create by UncleCatMySelf in 2018/12/06
  **/
 @Component
 public class SpringBeanUtils implements ApplicationContextAware {

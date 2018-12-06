@@ -4,10 +4,9 @@ import java.util.concurrent.LinkedTransferQueue;
 import java.util.concurrent.RejectedExecutionException;
 
 /**
- * @author  MySelf
- * @create  2018/9/22
- * @desc LinkedTransferQueue 能保证更高性能，相比与LinkedBlockingQueue有明显提升
+ *  LinkedTransferQueue 能保证更高性能，相比与LinkedBlockingQueue有明显提升
  *          不过LinkedTransferQueue的缺点是没有队列长度控制，需要在外层协助控制
+ *  Create by UncleCatMySelf in 2018/12/06
  **/
 public class ExecutorQueue extends LinkedTransferQueue<Runnable> {
 

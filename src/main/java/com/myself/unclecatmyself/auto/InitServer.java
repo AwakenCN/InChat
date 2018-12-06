@@ -6,9 +6,7 @@ import com.myself.unclecatmyself.bootstrap.NettyBootstrapServer;
 import com.myself.unclecatmyself.common.properties.InitNetty;
 
 /**
- * @author  MySelf
- * @create  2018/9/22
- * @desc 初始化服务
+ * Create by UncleCatMySelf in 2018/12/06
  **/
 public class InitServer {
 

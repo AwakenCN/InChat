@@ -11,9 +11,7 @@ import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 
 /**
- * @author  MySelf
- * @create  2018/9/22
- * @desc 抽象类，负责加载edec handler
+ * Create by UncleCatMySelf in 2018/12/06
  **/
 public abstract class AbstractBootstrapServer implements BootstrapServer {
 

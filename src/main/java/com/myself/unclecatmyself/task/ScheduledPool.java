@@ -8,9 +8,7 @@ import java.util.concurrent.*;
 
 
 /**
- * @author  MySelf
- * @create  2018/9/22
- * @desc 定时任务
+ * Create by UncleCatMySelf in 2018/12/06
  **/
 @Service
 public class ScheduledPool implements Scheduled {

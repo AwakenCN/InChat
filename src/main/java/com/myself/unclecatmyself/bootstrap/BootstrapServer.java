@@ -3,9 +3,7 @@ package com.myself.unclecatmyself.bootstrap;
 import com.myself.unclecatmyself.common.properties.InitNetty;
 
 /**
- * @author  MySelf
- * @create  2018/9/22
- * @desc 启动类接口
+ * Create by UncleCatMySelf in 2018/12/06
  **/
 public interface BootstrapServer {
 

@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 /**
- * @author  MySelf
- * @create  2018/9/22
- * @desc 缓存操作
+ * Create by UncleCatMySelf in 2018/12/06
  **/
 public class CacheMap<K,V> {
 

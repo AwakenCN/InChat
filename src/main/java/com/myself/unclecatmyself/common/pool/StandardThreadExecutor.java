@@ -4,9 +4,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @author  MySelf
- * @create  2018/9/22
- * @desc 代码和思路主要来自于：
+ *  Create by UncleCatMySelf in 2018/12/06
  *   tomcat: org.apache.catalina.core.StandardThreadExecutor
  *
  *   java.util.concurrent.threadPoolExecutor execute执行策略:

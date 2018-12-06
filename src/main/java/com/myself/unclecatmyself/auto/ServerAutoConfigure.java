@@ -10,9 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 
 /**
- * @author  MySelf
- * @create  2018/9/22
- * @desc 自动化配置初始化服务
+ * Create by UncleCatMySelf in 2018/12/06
  **/
 @Configuration
 @ConditionalOnClass
