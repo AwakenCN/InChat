@@ -5,6 +5,7 @@ import com.myself.unclecatmyself.bootstrap.WsChannelService;
 import com.myself.unclecatmyself.bootstrap.channel.cache.WsCacheMap;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -15,6 +16,7 @@ import java.util.Map;
 @Component
 public class WebSocketChannelService implements WsChannelService {
 
+    @Autowired
     WsCacheMap wsCacheMap;
 
     private final Gson gson;
