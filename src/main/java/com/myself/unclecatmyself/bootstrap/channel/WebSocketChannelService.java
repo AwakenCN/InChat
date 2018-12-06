@@ -18,7 +18,6 @@ import java.util.Map;
 @Component
 public class WebSocketChannelService implements WsChannelService {
 
-    @Autowired
     WsCacheMap wsCacheMap;
 
     private final Gson gson;

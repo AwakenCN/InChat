@@ -4,7 +4,6 @@
 [![作者](https://img.shields.io/badge/%E4%BD%9C%E8%80%85-MySelf-blue.svg)](https://github.com/UncleCatMySelf)
 [![Netty入门](https://img.shields.io/badge/%E5%AD%A6%E4%B9%A0-Netty%E5%85%A5%E9%97%A8-ff69b4.svg)](doc/study/mulu.md)
 
-#### [开发者在线交流室](https://gitter.im/In-Chat/Lobby)
 
 #### 欢迎参与QQ群交流与提供建议、业务场景、需求功能等
 
