@@ -3,8 +3,6 @@ package com.myself.unclecatmyself.bootstrap;
 import com.myself.unclecatmyself.common.ip.IpUtils;
 import com.myself.unclecatmyself.common.properties.InitNetty;
 import com.myself.unclecatmyself.common.utils.RemotingUtil;
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFutureListener;
@@ -26,8 +24,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @create  2018/9/22
  * @desc mtqq netty启动服务类
  **/
-@Slf4j
-@Data
 public class NettyBootstrapServer extends AbstractBootstrapServer {
 
     private InitNetty serverBean;
@@ -67,9 +63,11 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
                 .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
         bootstrap.bind(IpUtils.getHost(),serverBean.getWebport()).addListener((ChannelFutureListener) channelFuture -> {
             if (channelFuture.isSuccess())
-                log.info("服务端启动成功【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
+//                log.info("服务端启动成功【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
+                System.out.println("服务端启动成功【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
             else
-                log.info("服务端启动失败【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
+//                log.info("服务端启动失败【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
+                System.out.println("服务端启动失败【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
         });
     }
     /**
@@ -121,7 +119,8 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
                 bossGroup.shutdownGracefully().sync();// 优雅关闭
                 workGroup.shutdownGracefully().sync();
             } catch (InterruptedException e) {
-                log.info("服务端关闭资源失败【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
+//                log.info("服务端关闭资源失败【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
+                System.out.println("服务端关闭资源失败【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
             }
         }
     }

@@ -5,8 +5,6 @@ import com.myself.unclecatmyself.bootstrap.WsChannelService;
 import com.myself.unclecatmyself.bootstrap.channel.cache.WsCacheMap;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -14,7 +12,6 @@ import java.util.Map;
 /**
  * Created by MySelf on 2018/11/26.
  */
-@Slf4j
 @Component
 public class WebSocketChannelService implements WsChannelService {
 
@@ -44,7 +41,6 @@ public class WebSocketChannelService implements WsChannelService {
 
     @Override
     public void close(Channel channel) {
-        log.info("【退出统一移除】");
         String token = wsCacheMap.getByAddress(channel.remoteAddress().toString());
         wsCacheMap.deleteAd(channel.remoteAddress().toString());
         wsCacheMap.deleteWs(token);
@@ -57,7 +53,6 @@ public class WebSocketChannelService implements WsChannelService {
             channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(map)));
             return true;
         }catch (Exception e){
-            log.error("【发送异常】：" + e.getMessage());
             return false;
         }
     }

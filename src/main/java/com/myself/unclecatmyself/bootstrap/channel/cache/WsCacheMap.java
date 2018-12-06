@@ -1,7 +1,6 @@
 package com.myself.unclecatmyself.bootstrap.channel.cache;
 
 import io.netty.channel.Channel;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -11,7 +10,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * WebSocket链接实例本地存储
  * Created by MySelf on 2018/11/26.
  */
-@Slf4j
 @Component
 public class WsCacheMap {
 
@@ -31,7 +29,6 @@ public class WsCacheMap {
      * @param channel {@link Channel} 链接实例
      */
     public void saveWs(String token,Channel channel){
-        log.info("【新增用户链接实例】"+token);
         maps.put(token,channel);
     }
 
@@ -50,7 +47,6 @@ public class WsCacheMap {
      * @return {@link Channel} 链接实例
      */
     public Channel getByToken(String token){
-        log.info("【获取用户链接实例】"+token);
         return maps.get(token);
     }
 
@@ -68,7 +64,6 @@ public class WsCacheMap {
      * @param token {@link String} 用户标识
      */
     public void deleteWs(String token){
-        log.info("【删除用户链接实例】"+token);
         maps.remove(token);
     }
 

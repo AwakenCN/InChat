@@ -1,8 +1,6 @@
 package com.myself.unclecatmyself.common.properties;
 
 import com.myself.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler;
-import com.myself.unclecatmyself.common.websockets.WebSocketHandler;
-import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -11,7 +9,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @QQ:1341933031
  * @Date:Created in 10:54 2018\8\14 0014
  */
-@Data
 @ConfigurationProperties(prefix = "inchat")
 public class InitNetty {
 
@@ -47,4 +44,131 @@ public class InitNetty {
 
     private Class<DefaultWebSocketHandler> webSocketHandler = DefaultWebSocketHandler.class;
 
+    public int getWebport() {
+        return webport;
+    }
+
+    public void setWebport(int webport) {
+        this.webport = webport;
+    }
+
+    public int getBossThread() {
+        return bossThread;
+    }
+
+    public void setBossThread(int bossThread) {
+        this.bossThread = bossThread;
+    }
+
+    public int getWorkerThread() {
+        return workerThread;
+    }
+
+    public void setWorkerThread(int workerThread) {
+        this.workerThread = workerThread;
+    }
+
+    public boolean isKeepalive() {
+        return keepalive;
+    }
+
+    public void setKeepalive(boolean keepalive) {
+        this.keepalive = keepalive;
+    }
+
+    public int getBacklog() {
+        return backlog;
+    }
+
+    public void setBacklog(int backlog) {
+        this.backlog = backlog;
+    }
+
+    public boolean isNodelay() {
+        return nodelay;
+    }
+
+    public void setNodelay(boolean nodelay) {
+        this.nodelay = nodelay;
+    }
+
+    public boolean isReuseaddr() {
+        return reuseaddr;
+    }
+
+    public void setReuseaddr(boolean reuseaddr) {
+        this.reuseaddr = reuseaddr;
+    }
+
+    public int getSndbuf() {
+        return sndbuf;
+    }
+
+    public void setSndbuf(int sndbuf) {
+        this.sndbuf = sndbuf;
+    }
+
+    public int getRevbuf() {
+        return revbuf;
+    }
+
+    public void setRevbuf(int revbuf) {
+        this.revbuf = revbuf;
+    }
+
+    public int getHeart() {
+        return heart;
+    }
+
+    public void setHeart(int heart) {
+        this.heart = heart;
+    }
+
+    public int getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(int period) {
+        this.period = period;
+    }
+
+    public String getServerName() {
+        return serverName;
+    }
+
+    public void setServerName(String serverName) {
+        this.serverName = serverName;
+    }
+
+    public int getInitalDelay() {
+        return initalDelay;
+    }
+
+    public void setInitalDelay(int initalDelay) {
+        this.initalDelay = initalDelay;
+    }
+
+    public int getMaxContext() {
+        return maxContext;
+    }
+
+    public void setMaxContext(int maxContext) {
+        this.maxContext = maxContext;
+    }
+
+    public String getWebSocketPath() {
+        return webSocketPath;
+    }
+
+    public void setWebSocketPath(String webSocketPath) {
+        this.webSocketPath = webSocketPath;
+    }
+
+    public Class<DefaultWebSocketHandler> getWebSocketHandler() {
+        return webSocketHandler;
+    }
+
+    public void setWebSocketHandler(Class<DefaultWebSocketHandler> webSocketHandler) {
+        this.webSocketHandler = webSocketHandler;
+    }
 }

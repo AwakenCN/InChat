@@ -1,6 +1,5 @@
 package com.myself.unclecatmyself.bootstrap.channel.cache;
 
-import lombok.extern.slf4j.Slf4j;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,7 +9,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @create  2018/9/22
  * @desc 缓存操作
  **/
-@Slf4j
 public class CacheMap<K,V> {
 
     private ConcurrentHashMap<K,Node<K,V>> datas = new ConcurrentHashMap<>();

@@ -11,7 +11,6 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -22,7 +21,6 @@ import java.util.Map;
  * @QQ:1341933031
  * @Date:Created in 20:15 2018\11\16 0016
  */
-@Slf4j
 @Component
 @ChannelHandler.Sharable
 public class DefaultWebSocketHandler extends WebSocketHandler {
@@ -51,22 +49,18 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
         Map<String,Object> maps = (Map) JSON.parse(msg.text());
         switch ((String)maps.get(ConstansUtil.TYPE)){
             case ConstansUtil.LOGIN:
-                log.info("【用户链接登录操作】");
                 serverWebSocketHandlerService.login(channel,maps);
                 break;
             //针对个人，发送给自己
             case ConstansUtil.SENDME:
-                log.info("【用户链接发送给自己】");
                 serverWebSocketHandlerService.sendMeText(channel,maps);
                 break;
             //针对个人，发送给某人
             case ConstansUtil.SENDTO:
-                log.info("【用户链接发送给某人】");
                 serverWebSocketHandlerService.sendToText(channel,maps);
                 break;
             //发送给群组
             case ConstansUtil.SENDGROUP:
-                log.info("【用户链接发送给群聊】");
                 serverWebSocketHandlerService.sendGroupText(channel,maps);
                 break;
             default:
@@ -76,12 +70,12 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        log.info("【DefaultWebSocketHandler：channelActive】"+ctx.channel().remoteAddress().toString()+"链接成功");
+//        log.info("【DefaultWebSocketHandler：channelActive】"+ctx.channel().remoteAddress().toString()+"链接成功");
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception{
-        log.error("exception",cause);
+//        log.error("exception",cause);
         webSocketHandlerApi.close(ctx.channel());
     }
 }

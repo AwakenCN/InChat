@@ -4,8 +4,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
-import io.netty.handler.timeout.IdleStateEvent;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @Author:UncleCatMySelf
@@ -13,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
  * @QQ:1341933031
  * @Date:Created in 20:19 2018\11\16 0016
  */
-@Slf4j
 public abstract class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 
     WebSocketHandlerApi webSocketHandlerApi;
@@ -37,7 +34,7 @@ public abstract class WebSocketHandler extends SimpleChannelInboundHandler<Objec
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        log.info("【DefaultWebSocketHandler：channelInactive】"+ctx.channel().localAddress().toString()+"关闭成功");
+//        log.info("【DefaultWebSocketHandler：channelInactive】"+ctx.channel().localAddress().toString()+"关闭成功");
         webSocketHandlerApi.close(ctx.channel());
     }
 

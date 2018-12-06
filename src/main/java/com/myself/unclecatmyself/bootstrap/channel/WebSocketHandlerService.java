@@ -10,7 +10,6 @@ import com.myself.unclecatmyself.bootstrap.verify.InChatVerifyService;
 import com.myself.unclecatmyself.task.DataAsynchronousTask;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
@@ -20,7 +19,6 @@ import java.util.Map;
 /**
  * Created by MySelf on 2018/11/21.
  */
-@Slf4j
 @Component
 public class WebSocketHandlerService extends ServerWebSocketHandlerService{
 
@@ -86,7 +84,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
         try {
             dataAsynchronousTask.writeData(maps);
         } catch (Exception e) {
-            log.error(e.getMessage());
+            return;
         }
     }
 
@@ -114,13 +112,12 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
         try {
             dataAsynchronousTask.writeData(maps);
         } catch (Exception e) {
-            log.error(e.getMessage());
+            return;
         }
     }
 
     @Override
     public void close(Channel channel) {
-        log.info("【close】"+channel.remoteAddress());
         websocketChannelService.close(channel);
     }
 }
