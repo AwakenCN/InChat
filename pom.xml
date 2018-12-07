@@ -3,13 +3,13 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.myself.UncleCatMySelf</groupId>
+	<groupId>com.github.UncleCatMySelf</groupId>
 	<artifactId>InChat</artifactId>
 	<version>0.1-alpha</version>
 	<packaging>jar</packaging>
 
 	<name>InChat</name>
-	<description>一个轻量级、高效率的支持聊天与物联网的通讯框架</description>
+	<description>A lightweight, efficient communication framework that supports chat and the Internet of Things</description>
 	<url>https://github.com/UncleCatMySelf</url>
 
 	<licenses>
@@ -56,13 +56,11 @@
 			<artifactId>gson</artifactId>
 			<version>2.8.5</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>1.9.2</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
