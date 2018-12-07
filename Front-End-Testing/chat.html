@@ -54,7 +54,7 @@
         window.WebSocket = window.MozWebSocket;
     }
     if (window.WebSocket) {
-        socket = new WebSocket("ws://192.168.56.1:8090/ws");
+        socket = new WebSocket("ws://192.168.1.121:8090/ws");
         socket.onmessage = function(event) {
             var ta = document.getElementById('responseText');
             ta.value = ta.value + '\n' + event.data
@@ -78,7 +78,7 @@
         if (socket.readyState == WebSocket.OPEN) {
             var message = {
                 type: "login",
-                token: value
+                token: "1111"
             }
             socket.send(JSON.stringify(message));
         } else {
@@ -93,7 +93,8 @@
         if (socket.readyState == WebSocket.OPEN) {
             var message = {
                 type: "sendMe",
-                value: value
+                value: value,
+                token: "1111"
             }
             socket.send(JSON.stringify(message));
         } else {
@@ -107,8 +108,8 @@
         }
         if (socket.readyState == WebSocket.OPEN) {
             var message = {
-                type: "sendTo",
-                me: "3333",
+                type : "sendTo",
+                token : "1111",
                 value: value,
                 one: "2222",
             }
@@ -126,7 +127,7 @@
             var message = {
                 type: "sendGroup",
                 groupId: "2",
-                me: "3333",
+                token: "1111",
                 value: value
             }
             socket.send(JSON.stringify(message));

@@ -5,11 +5,19 @@
 
 	<groupId>com.myself.UncleCatMySelf</groupId>
 	<artifactId>inchat</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1-alpha</version>
 	<packaging>jar</packaging>
 
 	<name>inchat</name>
 	<description>一个轻量级、高效率的支持聊天与物联网的通讯框架</description>
+	<url>https://github.com/UncleCatMySelf</url>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

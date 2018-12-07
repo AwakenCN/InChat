@@ -47,19 +47,19 @@ public class InChatBackMapServiceImpl implements InChatBackMapService {
     }
 
     @Override
-    public Map<String, String> getMsg(String me, String value) {
+    public Map<String, String> getMsg(String token, String value) {
         Map<String,String> backMap = new HashMap<>();
         backMap.put(ConstansUtil.TYPE,ConstansUtil.SENDTO);
-        backMap.put(ConstansUtil.FROM,me);
+        backMap.put(ConstansUtil.FROM,token);
         backMap.put(ConstansUtil.VALUE,value);
         return backMap;
     }
 
     @Override
-    public Map<String, String> sendGroup(String me, String value, String groupId) {
+    public Map<String, String> sendGroup(String token, String value, String groupId) {
         Map<String,String> backMap = new HashMap<>();
         backMap.put(ConstansUtil.TYPE,ConstansUtil.SENDGROUP);
-        backMap.put(ConstansUtil.FROM,me);
+        backMap.put(ConstansUtil.FROM,token);
         backMap.put(ConstansUtil.VALUE,value);
         backMap.put(ConstansUtil.GROUPID,groupId);
         return backMap;

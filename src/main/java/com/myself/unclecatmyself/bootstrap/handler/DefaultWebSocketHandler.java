@@ -3,6 +3,7 @@ package com.myself.unclecatmyself.bootstrap.handler;
 import com.alibaba.fastjson.JSON;
 import com.myself.unclecatmyself.common.exception.NoFindHandlerException;
 import com.myself.unclecatmyself.common.utils.ConstansUtil;
+import com.myself.unclecatmyself.common.utils.TimeUtil;
 import com.myself.unclecatmyself.common.websockets.ServerWebSocketHandlerService;
 import com.myself.unclecatmyself.common.websockets.WebSocketHandler;
 import com.myself.unclecatmyself.common.websockets.WebSocketHandlerApi;
@@ -14,6 +15,7 @@ import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Create by UncleCatMySelf in 2018/12/06
@@ -31,7 +33,7 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
 
     @Override
     protected void webdoMessage(ChannelHandlerContext ctx, WebSocketFrame msg) {
-
+        //暂未实现
     }
 
     @Override
@@ -44,20 +46,24 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
             throw new NoFindHandlerException("Server Handler 不匹配");
         }
         Map<String,Object> maps = (Map) JSON.parse(msg.text());
+        maps.put("time", TimeUtil.getTime());
         switch ((String)maps.get(ConstansUtil.TYPE)){
             case ConstansUtil.LOGIN:
                 serverWebSocketHandlerService.login(channel,maps);
                 break;
             //针对个人，发送给自己
             case ConstansUtil.SENDME:
+                serverWebSocketHandlerService.verify(channel,maps);
                 serverWebSocketHandlerService.sendMeText(channel,maps);
                 break;
             //针对个人，发送给某人
             case ConstansUtil.SENDTO:
+                serverWebSocketHandlerService.verify(channel,maps);
                 serverWebSocketHandlerService.sendToText(channel,maps);
                 break;
             //发送给群组
             case ConstansUtil.SENDGROUP:
+                serverWebSocketHandlerService.verify(channel,maps);
                 serverWebSocketHandlerService.sendGroupText(channel,maps);
                 break;
             default:

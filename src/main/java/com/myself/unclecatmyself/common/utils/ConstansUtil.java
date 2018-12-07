@@ -11,8 +11,6 @@ public class ConstansUtil {
 
     public static final String ONE = "one";
 
-    public static final String ME = "me";
-
     public static final String ON_ONLINE = "on_online";
 
     public static final String GROUPID = "groupId";

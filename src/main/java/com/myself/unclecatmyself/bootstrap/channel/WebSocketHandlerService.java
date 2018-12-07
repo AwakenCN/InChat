@@ -43,15 +43,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     @Override
     public boolean login(Channel channel, Map<String,Object> maps) {
         //校验规则，自定义校验规则
-        String token = (String) maps.get(ConstansUtil.TOKEN);
-        if (inChatVerifyService.verifyToken(token)){
-            channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginSuccess())));
-            websocketChannelService.loginWsSuccess(channel,token);
-            return true;
-        }
-        channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginError())));
-        close(channel);
-        return false;
+        return check(channel, maps);
     }
 
     @Override
@@ -69,7 +61,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     public void sendToText(Channel channel, Map<String, Object> maps) {
         String otherOne = (String) maps.get(ConstansUtil.ONE);
         String value = (String) maps.get(ConstansUtil.VALUE);
-        String me = (String) maps.get(ConstansUtil.ME);
+        String token = (String) maps.get(ConstansUtil.TOKEN);
         //返回给自己
         channel.writeAndFlush(new TextWebSocketFrame(
                 gson.toJson(inChatBackMapService.sendBack(otherOne,value))));
@@ -77,7 +69,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
             //发送给对方--在线
             Channel other = websocketChannelService.getChannel(otherOne);
             other.writeAndFlush(new TextWebSocketFrame(
-                    gson.toJson(inChatBackMapService.getMsg(me,value))));
+                    gson.toJson(inChatBackMapService.getMsg(token,value))));
         }else {
             maps.put(ConstansUtil.ON_ONLINE,otherOne);
         }
@@ -91,18 +83,18 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
     @Override
     public void sendGroupText(Channel channel, Map<String, Object> maps) {
         String groupId = (String) maps.get(ConstansUtil.GROUPID);
-        String me = (String) maps.get(ConstansUtil.ME);
+        String token = (String) maps.get(ConstansUtil.TOKEN);
         String value = (String) maps.get(ConstansUtil.VALUE);
         List<String> no_online = new ArrayList<>();
         JSONArray array = inChatVerifyService.getArrayByGroupId(groupId);
         channel.writeAndFlush(new TextWebSocketFrame(
-                gson.toJson(inChatBackMapService.sendGroup(me,value,groupId))));
+                gson.toJson(inChatBackMapService.sendGroup(token,value,groupId))));
         for (Object item:array) {
-            if (!me.equals(item)){
+            if (!token.equals(item)){
                 if (websocketChannelService.hasOther((String) item)){
                     Channel other = websocketChannelService.getChannel((String) item);
                     other.writeAndFlush(new TextWebSocketFrame(
-                            gson.toJson(inChatBackMapService.sendGroup(me,value,groupId))));
+                            gson.toJson(inChatBackMapService.sendGroup(token,value,groupId))));
                 }else{
                     no_online.add((String) item);
                 }
@@ -114,6 +106,28 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService{
         } catch (Exception e) {
             return;
         }
+    }
+
+    @Override
+    public void verify(Channel channel, Map<String, Object> maps) {
+        String token = (String) maps.get(ConstansUtil.TOKEN);
+        System.out.println(token);
+        if (inChatVerifyService.verifyToken(token)){
+            channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginError())));
+            close(channel);
+        }
+    }
+
+    private Boolean check(Channel channel, Map<String, Object> maps){
+        String token = (String) maps.get(ConstansUtil.TOKEN);
+        if (inChatVerifyService.verifyToken(token)){
+            channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginSuccess())));
+            websocketChannelService.loginWsSuccess(channel,token);
+            return true;
+        }
+        channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginError())));
+        close(channel);
+        return false;
     }
 
     @Override

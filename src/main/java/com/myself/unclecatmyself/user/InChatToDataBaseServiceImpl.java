@@ -15,6 +15,7 @@ public class InChatToDataBaseServiceImpl implements InChatToDataBaseService {
     @Override
     public Boolean writeMapToDB(Map<String, Object> maps) {
         //TODO  写入数据库
+        System.out.println("异步写入数据："+maps.toString());
         return true;
     }
 

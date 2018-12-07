@@ -32,7 +32,6 @@ public abstract class ServerWebSocketHandlerService implements WebSocketHandlerA
      */
     public abstract void sendToText(Channel channel, Map<String,Object> maps);
 
-
     /**
      * 发送给群聊
      * @param channel {@link Channel} 链接实例
@@ -40,4 +39,10 @@ public abstract class ServerWebSocketHandlerService implements WebSocketHandlerA
      */
     public abstract void sendGroupText(Channel channel, Map<String, Object> maps);
 
+    /**
+     * 登录校验
+     * @param channel {@link Channel} 链接实例
+     * @param maps {@link Map} 数据信息
+     */
+    public abstract void verify(Channel channel, Map<String, Object> maps);
 }

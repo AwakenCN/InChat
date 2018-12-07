@@ -20,7 +20,7 @@ public class DataAsynchronousTask {
 
     @Async
     public Future<Boolean> writeData(Map<String,Object> maps) throws Exception {
-//        log.info("异步写入数据："+maps.toString());
+        //异步写入数据
         return new AsyncResult<>(inChatToDataBaseService.writeMapToDB(maps));
     }
 
