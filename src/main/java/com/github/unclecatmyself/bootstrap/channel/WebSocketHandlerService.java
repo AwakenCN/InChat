@@ -113,6 +113,8 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService {
         String token = (String) maps.get(ConstansUtil.TOKEN);
         System.out.println(token);
         if (inChatVerifyService.verifyToken(token)){
+            return;
+        }else{
             channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginError())));
             close(channel);
         }
