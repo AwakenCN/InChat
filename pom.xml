@@ -5,7 +5,7 @@
 
 	<groupId>com.github.UncleCatMySelf</groupId>
 	<artifactId>InChat</artifactId>
-	<version>0.1-alpha</version>
+	<version>1.0-alpha</version>
 	<packaging>jar</packaging>
 
 	<name>InChat</name>
@@ -46,6 +46,13 @@
 	</properties>
 
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.4</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>

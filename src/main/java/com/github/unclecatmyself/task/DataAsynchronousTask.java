@@ -1,6 +1,7 @@
 package com.github.unclecatmyself.task;
 
 import com.github.unclecatmyself.bootstrap.data.InChatToDataBaseService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -12,6 +13,7 @@ import java.util.concurrent.Future;
 /**
  * Created by MySelf on 2018/12/3.
  */
+@Slf4j
 @Component
 public class DataAsynchronousTask {
 
@@ -20,7 +22,7 @@ public class DataAsynchronousTask {
 
     @Async
     public Future<Boolean> writeData(Map<String,Object> maps) throws Exception {
-        //异步写入数据
+        log.info("【异步写入数据】");
         return new AsyncResult<>(inChatToDataBaseService.writeMapToDB(maps));
     }
 

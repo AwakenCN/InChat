@@ -5,6 +5,7 @@ import com.github.unclecatmyself.bootstrap.WsChannelService;
 import com.github.unclecatmyself.bootstrap.channel.cache.WsCacheMap;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import java.util.Map;
 /**
  * Created by MySelf on 2018/11/26.
  */
+@Slf4j
 @Component
 public class WebSocketChannelService implements WsChannelService {
 

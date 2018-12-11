@@ -12,6 +12,7 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -19,6 +20,7 @@ import java.util.Map;
 /**
  * Create by UncleCatMySelf in 2018/12/06
  */
+@Slf4j
 @Component
 @ChannelHandler.Sharable
 public class DefaultWebSocketHandler extends WebSocketHandler {
@@ -48,20 +50,24 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
         maps.put("time", TimeUtil.getTime());
         switch ((String)maps.get(ConstansUtil.TYPE)){
             case ConstansUtil.LOGIN:
+                log.info("【登录校验】");
                 serverWebSocketHandlerService.login(channel,maps);
                 break;
             //针对个人，发送给自己
             case ConstansUtil.SENDME:
+                log.info("【发送给自己】");
                 serverWebSocketHandlerService.verify(channel,maps);
                 serverWebSocketHandlerService.sendMeText(channel,maps);
                 break;
             //针对个人，发送给某人
             case ConstansUtil.SENDTO:
+                log.info("【发送给某人】");
                 serverWebSocketHandlerService.verify(channel,maps);
                 serverWebSocketHandlerService.sendToText(channel,maps);
                 break;
             //发送给群组
             case ConstansUtil.SENDGROUP:
+                log.info("发送到群组");
                 serverWebSocketHandlerService.verify(channel,maps);
                 serverWebSocketHandlerService.sendGroupText(channel,maps);
                 break;
@@ -72,12 +78,12 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-//        log.info("【DefaultWebSocketHandler：channelActive】"+ctx.channel().remoteAddress().toString()+"链接成功");
+        log.info("【DefaultWebSocketHandler：channelActive】"+ctx.channel().remoteAddress().toString()+"链接成功");
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception{
-//        log.error("exception",cause);
+        log.error("exception",cause);
         webSocketHandlerApi.close(ctx.channel());
     }
 }
