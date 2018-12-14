@@ -17,7 +17,18 @@
 
 **欢迎参与QQ群交流与提供建议、业务场景、需求功能等**
 
-**master项目目前在重新构建，运行可能报错，请转到demo分支运行项目。其为原核心项目**
+## Maven版本
+
+[V1.0.0版本使用说明](doc/version/v1.0.0.md)
+
+```
+<!-- https://mvnrepository.com/artifact/com.github.UncleCatMySelf/InChat -->
+<dependency>
+    <groupId>com.github.UncleCatMySelf</groupId>
+    <artifactId>InChat</artifactId>
+    <version>1.0-alpha</version>
+</dependency>
+```
 
 ## 项目日志
 
