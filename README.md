@@ -22,6 +22,7 @@
 ## Maven版本
 
 [V1.0.0版本使用说明](doc/version/v1.0.0.md)
+[V1.0.0版本使用说明视频教程](https://v.qq.com/x/page/i0813oy0lov.html)
 
 ```
 <!-- https://mvnrepository.com/artifact/com.github.UncleCatMySelf/InChat -->
