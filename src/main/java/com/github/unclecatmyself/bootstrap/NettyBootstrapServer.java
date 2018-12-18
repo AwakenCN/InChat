@@ -23,7 +23,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Create by UncleCatMySelf in 2018/12/06
  **/
-@Slf4j
 public class NettyBootstrapServer extends AbstractBootstrapServer {
 
     private InitNetty serverBean;
@@ -63,10 +62,8 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
                 .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
         bootstrap.bind(IpUtils.getHost(),serverBean.getWebport()).addListener((ChannelFutureListener) channelFuture -> {
             if (channelFuture.isSuccess()) {
-                log.info("服务端启动成功【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
                 System.out.println("服务端启动成功【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
             }else{
-                log.info("服务端启动失败【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
                 System.out.println("服务端启动失败【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");}
         });
     }
@@ -119,7 +116,6 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
                 bossGroup.shutdownGracefully().sync();// 优雅关闭
                 workGroup.shutdownGracefully().sync();
             } catch (InterruptedException e) {
-                log.info("服务端关闭资源失败【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
                 System.out.println("服务端关闭资源失败【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
             }
         }

@@ -2,19 +2,11 @@ package com.github.unclecatmyself.auto;
 
 import com.github.unclecatmyself.common.properties.InitNetty;
 import org.apache.commons.lang3.ObjectUtils;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 
 /**
  * Create by UncleCatMySelf in 2018/12/06
  **/
-@Configuration
-@ConditionalOnClass
-@EnableConfigurationProperties({InitNetty.class})
 public class ServerAutoConfigure {
 
     private static  final  int _BLACKLOG =   1024;
@@ -43,9 +35,6 @@ public class ServerAutoConfigure {
 //        return sacnScheduled;
 //    }
 
-
-    @Bean(initMethod = "open", destroyMethod = "close")
-    @ConditionalOnMissingBean
     public InitServer initServer(InitNetty serverBean){
         if(!ObjectUtils.allNotNull(serverBean.getWebport(),serverBean.getServerName())){
             throw  new NullPointerException("not set port");

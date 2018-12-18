@@ -1,8 +1,6 @@
 package com.github.unclecatmyself.bootstrap.channel.cache;
 
 import io.netty.channel.Channel;
-import org.springframework.stereotype.Component;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

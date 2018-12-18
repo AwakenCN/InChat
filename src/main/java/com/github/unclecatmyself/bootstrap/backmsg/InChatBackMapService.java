@@ -1,5 +1,7 @@
 package com.github.unclecatmyself.bootstrap.backmsg;
 
+import lombok.Data;
+
 import java.util.Map;
 
 /**

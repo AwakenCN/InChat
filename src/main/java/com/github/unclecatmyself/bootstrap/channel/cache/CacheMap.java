@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+
 /**
  * Create by UncleCatMySelf in 2018/12/06
  **/
@@ -71,7 +72,7 @@ public class CacheMap<K,V> {
     public  Node<K,V>   buildOne(K k,V v){
 
         Node<K, V> node = this.datas.computeIfAbsent(k, key -> {
-            Node<K, V> kObjectNode = new Node<>(k);
+            Node<K, V> kObjectNode = new Node<K,V>(k);
             return kObjectNode;
         });
         if(v!=null){

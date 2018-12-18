@@ -10,8 +10,6 @@ import com.github.unclecatmyself.bootstrap.verify.InChatVerifyService;
 import com.github.unclecatmyself.task.DataAsynchronousTask;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -21,16 +19,16 @@ import java.util.Map;
  */
 public class WebSocketHandlerService extends ServerWebSocketHandlerService {
 
-    @Autowired
+
     InChatVerifyService inChatVerifyService;
 
-    @Autowired
+
     InChatBackMapService inChatBackMapService;
 
-    @Autowired
+
     WsChannelService websocketChannelService;
 
-    @Autowired
+
     DataAsynchronousTask dataAsynchronousTask;
 
     private final Gson gson;
