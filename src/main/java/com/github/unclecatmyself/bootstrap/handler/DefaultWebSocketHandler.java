@@ -13,7 +13,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -21,7 +20,6 @@ import java.util.Map;
  * Create by UncleCatMySelf in 2018/12/06
  */
 @Slf4j
-@Component
 @ChannelHandler.Sharable
 public class DefaultWebSocketHandler extends WebSocketHandler {
 

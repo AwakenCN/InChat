@@ -1,12 +1,10 @@
 package com.github.unclecatmyself.common.properties;
 
 import com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * Create by UncleCatMySelf in 2018/12/06
  */
-@ConfigurationProperties(prefix = "inchat")
 public class InitNetty {
 
     private int webport = 8090;

@@ -19,7 +19,6 @@ import java.util.Map;
 /**
  * Created by MySelf on 2018/11/21.
  */
-@Component
 public class WebSocketHandlerService extends ServerWebSocketHandlerService {
 
     @Autowired

@@ -10,7 +10,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * WebSocket链接实例本地存储
  * Created by MySelf on 2018/11/26.
  */
-@Component
 public class WsCacheMap {
 
     /**

@@ -15,7 +15,6 @@ import java.util.Map;
  * Created by MySelf on 2018/11/26.
  */
 @Slf4j
-@Component
 public class WebSocketChannelService implements WsChannelService {
 
     @Autowired

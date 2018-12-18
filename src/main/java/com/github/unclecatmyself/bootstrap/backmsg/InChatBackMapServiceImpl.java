@@ -10,7 +10,6 @@ import java.util.Map;
  * 列入项目中
  * Created by MySelf on 2018/11/23.
  */
-@Service
 public class InChatBackMapServiceImpl implements InChatBackMapService {
 
     @Override
