@@ -15,7 +15,8 @@ import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -24,6 +25,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Create by UncleCatMySelf in 2018/12/06
  **/
 public class NettyBootstrapServer extends AbstractBootstrapServer {
+
+    private final Logger log = LoggerFactory.getLogger(NettyBootstrapServer.class);
 
     private InitNetty serverBean;
 
@@ -62,9 +65,9 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
                 .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
         bootstrap.bind(IpUtils.getHost(),serverBean.getWebport()).addListener((ChannelFutureListener) channelFuture -> {
             if (channelFuture.isSuccess()) {
-                System.out.println("服务端启动成功【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
+                log.info("服务端启动成功【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
             }else{
-                System.out.println("服务端启动失败【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");}
+                log.info("服务端启动失败【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");}
         });
     }
     /**
@@ -75,14 +78,12 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
         if(useEpoll()){
             bossGroup = new EpollEventLoopGroup(serverBean.getBossThread(), new ThreadFactory() {
                 private AtomicInteger index = new AtomicInteger(0);
-
                 public Thread newThread(Runnable r) {
                     return new Thread(r, "LINUX_BOSS_" + index.incrementAndGet());
                 }
             });
             workGroup = new EpollEventLoopGroup(serverBean.getWorkerThread(), new ThreadFactory() {
                 private AtomicInteger index = new AtomicInteger(0);
-
                 public Thread newThread(Runnable r) {
                     return new Thread(r, "LINUX_WORK_" + index.incrementAndGet());
                 }
@@ -92,14 +93,12 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
         else {
             bossGroup = new NioEventLoopGroup(serverBean.getBossThread(), new ThreadFactory() {
                 private AtomicInteger index = new AtomicInteger(0);
-
                 public Thread newThread(Runnable r) {
                     return new Thread(r, "BOSS_" + index.incrementAndGet());
                 }
             });
             workGroup = new NioEventLoopGroup(serverBean.getWorkerThread(), new ThreadFactory() {
                 private AtomicInteger index = new AtomicInteger(0);
-
                 public Thread newThread(Runnable r) {
                     return new Thread(r, "WORK_" + index.incrementAndGet());
                 }
@@ -116,7 +115,7 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
                 bossGroup.shutdownGracefully().sync();// 优雅关闭
                 workGroup.shutdownGracefully().sync();
             } catch (InterruptedException e) {
-                System.out.println("服务端关闭资源失败【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
+                log.error("服务端关闭资源失败【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
             }
         }
     }

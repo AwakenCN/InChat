@@ -1,7 +1,8 @@
 package com.github.unclecatmyself.task;
 
 import com.github.unclecatmyself.bootstrap.data.InChatToDataBaseService;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.concurrent.Future;
@@ -9,9 +10,9 @@ import java.util.concurrent.Future;
 /**
  * Created by MySelf on 2018/12/3.
  */
-@Slf4j
 public class DataAsynchronousTask {
 
+    private final Logger log = LoggerFactory.getLogger(DataAsynchronousTask.class);
 
     InChatToDataBaseService inChatToDataBaseService;
 

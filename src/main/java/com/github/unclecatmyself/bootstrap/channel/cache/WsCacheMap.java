@@ -13,19 +13,19 @@ public class WsCacheMap {
     /**
      * 存储用户标识与链接实例
      */
-    Map<String,Channel> maps = new ConcurrentHashMap<String,Channel>();
+    private final static Map<String,Channel> maps = new ConcurrentHashMap<String,Channel>();
 
     /**
      * 存储链接地址与用户标识
      */
-    Map<String,String> addMaps = new ConcurrentHashMap<>();
+    private final static Map<String,String> addMaps = new ConcurrentHashMap<>();
 
     /**
      * 存储链接
      * @param token {@link String} 用户标签
      * @param channel {@link Channel} 链接实例
      */
-    public void saveWs(String token,Channel channel){
+    public static void saveWs(String token,Channel channel){
         maps.put(token,channel);
     }
 
@@ -34,7 +34,7 @@ public class WsCacheMap {
      * @param address 登录地址
      * @param token 用户标签
      */
-    public void saveAd(String address,String token){
+    public static void saveAd(String address,String token){
         addMaps.put(address, token);
     }
 
@@ -43,7 +43,7 @@ public class WsCacheMap {
      * @param token {@link String} 用户标识
      * @return {@link Channel} 链接实例
      */
-    public Channel getByToken(String token){
+    public static Channel getByToken(String token){
         return maps.get(token);
     }
 
@@ -52,7 +52,7 @@ public class WsCacheMap {
      * @param address {@link String} 链接地址
      * @return {@link String}
      */
-    public String getByAddress(String address){
+    public static String getByAddress(String address){
         return addMaps.get(address);
     }
 
@@ -60,7 +60,7 @@ public class WsCacheMap {
      * 删除链接数据
      * @param token {@link String} 用户标识
      */
-    public void deleteWs(String token){
+    public static void deleteWs(String token){
         maps.remove(token);
     }
 
@@ -68,7 +68,7 @@ public class WsCacheMap {
      * 删除链接地址
      * @param address
      */
-    public void deleteAd(String address){
+    public static void deleteAd(String address){
         addMaps.remove(address);
     }
 
@@ -76,7 +76,7 @@ public class WsCacheMap {
      * 获取链接数
      * @return {@link Integer} 链接数
      */
-    public Integer getSize(){
+    public static Integer getSize(){
         return maps.size();
     }
 
@@ -85,7 +85,7 @@ public class WsCacheMap {
      * @param token {@link String} 用户标识
      * @return {@link Boolean} 是否存在
      */
-    public boolean hasToken(String token){
+    public static boolean hasToken(String token){
         return maps.containsKey(token);
     }
 

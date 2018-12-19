@@ -1,8 +1,9 @@
 package com.github.unclecatmyself.bootstrap;
 
 
+import com.github.unclecatmyself.bootstrap.channel.WebSocketHandlerService;
+import com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler;
 import com.github.unclecatmyself.common.properties.InitNetty;
-import com.github.unclecatmyself.common.utils.SpringBeanUtils;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
@@ -22,7 +23,7 @@ public abstract class AbstractBootstrapServer implements BootstrapServer {
     protected  void initHandler(ChannelPipeline channelPipeline, InitNetty serverBean){
         intProtocolHandler(channelPipeline,serverBean);
         channelPipeline.addLast(new IdleStateHandler(serverBean.getHeart(),0,0));
-        channelPipeline.addLast(SpringBeanUtils.getBean(serverBean.getWebSocketHandler()));
+        channelPipeline.addLast(new DefaultWebSocketHandler(new WebSocketHandlerService()));
     }
 
     private  void intProtocolHandler(ChannelPipeline channelPipeline,InitNetty serverBean){

@@ -1,7 +1,6 @@
 package com.github.unclecatmyself.common.properties;
 
 import com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler;
-import lombok.Data;
 
 /**
  * Create by UncleCatMySelf in 2018/12/06

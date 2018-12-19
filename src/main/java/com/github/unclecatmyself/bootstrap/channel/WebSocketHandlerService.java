@@ -31,11 +31,6 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService {
 
     DataAsynchronousTask dataAsynchronousTask;
 
-    private final Gson gson;
-
-    public WebSocketHandlerService(Gson gson){
-        this.gson = gson;
-    }
 
     @Override
     public boolean login(Channel channel, Map<String,Object> maps) {
@@ -45,6 +40,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService {
 
     @Override
     public void sendMeText(Channel channel, Map<String,Object> maps) {
+        Gson gson = new Gson();
         channel.writeAndFlush(new TextWebSocketFrame(
                 gson.toJson(inChatBackMapService.sendMe((String) maps.get(ConstansUtil.VALUE)))));
         try {
@@ -56,6 +52,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService {
 
     @Override
     public void sendToText(Channel channel, Map<String, Object> maps) {
+        Gson gson = new Gson();
         String otherOne = (String) maps.get(ConstansUtil.ONE);
         String value = (String) maps.get(ConstansUtil.VALUE);
         String token = (String) maps.get(ConstansUtil.TOKEN);
@@ -79,6 +76,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService {
 
     @Override
     public void sendGroupText(Channel channel, Map<String, Object> maps) {
+        Gson gson = new Gson();
         String groupId = (String) maps.get(ConstansUtil.GROUPID);
         String token = (String) maps.get(ConstansUtil.TOKEN);
         String value = (String) maps.get(ConstansUtil.VALUE);
@@ -107,6 +105,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService {
 
     @Override
     public void verify(Channel channel, Map<String, Object> maps) {
+        Gson gson = new Gson();
         String token = (String) maps.get(ConstansUtil.TOKEN);
         System.out.println(token);
         if (inChatVerifyService.verifyToken(token)){
@@ -118,6 +117,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService {
     }
 
     private Boolean check(Channel channel, Map<String, Object> maps){
+        Gson gson = new Gson();
         String token = (String) maps.get(ConstansUtil.TOKEN);
         if (inChatVerifyService.verifyToken(token)){
             channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginSuccess())));

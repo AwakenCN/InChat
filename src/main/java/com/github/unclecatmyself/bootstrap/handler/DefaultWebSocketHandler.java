@@ -12,16 +12,18 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
 /**
  * Create by UncleCatMySelf in 2018/12/06
  */
-@Slf4j
 @ChannelHandler.Sharable
 public class DefaultWebSocketHandler extends WebSocketHandler {
+
+    private final Logger log = LoggerFactory.getLogger(DefaultWebSocketHandler.class);
 
     private final WebSocketHandlerApi webSocketHandlerApi;
 
@@ -72,10 +74,12 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        log.info("[DefaultWebSocketHandler.channelActive]"+ctx.channel().remoteAddress().toString()+"链接成功");
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception{
+        log.error("exception",cause);
         webSocketHandlerApi.close(ctx.channel());
     }
 }
