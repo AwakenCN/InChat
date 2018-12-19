@@ -15,5 +15,5 @@
 * 【2018-12-14】 打包完成v1.0.0Maven版本，并提交说明文档与相关资料，正对v1.0.0提交对应demo分支。
 * 【2018-12-15】 [录制V1.0.0使用说明视频](https://v.qq.com/x/page/i0813oy0lov.html)
 * 【2018-12-18】 明确移除对SpringBoot的依赖于环境，做成自纯应用。[添加NIO服务端与客户端Demo](https://github.com/UncleCatMySelf/InChat/wiki/Java-NIO%E4%B9%8BSelector%EF%BC%88%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%89)
-* 【2018-12-19】 移除lombok，嵌入log4j的依赖，并配置日志信息。
+* 【2018-12-19】 移除lombok，嵌入log4j的依赖，并配置日志信息，移除对SpringBoot的依赖成功，普通main方法既可以运行项目。
 

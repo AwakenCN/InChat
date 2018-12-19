@@ -2,7 +2,9 @@ package com.github.unclecatmyself.bootstrap.channel;
 
 import com.alibaba.fastjson.JSONArray;
 import com.github.unclecatmyself.bootstrap.backmsg.InChatBackMapService;
+import com.github.unclecatmyself.bootstrap.backmsg.InChatBackMapServiceImpl;
 import com.github.unclecatmyself.common.websockets.ServerWebSocketHandlerService;
+import com.github.unclecatmyself.user.InChatVerifyServiceImpl;
 import com.google.gson.Gson;
 import com.github.unclecatmyself.bootstrap.WsChannelService;
 import com.github.unclecatmyself.common.utils.ConstansUtil;
@@ -20,16 +22,16 @@ import java.util.Map;
 public class WebSocketHandlerService extends ServerWebSocketHandlerService {
 
 
-    InChatVerifyService inChatVerifyService;
+    private final InChatVerifyService inChatVerifyService = new InChatVerifyServiceImpl();
 
+    private final InChatBackMapService inChatBackMapService = new InChatBackMapServiceImpl();
 
-    InChatBackMapService inChatBackMapService;
+    private final WsChannelService websocketChannelService = new WebSocketChannelService();
 
+    private final DataAsynchronousTask dataAsynchronousTask = new DataAsynchronousTask();
 
-    WsChannelService websocketChannelService;
-
-
-    DataAsynchronousTask dataAsynchronousTask;
+    public WebSocketHandlerService() {
+    }
 
 
     @Override
