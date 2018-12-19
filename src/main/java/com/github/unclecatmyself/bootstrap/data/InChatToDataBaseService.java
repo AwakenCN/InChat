@@ -1,5 +1,7 @@
 package com.github.unclecatmyself.bootstrap.data;
 
+import com.github.unclecatmyself.common.bean.InChatMessage;
+
 import java.util.Map;
 
 /**
@@ -7,6 +9,6 @@ import java.util.Map;
  */
 public interface InChatToDataBaseService {
 
-    Boolean writeMapToDB(Map<String,Object> maps);
+    Boolean writeMapToDB(InChatMessage message);
 
 }

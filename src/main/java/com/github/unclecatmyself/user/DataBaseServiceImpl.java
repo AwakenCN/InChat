@@ -1,6 +1,7 @@
 package com.github.unclecatmyself.user;
 
 import com.github.unclecatmyself.bootstrap.data.InChatToDataBaseService;
+import com.github.unclecatmyself.common.bean.InChatMessage;
 
 import java.util.Map;
 
@@ -10,8 +11,8 @@ import java.util.Map;
 public class DataBaseServiceImpl implements InChatToDataBaseService{
 
     @Override
-    public Boolean writeMapToDB(Map<String, Object> maps) {
-        System.out.println(maps.toString());
+    public Boolean writeMapToDB(InChatMessage message) {
+        System.out.println(message.toString());
         return true;
     }
 }

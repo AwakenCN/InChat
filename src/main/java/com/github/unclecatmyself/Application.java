@@ -1,7 +1,7 @@
 package com.github.unclecatmyself;
 
 import com.github.unclecatmyself.auto.InitServer;
-import com.github.unclecatmyself.common.properties.InitNetty;
+import com.github.unclecatmyself.common.bean.InitNetty;
 
 /**
  * Created by MySelf on 2018/12/18.

@@ -1,4 +1,4 @@
-package com.github.unclecatmyself.common.properties;
+package com.github.unclecatmyself.common.bean;
 
 import com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler;
 

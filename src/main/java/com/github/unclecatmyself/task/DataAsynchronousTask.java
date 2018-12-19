@@ -1,6 +1,8 @@
 package com.github.unclecatmyself.task;
 
 import com.github.unclecatmyself.bootstrap.data.InChatToDataBaseService;
+import com.github.unclecatmyself.common.bean.InChatMessage;
+import com.github.unclecatmyself.common.utils.MessageChangeUtil;
 import com.github.unclecatmyself.user.DataBaseServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,11 +20,10 @@ public class DataAsynchronousTask {
 
     public void writeData(Map<String,Object> maps) throws Exception {
         log.info("【异步写入数据】");
-//        return new AsyncResult<>(inChatToDataBaseService.writeMapToDB(maps));
         new Thread(new Runnable() {
             @Override
             public void run() {
-                inChatToDataBaseService.writeMapToDB(maps);
+                inChatToDataBaseService.writeMapToDB(MessageChangeUtil.Change(maps));
             }
         }).start();
     }

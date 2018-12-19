@@ -513,3 +513,483 @@ DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - De
 DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=81
 DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=80
 INFO WORK_1 com.github.unclecatmyself.task.DataAsynchronousTask - 【异步写入数据】
+DEBUG main io.netty.util.internal.logging.InternalLoggerFactory - Using SLF4J as the default logging framework
+DEBUG main io.netty.channel.MultithreadEventLoopGroup - -Dio.netty.eventLoopThreads: 8
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.noKeySetOptimization: false
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.selectorAutoRebuildThreshold: 512
+DEBUG main io.netty.util.internal.PlatformDependent - Platform: Windows
+DEBUG main io.netty.util.internal.PlatformDependent0 - -Dio.netty.noUnsafe: false
+DEBUG main io.netty.util.internal.PlatformDependent0 - Java version: 8
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.theUnsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.copyMemory: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Buffer.address: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - direct buffer constructor: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Bits.unaligned: available, true
+DEBUG main io.netty.util.internal.PlatformDependent0 - jdk.internal.misc.Unsafe.allocateUninitializedArray(int): unavailable prior to Java9
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.DirectByteBuffer.<init>(long, int): available
+DEBUG main io.netty.util.internal.PlatformDependent - sun.misc.Unsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.tmpdir: C:\Users\hht\AppData\Local\Temp (java.io.tmpdir)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.maxDirectMemory: 1897922560 bytes
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.uninitializedArrayAllocationThreshold: -1
+DEBUG main io.netty.util.internal.CleanerJava6 - java.nio.ByteBuffer.cleaner(): available
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.noPreferDirect: false
+DEBUG main io.netty.util.internal.PlatformDependent - org.jctools-core.MpscChunkedArrayQueue: available
+DEBUG main io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.level: simple
+DEBUG main io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.targetRecords: 4
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numHeapArenas: 8
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numDirectArenas: 8
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.pageSize: 8192
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxOrder: 11
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.chunkSize: 16777216
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.tinyCacheSize: 512
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.smallCacheSize: 256
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.normalCacheSize: 64
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.cacheTrimInterval: 8192
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.useCacheForAllThreads: true
+DEBUG main io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+DEBUG main io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+DEBUG main io.netty.channel.DefaultChannelId - -Dio.netty.processId: 34076 (auto-detected)
+DEBUG main io.netty.util.NetUtil - -Djava.net.preferIPv4Stack: false
+DEBUG main io.netty.util.NetUtil - -Djava.net.preferIPv6Addresses: false
+DEBUG main io.netty.util.NetUtil - Loopback interface: [lo, Software Loopback Interface 1, 127.0.0.1] ({}, {})
+DEBUG main io.netty.util.NetUtil - Failed to get SOMAXCONN from sysctl and file \proc\sys\net\core\somaxconn. Default: 200
+DEBUG main io.netty.channel.DefaultChannelId - -Dio.netty.machineId: f8:bc:12:ff:fe:5b:19:b3 (auto-detected)
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.allocator.type: pooled
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.threadLocalDirectBufferSize: 0
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.maxThreadLocalCharBufferSize: 16384
+INFO BOSS_1 com.github.unclecatmyself.bootstrap.NettyBootstrapServer - 服务端启动成功【192.168.1.121:8090】
+DEBUG WORK_1 io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkAccessible: true
+DEBUG WORK_1 io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkBounds: true
+DEBUG WORK_1 io.netty.util.ResourceLeakDetectorFactory - Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@6bd82a1
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.channelActive]/192.168.1.121:34697链接成功
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.maxCapacityPerThread: 4096
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.maxSharedCapacityFactor: 2
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.linkCapacity: 16
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.ratio: 8
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker - [id: 0xc4d62168, L:/192.168.1.121:8090 - R:/192.168.1.121:34697] WebSocket version V13 server handshake
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker - WebSocket version 13 server handshake key: qgEqz92Ioygmhk3gRdQQaw==, response: 7Pm7Izdtx2zCKE1xY6cJKnIT+og=
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=31
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=33
+DEBUG main io.netty.util.internal.logging.InternalLoggerFactory - Using SLF4J as the default logging framework
+DEBUG main io.netty.channel.MultithreadEventLoopGroup - -Dio.netty.eventLoopThreads: 8
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.noKeySetOptimization: false
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.selectorAutoRebuildThreshold: 512
+DEBUG main io.netty.util.internal.PlatformDependent - Platform: Windows
+DEBUG main io.netty.util.internal.PlatformDependent0 - -Dio.netty.noUnsafe: false
+DEBUG main io.netty.util.internal.PlatformDependent0 - Java version: 8
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.theUnsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.copyMemory: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Buffer.address: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - direct buffer constructor: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Bits.unaligned: available, true
+DEBUG main io.netty.util.internal.PlatformDependent0 - jdk.internal.misc.Unsafe.allocateUninitializedArray(int): unavailable prior to Java9
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.DirectByteBuffer.<init>(long, int): available
+DEBUG main io.netty.util.internal.PlatformDependent - sun.misc.Unsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.tmpdir: C:\Users\hht\AppData\Local\Temp (java.io.tmpdir)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.maxDirectMemory: 1897922560 bytes
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.uninitializedArrayAllocationThreshold: -1
+DEBUG main io.netty.util.internal.CleanerJava6 - java.nio.ByteBuffer.cleaner(): available
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.noPreferDirect: false
+DEBUG main io.netty.util.internal.PlatformDependent - org.jctools-core.MpscChunkedArrayQueue: available
+DEBUG main io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.level: simple
+DEBUG main io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.targetRecords: 4
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numHeapArenas: 8
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numDirectArenas: 8
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.pageSize: 8192
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxOrder: 11
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.chunkSize: 16777216
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.tinyCacheSize: 512
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.smallCacheSize: 256
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.normalCacheSize: 64
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.cacheTrimInterval: 8192
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.useCacheForAllThreads: true
+DEBUG main io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+DEBUG main io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+DEBUG main io.netty.channel.DefaultChannelId - -Dio.netty.processId: 18512 (auto-detected)
+DEBUG main io.netty.util.NetUtil - -Djava.net.preferIPv4Stack: false
+DEBUG main io.netty.util.NetUtil - -Djava.net.preferIPv6Addresses: false
+DEBUG main io.netty.util.NetUtil - Loopback interface: [lo, Software Loopback Interface 1, 127.0.0.1] ({}, {})
+DEBUG main io.netty.util.NetUtil - Failed to get SOMAXCONN from sysctl and file \proc\sys\net\core\somaxconn. Default: 200
+DEBUG main io.netty.channel.DefaultChannelId - -Dio.netty.machineId: f8:bc:12:ff:fe:5b:19:b3 (auto-detected)
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.allocator.type: pooled
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.threadLocalDirectBufferSize: 0
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.maxThreadLocalCharBufferSize: 16384
+INFO BOSS_1 com.github.unclecatmyself.bootstrap.NettyBootstrapServer - 服务端启动成功【192.168.1.121:8090】
+DEBUG WORK_1 io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkAccessible: true
+DEBUG WORK_1 io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkBounds: true
+DEBUG WORK_1 io.netty.util.ResourceLeakDetectorFactory - Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@2966e252
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.channelActive]/192.168.1.121:35360链接成功
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.maxCapacityPerThread: 4096
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.maxSharedCapacityFactor: 2
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.linkCapacity: 16
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.ratio: 8
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker - [id: 0x0cf6fdc3, L:/192.168.1.121:8090 - R:/192.168.1.121:35360] WebSocket version V13 server handshake
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker - WebSocket version 13 server handshake key: 5rEmIyW1tsiWCuX2w0INNw==, response: nUOpghNJpNrSM/guWcgWALrkHGU=
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=31
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=33
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=43
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=28
+INFO WORK_1 com.github.unclecatmyself.task.DataAsynchronousTask - 【异步写入数据】
+DEBUG main io.netty.util.internal.logging.InternalLoggerFactory - Using SLF4J as the default logging framework
+DEBUG main io.netty.channel.MultithreadEventLoopGroup - -Dio.netty.eventLoopThreads: 8
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.noKeySetOptimization: false
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.selectorAutoRebuildThreshold: 512
+DEBUG main io.netty.util.internal.PlatformDependent - Platform: Windows
+DEBUG main io.netty.util.internal.PlatformDependent0 - -Dio.netty.noUnsafe: false
+DEBUG main io.netty.util.internal.PlatformDependent0 - Java version: 8
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.theUnsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.copyMemory: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Buffer.address: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - direct buffer constructor: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Bits.unaligned: available, true
+DEBUG main io.netty.util.internal.PlatformDependent0 - jdk.internal.misc.Unsafe.allocateUninitializedArray(int): unavailable prior to Java9
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.DirectByteBuffer.<init>(long, int): available
+DEBUG main io.netty.util.internal.PlatformDependent - sun.misc.Unsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.tmpdir: C:\Users\hht\AppData\Local\Temp (java.io.tmpdir)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.maxDirectMemory: 1897922560 bytes
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.uninitializedArrayAllocationThreshold: -1
+DEBUG main io.netty.util.internal.CleanerJava6 - java.nio.ByteBuffer.cleaner(): available
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.noPreferDirect: false
+DEBUG main io.netty.util.internal.PlatformDependent - org.jctools-core.MpscChunkedArrayQueue: available
+DEBUG main io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.level: simple
+DEBUG main io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.targetRecords: 4
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numHeapArenas: 8
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numDirectArenas: 8
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.pageSize: 8192
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxOrder: 11
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.chunkSize: 16777216
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.tinyCacheSize: 512
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.smallCacheSize: 256
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.normalCacheSize: 64
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.cacheTrimInterval: 8192
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.useCacheForAllThreads: true
+DEBUG main io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+DEBUG main io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+DEBUG main io.netty.channel.DefaultChannelId - -Dio.netty.processId: 17364 (auto-detected)
+DEBUG main io.netty.util.NetUtil - -Djava.net.preferIPv4Stack: false
+DEBUG main io.netty.util.NetUtil - -Djava.net.preferIPv6Addresses: false
+DEBUG main io.netty.util.NetUtil - Loopback interface: [lo, Software Loopback Interface 1, 127.0.0.1] ({}, {})
+DEBUG main io.netty.util.NetUtil - Failed to get SOMAXCONN from sysctl and file \proc\sys\net\core\somaxconn. Default: 200
+DEBUG main io.netty.channel.DefaultChannelId - -Dio.netty.machineId: f8:bc:12:ff:fe:5b:19:b3 (auto-detected)
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.allocator.type: pooled
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.threadLocalDirectBufferSize: 0
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.maxThreadLocalCharBufferSize: 16384
+INFO BOSS_1 com.github.unclecatmyself.bootstrap.NettyBootstrapServer - 服务端启动成功【192.168.1.121:8090】
+DEBUG WORK_1 io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkAccessible: true
+DEBUG WORK_1 io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkBounds: true
+DEBUG WORK_1 io.netty.util.ResourceLeakDetectorFactory - Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@57e6b81e
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.channelActive]/192.168.1.121:37659链接成功
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.maxCapacityPerThread: 4096
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.maxSharedCapacityFactor: 2
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.linkCapacity: 16
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.ratio: 8
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker - [id: 0xd470a2b6, L:/192.168.1.121:8090 - R:/192.168.1.121:37659] WebSocket version V13 server handshake
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker - WebSocket version 13 server handshake key: 46i6nomThnz0IoYa70QG/A==, response: PQriNOnfZMe0A+W13CLzRFFp1Ag=
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=31
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.LOGIN]
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=33
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=46
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.SENDME]
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=31
+INFO WORK_1 com.github.unclecatmyself.task.DataAsynchronousTask - 【异步写入数据】
+DEBUG main io.netty.util.internal.logging.InternalLoggerFactory - Using SLF4J as the default logging framework
+DEBUG main io.netty.channel.MultithreadEventLoopGroup - -Dio.netty.eventLoopThreads: 8
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.noKeySetOptimization: false
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.selectorAutoRebuildThreshold: 512
+DEBUG main io.netty.util.internal.PlatformDependent - Platform: Windows
+DEBUG main io.netty.util.internal.PlatformDependent0 - -Dio.netty.noUnsafe: false
+DEBUG main io.netty.util.internal.PlatformDependent0 - Java version: 8
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.theUnsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.copyMemory: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Buffer.address: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - direct buffer constructor: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Bits.unaligned: available, true
+DEBUG main io.netty.util.internal.PlatformDependent0 - jdk.internal.misc.Unsafe.allocateUninitializedArray(int): unavailable prior to Java9
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.DirectByteBuffer.<init>(long, int): available
+DEBUG main io.netty.util.internal.PlatformDependent - sun.misc.Unsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.tmpdir: C:\Users\hht\AppData\Local\Temp (java.io.tmpdir)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.maxDirectMemory: 1897922560 bytes
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.uninitializedArrayAllocationThreshold: -1
+DEBUG main io.netty.util.internal.CleanerJava6 - java.nio.ByteBuffer.cleaner(): available
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.noPreferDirect: false
+DEBUG main io.netty.util.internal.PlatformDependent - org.jctools-core.MpscChunkedArrayQueue: available
+DEBUG main io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.level: simple
+DEBUG main io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.targetRecords: 4
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numHeapArenas: 8
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numDirectArenas: 8
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.pageSize: 8192
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxOrder: 11
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.chunkSize: 16777216
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.tinyCacheSize: 512
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.smallCacheSize: 256
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.normalCacheSize: 64
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.cacheTrimInterval: 8192
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.useCacheForAllThreads: true
+DEBUG main io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+DEBUG main io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+DEBUG main io.netty.channel.DefaultChannelId - -Dio.netty.processId: 20876 (auto-detected)
+DEBUG main io.netty.util.NetUtil - -Djava.net.preferIPv4Stack: false
+DEBUG main io.netty.util.NetUtil - -Djava.net.preferIPv6Addresses: false
+DEBUG main io.netty.util.NetUtil - Loopback interface: [lo, Software Loopback Interface 1, 127.0.0.1] ({}, {})
+DEBUG main io.netty.util.NetUtil - Failed to get SOMAXCONN from sysctl and file \proc\sys\net\core\somaxconn. Default: 200
+DEBUG main io.netty.channel.DefaultChannelId - -Dio.netty.machineId: f8:bc:12:ff:fe:5b:19:b3 (auto-detected)
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.allocator.type: pooled
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.threadLocalDirectBufferSize: 0
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.maxThreadLocalCharBufferSize: 16384
+INFO BOSS_1 com.github.unclecatmyself.bootstrap.NettyBootstrapServer - 服务端启动成功【192.168.1.121:8090】
+DEBUG WORK_1 io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkAccessible: true
+DEBUG WORK_1 io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkBounds: true
+DEBUG WORK_1 io.netty.util.ResourceLeakDetectorFactory - Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@e716aa8
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.channelActive]/192.168.1.121:37750链接成功
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.maxCapacityPerThread: 4096
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.maxSharedCapacityFactor: 2
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.linkCapacity: 16
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.ratio: 8
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker - [id: 0xa1dac098, L:/192.168.1.121:8090 - R:/192.168.1.121:37750] WebSocket version V13 server handshake
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker - WebSocket version 13 server handshake key: 7aHAsYtx2ScKUSUOHKWMag==, response: 9Q9074/wnR89AErYj8WkqTuush4=
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=31
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.LOGIN]
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=33
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=46
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.SENDME]
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=31
+INFO WORK_1 com.github.unclecatmyself.task.DataAsynchronousTask - 【异步写入数据】
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=59
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.SENDTO]
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=44
+INFO WORK_1 com.github.unclecatmyself.task.DataAsynchronousTask - 【异步写入数据】
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=59
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.SENDTO]
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=44
+INFO WORK_1 com.github.unclecatmyself.task.DataAsynchronousTask - 【异步写入数据】
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=63
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.SENDGROUP]
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=62
+INFO WORK_1 com.github.unclecatmyself.task.DataAsynchronousTask - 【异步写入数据】
+DEBUG main io.netty.util.internal.logging.InternalLoggerFactory - Using SLF4J as the default logging framework
+DEBUG main io.netty.channel.MultithreadEventLoopGroup - -Dio.netty.eventLoopThreads: 8
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.noKeySetOptimization: false
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.selectorAutoRebuildThreshold: 512
+DEBUG main io.netty.util.internal.PlatformDependent - Platform: Windows
+DEBUG main io.netty.util.internal.PlatformDependent0 - -Dio.netty.noUnsafe: false
+DEBUG main io.netty.util.internal.PlatformDependent0 - Java version: 8
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.theUnsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.copyMemory: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Buffer.address: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - direct buffer constructor: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Bits.unaligned: available, true
+DEBUG main io.netty.util.internal.PlatformDependent0 - jdk.internal.misc.Unsafe.allocateUninitializedArray(int): unavailable prior to Java9
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.DirectByteBuffer.<init>(long, int): available
+DEBUG main io.netty.util.internal.PlatformDependent - sun.misc.Unsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.tmpdir: C:\Users\hht\AppData\Local\Temp (java.io.tmpdir)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.maxDirectMemory: 1897922560 bytes
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.uninitializedArrayAllocationThreshold: -1
+DEBUG main io.netty.util.internal.CleanerJava6 - java.nio.ByteBuffer.cleaner(): available
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.noPreferDirect: false
+DEBUG main io.netty.util.internal.PlatformDependent - org.jctools-core.MpscChunkedArrayQueue: available
+DEBUG main io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.level: simple
+DEBUG main io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.targetRecords: 4
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numHeapArenas: 8
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numDirectArenas: 8
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.pageSize: 8192
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxOrder: 11
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.chunkSize: 16777216
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.tinyCacheSize: 512
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.smallCacheSize: 256
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.normalCacheSize: 64
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.cacheTrimInterval: 8192
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.useCacheForAllThreads: true
+DEBUG main io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+DEBUG main io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+DEBUG main io.netty.channel.DefaultChannelId - -Dio.netty.processId: 39208 (auto-detected)
+DEBUG main io.netty.util.NetUtil - -Djava.net.preferIPv4Stack: false
+DEBUG main io.netty.util.NetUtil - -Djava.net.preferIPv6Addresses: false
+DEBUG main io.netty.util.NetUtil - Loopback interface: [lo, Software Loopback Interface 1, 127.0.0.1] ({}, {})
+DEBUG main io.netty.util.NetUtil - Failed to get SOMAXCONN from sysctl and file \proc\sys\net\core\somaxconn. Default: 200
+DEBUG main io.netty.channel.DefaultChannelId - -Dio.netty.machineId: f8:bc:12:ff:fe:5b:19:b3 (auto-detected)
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.allocator.type: pooled
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.threadLocalDirectBufferSize: 0
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.maxThreadLocalCharBufferSize: 16384
+INFO BOSS_1 com.github.unclecatmyself.bootstrap.NettyBootstrapServer - 服务端启动失败【192.168.1.121:8090】
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=8
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=2
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=8 length=2
+INFO WORK_2 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.channelActive]/192.168.1.121:37820链接成功
+DEBUG WORK_2 io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker - [id: 0xbdf6f285, L:/192.168.1.121:8090 - R:/192.168.1.121:37820] WebSocket version V13 server handshake
+DEBUG WORK_2 io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker - WebSocket version 13 server handshake key: mjD3d333VWLm5zYERDk7lA==, response: 4tGH4E8jCi592zyrnYNhiFdffRU=
+DEBUG WORK_2 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_2 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=31
+INFO WORK_2 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.LOGIN]
+DEBUG WORK_2 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=33
+DEBUG WORK_2 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_2 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=46
+INFO WORK_2 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.SENDME]
+DEBUG WORK_2 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=31
+INFO WORK_2 com.github.unclecatmyself.task.DataAsynchronousTask - 【异步写入数据】
+DEBUG main io.netty.util.internal.logging.InternalLoggerFactory - Using SLF4J as the default logging framework
+DEBUG main io.netty.channel.MultithreadEventLoopGroup - -Dio.netty.eventLoopThreads: 8
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.noKeySetOptimization: false
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.selectorAutoRebuildThreshold: 512
+DEBUG main io.netty.util.internal.PlatformDependent - Platform: Windows
+DEBUG main io.netty.util.internal.PlatformDependent0 - -Dio.netty.noUnsafe: false
+DEBUG main io.netty.util.internal.PlatformDependent0 - Java version: 8
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.theUnsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.copyMemory: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Buffer.address: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - direct buffer constructor: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Bits.unaligned: available, true
+DEBUG main io.netty.util.internal.PlatformDependent0 - jdk.internal.misc.Unsafe.allocateUninitializedArray(int): unavailable prior to Java9
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.DirectByteBuffer.<init>(long, int): available
+DEBUG main io.netty.util.internal.PlatformDependent - sun.misc.Unsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.tmpdir: C:\Users\hht\AppData\Local\Temp (java.io.tmpdir)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.maxDirectMemory: 1897922560 bytes
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.uninitializedArrayAllocationThreshold: -1
+DEBUG main io.netty.util.internal.CleanerJava6 - java.nio.ByteBuffer.cleaner(): available
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.noPreferDirect: false
+DEBUG main io.netty.util.internal.PlatformDependent - org.jctools-core.MpscChunkedArrayQueue: available
+DEBUG main io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.level: simple
+DEBUG main io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.targetRecords: 4
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numHeapArenas: 8
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numDirectArenas: 8
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.pageSize: 8192
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxOrder: 11
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.chunkSize: 16777216
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.tinyCacheSize: 512
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.smallCacheSize: 256
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.normalCacheSize: 64
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.cacheTrimInterval: 8192
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.useCacheForAllThreads: true
+DEBUG main io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+DEBUG main io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+DEBUG main io.netty.channel.DefaultChannelId - -Dio.netty.processId: 26864 (auto-detected)
+DEBUG main io.netty.util.NetUtil - -Djava.net.preferIPv4Stack: false
+DEBUG main io.netty.util.NetUtil - -Djava.net.preferIPv6Addresses: false
+DEBUG main io.netty.util.NetUtil - Loopback interface: [lo, Software Loopback Interface 1, 127.0.0.1] ({}, {})
+DEBUG main io.netty.util.NetUtil - Failed to get SOMAXCONN from sysctl and file \proc\sys\net\core\somaxconn. Default: 200
+DEBUG main io.netty.channel.DefaultChannelId - -Dio.netty.machineId: f8:bc:12:ff:fe:5b:19:b3 (auto-detected)
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.allocator.type: pooled
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.threadLocalDirectBufferSize: 0
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.maxThreadLocalCharBufferSize: 16384
+INFO BOSS_1 com.github.unclecatmyself.bootstrap.NettyBootstrapServer - 服务端启动成功【192.168.1.121:8090】
+DEBUG WORK_1 io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkAccessible: true
+DEBUG WORK_1 io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkBounds: true
+DEBUG WORK_1 io.netty.util.ResourceLeakDetectorFactory - Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@a1cc7eb
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.channelActive]/192.168.1.121:37946链接成功
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.maxCapacityPerThread: 4096
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.maxSharedCapacityFactor: 2
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.linkCapacity: 16
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.ratio: 8
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker - [id: 0x32ec9d73, L:/192.168.1.121:8090 - R:/192.168.1.121:37946] WebSocket version V13 server handshake
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker - WebSocket version 13 server handshake key: TM5+FgH97iB/bsupfniAXA==, response: YGdbMj80V5OQOtNAR/Z4ZhoN9z0=
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=31
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.LOGIN]
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=33
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=46
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.SENDME]
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=31
+INFO WORK_1 com.github.unclecatmyself.task.DataAsynchronousTask - 【异步写入数据】
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=59
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.SENDTO]
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=44
+INFO WORK_1 com.github.unclecatmyself.task.DataAsynchronousTask - 【异步写入数据】
+DEBUG main io.netty.util.internal.logging.InternalLoggerFactory - Using SLF4J as the default logging framework
+DEBUG main io.netty.channel.MultithreadEventLoopGroup - -Dio.netty.eventLoopThreads: 8
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.noKeySetOptimization: false
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.selectorAutoRebuildThreshold: 512
+DEBUG main io.netty.util.internal.PlatformDependent - Platform: Windows
+DEBUG main io.netty.util.internal.PlatformDependent0 - -Dio.netty.noUnsafe: false
+DEBUG main io.netty.util.internal.PlatformDependent0 - Java version: 8
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.theUnsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.copyMemory: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Buffer.address: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - direct buffer constructor: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Bits.unaligned: available, true
+DEBUG main io.netty.util.internal.PlatformDependent0 - jdk.internal.misc.Unsafe.allocateUninitializedArray(int): unavailable prior to Java9
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.DirectByteBuffer.<init>(long, int): available
+DEBUG main io.netty.util.internal.PlatformDependent - sun.misc.Unsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.tmpdir: C:\Users\hht\AppData\Local\Temp (java.io.tmpdir)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.maxDirectMemory: 1897922560 bytes
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.uninitializedArrayAllocationThreshold: -1
+DEBUG main io.netty.util.internal.CleanerJava6 - java.nio.ByteBuffer.cleaner(): available
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.noPreferDirect: false
+DEBUG main io.netty.util.internal.PlatformDependent - org.jctools-core.MpscChunkedArrayQueue: available
+DEBUG main io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.level: simple
+DEBUG main io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.targetRecords: 4
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numHeapArenas: 8
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numDirectArenas: 8
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.pageSize: 8192
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxOrder: 11
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.chunkSize: 16777216
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.tinyCacheSize: 512
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.smallCacheSize: 256
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.normalCacheSize: 64
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.cacheTrimInterval: 8192
+DEBUG main io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.useCacheForAllThreads: true
+DEBUG main io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+DEBUG main io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+DEBUG main io.netty.channel.DefaultChannelId - -Dio.netty.processId: 11772 (auto-detected)
+DEBUG main io.netty.util.NetUtil - -Djava.net.preferIPv4Stack: false
+DEBUG main io.netty.util.NetUtil - -Djava.net.preferIPv6Addresses: false
+DEBUG main io.netty.util.NetUtil - Loopback interface: [lo, Software Loopback Interface 1, 127.0.0.1] ({}, {})
+DEBUG main io.netty.util.NetUtil - Failed to get SOMAXCONN from sysctl and file \proc\sys\net\core\somaxconn. Default: 200
+DEBUG main io.netty.channel.DefaultChannelId - -Dio.netty.machineId: f8:bc:12:ff:fe:5b:19:b3 (auto-detected)
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.allocator.type: pooled
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.threadLocalDirectBufferSize: 0
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.maxThreadLocalCharBufferSize: 16384
+INFO BOSS_1 com.github.unclecatmyself.bootstrap.NettyBootstrapServer - 服务端启动成功【192.168.1.121:8090】
+DEBUG WORK_1 io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkAccessible: true
+DEBUG WORK_1 io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkBounds: true
+DEBUG WORK_1 io.netty.util.ResourceLeakDetectorFactory - Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@e716aa8
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.channelActive]/192.168.1.121:37971链接成功
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.maxCapacityPerThread: 4096
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.maxSharedCapacityFactor: 2
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.linkCapacity: 16
+DEBUG WORK_1 io.netty.util.Recycler - -Dio.netty.recycler.ratio: 8
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker - [id: 0xf42ac2f4, L:/192.168.1.121:8090 - R:/192.168.1.121:37971] WebSocket version V13 server handshake
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker - WebSocket version 13 server handshake key: C4cY2+cPopV14ZhOdZzvWg==, response: lgeUcarZO/rCKPbEtAnaBFCAsbc=
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=31
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.LOGIN]
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=33
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=46
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.SENDME]
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=31
+INFO WORK_1 com.github.unclecatmyself.task.DataAsynchronousTask - 【异步写入数据】
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=59
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.SENDTO]
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=44
+INFO WORK_1 com.github.unclecatmyself.task.DataAsynchronousTask - 【异步写入数据】
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame opCode=1
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder - Decoding WebSocket Frame length=63
+INFO WORK_1 com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler - [DefaultWebSocketHandler.textdoMessage.SENDGROUP]
+DEBUG WORK_1 io.netty.handler.codec.http.websocketx.WebSocket08FrameEncoder - Encoding WebSocket Frame opCode=1 length=62
+INFO WORK_1 com.github.unclecatmyself.task.DataAsynchronousTask - 【异步写入数据】

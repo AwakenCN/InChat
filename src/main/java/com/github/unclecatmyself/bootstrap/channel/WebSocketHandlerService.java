@@ -21,7 +21,6 @@ import java.util.Map;
  */
 public class WebSocketHandlerService extends ServerWebSocketHandlerService {
 
-
     private final InChatVerifyService inChatVerifyService = new InChatVerifyServiceImpl();
 
     private final InChatBackMapService inChatBackMapService = new InChatBackMapServiceImpl();

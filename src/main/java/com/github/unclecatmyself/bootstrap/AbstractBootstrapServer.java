@@ -3,7 +3,7 @@ package com.github.unclecatmyself.bootstrap;
 
 import com.github.unclecatmyself.bootstrap.channel.WebSocketHandlerService;
 import com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler;
-import com.github.unclecatmyself.common.properties.InitNetty;
+import com.github.unclecatmyself.common.bean.InitNetty;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;

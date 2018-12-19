@@ -3,7 +3,7 @@ package com.github.unclecatmyself.auto;
 
 import com.github.unclecatmyself.bootstrap.BootstrapServer;
 import com.github.unclecatmyself.bootstrap.NettyBootstrapServer;
-import com.github.unclecatmyself.common.properties.InitNetty;
+import com.github.unclecatmyself.common.bean.InitNetty;
 
 /**
  * Create by UncleCatMySelf in 2018/12/06
@@ -25,7 +25,6 @@ public class InitServer {
             bootstrapServer.start();
         }
     }
-
 
     public void close(){
         if(bootstrapServer!=null){

@@ -1,7 +1,7 @@
 package com.github.unclecatmyself.bootstrap;
 
 import com.github.unclecatmyself.common.ip.IpUtils;
-import com.github.unclecatmyself.common.properties.InitNetty;
+import com.github.unclecatmyself.common.bean.InitNetty;
 import com.github.unclecatmyself.common.utils.RemotingUtil;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;

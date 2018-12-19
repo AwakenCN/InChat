@@ -32,4 +32,6 @@ public class ConstansUtil {
     public static final String FROM = "from";
 
     public static final String SENDGROUP = "sendGroup";
+
+    public static final String TIME = "time";
 }

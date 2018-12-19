@@ -1,6 +1,6 @@
 package com.github.unclecatmyself.auto;
 
-import com.github.unclecatmyself.common.properties.InitNetty;
+import com.github.unclecatmyself.common.bean.InitNetty;
 import org.apache.commons.lang3.ObjectUtils;
 
 
@@ -23,17 +23,6 @@ public class ServerAutoConfigure {
     public ServerAutoConfigure(){
 
     }
-
-//    @Bean
-//    @ConditionalOnMissingBean(name = "sacnScheduled")
-//    public ScanRunnable initRunable(@Autowired InitNetty serverBean){
-//        long time =(serverBean==null || serverBean.getPeriod()<5)?10:serverBean.getPeriod();
-//        ScanRunnable sacnScheduled = new SacnScheduled(time);
-//        Thread scanRunnable = new Thread(sacnScheduled);
-//        scanRunnable.setDaemon(true);
-//        scanRunnable.start();
-//        return sacnScheduled;
-//    }
 
     public InitServer initServer(InitNetty serverBean){
         if(!ObjectUtils.allNotNull(serverBean.getWebport(),serverBean.getServerName())){
