@@ -24,6 +24,8 @@
 * [V1.0.0版本使用说明](doc/version/v1.0.0.md)
 * [V1.0.0版本使用说明视频教程](https://v.qq.com/x/page/i0813oy0lov.html)
 
+> 目前项目代码已经推进入了下一版本，如果你想下载这个版本的源码，可以到这里下载[V1.0.0-alpha](https://github.com/UncleCatMySelf/InChat/releases/tag/V1.0.0-alpha)
+
 ```
 <!-- https://mvnrepository.com/artifact/com.github.UncleCatMySelf/InChat -->
 <dependency>
