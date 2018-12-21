@@ -8,7 +8,10 @@
 
 版本目标：完成基本的消息通讯（仅支持文本消息），离线消息存储，历史消息查询，一对一聊天、自我聊天、群聊等
 
-[V1.0.0版本使用说明](../version/v1.0.0.md)
+* [V1.0.0版本使用说明](doc/version/v1.0.0.md)
+* [V1.0.0版本使用说明视频教程](https://v.qq.com/x/page/i0813oy0lov.html)
+
+> 目前项目代码已经推进入了下一版本，如果你想下载这个版本的源码，可以到这里下载[V1.0.0-alpha](https://github.com/UncleCatMySelf/InChat/releases/tag/V1.0.0-alpha)
 
 ```
 <!-- https://mvnrepository.com/artifact/com.github.UncleCatMySelf/InChat -->
@@ -18,3 +21,18 @@
     <version>1.0-alpha</version>
 </dependency>
 ```
+
+## V1.1.0-alpha版本
+
+版本目标：移除对SpringBoot的环境依赖，InChat独立生存与使用，结合上一版的功能，并添加服务器发送消息接口
+
+* [V1.1.0-alpha版本使用说明](https://unclecatmyself.github.io/2018/12/21/InChatV1.1.0%E7%89%88%E6%9C%AC%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/)
+
+```
+<dependency>
+    <groupId>com.github.UncleCatMySelf</groupId>
+    <artifactId>InChat</artifactId>
+    <version>1.1.0-alpha</version>
+</dependency>
+```
+
