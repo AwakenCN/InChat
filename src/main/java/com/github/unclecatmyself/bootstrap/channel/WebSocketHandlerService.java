@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.github.unclecatmyself.bootstrap.backmsg.InChatBackMapService;
 import com.github.unclecatmyself.bootstrap.backmsg.InChatBackMapServiceImpl;
 import com.github.unclecatmyself.common.websockets.ServerWebSocketHandlerService;
-import com.github.unclecatmyself.user.InChatVerifyServiceImpl;
 import com.google.gson.Gson;
 import com.github.unclecatmyself.bootstrap.WsChannelService;
 import com.github.unclecatmyself.common.utils.ConstansUtil;

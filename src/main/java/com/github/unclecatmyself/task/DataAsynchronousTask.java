@@ -1,9 +1,7 @@
 package com.github.unclecatmyself.task;
 
 import com.github.unclecatmyself.bootstrap.data.InChatToDataBaseService;
-import com.github.unclecatmyself.common.bean.InChatMessage;
 import com.github.unclecatmyself.common.utils.MessageChangeUtil;
-import com.github.unclecatmyself.user.DataBaseServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
