@@ -98,7 +98,7 @@ public class WebSocketHandlerService extends ServerWebSocketHandlerService {
                 }
             }
         }
-        maps.put(ConstansUtil.ON_ONLINE,no_online);
+        maps.put(ConstansUtil.ONLINE_GROUP,no_online);
         try {
             dataAsynchronousTask.writeData(maps);
         } catch (Exception e) {

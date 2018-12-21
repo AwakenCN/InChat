@@ -13,6 +13,8 @@ public class ConstansUtil {
 
     public static final String ON_ONLINE = "on_online";
 
+    public static final String ONLINE_GROUP = "online_group";
+
     public static final String GROUPID = "groupId";
 
     public static final String TYPE = "type";

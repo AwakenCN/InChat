@@ -2,6 +2,7 @@ package com.github.unclecatmyself.common.utils;
 
 import com.github.unclecatmyself.common.bean.InChatMessage;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -32,6 +33,9 @@ public class MessageChangeUtil {
         }
         if (maps.containsKey(ConstansUtil.ON_ONLINE)){
             message.setOnline((String)maps.get(ConstansUtil.ON_ONLINE));
+        }
+        if (maps.containsKey(ConstansUtil.ONLINE_GROUP)){
+            message.setOnlineGroup((ArrayList)maps.get(ConstansUtil.ONLINE_GROUP));
         }
         return message;
     }

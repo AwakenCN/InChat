@@ -1,5 +1,8 @@
 package com.github.unclecatmyself.common.bean;
 
+import com.alibaba.fastjson.JSONArray;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -19,7 +22,17 @@ public class InChatMessage {
 
     private String online;
 
+    private ArrayList onlineGroup;
+
     private String one;
+
+    public ArrayList getOnlineGroup() {
+        return onlineGroup;
+    }
+
+    public void setOnlineGroup(ArrayList onlineGroup) {
+        this.onlineGroup = onlineGroup;
+    }
 
     public Date getTime() {
         return time;
@@ -86,6 +99,7 @@ public class InChatMessage {
                 ", token='" + token + '\'' +
                 ", groudId='" + groudId + '\'' +
                 ", online='" + online + '\'' +
+                ", onlineGroup=" + onlineGroup +
                 ", one='" + one + '\'' +
                 '}';
     }
