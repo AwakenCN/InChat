@@ -5,7 +5,7 @@
 
 	<groupId>com.github.UncleCatMySelf</groupId>
 	<artifactId>InChat</artifactId>
-	<version>1.0-alpha</version>
+	<version>1.1.0-alpha</version>
 	<build>
 		<plugins>
 			<plugin>
