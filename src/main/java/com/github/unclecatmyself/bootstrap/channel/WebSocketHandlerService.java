@@ -21,15 +21,17 @@ import java.util.Map;
  */
 public class WebSocketHandlerService extends ServerWebSocketHandlerService {
 
-    private final InChatVerifyService inChatVerifyService = new InChatVerifyServiceImpl();
+    private final InChatVerifyService inChatVerifyService;
 
     private final InChatBackMapService inChatBackMapService = new InChatBackMapServiceImpl();
 
     private final WsChannelService websocketChannelService = new WebSocketChannelService();
 
-    private final DataAsynchronousTask dataAsynchronousTask = new DataAsynchronousTask();
+    private final DataAsynchronousTask dataAsynchronousTask;
 
-    public WebSocketHandlerService() {
+    public WebSocketHandlerService(DataAsynchronousTask dataAsynchronousTask,InChatVerifyService inChatVerifyService) {
+        this.dataAsynchronousTask = dataAsynchronousTask;
+        this.inChatVerifyService = inChatVerifyService;
     }
 
 

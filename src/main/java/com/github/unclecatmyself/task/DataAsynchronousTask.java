@@ -16,7 +16,11 @@ public class DataAsynchronousTask {
 
     private final Logger log = LoggerFactory.getLogger(DataAsynchronousTask.class);
 
-    private final InChatToDataBaseService inChatToDataBaseService = new DataBaseServiceImpl();
+    private final InChatToDataBaseService inChatToDataBaseService;
+
+    public DataAsynchronousTask(InChatToDataBaseService inChatToDataBaseService){
+        this.inChatToDataBaseService = inChatToDataBaseService;
+    }
 
     public void writeData(Map<String,Object> maps) throws Exception {
         log.info("【异步写入数据】");
