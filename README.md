@@ -24,6 +24,7 @@
 版本目标：移除对SpringBoot的环境依赖，InChat独立生存与使用，结合上一版的功能，并添加服务器发送消息接口
 
 * [V1.1.0-alpha版本使用说明](https://unclecatmyself.github.io/2018/12/21/InChatV1.1.0%E7%89%88%E6%9C%AC%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/)
+* [V1.1.0-alpha版本视频教学](https://v.qq.com/x/page/i08165ym286.html)
 
 ```
 <dependency>
