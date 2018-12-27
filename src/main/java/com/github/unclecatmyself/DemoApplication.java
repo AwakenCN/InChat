@@ -3,7 +3,7 @@ package com.github.unclecatmyself;
 import com.github.unclecatmyself.auto.ConfigFactory;
 import com.github.unclecatmyself.auto.InitServer;
 import com.github.unclecatmyself.bootstrap.channel.WebSocketChannelService;
-import com.github.unclecatmyself.common.bean.InitNetty;
+import com.github.unclecatmyself.user.MyInit;
 import com.github.unclecatmyself.user.ToDataBaseServiceImpl;
 import com.github.unclecatmyself.user.verifyServiceImpl;
 import io.netty.channel.Channel;
@@ -19,7 +19,7 @@ public class DemoApplication {
 		ConfigFactory.inChatToDataBaseService = new ToDataBaseServiceImpl();
 		ConfigFactory.inChatVerifyService = new verifyServiceImpl();
 		//默认启动InChat
-		InitServer initServer = new InitServer(new InitNetty());
+		InitServer initServer = new InitServer(new MyInit());
 		initServer.open();
 
 		//获取用户值
