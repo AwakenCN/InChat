@@ -10,7 +10,6 @@ import java.util.Map;
  */
 public interface WebSocketHandlerApi {
 
-
     void close(Channel channel);
 
     void sendMeText(Channel channel, Map<String,Object> maps);

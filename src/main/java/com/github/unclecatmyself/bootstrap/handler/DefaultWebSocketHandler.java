@@ -6,11 +6,15 @@ import com.github.unclecatmyself.common.websockets.ServerWebSocketHandlerService
 import com.github.unclecatmyself.common.websockets.WebSocketHandler;
 import com.github.unclecatmyself.common.utils.ConstansUtil;
 import com.github.unclecatmyself.common.websockets.WebSocketHandlerApi;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
+import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +39,22 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
     @Override
     protected void webdoMessage(ChannelHandlerContext ctx, WebSocketFrame msg) {
         //暂未实现
+        log.info("[webdoMessage]--暂未实现");
+    }
+
+    @Override
+    protected void httpdoMessage(ChannelHandlerContext ctx, FullHttpRequest msg) {
+        //暂未实现
+        log.info("[httpdoMessage]--暂未实现");
+        msg.retain();
+        log.info(msg.uri());
+        log.info(msg.toString());
+        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
+        response.headers().set("Content-Type","text/html;charset=UTF-8");
+        ByteBuf buf = Unpooled.copiedBuffer("【InChat】-HTTP通道返回成功",CharsetUtil.UTF_8);
+        response.content().writeBytes(buf);
+        ctx.writeAndFlush(response);
+        ctx.close();
     }
 
     @Override

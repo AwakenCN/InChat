@@ -8,6 +8,8 @@ import com.github.unclecatmyself.common.bean.InitNetty;
 import com.github.unclecatmyself.task.DataAsynchronousTask;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.http.HttpObjectAggregator;
+import io.netty.handler.codec.http.HttpRequestDecoder;
+import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
@@ -30,7 +32,9 @@ public abstract class AbstractBootstrapServer implements BootstrapServer {
 
     private  void intProtocolHandler(ChannelPipeline channelPipeline,InitNetty serverBean){
         channelPipeline.addLast("httpCode",new HttpServerCodec());
+//        channelPipeline.addLast("http-decoder",new HttpRequestDecoder());
         channelPipeline.addLast("aggregator", new HttpObjectAggregator(serverBean.getMaxContext()));
+//        channelPipeline.addLast("http-encoder",new HttpResponseEncoder());
         channelPipeline.addLast("chunkedWrite",new ChunkedWriteHandler());
         channelPipeline.addLast("webSocketHandler",new WebSocketServerProtocolHandler(serverBean.getWebSocketPath()));
     }

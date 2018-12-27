@@ -5,6 +5,7 @@ import io.netty.channel.Channel;
 import java.util.Map;
 
 /**
+ * 业务层伪接口
  * Created by MySelf on 2018/11/21.
  */
 public abstract class ServerWebSocketHandlerService implements WebSocketHandlerApi {

@@ -1,29 +1,36 @@
 package com.github.unclecatmyself.common.bean;
 
-import com.alibaba.fastjson.JSONArray;
-
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
+ * 用户层消息Bean封装
  * Created by MySelf on 2018/12/19.
  */
 public class InChatMessage {
 
+    /** 消息时间 */
     private Date time;
 
+    /** 消息类型 */
     private String type;
 
+    /** 消息值 */
     private String value;
 
+    /** 用户标识 */
     private String token;
 
+    /** 群聊Id */
     private String groudId;
 
+    /** 是否在线-个人 */
     private String online;
 
+    /** 是否在线-群聊 */
     private ArrayList onlineGroup;
 
+    /** 消息接收人标识 */
     private String one;
 
     public ArrayList getOnlineGroup() {
