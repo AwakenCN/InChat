@@ -18,9 +18,10 @@ public class DemoApplication {
 		//配置InChat配置工厂
 		ConfigFactory.inChatToDataBaseService = new ToDataBaseServiceImpl();
 		ConfigFactory.inChatVerifyService = new verifyServiceImpl();
+		ConfigFactory.initNetty = new MyInit();
 		//默认启动InChat
-		InitServer initServer = new InitServer(new MyInit());
-		initServer.open();
+//		InitServer initServer = InitServer(new MyInit());
+		InitServer.open();
 
 		//获取用户值
 		WebSocketChannelService webSocketChannelService = new WebSocketChannelService();

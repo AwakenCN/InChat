@@ -6,19 +6,22 @@ import com.github.unclecatmyself.bootstrap.NettyBootstrapServer;
 import com.github.unclecatmyself.common.bean.InitNetty;
 
 /**
+ * InChat项目启动服务
  * Create by UncleCatMySelf in 2018/12/06
  **/
-public class InitServer {
+public abstract class InitServer {
 
-    private InitNetty serverBean;
+//    private InitNetty serverBean;
 
-    public InitServer(InitNetty serverBean) {
-        this.serverBean = serverBean;
-    }
+    private static InitNetty serverBean = ConfigFactory.initNetty;
 
-    BootstrapServer bootstrapServer;
+//    public InitServer(InitNetty serverBean) {
+//        this.serverBean = serverBean;
+//    }
 
-    public void open(){
+    static BootstrapServer bootstrapServer;
+
+    public static void open(){
         if(serverBean!=null){
             bootstrapServer = new NettyBootstrapServer();
             bootstrapServer.setServerBean(serverBean);

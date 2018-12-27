@@ -24,32 +24,32 @@ public class ServerAutoConfigure {
 
     }
 
-    public InitServer initServer(InitNetty serverBean){
-        if(!ObjectUtils.allNotNull(serverBean.getWebport(),serverBean.getServerName())){
-            throw  new NullPointerException("not set port");
-        }
-        if(serverBean.getBacklog()<1){
-            serverBean.setBacklog(_BLACKLOG);
-        }
-        if(serverBean.getBossThread()<1){
-            serverBean.setBossThread(CPU);
-        }
-        if(serverBean.getInitalDelay()<0){
-            serverBean.setInitalDelay(SEDU_DAY);
-        }
-        if(serverBean.getPeriod()<1){
-            serverBean.setPeriod(SEDU_DAY);
-        }
-        if(serverBean.getHeart()<1){
-            serverBean.setHeart(TIMEOUT);
-        }
-        if(serverBean.getRevbuf()<1){
-            serverBean.setRevbuf(BUF_SIZE);
-        }
-        if(serverBean.getWorkerThread()<1){
-            serverBean.setWorkerThread(CPU*2);
-        }
-        return new InitServer(serverBean);
-    }
+//    public InitServer initServer(InitNetty serverBean){
+//        if(!ObjectUtils.allNotNull(serverBean.getWebport(),serverBean.getServerName())){
+//            throw  new NullPointerException("not set port");
+//        }
+//        if(serverBean.getBacklog()<1){
+//            serverBean.setBacklog(_BLACKLOG);
+//        }
+//        if(serverBean.getBossThread()<1){
+//            serverBean.setBossThread(CPU);
+//        }
+//        if(serverBean.getInitalDelay()<0){
+//            serverBean.setInitalDelay(SEDU_DAY);
+//        }
+//        if(serverBean.getPeriod()<1){
+//            serverBean.setPeriod(SEDU_DAY);
+//        }
+//        if(serverBean.getHeart()<1){
+//            serverBean.setHeart(TIMEOUT);
+//        }
+//        if(serverBean.getRevbuf()<1){
+//            serverBean.setRevbuf(BUF_SIZE);
+//        }
+//        if(serverBean.getWorkerThread()<1){
+//            serverBean.setWorkerThread(CPU*2);
+//        }
+//        return new InitServer(serverBean);
+//    }
 
 }
