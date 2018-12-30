@@ -1,8 +1,7 @@
-package com.github.unclecatmyself.common.websockets;
+package com.github.unclecatmyself.common.base;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.handler.codec.http.FullHttpMessage;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
@@ -13,14 +12,14 @@ import org.slf4j.LoggerFactory;
  * Netty实现初始层
  * Create by UncleCatMySelf in 2018/12/06
  */
-public abstract class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
+public abstract class Handler extends SimpleChannelInboundHandler<Object> {
 
-    private static final Logger log = LoggerFactory.getLogger(WebSocketHandler.class);
+    private static final Logger log = LoggerFactory.getLogger(Handler.class);
 
-    WebSocketHandlerApi webSocketHandlerApi;
+    HandlerApi handlerApi;
 
-    public WebSocketHandler(WebSocketHandlerApi webSocketHandlerApi){
-        this.webSocketHandlerApi = webSocketHandlerApi;
+    public Handler(HandlerApi webSocketHandlerApi){
+        this.handlerApi = handlerApi;
     }
 
     @Override
@@ -43,7 +42,7 @@ public abstract class WebSocketHandler extends SimpleChannelInboundHandler<Objec
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         log.info("【DefaultWebSocketHandler：channelInactive】"+ctx.channel().localAddress().toString()+"关闭成功");
-        webSocketHandlerApi.close(ctx.channel());
+        handlerApi.close(ctx.channel());
     }
 
     @Override

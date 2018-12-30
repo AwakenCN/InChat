@@ -1,11 +1,11 @@
 package com.github.unclecatmyself.bootstrap.handler;
 
 import com.alibaba.fastjson.JSON;
+import com.github.unclecatmyself.common.base.Handler;
+import com.github.unclecatmyself.common.base.HandlerApi;
+import com.github.unclecatmyself.common.base.WebSocketHandlerService;
 import com.github.unclecatmyself.common.exception.NoFindHandlerException;
-import com.github.unclecatmyself.common.websockets.ServerWebSocketHandlerService;
-import com.github.unclecatmyself.common.websockets.WebSocketHandler;
 import com.github.unclecatmyself.common.utils.ConstansUtil;
-import com.github.unclecatmyself.common.websockets.WebSocketHandlerApi;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -25,15 +25,15 @@ import java.util.Map;
  * Create by UncleCatMySelf in 2018/12/06
  */
 @ChannelHandler.Sharable
-public class DefaultWebSocketHandler extends WebSocketHandler {
+public class DefaultWebSocketHandler extends Handler {
 
     private final Logger log = LoggerFactory.getLogger(DefaultWebSocketHandler.class);
 
-    private final WebSocketHandlerApi webSocketHandlerApi;
+    private final HandlerApi handlerApi;
 
-    public DefaultWebSocketHandler(WebSocketHandlerApi webSocketHandlerApi) {
-        super(webSocketHandlerApi);
-        this.webSocketHandlerApi = webSocketHandlerApi;
+    public DefaultWebSocketHandler(HandlerApi handlerApi) {
+        super(handlerApi);
+        this.handlerApi = handlerApi;
     }
 
     @Override
@@ -60,9 +60,9 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
     @Override
     protected void textdoMessage(ChannelHandlerContext ctx, TextWebSocketFrame msg) {
         Channel channel = ctx.channel();
-        ServerWebSocketHandlerService serverWebSocketHandlerService;
-        if (webSocketHandlerApi instanceof ServerWebSocketHandlerService){
-            serverWebSocketHandlerService = (ServerWebSocketHandlerService)webSocketHandlerApi;
+        WebSocketHandlerService webSocketHandlerService;
+        if (handlerApi instanceof WebSocketHandlerService){
+            webSocketHandlerService = (WebSocketHandlerService)handlerApi;
         }else{
             throw new NoFindHandlerException("Server Handler 不匹配");
         }
@@ -71,25 +71,25 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
         switch ((String)maps.get(ConstansUtil.TYPE)){
             case ConstansUtil.LOGIN:
                 log.info("[DefaultWebSocketHandler.textdoMessage.LOGIN]");
-                serverWebSocketHandlerService.login(channel,maps);
+                webSocketHandlerService.login(channel,maps);
                 break;
             //针对个人，发送给自己
             case ConstansUtil.SENDME:
                 log.info("[DefaultWebSocketHandler.textdoMessage.SENDME]");
-                serverWebSocketHandlerService.verify(channel,maps);
-                serverWebSocketHandlerService.sendMeText(channel,maps);
+                webSocketHandlerService.verify(channel,maps);
+                webSocketHandlerService.sendMeText(channel,maps);
                 break;
             //针对个人，发送给某人
             case ConstansUtil.SENDTO:
                 log.info("[DefaultWebSocketHandler.textdoMessage.SENDTO]");
-                serverWebSocketHandlerService.verify(channel,maps);
-                serverWebSocketHandlerService.sendToText(channel,maps);
+                webSocketHandlerService.verify(channel,maps);
+                webSocketHandlerService.sendToText(channel,maps);
                 break;
             //发送给群组
             case ConstansUtil.SENDGROUP:
                 log.info("[DefaultWebSocketHandler.textdoMessage.SENDGROUP]");
-                serverWebSocketHandlerService.verify(channel,maps);
-                serverWebSocketHandlerService.sendGroupText(channel,maps);
+                webSocketHandlerService.verify(channel,maps);
+                webSocketHandlerService.sendGroupText(channel,maps);
                 break;
             default:
                 break;
@@ -104,6 +104,6 @@ public class DefaultWebSocketHandler extends WebSocketHandler {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception{
         log.error("exception",cause);
-        webSocketHandlerApi.close(ctx.channel());
+        handlerApi.close(ctx.channel());
     }
 }

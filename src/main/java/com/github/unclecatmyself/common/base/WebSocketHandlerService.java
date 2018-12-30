@@ -1,4 +1,4 @@
-package com.github.unclecatmyself.common.websockets;
+package com.github.unclecatmyself.common.base;
 
 import io.netty.channel.Channel;
 
@@ -8,7 +8,7 @@ import java.util.Map;
  * 业务层伪接口
  * Created by MySelf on 2018/11/21.
  */
-public abstract class ServerWebSocketHandlerService implements WebSocketHandlerApi {
+public abstract class WebSocketHandlerService implements HandlerApi {
 
     /**
      * 登录类型

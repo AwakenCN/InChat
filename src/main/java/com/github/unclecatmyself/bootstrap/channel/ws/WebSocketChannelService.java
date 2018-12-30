@@ -1,4 +1,4 @@
-package com.github.unclecatmyself.bootstrap.channel;
+package com.github.unclecatmyself.bootstrap.channel.ws;
 
 import com.google.gson.Gson;
 import com.github.unclecatmyself.bootstrap.WsChannelService;

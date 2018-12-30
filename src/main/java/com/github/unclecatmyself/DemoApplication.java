@@ -2,7 +2,7 @@ package com.github.unclecatmyself;
 
 import com.github.unclecatmyself.auto.ConfigFactory;
 import com.github.unclecatmyself.auto.InitServer;
-import com.github.unclecatmyself.bootstrap.channel.WebSocketChannelService;
+import com.github.unclecatmyself.bootstrap.channel.ws.WebSocketChannelService;
 import com.github.unclecatmyself.user.MyInit;
 import com.github.unclecatmyself.user.ToDataBaseServiceImpl;
 import com.github.unclecatmyself.user.verifyServiceImpl;
