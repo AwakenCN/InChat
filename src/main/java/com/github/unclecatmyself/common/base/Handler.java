@@ -1,6 +1,6 @@
 package com.github.unclecatmyself.common.base;
 
-import com.github.unclecatmyself.exception.NotFindLoginChannlException;
+import com.github.unclecatmyself.common.exception.NotFindLoginChannlException;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.FullHttpRequest;

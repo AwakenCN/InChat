@@ -6,6 +6,8 @@ package com.github.unclecatmyself.common.exception;
  **/
 public class NoFindHandlerException extends RuntimeException {
 
+    private static final long serialVersionUID = 6724478022966267728L;
+
     public NoFindHandlerException(String message) {
         super(message);
     }

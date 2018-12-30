@@ -1,4 +1,4 @@
-package com.github.unclecatmyself.exception;
+package com.github.unclecatmyself.common.exception;
 
 /**
  * 未找到正常注册的连接异常

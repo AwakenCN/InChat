@@ -3,9 +3,12 @@ package com.github.unclecatmyself.bootstrap.handler;
 import com.alibaba.fastjson.JSON;
 import com.github.unclecatmyself.common.base.Handler;
 import com.github.unclecatmyself.common.base.HandlerApi;
+import com.github.unclecatmyself.common.base.HttpHandlerService;
 import com.github.unclecatmyself.common.base.WebSocketHandlerService;
 import com.github.unclecatmyself.common.exception.NoFindHandlerException;
 import com.github.unclecatmyself.common.utils.ConstansUtil;
+import com.github.unclecatmyself.common.utils.HttpConstantUtil;
+import com.github.unclecatmyself.common.utils.HttpUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -44,17 +47,34 @@ public class DefaultWebSocketHandler extends Handler {
 
     @Override
     protected void httpdoMessage(ChannelHandlerContext ctx, FullHttpRequest msg) {
-        //暂未实现
-        log.info("[httpdoMessage]--暂未实现");
-        msg.retain();
-        log.info(msg.uri());
-        log.info(msg.toString());
-        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
-        response.headers().set("Content-Type","text/html;charset=UTF-8");
-        ByteBuf buf = Unpooled.copiedBuffer("【InChat】-HTTP通道返回成功",CharsetUtil.UTF_8);
-        response.content().writeBytes(buf);
-        ctx.writeAndFlush(response);
-        ctx.close();
+//        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
+//        response.headers().set("Content-Type","text/html;charset=UTF-8");
+//        ByteBuf buf = Unpooled.copiedBuffer("【InChat】-HTTP通道返回成功",CharsetUtil.UTF_8);
+//        response.content().writeBytes(buf);
+//        ctx.writeAndFlush(response);
+//        ctx.close();
+        Channel channel = ctx.channel();
+        HttpHandlerService httpHandlerService;
+        if (handlerApi instanceof HttpHandlerService){
+            httpHandlerService = (HttpHandlerService)handlerApi;
+        }else {
+            throw new NoFindHandlerException("Server Handler 不匹配");
+        }
+        switch (HttpUtil.checkType(msg)){
+            case HttpConstantUtil.GETSIZE:
+                log.info("[DefaultWebSocketHandler.httpdoMessage.GETSIZE]");
+                httpHandlerService.getSize(channel);
+                break;
+            case HttpConstantUtil.SENDFROMSERVER:
+                log.info("[DefaultWebSocketHandler.httpdoMessage.SENDFROMSERVER]");
+                break;
+            case HttpConstantUtil.NOTFINDURI:
+                log.info("[DefaultWebSocketHandler.httpdoMessage.NOTFINDURI]");
+
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -105,6 +125,6 @@ public class DefaultWebSocketHandler extends Handler {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception{
         log.error("exception",cause);
         log.info("[DefaultWebSocketHandler.exceptionCaught]"+ctx.channel().remoteAddress().toString()+"异常断开");
-        handlerApi.close(ctx.channel());
+        ctx.close();
     }
 }
