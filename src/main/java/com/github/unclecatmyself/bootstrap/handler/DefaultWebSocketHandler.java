@@ -104,6 +104,7 @@ public class DefaultWebSocketHandler extends Handler {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception{
         log.error("exception",cause);
+        log.info("[DefaultWebSocketHandler.exceptionCaught]"+ctx.channel().remoteAddress().toString()+"异常断开");
         handlerApi.close(ctx.channel());
     }
 }

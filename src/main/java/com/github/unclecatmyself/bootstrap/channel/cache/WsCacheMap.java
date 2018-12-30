@@ -1,5 +1,6 @@
 package com.github.unclecatmyself.bootstrap.channel.cache;
 
+import com.github.unclecatmyself.exception.NotFindLoginChannlException;
 import io.netty.channel.Channel;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -61,7 +62,11 @@ public class WsCacheMap {
      * @param token {@link String} 用户标识
      */
     public static void deleteWs(String token){
-        maps.remove(token);
+        try {
+            maps.remove(token);
+        }catch (NullPointerException e){
+            throw new NotFindLoginChannlException("未找到正常注册的连接");
+        }
     }
 
     /**

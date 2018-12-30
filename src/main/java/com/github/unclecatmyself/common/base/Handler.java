@@ -1,5 +1,6 @@
 package com.github.unclecatmyself.common.base;
 
+import com.github.unclecatmyself.exception.NotFindLoginChannlException;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.FullHttpRequest;
@@ -18,7 +19,7 @@ public abstract class Handler extends SimpleChannelInboundHandler<Object> {
 
     HandlerApi handlerApi;
 
-    public Handler(HandlerApi webSocketHandlerApi){
+    public Handler(HandlerApi handlerApi){
         this.handlerApi = handlerApi;
     }
 
@@ -42,7 +43,11 @@ public abstract class Handler extends SimpleChannelInboundHandler<Object> {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         log.info("【DefaultWebSocketHandler：channelInactive】"+ctx.channel().localAddress().toString()+"关闭成功");
-        handlerApi.close(ctx.channel());
+        try {
+            handlerApi.close(ctx.channel());
+        }catch (NotFindLoginChannlException e){
+            log.error("【捕获异常：NotFindLoginChannlException】-【DefaultWebSocketHandler：channelInactive】关闭未正常注册链接！");
+        }
     }
 
     @Override
