@@ -1,11 +1,14 @@
 package com.github.unclecatmyself.task;
 
 import com.github.unclecatmyself.bootstrap.data.InChatToDataBaseService;
-import com.github.unclecatmyself.common.utils.MessageChangeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
 
 /**
  * 数据异步转移方法
@@ -28,13 +31,21 @@ public class DataAsynchronousTask {
      * @param maps {@link Map} 传递消息
      */
     public void writeData(Map<String,Object> maps){
-        log.info("【异步写入数据】");
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                inChatToDataBaseService.writeMapToDB(MessageChangeUtil.Change(maps));
-            }
-        }).start();
+        Boolean result = false;
+        ExecutorService service = Executors.newCachedThreadPool();
+        final FutureTask<Boolean> future = new FutureTask<Boolean>(new DataCallable(inChatToDataBaseService,maps));
+        service.execute(future);
+        try {
+            result = future.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            log.error("[DataAsynchronousTask.writeData]:数据外抛异常");
+        } catch (ExecutionException e) {
+            log.error("[DataAsynchronousTask.writeData]:数据外抛异常");
+        }
+        if (!result){
+            log.error("[DataAsynchronousTask.writeData]:线程任务执行异常");
+        }
     }
 
 }
