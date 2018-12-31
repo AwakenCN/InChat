@@ -17,6 +17,8 @@ public class HttpUtil {
             return HttpConstantUtil.GETSIZE;
         }else if (url.equals(HttpConstantUtil.URI_SENDFROMSERVER) && meName.equals(HttpConstantUtil.POST)){
             return HttpConstantUtil.SENDFROMSERVER;
+        }else if (url.equals(HttpConstantUtil.URI_GETLIST) && meName.equals(HttpConstantUtil.GET)){
+            return HttpConstantUtil.GETLIST;
         }else {
             return HttpConstantUtil.NOTFINDURI;
         }

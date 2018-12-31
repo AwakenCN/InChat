@@ -2,7 +2,11 @@ package com.github.unclecatmyself.bootstrap.channel.cache;
 
 import com.github.unclecatmyself.common.exception.NotFindLoginChannlException;
 import io.netty.channel.Channel;
+
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -92,6 +96,15 @@ public class WsCacheMap {
      */
     public static boolean hasToken(String token){
         return maps.containsKey(token);
+    }
+
+    /**
+     * 获取在线用户标签列表
+     * @return {@link Set} 标识列表
+     */
+    public static Set<String> getTokenList(){
+        Set keys = maps.keySet();
+        return keys;
     }
 
 }

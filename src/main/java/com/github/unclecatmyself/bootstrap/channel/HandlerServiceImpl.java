@@ -52,6 +52,11 @@ public class HandlerServiceImpl extends HandlerService {
 
 
     @Override
+    public void getList(Channel channel) {
+        httpChannelService.getList(channel);
+    }
+
+    @Override
     public void getSize(Channel channel) {
         httpChannelService.getSize(channel);
     }

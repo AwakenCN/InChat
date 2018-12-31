@@ -1,6 +1,7 @@
 package com.github.unclecatmyself.bootstrap.channel.http;
 
 import com.github.unclecatmyself.bootstrap.channel.cache.WsCacheMap;
+import com.github.unclecatmyself.common.bean.vo.GetListVO;
 import com.github.unclecatmyself.common.bean.vo.GetSizeVO;
 import com.github.unclecatmyself.common.bean.vo.NotFindUriVO;
 import com.github.unclecatmyself.common.bean.vo.ResultVO;
@@ -60,5 +61,18 @@ public class HttpChannelServiceImpl implements HttpChannelService {
     public void close(Channel channel) {
         log.info("[HttpChannelServiceImpl.close] 关闭HTTP通道连接");
         channel.close();
+    }
+
+    @Override
+    public void getList(Channel channel) {
+        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
+        response.headers().set("Content-Type","text/html;charset=UTF-8");
+        GetListVO getListVO = new GetListVO(WsCacheMap.getTokenList());
+        ResultVO<GetListVO> resultVO = new ResultVO<>(HttpResponseStatus.OK.code(),getListVO);
+        Gson gson = new Gson();
+        ByteBuf buf = Unpooled.copiedBuffer(gson.toJson(resultVO), CharsetUtil.UTF_8);
+        response.content().writeBytes(buf);
+        channel.writeAndFlush(response);
+        close(channel);
     }
 }

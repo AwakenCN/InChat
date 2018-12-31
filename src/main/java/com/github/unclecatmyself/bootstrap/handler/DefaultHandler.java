@@ -43,12 +43,6 @@ public class DefaultHandler extends Handler {
 
     @Override
     protected void httpdoMessage(ChannelHandlerContext ctx, FullHttpRequest msg) {
-//        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
-//        response.headers().set("Content-Type","text/html;charset=UTF-8");
-//        ByteBuf buf = Unpooled.copiedBuffer("【InChat】-HTTP通道返回成功",CharsetUtil.UTF_8);
-//        response.content().writeBytes(buf);
-//        ctx.writeAndFlush(response);
-//        ctx.close();
         Channel channel = ctx.channel();
         HandlerService httpHandlerService;
         if (handlerApi instanceof HandlerService){
@@ -68,6 +62,9 @@ public class DefaultHandler extends Handler {
                 log.info("[DefaultWebSocketHandler.httpdoMessage.NOTFINDURI]");
                 httpHandlerService.notFindUri(channel);
                 break;
+            case HttpConstantUtil.GETLIST:
+                log.info("[DefaultWebSocketHandler.httpdoMessage.GETLIST]");
+                httpHandlerService.getList(channel);
             default:
                 break;
         }

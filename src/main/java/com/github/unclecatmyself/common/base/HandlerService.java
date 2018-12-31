@@ -11,6 +11,12 @@ import java.util.Map;
 public abstract class HandlerService implements HandlerApi {
 
     /**
+     * HTTP获取在线用户标签列表
+     * @param channel {@link Channel} 链接实例
+     */
+    public abstract void getList(Channel channel);
+
+    /**
      * HTTP获取在线用户数
      * @param channel {@link Channel} 链接实例
      */

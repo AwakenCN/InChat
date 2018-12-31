@@ -11,11 +11,15 @@ public class HttpConstantUtil {
 
     public static final String GETSIZE = "get_size";
 
+    public static final String GETLIST = "get_list";
+
     public static final String SENDFROMSERVER = "send_from_server";
 
     public static final String NOTFINDURI = "not_find_uri";
 
     public static final String URI_GETSIZE = "/get_size";
+
+    public static final String URI_GETLIST = "/get_list";
 
     public static final String URI_SENDFROMSERVER = "/send_from_server";
 }

@@ -15,4 +15,6 @@ public interface HttpChannelService {
 
     void close(Channel channel);
 
+    void getList(Channel channel);
+
 }
