@@ -1,6 +1,6 @@
 package com.github.unclecatmyself.common.bean;
 
-import com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler;
+import com.github.unclecatmyself.bootstrap.handler.DefaultHandler;
 
 /**
  * 初始化Netty配置
@@ -38,7 +38,7 @@ public class InitNetty {
 
     private String webSocketPath = "/ws";
 
-    private Class<DefaultWebSocketHandler> webSocketHandler = DefaultWebSocketHandler.class;
+    private Class<DefaultHandler> webSocketHandler = DefaultHandler.class;
 
     /**
      * 返回WebSocket启动监听端口
@@ -184,7 +184,7 @@ public class InitNetty {
     }
 
 
-    public Class<DefaultWebSocketHandler> getWebSocketHandler() {
+    public Class<DefaultHandler> getWebSocketHandler() {
         return webSocketHandler;
     }
 

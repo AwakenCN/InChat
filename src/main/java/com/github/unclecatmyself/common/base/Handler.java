@@ -42,11 +42,11 @@ public abstract class Handler extends SimpleChannelInboundHandler<Object> {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        log.info("【DefaultWebSocketHandler：channelInactive】"+ctx.channel().localAddress().toString()+"关闭成功");
+        log.info("【Handler：channelInactive】"+ctx.channel().localAddress().toString()+"关闭成功");
         try {
             handlerApi.close(ctx.channel());
         }catch (NotFindLoginChannlException e){
-            log.error("【捕获异常：NotFindLoginChannlException】-【DefaultWebSocketHandler：channelInactive】关闭未正常注册链接！");
+            log.error("【捕获异常：NotFindLoginChannlException】-【Handler：channelInactive】关闭未正常注册链接！");
         }
     }
 

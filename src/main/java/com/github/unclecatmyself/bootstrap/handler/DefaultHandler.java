@@ -3,21 +3,17 @@ package com.github.unclecatmyself.bootstrap.handler;
 import com.alibaba.fastjson.JSON;
 import com.github.unclecatmyself.common.base.Handler;
 import com.github.unclecatmyself.common.base.HandlerApi;
-import com.github.unclecatmyself.common.base.HttpHandlerService;
-import com.github.unclecatmyself.common.base.WebSocketHandlerService;
+import com.github.unclecatmyself.common.base.HandlerService;
 import com.github.unclecatmyself.common.exception.NoFindHandlerException;
 import com.github.unclecatmyself.common.utils.ConstansUtil;
 import com.github.unclecatmyself.common.utils.HttpConstantUtil;
 import com.github.unclecatmyself.common.utils.HttpUtil;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
-import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,13 +24,13 @@ import java.util.Map;
  * Create by UncleCatMySelf in 2018/12/06
  */
 @ChannelHandler.Sharable
-public class DefaultWebSocketHandler extends Handler {
+public class DefaultHandler extends Handler {
 
-    private final Logger log = LoggerFactory.getLogger(DefaultWebSocketHandler.class);
+    private final Logger log = LoggerFactory.getLogger(DefaultHandler.class);
 
     private final HandlerApi handlerApi;
 
-    public DefaultWebSocketHandler(HandlerApi handlerApi) {
+    public DefaultHandler(HandlerApi handlerApi) {
         super(handlerApi);
         this.handlerApi = handlerApi;
     }
@@ -54,9 +50,9 @@ public class DefaultWebSocketHandler extends Handler {
 //        ctx.writeAndFlush(response);
 //        ctx.close();
         Channel channel = ctx.channel();
-        HttpHandlerService httpHandlerService;
-        if (handlerApi instanceof HttpHandlerService){
-            httpHandlerService = (HttpHandlerService)handlerApi;
+        HandlerService httpHandlerService;
+        if (handlerApi instanceof HandlerService){
+            httpHandlerService = (HandlerService)handlerApi;
         }else {
             throw new NoFindHandlerException("Server Handler 不匹配");
         }
@@ -70,7 +66,7 @@ public class DefaultWebSocketHandler extends Handler {
                 break;
             case HttpConstantUtil.NOTFINDURI:
                 log.info("[DefaultWebSocketHandler.httpdoMessage.NOTFINDURI]");
-
+                httpHandlerService.notFindUri(channel);
                 break;
             default:
                 break;
@@ -80,9 +76,9 @@ public class DefaultWebSocketHandler extends Handler {
     @Override
     protected void textdoMessage(ChannelHandlerContext ctx, TextWebSocketFrame msg) {
         Channel channel = ctx.channel();
-        WebSocketHandlerService webSocketHandlerService;
-        if (handlerApi instanceof WebSocketHandlerService){
-            webSocketHandlerService = (WebSocketHandlerService)handlerApi;
+        HandlerService handlerService;
+        if (handlerApi instanceof HandlerService){
+            handlerService = (HandlerService)handlerApi;
         }else{
             throw new NoFindHandlerException("Server Handler 不匹配");
         }
@@ -91,25 +87,25 @@ public class DefaultWebSocketHandler extends Handler {
         switch ((String)maps.get(ConstansUtil.TYPE)){
             case ConstansUtil.LOGIN:
                 log.info("[DefaultWebSocketHandler.textdoMessage.LOGIN]");
-                webSocketHandlerService.login(channel,maps);
+                handlerService.login(channel,maps);
                 break;
             //针对个人，发送给自己
             case ConstansUtil.SENDME:
                 log.info("[DefaultWebSocketHandler.textdoMessage.SENDME]");
-                webSocketHandlerService.verify(channel,maps);
-                webSocketHandlerService.sendMeText(channel,maps);
+                handlerService.verify(channel,maps);
+                handlerService.sendMeText(channel,maps);
                 break;
             //针对个人，发送给某人
             case ConstansUtil.SENDTO:
                 log.info("[DefaultWebSocketHandler.textdoMessage.SENDTO]");
-                webSocketHandlerService.verify(channel,maps);
-                webSocketHandlerService.sendToText(channel,maps);
+                handlerService.verify(channel,maps);
+                handlerService.sendToText(channel,maps);
                 break;
             //发送给群组
             case ConstansUtil.SENDGROUP:
                 log.info("[DefaultWebSocketHandler.textdoMessage.SENDGROUP]");
-                webSocketHandlerService.verify(channel,maps);
-                webSocketHandlerService.sendGroupText(channel,maps);
+                handlerService.verify(channel,maps);
+                handlerService.sendGroupText(channel,maps);
                 break;
             default:
                 break;

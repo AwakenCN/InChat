@@ -1,4 +1,4 @@
-package com.github.unclecatmyself.bootstrap;
+package com.github.unclecatmyself.bootstrap.channel.ws;
 
 import io.netty.channel.Channel;
 

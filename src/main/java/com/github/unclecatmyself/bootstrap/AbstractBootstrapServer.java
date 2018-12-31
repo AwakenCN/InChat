@@ -2,8 +2,8 @@ package com.github.unclecatmyself.bootstrap;
 
 
 import com.github.unclecatmyself.auto.ConfigFactory;
-import com.github.unclecatmyself.bootstrap.channel.ws.WebSocketHandlerServiceImpl;
-import com.github.unclecatmyself.bootstrap.handler.DefaultWebSocketHandler;
+import com.github.unclecatmyself.bootstrap.channel.HandlerServiceImpl;
+import com.github.unclecatmyself.bootstrap.handler.DefaultHandler;
 import com.github.unclecatmyself.common.bean.InitNetty;
 import com.github.unclecatmyself.task.DataAsynchronousTask;
 import io.netty.channel.ChannelPipeline;
@@ -25,7 +25,7 @@ public abstract class AbstractBootstrapServer implements BootstrapServer {
     protected  void initHandler(ChannelPipeline channelPipeline, InitNetty serverBean){
         intProtocolHandler(channelPipeline,serverBean);
         channelPipeline.addLast(new IdleStateHandler(serverBean.getHeart(),0,0));
-        channelPipeline.addLast(new DefaultWebSocketHandler(new WebSocketHandlerServiceImpl(new DataAsynchronousTask(ConfigFactory.inChatToDataBaseService),ConfigFactory.inChatVerifyService)));
+        channelPipeline.addLast(new DefaultHandler(new HandlerServiceImpl(new DataAsynchronousTask(ConfigFactory.inChatToDataBaseService),ConfigFactory.inChatVerifyService)));
     }
 
     private  void intProtocolHandler(ChannelPipeline channelPipeline,InitNetty serverBean){

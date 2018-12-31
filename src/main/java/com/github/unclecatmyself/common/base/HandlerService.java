@@ -8,7 +8,26 @@ import java.util.Map;
  * 业务层伪接口
  * Created by MySelf on 2018/11/21.
  */
-public abstract class WebSocketHandlerService implements HandlerApi {
+public abstract class HandlerService implements HandlerApi {
+
+    /**
+     * HTTP获取在线用户数
+     * @param channel {@link Channel} 链接实例
+     */
+    public abstract void getSize(Channel channel);
+
+    /**
+     * HTTP以服务端向指定用户发送通知
+     * @param channel {@link Channel} 链接实例
+     * @param token {@link String} 用户标识
+     */
+    public abstract void sendFromServer(Channel channel,String token);
+
+    /**
+     * 用户未找到匹配Uri
+     * @param channel {@link Channel} 链接实例
+     */
+    public abstract void notFindUri(Channel channel);
 
     /**
      * 登录类型

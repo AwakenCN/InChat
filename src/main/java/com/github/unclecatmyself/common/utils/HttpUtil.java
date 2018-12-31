@@ -13,7 +13,7 @@ public class HttpUtil {
         String url = msg.uri();
         HttpMethod method = msg.method();
         String meName = method.name();
-        if (url.equals(HttpConstantUtil.GETSIZE) && meName.equals(HttpConstantUtil.GET)){
+        if (url.equals(HttpConstantUtil.URI_GETSIZE) && meName.equals(HttpConstantUtil.GET)){
             return HttpConstantUtil.GETSIZE;
         }else if (url.equals(HttpConstantUtil.URI_SENDFROMSERVER) && meName.equals(HttpConstantUtil.POST)){
             return HttpConstantUtil.SENDFROMSERVER;
@@ -21,5 +21,4 @@ public class HttpUtil {
             return HttpConstantUtil.NOTFINDURI;
         }
     }
-
 }

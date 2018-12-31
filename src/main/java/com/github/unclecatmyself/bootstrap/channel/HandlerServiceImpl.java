@@ -1,16 +1,31 @@
-package com.github.unclecatmyself.bootstrap.channel.ws;
+package com.github.unclecatmyself.bootstrap.channel;
 
 import com.alibaba.fastjson.JSONArray;
 import com.github.unclecatmyself.bootstrap.backmsg.InChatBackMapService;
 import com.github.unclecatmyself.bootstrap.backmsg.InChatBackMapServiceImpl;
-import com.github.unclecatmyself.common.base.WebSocketHandlerService;
+import com.github.unclecatmyself.bootstrap.channel.cache.WsCacheMap;
+import com.github.unclecatmyself.bootstrap.channel.http.HttpChannelService;
+import com.github.unclecatmyself.bootstrap.channel.http.HttpChannelServiceImpl;
+import com.github.unclecatmyself.bootstrap.channel.ws.WebSocketChannelService;
+import com.github.unclecatmyself.common.base.HandlerService;
+import com.github.unclecatmyself.common.bean.vo.GetSizeVO;
+import com.github.unclecatmyself.common.bean.vo.NotFindUriVO;
+import com.github.unclecatmyself.common.bean.vo.ResultVO;
 import com.google.gson.Gson;
-import com.github.unclecatmyself.bootstrap.WsChannelService;
+import com.github.unclecatmyself.bootstrap.channel.ws.WsChannelService;
 import com.github.unclecatmyself.common.utils.ConstansUtil;
 import com.github.unclecatmyself.bootstrap.verify.InChatVerifyService;
 import com.github.unclecatmyself.task.DataAsynchronousTask;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
+import io.netty.handler.codec.http.DefaultFullHttpResponse;
+import io.netty.handler.codec.http.FullHttpResponse;
+import io.netty.handler.codec.http.HttpResponseStatus;
+import io.netty.handler.codec.http.HttpVersion;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import io.netty.util.CharsetUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,21 +33,38 @@ import java.util.Map;
 /**
  * Created by MySelf on 2018/11/21.
  */
-public class WebSocketHandlerServiceImpl extends WebSocketHandlerService {
+public class HandlerServiceImpl extends HandlerService {
 
     private final InChatVerifyService inChatVerifyService;
 
     private final InChatBackMapService inChatBackMapService = new InChatBackMapServiceImpl();
 
+    private final HttpChannelService httpChannelService = new HttpChannelServiceImpl();
+
     private final WsChannelService websocketChannelService = new WebSocketChannelService();
 
     private final DataAsynchronousTask dataAsynchronousTask;
 
-    public WebSocketHandlerServiceImpl(DataAsynchronousTask dataAsynchronousTask,InChatVerifyService inChatVerifyService) {
+    public HandlerServiceImpl(DataAsynchronousTask dataAsynchronousTask,InChatVerifyService inChatVerifyService) {
         this.dataAsynchronousTask = dataAsynchronousTask;
         this.inChatVerifyService = inChatVerifyService;
     }
 
+
+    @Override
+    public void getSize(Channel channel) {
+        httpChannelService.getSize(channel);
+    }
+
+    @Override
+    public void sendFromServer(Channel channel, String token) {
+        //未实现
+    }
+
+    @Override
+    public void notFindUri(Channel channel) {
+        httpChannelService.notFindUri(channel);
+    }
 
     @Override
     public boolean login(Channel channel, Map<String,Object> maps) {
