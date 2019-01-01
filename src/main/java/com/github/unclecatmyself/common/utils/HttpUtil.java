@@ -1,7 +1,11 @@
 package com.github.unclecatmyself.common.utils;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpMethod;
+import io.netty.util.CharsetUtil;
+
+import java.nio.charset.Charset;
 
 /**
  * Create by UncleCatMySelf in 22:43 2018\12\30 0030
@@ -22,5 +26,12 @@ public class HttpUtil {
         }else {
             return HttpConstantUtil.NOTFINDURI;
         }
+    }
+
+    public static String getToken(FullHttpRequest msg){
+        msg.retain();
+        String url = msg.content().toString(CharsetUtil.UTF_8);
+        System.out.println(url);
+        return null;
     }
 }

@@ -57,6 +57,8 @@ public class DefaultHandler extends Handler {
                 break;
             case HttpConstantUtil.SENDFROMSERVER:
                 log.info("[DefaultWebSocketHandler.httpdoMessage.SENDFROMSERVER]");
+                String token = HttpUtil.getToken(msg);
+                httpHandlerService.sendFromServer(null,null);
                 break;
             case HttpConstantUtil.NOTFINDURI:
                 log.info("[DefaultWebSocketHandler.httpdoMessage.NOTFINDURI]");
