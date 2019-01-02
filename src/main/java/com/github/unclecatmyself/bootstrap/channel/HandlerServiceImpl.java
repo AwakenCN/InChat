@@ -11,6 +11,7 @@ import com.github.unclecatmyself.common.base.HandlerService;
 import com.github.unclecatmyself.common.bean.vo.GetSizeVO;
 import com.github.unclecatmyself.common.bean.vo.NotFindUriVO;
 import com.github.unclecatmyself.common.bean.vo.ResultVO;
+import com.github.unclecatmyself.common.bean.vo.SendServerVO;
 import com.google.gson.Gson;
 import com.github.unclecatmyself.bootstrap.channel.ws.WsChannelService;
 import com.github.unclecatmyself.common.utils.ConstansUtil;
@@ -62,8 +63,8 @@ public class HandlerServiceImpl extends HandlerService {
     }
 
     @Override
-    public void sendFromServer(Channel channel, String token) {
-        //未实现
+    public void sendFromServer(Channel channel, SendServerVO serverVO) {
+        httpChannelService.sendFromServer(channel,serverVO);
     }
 
     @Override

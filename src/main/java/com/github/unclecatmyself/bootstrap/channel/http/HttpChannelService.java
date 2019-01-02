@@ -1,5 +1,6 @@
 package com.github.unclecatmyself.bootstrap.channel.http;
 
+import com.github.unclecatmyself.common.bean.vo.SendServerVO;
 import io.netty.channel.Channel;
 
 /**
@@ -9,7 +10,7 @@ public interface HttpChannelService {
 
     void getSize(Channel channel);
 
-    void sendFromServer(Channel channel,String token);
+    void sendFromServer(Channel channel,SendServerVO serverVO);
 
     void notFindUri(Channel channel);
 

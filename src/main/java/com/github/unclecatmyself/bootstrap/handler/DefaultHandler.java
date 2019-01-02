@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.github.unclecatmyself.common.base.Handler;
 import com.github.unclecatmyself.common.base.HandlerApi;
 import com.github.unclecatmyself.common.base.HandlerService;
+import com.github.unclecatmyself.common.bean.vo.SendServerVO;
 import com.github.unclecatmyself.common.exception.NoFindHandlerException;
 import com.github.unclecatmyself.common.utils.ConstansUtil;
 import com.github.unclecatmyself.common.utils.HttpConstantUtil;
@@ -17,6 +18,7 @@ import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Map;
 
@@ -57,8 +59,13 @@ public class DefaultHandler extends Handler {
                 break;
             case HttpConstantUtil.SENDFROMSERVER:
                 log.info("[DefaultWebSocketHandler.httpdoMessage.SENDFROMSERVER]");
-                String token = HttpUtil.getToken(msg);
-                httpHandlerService.sendFromServer(null,null);
+                SendServerVO serverVO = null;
+                try {
+                    serverVO = HttpUtil.getToken(msg);
+                } catch (UnsupportedEncodingException e) {
+                    log.error(e.getMessage());
+                }
+                httpHandlerService.sendFromServer(channel,serverVO);
                 break;
             case HttpConstantUtil.NOTFINDURI:
                 log.info("[DefaultWebSocketHandler.httpdoMessage.NOTFINDURI]");

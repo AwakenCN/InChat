@@ -3,6 +3,7 @@ package com.github.unclecatmyself;
 import com.github.unclecatmyself.auto.ConfigFactory;
 import com.github.unclecatmyself.auto.InitServer;
 import com.github.unclecatmyself.bootstrap.channel.ws.WebSocketChannelService;
+import com.github.unclecatmyself.user.FromServerServiceImpl;
 import com.github.unclecatmyself.user.MyInit;
 import com.github.unclecatmyself.user.ToDataBaseServiceImpl;
 import com.github.unclecatmyself.user.verifyServiceImpl;
@@ -19,6 +20,7 @@ public class DemoApplication {
 		ConfigFactory.inChatToDataBaseService = new ToDataBaseServiceImpl();
 		ConfigFactory.inChatVerifyService = new verifyServiceImpl();
 		ConfigFactory.initNetty = new MyInit();
+		ConfigFactory.fromServerService = new FromServerServiceImpl();
 		//默认启动InChat
 //		InitServer initServer = InitServer(new MyInit());
 		InitServer.open();

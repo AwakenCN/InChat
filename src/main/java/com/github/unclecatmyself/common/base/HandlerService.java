@@ -1,5 +1,6 @@
 package com.github.unclecatmyself.common.base;
 
+import com.github.unclecatmyself.common.bean.vo.SendServerVO;
 import io.netty.channel.Channel;
 
 import java.util.Map;
@@ -25,9 +26,9 @@ public abstract class HandlerService implements HandlerApi {
     /**
      * HTTP以服务端向指定用户发送通知
      * @param channel {@link Channel} 链接实例
-     * @param token {@link String} 用户标识
+     * @param sendServerVO {@link SendServerVO} 用户标识
      */
-    public abstract void sendFromServer(Channel channel,String token);
+    public abstract void sendFromServer(Channel channel,SendServerVO sendServerVO);
 
     /**
      * 用户未找到匹配Uri

@@ -1,5 +1,6 @@
 package com.github.unclecatmyself.auto;
 
+import com.github.unclecatmyself.bootstrap.channel.http.FromServerService;
 import com.github.unclecatmyself.bootstrap.data.InChatToDataBaseService;
 import com.github.unclecatmyself.bootstrap.verify.InChatVerifyService;
 import com.github.unclecatmyself.common.bean.InitNetty;
@@ -16,22 +17,8 @@ public class ConfigFactory {
     /** 用户获取数据伪接口 */
     public static InChatToDataBaseService inChatToDataBaseService;
 
+    public static FromServerService fromServerService;
+
     /** InChat项目配置 */
     public static InitNetty initNetty;
-
-    public InChatVerifyService getInChatVerifyService() {
-        return inChatVerifyService;
-    }
-
-    public void setInChatVerifyService(InChatVerifyService inChatVerifyService) {
-        this.inChatVerifyService = inChatVerifyService;
-    }
-
-    public InChatToDataBaseService getInChatToDataBaseService() {
-        return inChatToDataBaseService;
-    }
-
-    public void setInChatToDataBaseService(InChatToDataBaseService inChatToDataBaseService) {
-        this.inChatToDataBaseService = inChatToDataBaseService;
-    }
 }
