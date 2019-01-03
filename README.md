@@ -37,7 +37,7 @@
 <dependency>
     <groupId>com.github.UncleCatMySelf</groupId>
     <artifactId>InChat</artifactId>
-    <version>1.1.0-alpha</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 
