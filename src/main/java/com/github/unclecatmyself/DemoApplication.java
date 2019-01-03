@@ -20,7 +20,7 @@ public class DemoApplication {
 		ConfigFactory.inChatToDataBaseService = new ToDataBaseServiceImpl();
 		ConfigFactory.inChatVerifyService = new verifyServiceImpl();
 		ConfigFactory.initNetty = new MyInit();
-		ConfigFactory.fromServerService = new FromServerServiceImpl();
+		ConfigFactory.fromServerService = FromServerServiceImpl.TYPE1;
 		//默认启动InChat
 //		InitServer initServer = InitServer(new MyInit());
 		InitServer.open();

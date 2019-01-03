@@ -54,7 +54,7 @@
         window.WebSocket = window.MozWebSocket;
     }
     if (window.WebSocket) {
-        socket = new WebSocket("ws://192.168.56.1:8090/ws");
+        socket = new WebSocket("ws://192.168.1.121:8090/ws");
         socket.onmessage = function(event) {
             var ta = document.getElementById('responseText');
             ta.value = ta.value + '\n' + event.data
@@ -145,7 +145,7 @@
     <textarea id="responseText"></textarea>
     <br>
     <input class='msg' type="text" name="message" placeholder='发送消息' value="">
-    <input class='btn' type="button" value="发送" onclick="send(this.form.message.value)">
+    <input class='btn' type="button" value="登录" onclick="send(this.form.message.value)">
     <input class='btn' type="button" value="发送给自己" onclick="sendToMe(this.form.message.value)">
     <input class='btn' type="button" value="发送给某人" onclick="sendToOne(this.form.message.value)">
     <input class='btn' type="button" value="发送到群组" onclick="sendGroup(this.form.message.value)">
