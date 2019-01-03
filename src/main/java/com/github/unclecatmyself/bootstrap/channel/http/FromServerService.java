@@ -15,12 +15,12 @@ package com.github.unclecatmyself.bootstrap.channel.http;
  * this.message = message;
  * }
  *
- * @Override
+ *
  * public Integer getCode() {
  * return code;
  * }
  *
- * @Override
+ *
  * public String findByCode(Object code) {
  * Integer codes = (Integer)code;
  * for (FromServerServiceImpl item: FromServerServiceImpl.values()) {
