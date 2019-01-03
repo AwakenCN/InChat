@@ -6,7 +6,7 @@
 [![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-628793702-yellow.svg)](https://jq.qq.com/?_wv=1027&k=57X4L74)
 [![作者](https://img.shields.io/badge/%E4%BD%9C%E8%80%85-MySelf-blue.svg)](https://github.com/UncleCatMySelf)
 [![Netty入门](https://img.shields.io/badge/%E5%AD%A6%E4%B9%A0-Netty%E5%85%A5%E9%97%A8-ff69b4.svg)](doc/study/mulu.md)
-[![Maven](https://img.shields.io/badge/Maven-1.1.0--alpha-orange.svg)](https://mvnrepository.com/artifact/com.github.UncleCatMySelf/InChat/1.1.0-alpha)
+[![Maven](https://img.shields.io/badge/Maven-1.1.2-orange.svg)](https://mvnrepository.com/artifact/com.github.UncleCatMySelf/InChat)
 
 
 </div>
@@ -21,9 +21,16 @@
 
 ## Maven版本
 
-版本目标：移除对SpringBoot的环境依赖，InChat独立生存与使用，结合上一版的功能，并添加服务器发送消息接口
+功能列表：
 
-* [V1.1.0-alpha版本使用说明](https://unclecatmyself.github.io/2018/12/21/InChatV1.1.0%E7%89%88%E6%9C%AC%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/)
+> * 用户token登录校验
+> * 自我聊天
+> * 点对点聊天
+> * 群聊
+> * 获取在线用户数与用户标签列表
+> * 发送系统通知
+
+* [V1.1.2版本使用说明](https://unclecatmyself.github.io/2019/01/03/inchatby112/)
 * [V1.1.0-alpha版本视频教学](https://v.qq.com/x/page/i08165ym286.html)
 
 ```
@@ -54,38 +61,12 @@
 
 * [QQ群建议贡献](doc/advice/advice.md)
 
-## demo分支介绍
+## 效果展示
 
-原始项目核心演示, 您可以先运行了解, 模仿微聊天聊天应用程序, 逐步更新, 基于 springbot-web 套接字的一般框架, 结合 netty 聊天社交, 并记录聊天日志, 异步存储, 前端临时 sui mobile, 添加实现 tcp/后端通信端口 (mqtt 协议、实时和单片机等 tcp 硬件通信), 添加图片处理流、聊天实现文本和图片发送功能,api 调用 netty 长链接执行发送消息 (联机、用户列表的数量)
-
-## demo分支效果演示
-
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(5).png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(3).png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(4).png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(2).png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(1).png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/9.png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/10.png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/11.png)
-
-## webrtc分支介绍
-
-一个基于web RTC和Netty相结合的例子，实现语音与视频流通讯。
-
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/webrtc/TIM%E5%9B%BE%E7%89%8720181121150540.png)
-
-## im-api分支介绍
-
-腾讯 im (云通信) 后端仿真项目, 以 api 的形式对接, 如果有前端想要停靠可以运行此分支, 预计该分支最终将为一个单一的服务并发 300, 000个用户的 im 后台项目
-
-## paho-mqtt分支介绍
-
-基于 paho. js 和 java mqtt 客户端消息订阅和通信的小型程序端或移动 web 端, 小程序物联网演示目前支持 ws 格式
-
-## tcp-wechat分支介绍
-
-基于小程序端与单片机等硬件 tcp/ip 的主要通信, 将物联网中心作为中转, 本演示将充分实现具体功能
+![demo](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_demo.gif)
+![log](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_log.gif)
+![postman](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_postman.gif)
+![send](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_send.gif)
 
 ## 下载地址
 
