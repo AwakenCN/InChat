@@ -4,6 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.unclecatmyself.auto.ConfigFactory;
 import com.github.unclecatmyself.bootstrap.channel.cache.WsCacheMap;
 import com.github.unclecatmyself.common.bean.vo.*;
+import com.github.unclecatmyself.common.constant.HttpConstant;
+import com.github.unclecatmyself.common.constant.LogConstant;
+import com.github.unclecatmyself.common.constant.NotInChatConstant;
 import com.google.gson.Gson;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -15,8 +18,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Create by UncleCatMySelf in 11:41 2018\12\31 0031
@@ -30,7 +31,7 @@ public class HttpChannelServiceImpl implements HttpChannelService {
     @Override
     public void getSize(Channel channel) {
         FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
-        response.headers().set("Content-Type","application/json;charset=UTF-8");
+        response.headers().set(HttpConstant.CONTENT_TYPE,HttpConstant.APPLICATION_JSON);
         GetSizeVO getSizeVO = new GetSizeVO(WsCacheMap.getSize(),new Date());
         ResultVO<GetSizeVO> resultVO = new ResultVO<>(HttpResponseStatus.OK.code(),getSizeVO);
         Gson gson = new Gson();
@@ -47,22 +48,22 @@ public class HttpChannelServiceImpl implements HttpChannelService {
         }
         Channel userChannel = WsCacheMap.getByToken(serverVO.getToken());
         if (userChannel == null){
-            log.info("[HttpChannelServiceImpl.sendFromServer] 未找到用户在线标识");
+            log.info(LogConstant.HTTPCHANNELSERVICEIMPL_NOTFINDLOGIN);
             notFindToken(channel);
         }
         String value = fromServerService.findByCode(Integer.parseInt(serverVO.getValue()));
         SendServer sendServer = new SendServer(value);
         try {
             userChannel.writeAndFlush(new TextWebSocketFrame(JSONObject.toJSONString(sendServer)));
-            sendServer(channel,"通知发送成功");
+            sendServer(channel, NotInChatConstant.SEND_SUCCESS);
         }catch (Exception e){
-            log.info("[HttpChannelServiceImpl.sendFromServer] 发送通知异常");
+            log.info(LogConstant.HTTPCHANNELSERVICEIMPL_SEND_EXCEPTION);
         }
     }
 
     private void sendServer(Channel channel,String msg){
         FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.BAD_REQUEST);
-        response.headers().set("Content-Type","application/json;charset=UTF-8");
+        response.headers().set(HttpConstant.CONTENT_TYPE,HttpConstant.APPLICATION_JSON);
         NotFindUriVO notFindUriVO = new NotFindUriVO(msg);
         ResultVO<NotFindUriVO> resultVO = new ResultVO<>(HttpResponseStatus.BAD_REQUEST.code(),notFindUriVO);
         Gson gson = new Gson();
@@ -73,24 +74,24 @@ public class HttpChannelServiceImpl implements HttpChannelService {
     }
 
     private void notFindToken(Channel channel) {
-        sendServer(channel,"未找到在线用户标识");
+        sendServer(channel,NotInChatConstant.NOT_FIND_LOGIN);
     }
 
     @Override
     public void notFindUri(Channel channel) {
-        sendServer(channel,"未找到匹配任务URI");
+        sendServer(channel,NotInChatConstant.NOT_FIND_URI);
     }
 
     @Override
     public void close(Channel channel) {
-        log.info("[HttpChannelServiceImpl.close] 关闭HTTP通道连接");
+        log.info(LogConstant.HTTPCHANNELSERVICEIMPL_CLOSE);
         channel.close();
     }
 
     @Override
     public void getList(Channel channel) {
         FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
-        response.headers().set("Content-Type","application/json;charset=UTF-8");
+        response.headers().set(HttpConstant.CONTENT_TYPE,HttpConstant.APPLICATION_JSON);
         GetListVO getListVO = new GetListVO(WsCacheMap.getTokenList());
         ResultVO<GetListVO> resultVO = new ResultVO<>(HttpResponseStatus.OK.code(),getListVO);
         Gson gson = new Gson();

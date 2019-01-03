@@ -5,9 +5,11 @@ import com.github.unclecatmyself.common.base.Handler;
 import com.github.unclecatmyself.common.base.HandlerApi;
 import com.github.unclecatmyself.common.base.HandlerService;
 import com.github.unclecatmyself.common.bean.vo.SendServerVO;
+import com.github.unclecatmyself.common.constant.Constans;
+import com.github.unclecatmyself.common.constant.HttpConstant;
+import com.github.unclecatmyself.common.constant.LogConstant;
+import com.github.unclecatmyself.common.constant.NotInChatConstant;
 import com.github.unclecatmyself.common.exception.NoFindHandlerException;
-import com.github.unclecatmyself.common.utils.ConstansUtil;
-import com.github.unclecatmyself.common.utils.HttpConstantUtil;
 import com.github.unclecatmyself.common.utils.HttpUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
@@ -17,7 +19,6 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Map;
@@ -39,8 +40,8 @@ public class DefaultHandler extends Handler {
 
     @Override
     protected void webdoMessage(ChannelHandlerContext ctx, WebSocketFrame msg) {
-        //暂未实现
-        log.info("[webdoMessage]--暂未实现");
+        //实现图片处理
+
     }
 
     @Override
@@ -50,15 +51,15 @@ public class DefaultHandler extends Handler {
         if (handlerApi instanceof HandlerService){
             httpHandlerService = (HandlerService)handlerApi;
         }else {
-            throw new NoFindHandlerException("Server Handler 不匹配");
+            throw new NoFindHandlerException(NotInChatConstant.NOT_HANDLER);
         }
         switch (HttpUtil.checkType(msg)){
-            case HttpConstantUtil.GETSIZE:
-                log.info("[DefaultWebSocketHandler.httpdoMessage.GETSIZE]");
+            case HttpConstant.GETSIZE:
+                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_GETSIZE);
                 httpHandlerService.getSize(channel);
                 break;
-            case HttpConstantUtil.SENDFROMSERVER:
-                log.info("[DefaultWebSocketHandler.httpdoMessage.SENDFROMSERVER]");
+            case HttpConstant.SENDFROMSERVER:
+                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDFROMSERVER);
                 SendServerVO serverVO = null;
                 try {
                     serverVO = HttpUtil.getToken(msg);
@@ -67,12 +68,12 @@ public class DefaultHandler extends Handler {
                 }
                 httpHandlerService.sendFromServer(channel,serverVO);
                 break;
-            case HttpConstantUtil.NOTFINDURI:
-                log.info("[DefaultWebSocketHandler.httpdoMessage.NOTFINDURI]");
+            case HttpConstant.NOTFINDURI:
+                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_NOTFINDURI);
                 httpHandlerService.notFindUri(channel);
                 break;
-            case HttpConstantUtil.GETLIST:
-                log.info("[DefaultWebSocketHandler.httpdoMessage.GETLIST]");
+            case HttpConstant.GETLIST:
+                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_GETLIST);
                 httpHandlerService.getList(channel);
             default:
                 break;
@@ -86,30 +87,30 @@ public class DefaultHandler extends Handler {
         if (handlerApi instanceof HandlerService){
             handlerService = (HandlerService)handlerApi;
         }else{
-            throw new NoFindHandlerException("Server Handler 不匹配");
+            throw new NoFindHandlerException(NotInChatConstant.NOT_HANDLER);
         }
         Map<String,Object> maps = (Map) JSON.parse(msg.text());
-        maps.put("time", new Date());
-        switch ((String)maps.get(ConstansUtil.TYPE)){
-            case ConstansUtil.LOGIN:
-                log.info("[DefaultWebSocketHandler.textdoMessage.LOGIN]");
+        maps.put(Constans.TIME, new Date());
+        switch ((String)maps.get(Constans.TYPE)){
+            case Constans.LOGIN:
+                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_LOGIN);
                 handlerService.login(channel,maps);
                 break;
             //针对个人，发送给自己
-            case ConstansUtil.SENDME:
-                log.info("[DefaultWebSocketHandler.textdoMessage.SENDME]");
+            case Constans.SENDME:
+                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDME);
                 handlerService.verify(channel,maps);
                 handlerService.sendMeText(channel,maps);
                 break;
             //针对个人，发送给某人
-            case ConstansUtil.SENDTO:
-                log.info("[DefaultWebSocketHandler.textdoMessage.SENDTO]");
+            case Constans.SENDTO:
+                log.info(LogConstant.DefaultWebSocketHandler_SENDTO);
                 handlerService.verify(channel,maps);
                 handlerService.sendToText(channel,maps);
                 break;
             //发送给群组
-            case ConstansUtil.SENDGROUP:
-                log.info("[DefaultWebSocketHandler.textdoMessage.SENDGROUP]");
+            case Constans.SENDGROUP:
+                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDGROUP);
                 handlerService.verify(channel,maps);
                 handlerService.sendGroupText(channel,maps);
                 break;
@@ -120,13 +121,13 @@ public class DefaultHandler extends Handler {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        log.info("[DefaultWebSocketHandler.channelActive]"+ctx.channel().remoteAddress().toString()+"链接成功");
+        log.info(LogConstant.CHANNELACTIVE+ctx.channel().remoteAddress().toString()+LogConstant.CHANNEL_SUCCESS);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception{
-        log.error("exception",cause);
-        log.info("[DefaultWebSocketHandler.exceptionCaught]"+ctx.channel().remoteAddress().toString()+"异常断开");
+//        log.error("exception",cause);
+        log.info(LogConstant.EXCEPTIONCAUGHT+ctx.channel().remoteAddress().toString()+LogConstant.DISCONNECT);
         ctx.close();
     }
 }

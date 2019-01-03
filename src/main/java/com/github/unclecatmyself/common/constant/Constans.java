@@ -1,9 +1,9 @@
-package com.github.unclecatmyself.common.utils;
+package com.github.unclecatmyself.common.constant;
 
 /**
  * Created by MySelf on 2018/12/5.
  */
-public class ConstansUtil {
+public class Constans {
 
     public static final String TOKEN = "token";
 

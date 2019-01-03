@@ -7,6 +7,8 @@ import java.util.Set;
  */
 public class GetListVO {
 
+
+
     private Set<String> tokens;
 
     public GetListVO(Set<String> tokens) {

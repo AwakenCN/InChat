@@ -1,6 +1,6 @@
 package com.github.unclecatmyself.bootstrap.backmsg;
 
-import com.github.unclecatmyself.common.utils.ConstansUtil;
+import com.github.unclecatmyself.common.constant.Constans;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,52 +14,52 @@ public class InChatBackMapServiceImpl implements InChatBackMapService {
 
     public Map<String, String> loginSuccess() {
         Map<String,String> backMap = new HashMap<String,String>();
-        backMap.put(ConstansUtil.TYPE,ConstansUtil.LOGIN);
-        backMap.put(ConstansUtil.SUCCESS,ConstansUtil.TRUE);
+        backMap.put(Constans.TYPE,Constans.LOGIN);
+        backMap.put(Constans.SUCCESS,Constans.TRUE);
         return backMap;
     }
 
 
     public Map<String, String> loginError() {
         Map<String,String> backMap = new HashMap<String,String>();
-        backMap.put(ConstansUtil.TYPE,ConstansUtil.LOGIN);
-        backMap.put(ConstansUtil.SUCCESS,ConstansUtil.FALSE);
+        backMap.put(Constans.TYPE,Constans.LOGIN);
+        backMap.put(Constans.SUCCESS,Constans.FALSE);
         return backMap;
     }
 
 
     public Map<String, String> sendMe(String value) {
         Map<String,String> backMap = new HashMap<String,String>();
-        backMap.put(ConstansUtil.TYPE,ConstansUtil.SENDME);
-        backMap.put(ConstansUtil.VALUE,value);
+        backMap.put(Constans.TYPE,Constans.SENDME);
+        backMap.put(Constans.VALUE,value);
         return backMap;
     }
 
 
     public Map<String, String> sendBack(String otherOne, String value) {
         Map<String,String> backMap = new HashMap<String,String>();
-        backMap.put(ConstansUtil.TYPE,ConstansUtil.SENDTO);
-        backMap.put(ConstansUtil.VALUE,value);
-        backMap.put(ConstansUtil.ONE,otherOne);
+        backMap.put(Constans.TYPE,Constans.SENDTO);
+        backMap.put(Constans.VALUE,value);
+        backMap.put(Constans.ONE,otherOne);
         return backMap;
     }
 
 
     public Map<String, String> getMsg(String token, String value) {
         Map<String,String> backMap = new HashMap<String,String>();
-        backMap.put(ConstansUtil.TYPE,ConstansUtil.SENDTO);
-        backMap.put(ConstansUtil.FROM,token);
-        backMap.put(ConstansUtil.VALUE,value);
+        backMap.put(Constans.TYPE,Constans.SENDTO);
+        backMap.put(Constans.FROM,token);
+        backMap.put(Constans.VALUE,value);
         return backMap;
     }
 
 
     public Map<String, String> sendGroup(String token, String value, String groupId) {
         Map<String,String> backMap = new HashMap<String,String>();
-        backMap.put(ConstansUtil.TYPE,ConstansUtil.SENDGROUP);
-        backMap.put(ConstansUtil.FROM,token);
-        backMap.put(ConstansUtil.VALUE,value);
-        backMap.put(ConstansUtil.GROUPID,groupId);
+        backMap.put(Constans.TYPE,Constans.SENDGROUP);
+        backMap.put(Constans.FROM,token);
+        backMap.put(Constans.VALUE,value);
+        backMap.put(Constans.GROUPID,groupId);
         return backMap;
     }
 

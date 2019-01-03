@@ -1,6 +1,7 @@
 package com.github.unclecatmyself.task;
 
 import com.github.unclecatmyself.bootstrap.data.InChatToDataBaseService;
+import com.github.unclecatmyself.common.constant.LogConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,12 +40,12 @@ public class DataAsynchronousTask {
             result = future.get();
         } catch (InterruptedException e) {
             e.printStackTrace();
-            log.error("[DataAsynchronousTask.writeData]:数据外抛异常");
+            log.error(LogConstant.DATAASYNCHRONOUSTASK_01);
         } catch (ExecutionException e) {
-            log.error("[DataAsynchronousTask.writeData]:数据外抛异常");
+            log.error(LogConstant.DATAASYNCHRONOUSTASK_02);
         }
         if (!result){
-            log.error("[DataAsynchronousTask.writeData]:线程任务执行异常");
+            log.error(LogConstant.DATAASYNCHRONOUSTASK_03);
         }
     }
 

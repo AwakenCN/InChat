@@ -24,7 +24,7 @@ public class DataCallable implements Callable<Boolean>{
 
     @Override
     public Boolean call() throws Exception {
-        inChatToDataBaseService.writeMapToDB(MessageChangeUtil.Change(maps));
+        inChatToDataBaseService.writeMessage(MessageChangeUtil.Change(maps));
         return true;
     }
 }

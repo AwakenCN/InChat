@@ -9,6 +9,6 @@ import java.util.Map;
  */
 public interface InChatToDataBaseService {
 
-    Boolean writeMapToDB(InChatMessage message);
+    Boolean writeMessage(InChatMessage message);
 
 }

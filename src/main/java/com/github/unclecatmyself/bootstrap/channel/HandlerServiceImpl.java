@@ -3,29 +3,18 @@ package com.github.unclecatmyself.bootstrap.channel;
 import com.alibaba.fastjson.JSONArray;
 import com.github.unclecatmyself.bootstrap.backmsg.InChatBackMapService;
 import com.github.unclecatmyself.bootstrap.backmsg.InChatBackMapServiceImpl;
-import com.github.unclecatmyself.bootstrap.channel.cache.WsCacheMap;
 import com.github.unclecatmyself.bootstrap.channel.http.HttpChannelService;
 import com.github.unclecatmyself.bootstrap.channel.http.HttpChannelServiceImpl;
 import com.github.unclecatmyself.bootstrap.channel.ws.WebSocketChannelService;
 import com.github.unclecatmyself.common.base.HandlerService;
-import com.github.unclecatmyself.common.bean.vo.GetSizeVO;
-import com.github.unclecatmyself.common.bean.vo.NotFindUriVO;
-import com.github.unclecatmyself.common.bean.vo.ResultVO;
 import com.github.unclecatmyself.common.bean.vo.SendServerVO;
+import com.github.unclecatmyself.common.constant.Constans;
 import com.google.gson.Gson;
 import com.github.unclecatmyself.bootstrap.channel.ws.WsChannelService;
-import com.github.unclecatmyself.common.utils.ConstansUtil;
 import com.github.unclecatmyself.bootstrap.verify.InChatVerifyService;
 import com.github.unclecatmyself.task.DataAsynchronousTask;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
-import io.netty.handler.codec.http.DefaultFullHttpResponse;
-import io.netty.handler.codec.http.FullHttpResponse;
-import io.netty.handler.codec.http.HttpResponseStatus;
-import io.netty.handler.codec.http.HttpVersion;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-import io.netty.util.CharsetUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +71,7 @@ public class HandlerServiceImpl extends HandlerService {
     public void sendMeText(Channel channel, Map<String,Object> maps) {
         Gson gson = new Gson();
         channel.writeAndFlush(new TextWebSocketFrame(
-                gson.toJson(inChatBackMapService.sendMe((String) maps.get(ConstansUtil.VALUE)))));
+                gson.toJson(inChatBackMapService.sendMe((String) maps.get(Constans.VALUE)))));
         try {
             dataAsynchronousTask.writeData(maps);
         } catch (Exception e) {
@@ -93,9 +82,9 @@ public class HandlerServiceImpl extends HandlerService {
     @Override
     public void sendToText(Channel channel, Map<String, Object> maps) {
         Gson gson = new Gson();
-        String otherOne = (String) maps.get(ConstansUtil.ONE);
-        String value = (String) maps.get(ConstansUtil.VALUE);
-        String token = (String) maps.get(ConstansUtil.TOKEN);
+        String otherOne = (String) maps.get(Constans.ONE);
+        String value = (String) maps.get(Constans.VALUE);
+        String token = (String) maps.get(Constans.TOKEN);
         //返回给自己
         channel.writeAndFlush(new TextWebSocketFrame(
                 gson.toJson(inChatBackMapService.sendBack(otherOne,value))));
@@ -105,7 +94,7 @@ public class HandlerServiceImpl extends HandlerService {
             other.writeAndFlush(new TextWebSocketFrame(
                     gson.toJson(inChatBackMapService.getMsg(token,value))));
         }else {
-            maps.put(ConstansUtil.ON_ONLINE,otherOne);
+            maps.put(Constans.ON_ONLINE,otherOne);
         }
         try {
             dataAsynchronousTask.writeData(maps);
@@ -117,9 +106,9 @@ public class HandlerServiceImpl extends HandlerService {
     @Override
     public void sendGroupText(Channel channel, Map<String, Object> maps) {
         Gson gson = new Gson();
-        String groupId = (String) maps.get(ConstansUtil.GROUPID);
-        String token = (String) maps.get(ConstansUtil.TOKEN);
-        String value = (String) maps.get(ConstansUtil.VALUE);
+        String groupId = (String) maps.get(Constans.GROUPID);
+        String token = (String) maps.get(Constans.TOKEN);
+        String value = (String) maps.get(Constans.VALUE);
         List<String> no_online = new ArrayList<>();
         JSONArray array = inChatVerifyService.getArrayByGroupId(groupId);
         channel.writeAndFlush(new TextWebSocketFrame(
@@ -135,7 +124,7 @@ public class HandlerServiceImpl extends HandlerService {
                 }
             }
         }
-        maps.put(ConstansUtil.ONLINE_GROUP,no_online);
+        maps.put(Constans.ONLINE_GROUP,no_online);
         try {
             dataAsynchronousTask.writeData(maps);
         } catch (Exception e) {
@@ -146,7 +135,7 @@ public class HandlerServiceImpl extends HandlerService {
     @Override
     public void verify(Channel channel, Map<String, Object> maps) {
         Gson gson = new Gson();
-        String token = (String) maps.get(ConstansUtil.TOKEN);
+        String token = (String) maps.get(Constans.TOKEN);
         System.out.println(token);
         if (inChatVerifyService.verifyToken(token)){
             return;
@@ -158,7 +147,7 @@ public class HandlerServiceImpl extends HandlerService {
 
     private Boolean check(Channel channel, Map<String, Object> maps){
         Gson gson = new Gson();
-        String token = (String) maps.get(ConstansUtil.TOKEN);
+        String token = (String) maps.get(Constans.TOKEN);
         if (inChatVerifyService.verifyToken(token)){
             channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(inChatBackMapService.loginSuccess())));
             websocketChannelService.loginWsSuccess(channel,token);

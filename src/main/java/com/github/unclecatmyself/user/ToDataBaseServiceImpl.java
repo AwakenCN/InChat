@@ -10,7 +10,7 @@ public class ToDataBaseServiceImpl implements InChatToDataBaseService {
 
 
     @Override
-    public Boolean writeMapToDB(InChatMessage message) {
+    public Boolean writeMessage(InChatMessage message) {
         System.out.println(message.toString());
         return true;
     }

@@ -1,5 +1,6 @@
 package com.github.unclecatmyself.common.base;
 
+import com.github.unclecatmyself.common.constant.LogConstant;
 import com.github.unclecatmyself.common.exception.NotFindLoginChannlException;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -42,11 +43,11 @@ public abstract class Handler extends SimpleChannelInboundHandler<Object> {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        log.info("【Handler：channelInactive】"+ctx.channel().localAddress().toString()+"关闭成功");
+        log.info(LogConstant.CHANNELINACTIVE+ctx.channel().localAddress().toString()+LogConstant.CLOSE_SUCCESS);
         try {
             handlerApi.close(ctx.channel());
         }catch (NotFindLoginChannlException e){
-            log.error("【捕获异常：NotFindLoginChannlException】-【Handler：channelInactive】关闭未正常注册链接！");
+            log.error(LogConstant.NOTFINDLOGINCHANNLEXCEPTION);
         }
     }
 
