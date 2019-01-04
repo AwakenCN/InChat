@@ -31,7 +31,7 @@
 > * 发送系统通知
 
 * [V1.1.2版本使用说明](https://unclecatmyself.github.io/2019/01/03/inchatby112/)
-* [V1.1.0-alpha版本视频教学](https://v.qq.com/x/page/i08165ym286.html)
+* [V1.1.2版本视频教学](https://v.qq.com/x/page/y08228i7znk.html)
 
 ```
 <dependency>

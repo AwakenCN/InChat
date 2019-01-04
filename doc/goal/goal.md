@@ -41,3 +41,19 @@
 
 ## 【2018-12-20】 项目突破 **150** Star，感谢大家的支持
 
+## V1.1.2版本 【2019-01-04】
+
+> 版本昵称：赤猫-2
+
+版本更新：添加HTTP接口调用，捕获已知异常
+
+* [V1.1.2版本使用说明](https://unclecatmyself.github.io/2019/01/03/inchatby112/)
+* [V1.1.2版本视频教学](https://v.qq.com/x/page/y08228i7znk.html)
+
+```
+<dependency>
+    <groupId>com.github.UncleCatMySelf</groupId>
+    <artifactId>InChat</artifactId>
+    <version>1.1.2</version>
+</dependency>
+```
