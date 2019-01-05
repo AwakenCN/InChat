@@ -68,6 +68,12 @@ public class WsCacheMap {
      * @return {@link Channel} 链接实例
      */
     public static Channel getByToken(String token){
+        if (isDistributed){
+           if (!maps.containsKey(token)){
+               //转分布式发送
+               return null;
+           }
+        }
         return maps.get(token);
     }
 
@@ -138,4 +144,7 @@ public class WsCacheMap {
         return keys;
     }
 
+    public static String getByJedis(String token) {
+        return jedis.get(token);
+    }
 }

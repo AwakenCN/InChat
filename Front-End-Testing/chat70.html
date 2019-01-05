@@ -54,7 +54,7 @@
         window.WebSocket = window.MozWebSocket;
     }
     if (window.WebSocket) {
-        socket = new WebSocket("ws://192.168.56.1:8090/ws");
+        socket = new WebSocket("ws://192.168.56.1:8070/ws");
         socket.onmessage = function(event) {
             var ta = document.getElementById('responseText');
             ta.value = ta.value + '\n' + event.data
@@ -78,7 +78,7 @@
         if (socket.readyState == WebSocket.OPEN) {
             var message = {
                 type: "login",
-                token: "1111"
+                token: "2222"
             }
             socket.send(JSON.stringify(message));
         } else {
@@ -94,7 +94,7 @@
             var message = {
                 type: "sendMe",
                 value: value,
-                token: "1111"
+                token: "2222"
             }
             socket.send(JSON.stringify(message));
         } else {
@@ -109,9 +109,9 @@
         if (socket.readyState == WebSocket.OPEN) {
             var message = {
                 type : "sendTo",
-                token : "1111",
+                token : "2222",
                 value: value,
-                one: "2222",
+                one: "1111",
             }
             socket.send(JSON.stringify(message));
         } else {
@@ -127,7 +127,7 @@
             var message = {
                 type: "sendGroup",
                 groupId: "2",
-                token: "1111",
+                token: "2222",
                 value: value
             }
             socket.send(JSON.stringify(message));
@@ -141,7 +141,7 @@
     };
 </script>
 <form onsubmit="return false;">
-    <h3>SpringBoot netty 聊天室</h3>
+    <h3>InChat 聊天室-8070</h3>
     <textarea id="responseText"></textarea>
     <br>
     <input class='msg' type="text" name="message" placeholder='发送消息' value="">

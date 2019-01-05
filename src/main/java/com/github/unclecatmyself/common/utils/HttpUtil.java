@@ -1,5 +1,6 @@
 package com.github.unclecatmyself.common.utils;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.unclecatmyself.common.bean.vo.SendServerVO;
 import com.github.unclecatmyself.common.constant.Constans;
 import com.github.unclecatmyself.common.constant.HttpConstant;
@@ -7,7 +8,11 @@ import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpMethod;
 import io.netty.util.CharsetUtil;
 
-import java.io.UnsupportedEncodingException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Map;
 
 /**
  * HTTP接口处理方法
@@ -26,7 +31,7 @@ public class HttpUtil {
             return HttpConstant.SENDFROMSERVER;
         }else if (url.equals(HttpConstant.URI_GETLIST) && meName.equals(HttpConstant.GET)){
             return HttpConstant.GETLIST;
-        }else {
+        } else {
             return HttpConstant.NOTFINDURI;
         }
     }
@@ -50,4 +55,6 @@ public class HttpUtil {
         }
         return sendServerVO;
     }
+
+
 }

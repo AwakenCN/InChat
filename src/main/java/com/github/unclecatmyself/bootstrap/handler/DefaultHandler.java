@@ -75,6 +75,11 @@ public class DefaultHandler extends Handler {
             case HttpConstant.GETLIST:
                 log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_GETLIST);
                 httpHandlerService.getList(channel);
+                break;
+            case HttpConstant.SENDINCHAT:
+                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDINCHAT);
+                httpHandlerService.sendInChat(channel,msg);
+                break;
             default:
                 break;
         }

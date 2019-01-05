@@ -2,6 +2,7 @@ package com.github.unclecatmyself.common.base;
 
 import com.github.unclecatmyself.common.bean.vo.SendServerVO;
 import io.netty.channel.Channel;
+import io.netty.handler.codec.http.FullHttpMessage;
 
 import java.util.Map;
 
@@ -29,6 +30,12 @@ public abstract class HandlerService implements HandlerApi {
      * @param sendServerVO {@link SendServerVO} 用户标识
      */
     public abstract void sendFromServer(Channel channel,SendServerVO sendServerVO);
+
+    /**
+     * HTTP以服务端处理发送
+     * @param channel
+     */
+    public abstract void sendInChat(Channel channel, FullHttpMessage msg);
 
     /**
      * 用户未找到匹配Uri
@@ -71,4 +78,6 @@ public abstract class HandlerService implements HandlerApi {
      * @param maps {@link Map} 数据信息
      */
     public abstract void verify(Channel channel, Map<String, Object> maps);
+
+
 }

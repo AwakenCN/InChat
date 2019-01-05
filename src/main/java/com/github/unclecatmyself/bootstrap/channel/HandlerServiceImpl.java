@@ -1,12 +1,16 @@
 package com.github.unclecatmyself.bootstrap.channel;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.unclecatmyself.bootstrap.backmsg.InChatBackMapService;
 import com.github.unclecatmyself.bootstrap.backmsg.InChatBackMapServiceImpl;
+import com.github.unclecatmyself.bootstrap.channel.cache.WsCacheMap;
 import com.github.unclecatmyself.bootstrap.channel.http.HttpChannelService;
 import com.github.unclecatmyself.bootstrap.channel.http.HttpChannelServiceImpl;
 import com.github.unclecatmyself.bootstrap.channel.ws.WebSocketChannelService;
 import com.github.unclecatmyself.common.base.HandlerService;
+import com.github.unclecatmyself.common.bean.SendInChat;
 import com.github.unclecatmyself.common.bean.vo.SendServerVO;
 import com.github.unclecatmyself.common.constant.Constans;
 import com.google.gson.Gson;
@@ -14,7 +18,9 @@ import com.github.unclecatmyself.bootstrap.channel.ws.WsChannelService;
 import com.github.unclecatmyself.bootstrap.verify.InChatVerifyService;
 import com.github.unclecatmyself.task.DataAsynchronousTask;
 import io.netty.channel.Channel;
+import io.netty.handler.codec.http.FullHttpMessage;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import io.netty.util.CharsetUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +63,14 @@ public class HandlerServiceImpl extends HandlerService {
     }
 
     @Override
+    public void sendInChat(Channel channel, FullHttpMessage msg) {
+        System.out.println(msg);
+        String content = msg.content().toString(CharsetUtil.UTF_8);
+        SendInChat sendInChat = (SendInChat) JSON.parse(content);
+        httpChannelService.sendByInChat(channel,sendInChat);
+    }
+
+    @Override
     public void notFindUri(Channel channel) {
         httpChannelService.notFindUri(channel);
     }
@@ -91,8 +105,14 @@ public class HandlerServiceImpl extends HandlerService {
         if (websocketChannelService.hasOther(otherOne)){
             //发送给对方--在线
             Channel other = websocketChannelService.getChannel(otherOne);
-            other.writeAndFlush(new TextWebSocketFrame(
-                    gson.toJson(inChatBackMapService.getMsg(token,value))));
+            if (other == null){
+                //转http分布式
+                httpChannelService.sendInChat(channel,otherOne,new TextWebSocketFrame(
+                        gson.toJson(inChatBackMapService.getMsg(token,value))));
+            }else{
+                other.writeAndFlush(new TextWebSocketFrame(
+                        gson.toJson(inChatBackMapService.getMsg(token,value))));
+            }
         }else {
             maps.put(Constans.ON_ONLINE,otherOne);
         }

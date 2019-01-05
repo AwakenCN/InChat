@@ -3,10 +3,13 @@ package com.github.unclecatmyself.bootstrap.channel.http;
 import com.alibaba.fastjson.JSONObject;
 import com.github.unclecatmyself.auto.ConfigFactory;
 import com.github.unclecatmyself.bootstrap.channel.cache.WsCacheMap;
+import com.github.unclecatmyself.common.bean.SendInChat;
 import com.github.unclecatmyself.common.bean.vo.*;
 import com.github.unclecatmyself.common.constant.HttpConstant;
 import com.github.unclecatmyself.common.constant.LogConstant;
 import com.github.unclecatmyself.common.constant.NotInChatConstant;
+import com.github.unclecatmyself.common.utils.HttpUtil;
+import com.github.unclecatmyself.common.utils.RedisUtil;
 import com.google.gson.Gson;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -17,6 +20,7 @@ import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 /**
@@ -97,6 +101,38 @@ public class HttpChannelServiceImpl implements HttpChannelService {
         Gson gson = new Gson();
         ByteBuf buf = Unpooled.copiedBuffer(gson.toJson(resultVO), CharsetUtil.UTF_8);
         response.content().writeBytes(buf);
+        channel.writeAndFlush(response);
+        close(channel);
+    }
+
+    @Override
+    public void sendInChat(Channel channel,String token, TextWebSocketFrame msg) {
+        String address = RedisUtil.getAddress(RedisUtil.convertMD5(WsCacheMap.getByJedis(token)));
+//        FullHttpRequest request = new DefaultFullHttpRequest(HttpVersion.HTTP_1_1, HttpMethod.POST,address+HttpConstant.URI_SENDINCHAT);
+//        Gson gson = new Gson();
+//        ByteBuf buf = null;
+//        try {
+//            buf = Unpooled.wrappedBuffer(gson.toJson(new SendInChat(token,msg)).getBytes("UTF-8"));
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("------");
+//        request.content().writeBytes(buf);
+//        request.headers().set(HttpHeaderNames.CONTENT_LENGTH,request.content().readableBytes());
+//        request.headers().set(HttpHeaderNames.CONTENT_TYPE,HttpHeaderValues.APPLICATION_X_WWW_FORM_URLENCODED);
+//        channel.writeAndFlush(request);
+    }
+
+    @Override
+    public void sendByInChat(Channel channel, SendInChat sendInChat) {
+        Channel other = WsCacheMap.getByToken(sendInChat.getToken());
+        try {
+            other.writeAndFlush(sendInChat.getFrame());
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.BAD_REQUEST);
+        response.headers().set(HttpConstant.CONTENT_TYPE,HttpConstant.APPLICATION_JSON);
         channel.writeAndFlush(response);
         close(channel);
     }
