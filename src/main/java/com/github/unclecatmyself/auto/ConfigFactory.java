@@ -11,6 +11,8 @@ import com.github.unclecatmyself.common.bean.InitNetty;
  */
 public class ConfigFactory {
 
+    public static String RedisIP;
+
     /** 用户校验伪接口 */
     public static InChatVerifyService inChatVerifyService;
 
@@ -21,4 +23,5 @@ public class ConfigFactory {
 
     /** InChat项目配置 */
     public static InitNetty initNetty;
+
 }

@@ -1,5 +1,7 @@
 package com.github.unclecatmyself.bootstrap;
 
+import com.github.unclecatmyself.auto.AutoConfig;
+import com.github.unclecatmyself.auto.RedisConfig;
 import com.github.unclecatmyself.common.ip.IpUtils;
 import com.github.unclecatmyself.common.bean.InitNetty;
 import com.github.unclecatmyself.common.utils.RemotingUtil;
@@ -66,6 +68,8 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
         bootstrap.bind(IpUtils.getHost(),serverBean.getWebport()).addListener((ChannelFutureListener) channelFuture -> {
             if (channelFuture.isSuccess()) {
                 log.info("服务端启动成功【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");
+                AutoConfig.address = IpUtils.getHost()+":"+serverBean.getWebport();
+                RedisConfig.getInstance();
             }else{
                 log.info("服务端启动失败【" + IpUtils.getHost() + ":" + serverBean.getWebport() + "】");}
         });

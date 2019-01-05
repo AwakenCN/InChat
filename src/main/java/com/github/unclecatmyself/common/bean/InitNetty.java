@@ -38,7 +38,17 @@ public class InitNetty {
 
     private String webSocketPath = "/ws";
 
+    private Boolean isDistributed = false;
+
     private Class<DefaultHandler> webSocketHandler = DefaultHandler.class;
+
+    public Boolean getDistributed() {
+        return isDistributed;
+    }
+
+    public void setDistributed(Boolean distributed) {
+        isDistributed = distributed;
+    }
 
     /**
      * 返回WebSocket启动监听端口
@@ -187,6 +197,5 @@ public class InitNetty {
     public Class<DefaultHandler> getWebSocketHandler() {
         return webSocketHandler;
     }
-
 
 }

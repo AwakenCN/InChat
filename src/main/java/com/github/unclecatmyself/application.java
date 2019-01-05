@@ -5,6 +5,7 @@ import com.github.unclecatmyself.auto.InitServer;
 import com.github.unclecatmyself.common.bean.InitNetty;
 import com.github.unclecatmyself.user.DataBaseServiceImpl;
 import com.github.unclecatmyself.user.FromServerServiceImpl;
+import com.github.unclecatmyself.user.MyInit;
 import com.github.unclecatmyself.user.VerifyServiceImpl;
 
 /**
@@ -13,10 +14,11 @@ import com.github.unclecatmyself.user.VerifyServiceImpl;
 public class application {
 
     public static void main(String[] args) {
-        ConfigFactory.initNetty = new InitNetty();
+        ConfigFactory.initNetty = new MyInit();
         ConfigFactory.inChatVerifyService = new VerifyServiceImpl();
         ConfigFactory.inChatToDataBaseService = new DataBaseServiceImpl();
         ConfigFactory.fromServerService = FromServerServiceImpl.TYPE2;
+        ConfigFactory.RedisIP = "192.168.12.129";
 
         InitServer.open();
     }

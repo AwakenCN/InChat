@@ -12,7 +12,7 @@ public class testApplication {
         Jedis jedis = new Jedis("192.168.12.129");
         System.out.println("连接成功");
         //设置redis字符串数据
-        jedis.set("token","inchat");
+        //jedis.set("token","inchat");
         //查看服务是否运行
         System.out.println("服务正在运行："+jedis.ping());
         //获取存储的数据并输出

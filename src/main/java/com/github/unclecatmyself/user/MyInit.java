@@ -11,4 +11,9 @@ public class MyInit extends InitNetty {
     public int getWebport() {
         return 8090;
     }
+
+    @Override
+    public Boolean getDistributed() {
+        return true;
+    }
 }
