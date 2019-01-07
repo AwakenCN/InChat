@@ -24,18 +24,8 @@ public class RedisConfig {
         }
     }
 
-
     public static RedisConfig getInstance(){
         return instance;
     }
-
-//    public static Jedis getJedis(){
-//        Jedis jedis = null;
-//        if (ConfigFactory.initNetty.getDistributed()){
-//            jedis = new Jedis(ConfigFactory.RedisIP);
-//            log.info(LogConstant.REDIS_START + jedis.ping());
-//        }
-//        return jedis;
-//    }
 
 }

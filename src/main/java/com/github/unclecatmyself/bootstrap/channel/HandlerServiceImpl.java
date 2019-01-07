@@ -108,7 +108,7 @@ public class HandlerServiceImpl extends HandlerService {
             Channel other = websocketChannelService.getChannel(otherOne);
             if (other == null){
                 //转http分布式
-                httpChannelService.sendInChat(channel,otherOne,inChatBackMapService.getMsg(token,value));
+                httpChannelService.sendInChat(otherOne,inChatBackMapService.getMsg(token,value));
             }else{
                 other.writeAndFlush(new TextWebSocketFrame(
                         gson.toJson(inChatBackMapService.getMsg(token,value))));

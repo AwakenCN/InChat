@@ -107,21 +107,15 @@ public class HttpChannelServiceImpl implements HttpChannelService {
     }
 
     @Override
-    public void sendInChat(Channel channel,String token, Map msg) {
+    public void sendInChat(String token, Map msg) {
         String address = RedisUtil.getAddress(RedisUtil.convertMD5(WsCacheMap.getByJedis(token)));
-//        FullHttpRequest request = new DefaultFullHttpRequest(HttpVersion.HTTP_1_1, HttpMethod.POST,address+HttpConstant.URI_SENDINCHAT);
-//        Gson gson = new Gson();
-//        ByteBuf buf = null;
-//        try {
-//            buf = Unpooled.wrappedBuffer(gson.toJson(new SendInChat(token,msg)).getBytes("UTF-8"));
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println("------");
-//        request.content().writeBytes(buf);
-//        request.headers().set(HttpHeaderNames.CONTENT_LENGTH,request.content().readableBytes());
-//        request.headers().set(HttpHeaderNames.CONTENT_TYPE,HttpHeaderValues.APPLICATION_X_WWW_FORM_URLENCODED);
-//        channel.writeAndFlush(request);
+        System.out.println(address);
+        String[] str = address.split(":");
+        try {
+            HttpClient.getInstance().send(str[0],Integer.parseInt(str[1]),token,msg);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
