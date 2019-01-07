@@ -1,5 +1,9 @@
 package com.github.unclecatmyself.bootstrap.channel.http;
 
+import com.github.unclecatmyself.common.bean.SendInChat;
+import com.github.unclecatmyself.common.constant.Constans;
+import com.google.gson.Gson;
+import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
@@ -9,14 +13,12 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.handler.codec.http.DefaultFullHttpRequest;
-import io.netty.handler.codec.http.HttpHeaders;
-import io.netty.handler.codec.http.HttpMethod;
-import io.netty.handler.codec.http.HttpRequestEncoder;
-import io.netty.handler.codec.http.HttpResponseDecoder;
-import io.netty.handler.codec.http.HttpVersion;
+import io.netty.handler.codec.http.*;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Create by UncleCatMySelf in 17:47 2019\1\5 0005
@@ -44,15 +46,25 @@ public class HttpClient {
             // Start the client.
             ChannelFuture f = b.connect(host, port).sync();
 
-            URI uri = new URI("http://192.168.56.1:8070");
-            String msg = "Are you ok?";
+            URI uri = new URI("/send_inchat");
+//            String msg = "Are you ok?";
+            String token = "1111";
+            Map<String,String> backMap = new HashMap<String,String>();
+            backMap.put(Constans.TYPE,Constans.SENDTO);
+            backMap.put(Constans.VALUE,"你好");
+            backMap.put(Constans.ONE,"1111");
+            Gson gson = new Gson();
+            String content = gson.toJson(new SendInChat(token,backMap));
+//            ByteBuf buf = Unpooled.wrappedBuffer(gson.toJson(new SendInChat(token,msg)).getBytes("UTF-8"));
             DefaultFullHttpRequest request = new DefaultFullHttpRequest(HttpVersion.HTTP_1_1, HttpMethod.POST,
-                    uri.toASCIIString(), Unpooled.wrappedBuffer(msg.getBytes("UTF-8")));
+                    uri.toASCIIString(),Unpooled.wrappedBuffer(content.getBytes("UTF-8")));
 
             // 构建http请求
-            request.headers().set(HttpHeaders.Names.HOST, host);
-            request.headers().set(HttpHeaders.Names.CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
-            request.headers().set(HttpHeaders.Names.CONTENT_LENGTH, request.content().readableBytes());
+            request.headers().set(HttpHeaderNames.HOST, host);
+            request.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+            request.headers().set(HttpHeaderNames.CONTENT_LENGTH, request.content().readableBytes());
+//            request.headers().set(HttpHeaderNames.CONTENT_TYPE,HttpHeaderValues.APPLICATION_X_WWW_FORM_URLENCODED);
+
             // 发送http请求
             f.channel().write(request);
             f.channel().flush();
@@ -61,6 +73,11 @@ public class HttpClient {
             workerGroup.shutdownGracefully();
         }
 
+    }
+
+    public static void main(String[] args) throws Exception {
+        HttpClient client = new HttpClient();
+        client.connect("192.168.1.121",8090);
     }
 
 }

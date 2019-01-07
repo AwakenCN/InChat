@@ -66,7 +66,8 @@ public class HandlerServiceImpl extends HandlerService {
     public void sendInChat(Channel channel, FullHttpMessage msg) {
         System.out.println(msg);
         String content = msg.content().toString(CharsetUtil.UTF_8);
-        SendInChat sendInChat = (SendInChat) JSON.parse(content);
+        Gson gson = new Gson();
+        SendInChat sendInChat = gson.fromJson(content,SendInChat.class);
         httpChannelService.sendByInChat(channel,sendInChat);
     }
 
@@ -107,8 +108,7 @@ public class HandlerServiceImpl extends HandlerService {
             Channel other = websocketChannelService.getChannel(otherOne);
             if (other == null){
                 //转http分布式
-                httpChannelService.sendInChat(channel,otherOne,new TextWebSocketFrame(
-                        gson.toJson(inChatBackMapService.getMsg(token,value))));
+                httpChannelService.sendInChat(channel,otherOne,inChatBackMapService.getMsg(token,value));
             }else{
                 other.writeAndFlush(new TextWebSocketFrame(
                         gson.toJson(inChatBackMapService.getMsg(token,value))));

@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Create by UncleCatMySelf in 11:41 2018\12\31 0031
@@ -106,7 +107,7 @@ public class HttpChannelServiceImpl implements HttpChannelService {
     }
 
     @Override
-    public void sendInChat(Channel channel,String token, TextWebSocketFrame msg) {
+    public void sendInChat(Channel channel,String token, Map msg) {
         String address = RedisUtil.getAddress(RedisUtil.convertMD5(WsCacheMap.getByJedis(token)));
 //        FullHttpRequest request = new DefaultFullHttpRequest(HttpVersion.HTTP_1_1, HttpMethod.POST,address+HttpConstant.URI_SENDINCHAT);
 //        Gson gson = new Gson();
@@ -125,9 +126,10 @@ public class HttpChannelServiceImpl implements HttpChannelService {
 
     @Override
     public void sendByInChat(Channel channel, SendInChat sendInChat) {
+        Gson gson = new Gson();
         Channel other = WsCacheMap.getByToken(sendInChat.getToken());
         try {
-            other.writeAndFlush(sendInChat.getFrame());
+            other.writeAndFlush(new TextWebSocketFrame(gson.toJson(sendInChat.getFrame())));
         }catch (NullPointerException e){
             e.printStackTrace();
         }

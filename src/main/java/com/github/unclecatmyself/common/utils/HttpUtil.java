@@ -23,6 +23,7 @@ public class HttpUtil {
     public static String checkType(FullHttpRequest msg){
         msg.retain();
         String url = msg.uri();
+        System.out.println(url);
         HttpMethod method = msg.method();
         String meName = method.name();
         if (url.equals(HttpConstant.URI_GETSIZE) && meName.equals(HttpConstant.GET)){
@@ -31,7 +32,9 @@ public class HttpUtil {
             return HttpConstant.SENDFROMSERVER;
         }else if (url.equals(HttpConstant.URI_GETLIST) && meName.equals(HttpConstant.GET)){
             return HttpConstant.GETLIST;
-        } else {
+        }else if (url.equals(HttpConstant.URI_SENDINCHAT) && meName.equals(HttpConstant.POST)){
+            return HttpConstant.SENDINCHAT;
+        }else {
             return HttpConstant.NOTFINDURI;
         }
     }

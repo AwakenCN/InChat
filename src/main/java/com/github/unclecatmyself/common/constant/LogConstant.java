@@ -49,5 +49,5 @@ public class LogConstant {
 
     public static final String DATAASYNCHRONOUSTASK_03 = "[DataAsynchronousTask.writeData]:线程任务执行异常";
 
-    public static final String REDIS_START = "[RedisConfig.getJedis]:连接成功，测试连接：";
+    public static final String REDIS_START = "[RedisConfig.getJedis]:连接成功，测试连接PING->";
 }

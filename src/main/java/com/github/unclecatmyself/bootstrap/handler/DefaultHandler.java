@@ -68,10 +68,6 @@ public class DefaultHandler extends Handler {
                 }
                 httpHandlerService.sendFromServer(channel,serverVO);
                 break;
-            case HttpConstant.NOTFINDURI:
-                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_NOTFINDURI);
-                httpHandlerService.notFindUri(channel);
-                break;
             case HttpConstant.GETLIST:
                 log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_GETLIST);
                 httpHandlerService.getList(channel);
@@ -79,6 +75,10 @@ public class DefaultHandler extends Handler {
             case HttpConstant.SENDINCHAT:
                 log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDINCHAT);
                 httpHandlerService.sendInChat(channel,msg);
+                break;
+            case HttpConstant.NOTFINDURI:
+                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_NOTFINDURI);
+                httpHandlerService.notFindUri(channel);
                 break;
             default:
                 break;
