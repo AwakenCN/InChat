@@ -1,55 +1,85 @@
-# InChat
 
-#### [Developer Chat](https://gitter.im/In-Chat/Lobby)
+<div align=center>
 
->The entire MAVEN toolkit is still under construction.... 
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchat/logo.png)
 
-## Summery
+[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-628793702-yellow.svg)](https://jq.qq.com/?_wv=1027&k=57X4L74)
+[![作者](https://img.shields.io/badge/%E4%BD%9C%E8%80%85-MySelf-blue.svg)](https://github.com/UncleCatMySelf)
+[![Netty入门](https://img.shields.io/badge/%E5%AD%A6%E4%B9%A0-Netty%E5%85%A5%E9%97%A8-ff69b4.svg)](doc/study/mulu.md)
+[![Maven](https://img.shields.io/badge/Maven-1.1.2-orange.svg)](https://mvnrepository.com/artifact/com.github.UncleCatMySelf/InChat)
+
+
+</div>
+
+## 简介
 
 ***(InChat)Iot Netty Chat***
 
-> 2018-11-15 began to change to MAVEN project package, currently not released, please see the demo branch for details, thank you.
+一个轻量级、高效、分布式的异步通信框架, 支持聊天和物联网, 您可以使用它来快速构建具有后台的聊天服务器, 并快速自定义自己的通信 api, 包括具有不同的通讯可以支持的协议。
 
-A lightweight, efficient communication framework that supports chat and the Internet of things, you can use it to quickly build a chat server with the background and quickly customize your own communication APIs, including physical networks with different protocols that can be supported.
+**欢迎参与QQ群交流与提供建议、业务场景、需求功能等**
 
-## Branch demo:Stop updates
+## Maven版本
 
-Original Project Core demo, you can first run to understand, imitation WeChat chat application, step by step update, based on Springboot-websocket General framework, combined with Netty to chat social, and record chat logs, asynchronous storage, front-end provisional sui Mobile, add implementation tcp/
-IP back-end communication port (MQTT protocol, real-time and single-chip computer and other TCP hardware communication), add picture processing stream, chat implementation text and picture sending function, API call Netty long link execution Send message (number of online, user list)
+功能列表：
 
-## Demo Effect Diagram
+> * 用户token登录校验
+> * 自我聊天
+> * 点对点聊天
+> * 群聊
+> * 获取在线用户数与用户标签列表
+> * 发送系统通知
 
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(5).png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(3).png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(4).png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(2).png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/001%20(1).png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/9.png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/10.png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/nettychat/11.png)
+* [V1.1.2版本使用说明](https://unclecatmyself.github.io/2019/01/03/inchatby112/)
+* [V1.1.2版本视频教学](https://v.qq.com/x/page/y08228i7znk.html)
 
-## Branch im-api:Stop updates
+```
+<dependency>
+    <groupId>com.github.UncleCatMySelf</groupId>
+    <artifactId>InChat</artifactId>
+    <version>1.1.2</version>
+</dependency>
+```
 
-Tencent im (cloud communications) backend imitation project, are docked in the form of APIs, if there is a front-end want to dock can run this branch, this branch is expected to end up for a single service concurrent 300,000 users of IM background project
+## 项目日志
 
-## Branch paho-mqtt:Stop updates
+* [项目研发日志更新](doc/Project-Log-cn.md)
 
-Based on the small program end or mobile Web end of the Paho.js and Java MQTT Client simulation of message subscriptions and communications, small program IoT demo, currently supports WS format
+## 教程
 
-## Branch tcp-wechat:Stop updates
+### [Netty入门与源码讲解](doc/study/mulu.md)
+* [项目设计思路](doc/design_cn.md)
 
-Based on the main communication between the small program end and the single chip computer and other hardware TCP/IP, IoT Center as a relay, this demo will fully implement the specific functions, please see the Branch home page for details
+> * [登录模块详细设计](doc/detail/Login-cn.md)
+> * [登录模块整改版V0.1](doc/detail/login_rect.md)
 
-## Download Address
+## 里程碑
 
-Download Address：https://github.com/UncleCatMySelf/SBToNettyChat/releases
+* [InChat项目里程碑](doc/goal/goal.md)
 
-## Issues & Questions
+## 相关资料（欢迎贡献）
+
+* [QQ群建议贡献](doc/advice/advice.md)
+
+## 效果展示
+
+![demo](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_demo.gif)
+![log](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_log.gif)
+![postman](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_postman.gif)
+![send](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_send.gif)
+
+## 下载地址
+
+下载地址：https://github.com/UncleCatMySelf/SBToNettyChat/releases
+
+## 下载 & 问题
 
 https://github.com/UncleCatMySelf/SBToNettyChat/issues
 
-QQ Group：628793702
+## 赞助
 
-## About the author
+打赏时请记得备注上你的github账号或者其他链接，谢谢支持！
 
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/%E5%85%AC%E4%BC%97%E5%8F%B7.png)
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/%E4%BB%98%E6%AC%BE.png)
+![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/%E6%94%AF%E4%BB%98%E5%AE%9D.png)
+

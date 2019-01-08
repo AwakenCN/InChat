@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Chat</title>
+</head>
+<style>
+	form {
+		width: 406px;
+		height: 650px;
+		border: 4px solid #98bcde;
+		border-radius: 10px;
+		margin: 0 auto;
+		background-color: #eceff9;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+
+	}
+	h3 {
+		color: #92acdc;
+		text-align: center;
+		font-size: 26px;
+	}
+	textarea {
+		resize: none;
+		font-size: 20px;
+		width: 401px;
+		height: 511px;
+	}
+	.msg {
+		width: 324px;
+		height: 40px;
+		text-indent: 10px;
+		font-size: 20px;
+		outline: none;
+	}
+	.btn {
+		width: 140px;
+		height: 46px;
+		background-color: #d8f1f9;
+		border-radius: 6px;
+		border: 1px solid #98bcde;
+		font-size: 18px;
+		color: #92acdc;
+		font-weight: bold;
+	}
+	
+</style>
+<body>
+<script type="text/javascript">
+    var socket;
+    if (!window.WebSocket) {
+        window.WebSocket = window.MozWebSocket;
+    }
+    if (window.WebSocket) {
+        socket = new WebSocket("ws://192.168.1.121:8070/ws");
+        socket.onmessage = function(event) {
+            var ta = document.getElementById('responseText');
+            ta.value = ta.value + '\n' + event.data
+        };
+        socket.onopen = function(event) {
+            var ta = document.getElementById('responseText');
+            ta.value = "连接开启!";
+        };
+        socket.onclose = function(event) {
+            var ta = document.getElementById('responseText');
+            ta.value = ta.value + "连接被关闭";
+        };
+    } else {
+        alert("你的浏览器不支持 WebSocket！");
+    }
+
+    function send(value) {
+        if (!window.WebSocket) {
+            return;
+        }
+        if (socket.readyState == WebSocket.OPEN) {
+            var message = {
+                type: "login",
+                token: "2222"
+            }
+            socket.send(JSON.stringify(message));
+        } else {
+            alert("连接没有开启.");
+        }
+    }
+
+    function sendToMe(value) {
+        if (!window.WebSocket) {
+            return;
+        }
+        if (socket.readyState == WebSocket.OPEN) {
+            var message = {
+                type: "sendMe",
+                value: value,
+                token: "2222"
+            }
+            socket.send(JSON.stringify(message));
+        } else {
+            alert("连接没有开启.");
+        }
+    }
+
+    function sendToOne(value) {
+        if (!window.WebSocket) {
+            return;
+        }
+        if (socket.readyState == WebSocket.OPEN) {
+            var message = {
+                type : "sendTo",
+                token : "2222",
+                value: value,
+                one: "1111",
+            }
+            socket.send(JSON.stringify(message));
+        } else {
+            alert("连接没有开启.");
+        }
+    }
+
+    function sendGroup(value) {
+        if (!window.WebSocket) {
+            return;
+        }
+        if (socket.readyState == WebSocket.OPEN) {
+            var message = {
+                type: "sendGroup",
+                groupId: "2",
+                token: "2222",
+                value: value
+            }
+            socket.send(JSON.stringify(message));
+        } else {
+            alert("连接没有开启.");
+        }
+    }
+
+    window.onbeforeunload = function(event) {
+        event.returnValue = "刷新提醒";
+    };
+</script>
+<form onsubmit="return false;">
+    <h3>InChat 聊天室-8070</h3>
+    <textarea id="responseText"></textarea>
+    <br>
+    <input class='msg' type="text" name="message" placeholder='发送消息' value="">
+    <input class='btn' type="button" value="登录" onclick="send(this.form.message.value)">
+    <input class='btn' type="button" value="发送给自己" onclick="sendToMe(this.form.message.value)">
+    <input class='btn' type="button" value="发送给某人" onclick="sendToOne(this.form.message.value)">
+    <input class='btn' type="button" value="发送到群组" onclick="sendGroup(this.form.message.value)">
+</form>
+<br>
+<br>
+</body>
+</html>
