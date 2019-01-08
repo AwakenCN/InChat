@@ -9,11 +9,17 @@ public class MyInit extends InitNetty {
 
     @Override
     public int getWebport() {
-        return 8070;
+        return 8090;
     }
 
     @Override
     public Boolean getDistributed() {
         return true;
     }
+
+    @Override
+    public boolean isSsl() {
+        return true;
+    }
+
 }

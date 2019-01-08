@@ -6,7 +6,7 @@ import com.github.unclecatmyself.bootstrap.handler.DefaultHandler;
  * 初始化Netty配置
  * Create by UncleCatMySelf in 2018/12/06
  */
-public class InitNetty {
+public abstract class InitNetty {
 
     private int webport = 8090;
 
@@ -39,6 +39,14 @@ public class InitNetty {
     private String webSocketPath = "/ws";
 
     private Boolean isDistributed = false;
+
+    private boolean ssl = false;
+
+    private String jksFile = "E:\\inchat\\InChat\\src\\main\\resources\\inchat.jks";
+
+    private String jksStorePassword = "123456";
+
+    private String jksCertificatePassword = "123456";
 
     private Class<DefaultHandler> webSocketHandler = DefaultHandler.class;
 
@@ -198,4 +206,35 @@ public class InitNetty {
         return webSocketHandler;
     }
 
+    public boolean isSsl() {
+        return ssl;
+    }
+
+    public void setSsl(boolean ssl) {
+        this.ssl = ssl;
+    }
+
+    public String getJksFile() {
+        return jksFile;
+    }
+
+    public void setJksFile(String jksFile) {
+        this.jksFile = jksFile;
+    }
+
+    public String getJksStorePassword() {
+        return jksStorePassword;
+    }
+
+    public void setJksStorePassword(String jksStorePassword) {
+        this.jksStorePassword = jksStorePassword;
+    }
+
+    public String getJksCertificatePassword() {
+        return jksCertificatePassword;
+    }
+
+    public void setJksCertificatePassword(String jksCertificatePassword) {
+        this.jksCertificatePassword = jksCertificatePassword;
+    }
 }
