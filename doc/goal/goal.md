@@ -57,3 +57,10 @@
     <version>1.1.2</version>
 </dependency>
 ```
+
+
+## V1.1.3版本 【待定】
+
+> 版本昵称：橙猫
+
+版本目标：InChat集群与wss
