@@ -76,6 +76,10 @@
 
 https://github.com/UncleCatMySelf/SBToNettyChat/issues
 
+## 关于贡献
+
+[!Noseparte说: 开源项目InChat贡献记](https://www.imooc.com/article/272573)
+
 ## 赞助
 
 打赏时请记得备注上你的github账号或者其他链接，谢谢支持！
