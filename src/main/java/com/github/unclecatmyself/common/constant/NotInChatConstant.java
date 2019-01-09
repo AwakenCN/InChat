@@ -15,4 +15,6 @@ public class NotInChatConstant {
 
     public static final String NOT_HANDLER = "Server Handler 不匹配";
 
+    public static final String SSL_NOT_FIND = "SSL file and password is null";
+
 }

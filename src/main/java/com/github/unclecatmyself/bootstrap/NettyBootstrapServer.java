@@ -32,10 +32,6 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
 
     private InitNetty serverBean;
 
-    public InitNetty getServerBean() {
-        return serverBean;
-    }
-
     public void setServerBean(InitNetty serverBean) {
         this.serverBean = serverBean;
     }
