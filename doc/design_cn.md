@@ -20,10 +20,20 @@ AOP、DI为主，基于Spring Boot快速搭建，尽量减少用户的二次搭�
 
 ![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchat/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6(19).png)
 
-1、移除原本Token概念，用户均以唯一标识登录并存储在线键值对于系统本地Cache。（登录存储、退出移除）
-2、DefaultWebSocketHandler，是框架默认的处理，数据均已json格式，拆分业务点
-3、由InChat内部的服务（WebSocketHandlerService  ）进行具体的业务实现并回写
-4、对于数据的存储与写入，默认是异步写入数据，用户可以重写InChatToDataBaseService，获取实时数据
-5、在高并发情况下，我们不推荐异步处理数据，可以通过配置化启动mq（目前支持RabbitMq），框架自动注入对应Bean，并由MQ来执行数据写入
-6、关于数据库连接池，我们不会绑定用户使用，而是支持用户自定义。
+-  1、移除原本Token概念，用户均以唯一标识登录并存储在线键值对于系统本地Cache。（登录存储、退出移除）
+-  2、DefaultWebSocketHandler，是框架默认的处理，数据均已json格式，拆分业务点
+-  3、由InChat内部的服务（WebSocketHandlerService  ）进行具体的业务实现并回写
+-  4、对于数据的存储与写入，默认是异步写入数据，用户可以重写InChatToDataBaseService，获取实时数据
+-  5、在高并发情况下，我们不推荐异步处理数据，可以通过配置化启动mq（目前支持RabbitMq），框架自动注入对应Bean，并由MQ来执行数据写入
+-  6、关于数据库连接池，我们不会绑定用户使用，而是支持用户自定义。
 
+## 集群处理设计
+
+![Image](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchat/%E9%9B%86%E7%BE%A4%E8%AE%BE%E8%AE%A1.png)
+
+目前针对刚刚实现的点对点跨服务器接收发送流程：
+-  1、一个服务器承受的用户并发量是有限，所以需要横向扩充服务器，所以会出现多个InChat Server端口，每个服务器都会接收一定用户量的登录并发长连接，
+每个用户登录一个服务器后，都会向Redis发送（key=token、value=【IP：端口】+Channel标签）的加密存储值。
+-  2、当60的A用户想发送给70的B用户时，60通过redis知道这个B用户是在线的，可是本地取不到这个链接就会向redis取对应的这个B用户的token的键值对。
+-  3、60的服务器就会先向A用户发送他已经发出的消息，方便前端显示，同时60服务器拿到B用户的【IP：端口】，通过InChat系统内部二次开通的Http客户端，发送给70服务器。
+-  4、70服务器接收到HTTP请求，这时会向B用户发送这个A用户发送的消息，因为Netty是异步的 ，所以过程是流畅的。
