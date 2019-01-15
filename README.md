@@ -31,9 +31,9 @@
 > * 群聊
 > * 获取在线用户数与用户标签列表
 > * 发送系统通知
-> * 1.1.3版本新增SSL加密，分布式测试点对点、群聊功能
+> * 1.1.3版本新增SSL加密，分布式测试点对点、群聊功能（分布式为试用版，暂不支持SSL加密）
 
-* [相关文档正在撰写...]()
+* [InChatV1.1.3版本使用说明](https://unclecatmyself.github.io/2019/01/15/inchatby113/)
 
 ```
 <dependency>
@@ -65,6 +65,8 @@
 
 ## 效果展示
 
+![加密](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchatGIF/%E5%8A%A0%E5%AF%86.gif)
+![分布式](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchatGIF/%E5%88%86%E5%B8%83%E5%BC%8F.gif)
 ![demo](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_demo.gif)
 ![log](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_log.gif)
 ![postman](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_postman.gif)
