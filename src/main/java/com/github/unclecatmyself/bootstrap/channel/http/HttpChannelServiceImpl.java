@@ -127,9 +127,9 @@ public class HttpChannelServiceImpl implements HttpChannelService {
         }catch (NullPointerException e){
             e.printStackTrace();
         }
-        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.BAD_REQUEST);
-        response.headers().set(HttpConstant.CONTENT_TYPE,HttpConstant.APPLICATION_JSON);
-        channel.writeAndFlush(response);
+//        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.BAD_REQUEST);
+//        response.headers().set(HttpConstant.CONTENT_TYPE,HttpConstant.APPLICATION_JSON);
+//        channel.writeAndFlush(response);
         close(channel);
     }
 }

@@ -14,12 +14,12 @@ public class MyInit extends InitNetty {
 
     @Override
     public Boolean getDistributed() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isSsl() {
-        return true;
+        return false;
     }
 
 }

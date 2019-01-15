@@ -137,8 +137,13 @@ public class HandlerServiceImpl extends HandlerService {
             if (!token.equals(item)){
                 if (websocketChannelService.hasOther((String) item)){
                     Channel other = websocketChannelService.getChannel((String) item);
-                    other.writeAndFlush(new TextWebSocketFrame(
-                            gson.toJson(inChatBackMapService.sendGroup(token,value,groupId))));
+                    if (other == null){
+                        //转http分布式
+                        httpChannelService.sendInChat((String) item,inChatBackMapService.sendGroup(token,value,groupId));
+                    }else{
+                        other.writeAndFlush(new TextWebSocketFrame(
+                                gson.toJson(inChatBackMapService.sendGroup(token,value,groupId))));
+                    }
                 }else{
                     no_online.add((String) item);
                 }
