@@ -109,7 +109,6 @@ public class HttpChannelServiceImpl implements HttpChannelService {
     @Override
     public void sendInChat(String token, Map msg) {
         String address = RedisUtil.getAddress(RedisUtil.convertMD5(WsCacheMap.getByJedis(token)));
-        System.out.println(address);
         String[] str = address.split(":");
         try {
             HttpClient.getInstance().send(str[0],Integer.parseInt(str[1]),token,msg);
