@@ -56,14 +56,4 @@ public class RedisUtil {
         return stars[0];
     }
 
-//    public static void main(String[] args) {
-//        String s = new String("inchat");
-//        System.out.println("原始：" + s);
-//        System.out.println("MD5后：" + string2MD5(s));
-////        System.out.println("原始：" + s);
-////        System.out.println("加密后：" + convertMD5(s));
-////        System.out.println("原始：" + s);
-////        System.out.println("解密后：" + convertMD5(convertMD5(s)));
-//    }
-
 }

@@ -1,5 +1,7 @@
 package com.github.unclecatmyself.common.utils;
 
+import com.github.unclecatmyself.common.constant.UtilConstant;
+
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import java.io.FileInputStream;
@@ -18,11 +20,11 @@ public class SslUtil {
             synchronized (SslUtil.class) {
             if(null == sslContext){
                 KeyStore ks = KeyStore.getInstance(type); /// "JKS"  　　　　  　　
-                InputStream ksInputStream = new FileInputStream(path); /// 证书存放地址
+                InputStream ksInputStream = new FileInputStream(UtilConstant.PATH_PREFIX+path); /// 证书存放地址
                 ks.load(ksInputStream, password.toCharArray());
                 KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
                 kmf.init(ks, password.toCharArray());
-                sslContext = SSLContext.getInstance("TLS");
+                sslContext = SSLContext.getInstance(UtilConstant.INSTANT);
                 sslContext.init(kmf.getKeyManagers(), null, null);
                 }
             }

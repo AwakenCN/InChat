@@ -42,7 +42,7 @@ public abstract class InitNetty {
 
     private boolean ssl = false;
 
-    private String jksFile = "E:\\inchat\\InChat\\src\\main\\resources\\inchat.jks";
+    private String jksFile = "inchat.jks";
 
     private String jksStorePassword = "123456";
 
