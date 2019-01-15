@@ -65,4 +65,14 @@
 
 > 版本昵称：橙猫
 
-版本目标：InChat集群与wss
+版本目标：InChat集群与wss,SSL加密与分布式测试点对点与群聊
+
+* [相关文档正在撰写...]()
+
+```
+<dependency>
+    <groupId>com.github.UncleCatMySelf</groupId>
+    <artifactId>InChat</artifactId>
+    <version>1.1.3</version>
+</dependency>
+```

@@ -6,7 +6,7 @@
 [![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-628793702-yellow.svg)](https://jq.qq.com/?_wv=1027&k=57X4L74)
 [![作者](https://img.shields.io/badge/%E4%BD%9C%E8%80%85-MySelf-blue.svg)](https://github.com/UncleCatMySelf)
 [![Netty入门](https://img.shields.io/badge/%E5%AD%A6%E4%B9%A0-Netty%E5%85%A5%E9%97%A8-ff69b4.svg)](doc/study/mulu.md)
-[![Maven](https://img.shields.io/badge/Maven-1.1.2-orange.svg)](https://mvnrepository.com/artifact/com.github.UncleCatMySelf/InChat)
+[![Maven](https://img.shields.io/badge/Maven-1.1.3-orange.svg)](https://mvnrepository.com/artifact/com.github.UncleCatMySelf/InChat)
 
 
 </div>
@@ -31,17 +31,21 @@
 > * 群聊
 > * 获取在线用户数与用户标签列表
 > * 发送系统通知
+> * 1.1.3版本新增SSL加密，分布式测试点对点、群聊功能
 
-* [V1.1.2版本使用说明](https://unclecatmyself.github.io/2019/01/03/inchatby112/)
-* [V1.1.2版本视频教学](https://v.qq.com/x/page/y08228i7znk.html)
+* [相关文档正在撰写...]()
 
 ```
 <dependency>
     <groupId>com.github.UncleCatMySelf</groupId>
     <artifactId>InChat</artifactId>
-    <version>1.1.2</version>
+    <version>1.1.3</version>
 </dependency>
 ```
+
+## 里程碑
+
+* [InChat项目里程碑-历史版本](doc/goal/goal.md)
 
 ## 项目日志
 
@@ -54,10 +58,6 @@
 
 > * [登录模块详细设计](doc/detail/Login-cn.md)
 > * [登录模块整改版V0.1](doc/detail/login_rect.md)
-
-## 里程碑
-
-* [InChat项目里程碑](doc/goal/goal.md)
 
 ## 相关资料（欢迎贡献）
 
