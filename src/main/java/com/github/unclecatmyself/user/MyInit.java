@@ -19,7 +19,7 @@ public class MyInit extends InitNetty {
 
     @Override
     public boolean isSsl() {
-        return true;
+        return false;
     }
 
 }
