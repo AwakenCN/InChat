@@ -81,6 +81,7 @@ public class DefaultHandler extends Handler {
                 httpHandlerService.notFindUri(channel);
                 break;
             default:
+                System.out.println("为匹配"+msg);
                 break;
         }
     }

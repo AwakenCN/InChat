@@ -2,6 +2,7 @@ package com.github.unclecatmyself.bootstrap.channel.http;
 
 import com.github.unclecatmyself.common.bean.SendInChat;
 import com.github.unclecatmyself.common.constant.HttpConstant;
+import com.github.unclecatmyself.common.utils.SslUtil;
 import com.google.gson.Gson;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
@@ -10,10 +11,13 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.*;
+import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslHandler;
 import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLEngine;
 import java.net.URI;
 import java.util.Map;
 
@@ -41,6 +45,15 @@ public class HttpClient {
             ch.pipeline().addLast(new HttpResponseDecoder());
             // 客户端发送的是httprequest，所以要使用HttpRequestEncoder进行编码
             ch.pipeline().addLast(new HttpRequestEncoder());
+            try {
+                SSLContext context = SslUtil.createSSLContext("JKS","inchat.jks","123456");
+                SSLEngine engine = context.createSSLEngine();
+                engine.setUseClientMode(true);
+//                engine.setNeedClientAuth(false);
+                ch.pipeline().addLast("ssl",new SslHandler(engine));
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             }
         });
         this.bootstrap = b;

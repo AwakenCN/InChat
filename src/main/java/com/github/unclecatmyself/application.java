@@ -18,8 +18,8 @@ public class application {
         ConfigFactory.inChatVerifyService = new VerifyServiceImpl();
         ConfigFactory.inChatToDataBaseService = new DataBaseServiceImpl();
         ConfigFactory.fromServerService = FromServerServiceImpl.TYPE2;
-//        ConfigFactory.RedisIP = "192.168.12.129";
-        ConfigFactory.RedisIP = "192.168.192.132";
+        ConfigFactory.RedisIP = "192.168.12.129";
+//        ConfigFactory.RedisIP = "192.168.192.132";
 
         InitServer.open();
     }

@@ -27,10 +27,13 @@ public abstract class Handler extends SimpleChannelInboundHandler<Object> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
         if (msg instanceof TextWebSocketFrame){
+            System.out.println("TextWebSocketFrame"+msg);
             textdoMessage(ctx,(TextWebSocketFrame)msg);
         }else if (msg instanceof WebSocketFrame){
+            System.out.println("WebSocketFrame"+msg);
             webdoMessage(ctx,(WebSocketFrame)msg);
         }else if (msg instanceof FullHttpRequest){
+            System.out.println("FullHttpRequest"+msg);
             httpdoMessage(ctx,(FullHttpRequest)msg);
         }
     }
