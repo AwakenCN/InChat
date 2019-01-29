@@ -21,6 +21,8 @@
 
 > 年底忙一些工作，更新较慢
 
+**[吐槽一下InChat](https://support.qq.com/products/53816)**
+
 **[代码贡献指南](http://www.imooc.com/article/272573)**
 
 ## Maven版本
