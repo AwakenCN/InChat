@@ -8,6 +8,7 @@ import com.github.unclecatmyself.bootstrap.handler.DefaultHandler;
  */
 public abstract class InitNetty {
 
+    /** 通信地址 */
     private int webport = 8090;
 
     private int bossThread = 1;
@@ -38,8 +39,10 @@ public abstract class InitNetty {
 
     private String webSocketPath = "/ws";
 
+    /** 是否启动分布式 */
     private Boolean isDistributed = false;
 
+    /** 是否启动加密 */
     private boolean ssl = false;
 
     private String jksFile = "inchat.jks";

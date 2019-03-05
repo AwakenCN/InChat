@@ -54,7 +54,7 @@
         window.WebSocket = window.MozWebSocket;
     }
     if (window.WebSocket) {
-        socket = new WebSocket("wss://192.168.56.1:8090/ws");
+        socket = new WebSocket("ws://192.168.56.1:8090/ws");
         socket.onmessage = function(event) {
             var ta = document.getElementById('responseText');
             ta.value = ta.value + '\n' + event.data
