@@ -1,4 +1,4 @@
-package com.github.unclecatmyself.user;
+package com.github.unclecatmyself.users;
 
 import com.alibaba.fastjson.JSONArray;
 import com.github.unclecatmyself.bootstrap.verify.InChatVerifyService;

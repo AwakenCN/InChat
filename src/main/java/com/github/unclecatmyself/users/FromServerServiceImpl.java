@@ -1,4 +1,4 @@
-package com.github.unclecatmyself.user;
+package com.github.unclecatmyself.users;
 
 import com.github.unclecatmyself.bootstrap.channel.http.FromServerService;
 

@@ -2,11 +2,10 @@ package com.github.unclecatmyself;
 
 import com.github.unclecatmyself.auto.ConfigFactory;
 import com.github.unclecatmyself.auto.InitServer;
-import com.github.unclecatmyself.common.bean.InitNetty;
-import com.github.unclecatmyself.user.DataBaseServiceImpl;
-import com.github.unclecatmyself.user.FromServerServiceImpl;
-import com.github.unclecatmyself.user.MyInit;
-import com.github.unclecatmyself.user.VerifyServiceImpl;
+import com.github.unclecatmyself.users.DataBaseServiceImpl;
+import com.github.unclecatmyself.users.FromServerServiceImpl;
+import com.github.unclecatmyself.users.MyInit;
+import com.github.unclecatmyself.users.VerifyServiceImpl;
 
 /**
  * Create by UncleCatMySelf in 22:49 2019\1\4 0004
