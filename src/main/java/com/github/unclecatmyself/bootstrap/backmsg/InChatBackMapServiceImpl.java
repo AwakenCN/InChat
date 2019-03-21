@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 列入项目中
+ * 列入项目中，默认返回实现
  * Created by MySelf on 2018/11/23.
  */
 public class InChatBackMapServiceImpl implements InChatBackMapService {

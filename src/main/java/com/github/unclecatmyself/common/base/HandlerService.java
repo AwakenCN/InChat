@@ -79,5 +79,10 @@ public abstract class HandlerService implements HandlerApi {
      */
     public abstract void verify(Channel channel, Map<String, Object> maps);
 
-
+    /**
+     * 发送图片给个人
+     * @param channel {@link Channel} 链接实例
+     * @param maps {@link Map} 数据信息
+     */
+    public abstract void sendPhotoToMe(Channel channel, Map<String, Object> maps);
 }

@@ -78,7 +78,7 @@ public class HttpClient {
         request.headers().set(HttpHeaderNames.HOST, host);
         request.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
         request.headers().set(HttpHeaderNames.CONTENT_LENGTH, request.content().readableBytes());
-//            request.headers().set(HttpHeaderNames.CONTENT_TYPE,HttpHeaderValues.APPLICATION_X_WWW_FORM_URLENCODED);
+//      request.headers().set(HttpHeaderNames.CONTENT_TYPE,HttpHeaderValues.APPLICATION_X_WWW_FORM_URLENCODED);
 
         // 发送http请求
         f.channel().write(request);

@@ -35,6 +35,8 @@ public class Constans {
 
     public static final String SENDGROUP = "sendGroup";
 
+    public static final String SENDPHOTOTOME = "sendPhotoToMe";
+
     public static final String TIME = "time";
 
     public static final String SERVER = "server";

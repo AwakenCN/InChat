@@ -54,7 +54,7 @@
         window.WebSocket = window.MozWebSocket;
     }
     if (window.WebSocket) {
-        socket = new WebSocket("ws://192.168.56.1:8090/ws");
+        socket = new WebSocket("ws://192.168.1.121:8090/ws");
         socket.onmessage = function(event) {
             var ta = document.getElementById('responseText');
             ta.value = ta.value + '\n' + event.data
@@ -136,6 +136,33 @@
         }
     }
 
+    function sendPhotoToMe(value) {
+        if (!window.WebSocket) {
+            return;
+        }
+        var thum = $('#file')[0].files[0];
+        if(!thum) return;
+        //console.log(thum);
+        var reader = new FileReader();
+        //以二进制形式读取文件
+        reader.readAsArrayBuffer(thum);
+        //文件读取完毕后该函数响应
+        reader.onload = function loaded(evt) {
+            value = evt.target.result;
+            console.log(value);
+            if (socket.readyState == WebSocket.OPEN) {
+                var message = {
+                    type: "sendPhotoToMe",
+                    token: "1111",
+                    value: value
+                }
+                socket.send(JSON.stringify(message));
+            } else {
+                alert("连接没有开启.");
+            }
+        }
+    }
+
     window.onbeforeunload = function(event) {
         event.returnValue = "刷新提醒";
     };
@@ -149,8 +176,11 @@
     <input class='btn' type="button" value="发送给自己" onclick="sendToMe(this.form.message.value)">
     <input class='btn' type="button" value="发送给某人" onclick="sendToOne(this.form.message.value)">
     <input class='btn' type="button" value="发送到群组" onclick="sendGroup(this.form.message.value)">
+    <input class='btn' type="button" value="发送图片给自己" onclick="sendPhotoToMe()">
+    <input class="btn" style="width: 100%" type="file" id="file" value="图片">
 </form>
 <br>
 <br>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 </body>
 </html>

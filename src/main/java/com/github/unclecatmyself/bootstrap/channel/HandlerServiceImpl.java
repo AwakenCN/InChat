@@ -170,6 +170,19 @@ public class HandlerServiceImpl extends HandlerService {
         }
     }
 
+    @Override
+    public void sendPhotoToMe(Channel channel, Map<String, Object> maps) {
+        Gson gson = new Gson();
+        System.out.println(maps.get(Constans.VALUE));
+        channel.writeAndFlush(new TextWebSocketFrame(
+                gson.toJson(inChatBackMapService.sendMe((String) maps.get(Constans.VALUE)))));
+        try {
+            dataAsynchronousTask.writeData(maps);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private Boolean check(Channel channel, Map<String, Object> maps){
         Gson gson = new Gson();
         String token = (String) maps.get(Constans.TOKEN);

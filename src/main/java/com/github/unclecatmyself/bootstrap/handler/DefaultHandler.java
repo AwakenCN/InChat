@@ -15,6 +15,7 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.*;
+import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import org.slf4j.Logger;
@@ -40,8 +41,16 @@ public class DefaultHandler extends Handler {
 
     @Override
     protected void webdoMessage(ChannelHandlerContext ctx, WebSocketFrame msg) {
-        //实现图片处理
-
+        Channel channel = ctx.channel();
+        HandlerService httpHandlerService;
+        if (handlerApi instanceof HandlerService){
+            httpHandlerService = (HandlerService)handlerApi;
+        }else {
+            throw new NoFindHandlerException(NotInChatConstant.NOT_HANDLER);
+        }
+        if (msg instanceof BinaryWebSocketFrame){
+            //TODO 实现图片处理
+        }
     }
 
     @Override
@@ -119,6 +128,12 @@ public class DefaultHandler extends Handler {
                 log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDGROUP);
                 handlerService.verify(channel,maps);
                 handlerService.sendGroupText(channel,maps);
+                break;
+            //发送图片，发送给自己
+            case Constans.SENDPHOTOTOME:
+                log.info("图片到个人");
+                handlerService.verify(channel,maps);
+                handlerService.sendPhotoToMe(channel,maps);
                 break;
             default:
                 break;
