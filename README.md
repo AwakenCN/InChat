@@ -86,10 +86,11 @@ https://github.com/UncleCatMySelf/SBToNettyChat/issues
 
 [!Noseparte说: 开源项目InChat贡献记](https://www.imooc.com/article/272573)
 
-## 赞助
+## 公众号：Java猫说
 
-打赏时请记得备注上你的github账号或者其他链接，谢谢支持！
+**学习交流群：728698035**
 
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/%E4%BB%98%E6%AC%BE.png)
-![Image text](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/%E6%94%AF%E4%BB%98%E5%AE%9D.png)
+> 现架构设计（码农）兼创业技术顾问，不羁平庸，热爱开源，杂谈程序人生与不定期干货。
+
+![Image Text](https://user-gold-cdn.xitu.io/2018/12/28/167f41f1a5729856?w=344&h=344&f=jpeg&s=8231)
 
