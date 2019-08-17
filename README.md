@@ -61,8 +61,14 @@
 ## 教程
 
 ### [Netty入门与源码讲解](doc/study/mulu.md)
-* [项目设计思路](doc/design_cn.md)
 
+## 官方案例
+
+- 
+
+## 项目相关
+
+> * [项目设计思路](doc/design_cn.md)
 > * [登录模块详细设计](doc/detail/Login-cn.md)
 > * [登录模块整改版V0.1](doc/detail/login_rect.md)
 
