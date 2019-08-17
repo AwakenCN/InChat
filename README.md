@@ -13,7 +13,7 @@
 
 ## 申明
 
-本项目入驻**[AwakenCN](https://github.com/AwakenCN)**开源组织，后续将继续更新调整，部分API后续会更改，感谢每一位朋友的支持与关注。
+本项目入驻[**AwakenCN**](https://github.com/AwakenCN)开源组织，后续将继续更新调整，部分API后续会更改，感谢每一位朋友的支持与关注。
 
 ## 简介
 
