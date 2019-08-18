@@ -27,6 +27,7 @@ public final class EchoServer {
     public static void main(String[] args) throws Exception {
         final SslContext sslCtx;
         if (SSL){
+            //SelfSignedCertificate:生成临时自签名证书以进行测试
             SelfSignedCertificate ssc = new SelfSignedCertificate();
             sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey()).build();
         }else{
@@ -51,8 +52,7 @@ public final class EchoServer {
                             }
                             p.addLast(serverHandler);
                         }
-                    })
-            ;
+                    });
 
             ChannelFuture f = b.bind(PORT).sync();
 

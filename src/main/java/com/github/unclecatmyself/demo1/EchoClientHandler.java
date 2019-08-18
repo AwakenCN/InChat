@@ -17,6 +17,8 @@ public class EchoClientHandler extends ChannelInboundHandlerAdapter {
     private final ByteBuf firstMessage;
 
     public EchoClientHandler(){
+        //获取EchoClient的SIZE
+        //Unpooled:ByteBuf通过分配新空间或通过包装或复制现有字节数组，字节缓冲区和字符串来创建新的
         firstMessage = Unpooled.buffer(EchoClient.SIZE);
         for (int i = 0; i < firstMessage.capacity(); i++){
             firstMessage.writeByte((byte)i);
