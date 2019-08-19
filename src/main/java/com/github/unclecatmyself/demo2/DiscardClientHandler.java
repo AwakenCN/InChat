@@ -31,6 +31,7 @@ public class DiscardClientHandler extends SimpleChannelInboundHandler<Object> {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        //引用计数为0，释放
         content.release();
     }
 
@@ -46,8 +47,6 @@ public class DiscardClientHandler extends SimpleChannelInboundHandler<Object> {
         // 服务器应该不发送任何内容，但如果它发送什么，丢弃它。
     }
 
-    long counter;
-
     // 生成数据
     private void generateTraffic(){
         // 将出站缓冲区刷新到套接字
@@ -57,6 +56,7 @@ public class DiscardClientHandler extends SimpleChannelInboundHandler<Object> {
 
     // 数据触发
     private final ChannelFutureListener trafficGenerator = new ChannelFutureListener() {
+        //完成操作后的方法调用，即只要成功无限调用generateTraffic()
         @Override
         public void operationComplete(ChannelFuture channelFuture) throws Exception {
             if (channelFuture.isSuccess()){
