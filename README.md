@@ -50,29 +50,27 @@
 </dependency>
 ```
 
-## 里程碑
+### 里程碑
 
 * [InChat项目里程碑-历史版本](doc/goal/goal.md)
 
-## 项目日志
+### 项目日志
 
 * [项目研发日志更新](doc/Project-Log-cn.md)
 
-## 教程
+### 教程
 
-### [Netty入门与源码讲解](doc/study/mulu.md)
+*  [Netty入门与源码讲解](doc/study/mulu.md)
+*  [官方案例](https://github.com/AwakenCN/InChat/tree/official-demo) 
 
-## 官方案例
 
-- 
-
-## 项目相关
+### 项目相关
 
 > * [项目设计思路](doc/design_cn.md)
 > * [登录模块详细设计](doc/detail/Login-cn.md)
 > * [登录模块整改版V0.1](doc/detail/login_rect.md)
 
-## 相关资料（欢迎贡献）
+### 相关资料（欢迎贡献）
 
 * [QQ群建议贡献](doc/advice/advice.md)
 
