@@ -13,11 +13,14 @@ import com.github.unclecatmyself.common.base.HandlerService;
 import com.github.unclecatmyself.common.bean.SendInChat;
 import com.github.unclecatmyself.common.bean.vo.SendServerVO;
 import com.github.unclecatmyself.common.constant.Constans;
+import com.github.unclecatmyself.task.TextData;
 import com.google.gson.Gson;
 import com.github.unclecatmyself.bootstrap.channel.ws.WsChannelService;
 import com.github.unclecatmyself.bootstrap.verify.InChatVerifyService;
 import com.github.unclecatmyself.task.DataAsynchronousTask;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.handler.codec.http.FullHttpMessage;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.util.CharsetUtil;
@@ -39,11 +42,14 @@ public class HandlerServiceImpl extends HandlerService {
 
     private final WsChannelService websocketChannelService = new WebSocketChannelService();
 
-    private final DataAsynchronousTask dataAsynchronousTask;
+    private DataAsynchronousTask dataAsynchronousTask;
 
-    public HandlerServiceImpl(DataAsynchronousTask dataAsynchronousTask,InChatVerifyService inChatVerifyService) {
+    private TextData textData;
+
+    public HandlerServiceImpl(DataAsynchronousTask dataAsynchronousTask,InChatVerifyService inChatVerifyService,TextData textData) {
         this.dataAsynchronousTask = dataAsynchronousTask;
         this.inChatVerifyService = inChatVerifyService;
+        this.textData = textData;
     }
 
 
@@ -86,12 +92,25 @@ public class HandlerServiceImpl extends HandlerService {
     public void sendMeText(Channel channel, Map<String,Object> maps) {
         Gson gson = new Gson();
         channel.writeAndFlush(new TextWebSocketFrame(
-                gson.toJson(inChatBackMapService.sendMe((String) maps.get(Constans.VALUE)))));
-        try {
-            dataAsynchronousTask.writeData(maps);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+                gson.toJson(inChatBackMapService.sendMe((String) maps.get(Constans.VALUE))))).addListener(
+                new ChannelFutureListener() {
+                    @Override
+                    public void operationComplete(ChannelFuture future) throws Exception {
+                        if (future.isSuccess()){
+                            dataAsynchronousTask.writeData(maps);
+                            textData.writeData(maps);
+                        } else {
+                            future.cause().printStackTrace();
+                            future.channel().close();
+                        }
+                    }
+                }
+        );
+//        try {
+//            dataAsynchronousTask.writeData(maps);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
