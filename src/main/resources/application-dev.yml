@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.192.133:3306/inchat
+    username: root
+    password: password
+  jpa:
+    show-sql: true

@@ -10,6 +10,7 @@ import com.github.unclecatmyself.common.constant.NotInChatConstant;
 import com.github.unclecatmyself.common.ssl.SecureSocketSslContextFactory;
 import com.github.unclecatmyself.common.utils.SslUtil;
 import com.github.unclecatmyself.task.DataAsynchronousTask;
+import com.github.unclecatmyself.users.UserTextData;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
@@ -60,7 +61,7 @@ public abstract class AbstractBootstrapServer implements BootstrapServer {
         }
         intProtocolHandler(channelPipeline,serverBean);
         channelPipeline.addLast(new IdleStateHandler(serverBean.getHeart(),0,0));
-        channelPipeline.addLast(new DefaultHandler(new HandlerServiceImpl(new DataAsynchronousTask(ConfigFactory.inChatToDataBaseService),ConfigFactory.inChatVerifyService)));
+        channelPipeline.addLast(new DefaultHandler(new HandlerServiceImpl(new DataAsynchronousTask(ConfigFactory.inChatToDataBaseService),ConfigFactory.inChatVerifyService,ConfigFactory.textData)));
     }
 
     private  void intProtocolHandler(ChannelPipeline channelPipeline,InitNetty serverBean){
