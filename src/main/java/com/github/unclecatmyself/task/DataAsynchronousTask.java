@@ -12,6 +12,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
 /**
+ * TODO 会发生线程异常
  * 数据异步转移方法
  * Created by MySelf on 2018/12/3.
  */

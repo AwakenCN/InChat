@@ -36,7 +36,7 @@ public class MessageChangeUtil {
             message.setOnline((String)maps.get(Constans.ON_ONLINE));
         }
         if (maps.containsKey(Constans.ONLINE_GROUP)){
-            message.setOnlineGroup((ArrayList)maps.get(Constans.ONLINE_GROUP));
+            message.setOnlineGroup((String)maps.get(Constans.ONLINE_GROUP));
         }
         return message;
     }

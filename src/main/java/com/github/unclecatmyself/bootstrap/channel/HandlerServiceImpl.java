@@ -39,12 +39,9 @@ public class HandlerServiceImpl extends HandlerService {
 
     private final WsChannelService websocketChannelService = new WebSocketChannelService();
 
-    private DataAsynchronousTask dataAsynchronousTask;
-
     private ListenAsynData listenAsynData;
 
-    public HandlerServiceImpl(DataAsynchronousTask dataAsynchronousTask,InChatVerifyService inChatVerifyService,ListenAsynData listenAsynData) {
-        this.dataAsynchronousTask = dataAsynchronousTask;
+    public HandlerServiceImpl(InChatVerifyService inChatVerifyService,ListenAsynData listenAsynData) {
         this.inChatVerifyService = inChatVerifyService;
         this.listenAsynData = listenAsynData;
     }
@@ -89,20 +86,8 @@ public class HandlerServiceImpl extends HandlerService {
     public void sendMeText(Channel channel, Map<String,Object> maps) {
         Gson gson = new Gson();
         channel.writeAndFlush(new TextWebSocketFrame(
-                gson.toJson(inChatBackMapService.sendMe((String) maps.get(Constans.VALUE))))).addListener(
-                new ChannelFutureListener() {
-                    @Override
-                    public void operationComplete(ChannelFuture future) throws Exception {
-                        if (future.isSuccess()){
-                            //dataAsynchronousTask.writeData(maps);
-                            listenAsynData.asynData(maps);
-                        } else {
-                            future.cause().printStackTrace();
-                            future.channel().close();
-                        }
-                    }
-                }
-        );
+                gson.toJson(inChatBackMapService.sendMe((String) maps.get(Constans.VALUE)))));
+        listenAsynData.asynData(maps);
     }
 
     @Override
@@ -127,11 +112,7 @@ public class HandlerServiceImpl extends HandlerService {
         }else {
             maps.put(Constans.ON_ONLINE,otherOne);
         }
-        try {
-            dataAsynchronousTask.writeData(maps);
-        } catch (Exception e) {
-            return;
-        }
+        listenAsynData.asynData(maps);
     }
 
     @Override
@@ -140,7 +121,7 @@ public class HandlerServiceImpl extends HandlerService {
         String groupId = (String) maps.get(Constans.GROUPID);
         String token = (String) maps.get(Constans.TOKEN);
         String value = (String) maps.get(Constans.VALUE);
-        List<String> no_online = new ArrayList<>();
+        String no_online = "";
         JSONArray array = inChatVerifyService.getArrayByGroupId(groupId);
         channel.writeAndFlush(new TextWebSocketFrame(
                 gson.toJson(inChatBackMapService.sendGroup(token,value,groupId))));
@@ -156,16 +137,12 @@ public class HandlerServiceImpl extends HandlerService {
                                 gson.toJson(inChatBackMapService.sendGroup(token,value,groupId))));
                     }
                 }else{
-                    no_online.add((String) item);
+                    no_online.concat((String) item);
                 }
             }
         }
         maps.put(Constans.ONLINE_GROUP,no_online);
-        try {
-            dataAsynchronousTask.writeData(maps);
-        } catch (Exception e) {
-            return;
-        }
+        listenAsynData.asynData(maps);
     }
 
     @Override
@@ -187,11 +164,7 @@ public class HandlerServiceImpl extends HandlerService {
         System.out.println(maps.get(Constans.VALUE));
         channel.writeAndFlush(new TextWebSocketFrame(
                 gson.toJson(inChatBackMapService.sendMe((String) maps.get(Constans.VALUE)))));
-        try {
-            dataAsynchronousTask.writeData(maps);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        listenAsynData.asynData(maps);
     }
 
     private Boolean check(Channel channel, Map<String, Object> maps){

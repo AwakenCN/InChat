@@ -5,9 +5,7 @@ import com.github.unclecatmyself.common.utils.MessageChangeUtil;
 import com.github.unclecatmyself.common.utils.SpringContextUtils;
 import com.github.unclecatmyself.task.ListenAsynData;
 import com.github.unclecatmyself.users.pojo.Message;
-import com.github.unclecatmyself.users.pojo.Test;
 import com.github.unclecatmyself.users.repository.MessageRepository;
-import com.github.unclecatmyself.users.repository.TestRepository;
 
 import java.util.Map;
 
@@ -27,7 +25,7 @@ public class UserTextData extends ListenAsynData {
         message.setOne(inChatMessage.getOne());
         message.setGroudId(inChatMessage.getGroudId());
         message.setOnline(inChatMessage.getOnline());
-        message.setOnlineGroup("null");
+        message.setOnlineGroup(inChatMessage.getOnlineGroup());
         message.setToken(inChatMessage.getToken());
         message.setType(inChatMessage.getType());
         message.setValue(inChatMessage.getValue());

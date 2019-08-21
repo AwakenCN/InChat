@@ -18,16 +18,13 @@ public class ConfigFactory {
     /** 用户校验伪接口 */
     public static InChatVerifyService inChatVerifyService;
 
-    /** 用户获取数据伪接口 */
-    public static InChatToDataBaseService inChatToDataBaseService;
-
     /** 系统信息枚举服务接口 */
     public static FromServerService fromServerService;
 
     /** InChat项目配置 */
     public static InitNetty initNetty;
 
-    /** 监听异步数据伪接口 */
+    /** 用户监听异步数据伪接口 */
     public static ListenAsynData listenAsynData;
 
 }

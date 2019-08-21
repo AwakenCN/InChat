@@ -28,16 +28,16 @@ public class InChatMessage {
     private String online;
 
     /** 是否在线-群聊 */
-    private ArrayList onlineGroup;
+    private String onlineGroup;
 
     /** 消息接收人标识 */
     private String one;
 
-    public ArrayList getOnlineGroup() {
+    public String getOnlineGroup() {
         return onlineGroup;
     }
 
-    public void setOnlineGroup(ArrayList onlineGroup) {
+    public void setOnlineGroup(String onlineGroup) {
         this.onlineGroup = onlineGroup;
     }
 

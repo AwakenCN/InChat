@@ -16,7 +16,6 @@ public class application {
         SpringApplication.run(application.class, args);
         ConfigFactory.initNetty = new MyInit();
         ConfigFactory.inChatVerifyService = new VerifyServiceImpl();
-        ConfigFactory.inChatToDataBaseService = new DataBaseServiceImpl();
         ConfigFactory.fromServerService = FromServerServiceImpl.TYPE2;
         ConfigFactory.listenAsynData = new UserTextData();
 //        ConfigFactory.RedisIP = "192.168.0.101";

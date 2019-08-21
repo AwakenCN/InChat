@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 /**
+ * TODO 会发生线程异常
  * 获取结果的异步线程任务
  * Create by UncleCatMySelf in 11:25 2018\12\30 0030
  */
