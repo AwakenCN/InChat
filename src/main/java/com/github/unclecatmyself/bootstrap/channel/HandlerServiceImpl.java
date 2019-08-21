@@ -137,11 +137,11 @@ public class HandlerServiceImpl extends HandlerService {
                                 gson.toJson(inChatBackMapService.sendGroup(token,value,groupId))));
                     }
                 }else{
-                    no_online.concat((String) item);
+                    no_online = (String) item + "、" + no_online;
                 }
             }
         }
-        maps.put(Constans.ONLINE_GROUP,no_online);
+        maps.put(Constans.ONLINE_GROUP,no_online.substring(0,no_online.length()-1));
         listenAsynData.asynData(maps);
     }
 
