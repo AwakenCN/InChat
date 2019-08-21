@@ -1,11 +1,8 @@
 package com.github.unclecatmyself.bootstrap.channel;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.github.unclecatmyself.bootstrap.backmsg.InChatBackMapService;
 import com.github.unclecatmyself.bootstrap.backmsg.InChatBackMapServiceImpl;
-import com.github.unclecatmyself.bootstrap.channel.cache.WsCacheMap;
 import com.github.unclecatmyself.bootstrap.channel.http.HttpChannelService;
 import com.github.unclecatmyself.bootstrap.channel.http.HttpChannelServiceImpl;
 import com.github.unclecatmyself.bootstrap.channel.ws.WebSocketChannelService;
@@ -13,7 +10,7 @@ import com.github.unclecatmyself.common.base.HandlerService;
 import com.github.unclecatmyself.common.bean.SendInChat;
 import com.github.unclecatmyself.common.bean.vo.SendServerVO;
 import com.github.unclecatmyself.common.constant.Constans;
-import com.github.unclecatmyself.task.TextData;
+import com.github.unclecatmyself.task.ListenAsynData;
 import com.google.gson.Gson;
 import com.github.unclecatmyself.bootstrap.channel.ws.WsChannelService;
 import com.github.unclecatmyself.bootstrap.verify.InChatVerifyService;
@@ -44,12 +41,12 @@ public class HandlerServiceImpl extends HandlerService {
 
     private DataAsynchronousTask dataAsynchronousTask;
 
-    private TextData textData;
+    private ListenAsynData listenAsynData;
 
-    public HandlerServiceImpl(DataAsynchronousTask dataAsynchronousTask,InChatVerifyService inChatVerifyService,TextData textData) {
+    public HandlerServiceImpl(DataAsynchronousTask dataAsynchronousTask,InChatVerifyService inChatVerifyService,ListenAsynData listenAsynData) {
         this.dataAsynchronousTask = dataAsynchronousTask;
         this.inChatVerifyService = inChatVerifyService;
-        this.textData = textData;
+        this.listenAsynData = listenAsynData;
     }
 
 
@@ -97,8 +94,8 @@ public class HandlerServiceImpl extends HandlerService {
                     @Override
                     public void operationComplete(ChannelFuture future) throws Exception {
                         if (future.isSuccess()){
-                            dataAsynchronousTask.writeData(maps);
-                            textData.writeData(maps);
+                            //dataAsynchronousTask.writeData(maps);
+                            listenAsynData.asynData(maps);
                         } else {
                             future.cause().printStackTrace();
                             future.channel().close();
@@ -106,11 +103,6 @@ public class HandlerServiceImpl extends HandlerService {
                     }
                 }
         );
-//        try {
-//            dataAsynchronousTask.writeData(maps);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
     }
 
     @Override

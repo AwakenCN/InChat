@@ -18,7 +18,7 @@ public class application {
         ConfigFactory.inChatVerifyService = new VerifyServiceImpl();
         ConfigFactory.inChatToDataBaseService = new DataBaseServiceImpl();
         ConfigFactory.fromServerService = FromServerServiceImpl.TYPE2;
-        ConfigFactory.textData = new UserTextData();
+        ConfigFactory.listenAsynData = new UserTextData();
 //        ConfigFactory.RedisIP = "192.168.0.101";
 //        ConfigFactory.RedisIP = "192.168.192.132";
 
