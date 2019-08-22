@@ -6,3 +6,5 @@ spring:
     password: password
   jpa:
     show-sql: true
+server:
+  port: 8010

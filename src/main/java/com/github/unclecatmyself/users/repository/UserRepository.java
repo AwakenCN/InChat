@@ -10,8 +10,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Date 2019/8/21 22:37
  * @Version 1.0
  **/
-public interface UserRepository extends JpaRepository<User,Integer> {
-
-    User findByUsername(String username);
-
-}
+//public interface UserRepository extends JpaRepository<User,Integer> {
+//
+//    User findByUsername(String username);
+//
+//}

@@ -9,7 +9,7 @@ public class MyInit extends InitNetty {
 
     @Override
     public int getWebport() {
-        return 8090;
+        return 8070;
     }
 
     @Override
