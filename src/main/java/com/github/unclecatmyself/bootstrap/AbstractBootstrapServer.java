@@ -9,8 +9,6 @@ import com.github.unclecatmyself.common.constant.BootstrapConstant;
 import com.github.unclecatmyself.common.constant.NotInChatConstant;
 import com.github.unclecatmyself.common.ssl.SecureSocketSslContextFactory;
 import com.github.unclecatmyself.common.utils.SslUtil;
-import com.github.unclecatmyself.task.DataAsynchronousTask;
-import com.github.unclecatmyself.users.UserTextData;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
