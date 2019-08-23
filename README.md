@@ -51,47 +51,6 @@
 </dependency>
 ```
 
-### 项目日志
-
-* [项目研发日志更新](doc/Project-Log-cn.md)
-
-### 教程
-
-*  [Netty入门与源码讲解](doc/study/mulu.md)
-*  [官方案例](https://github.com/AwakenCN/InChat/tree/official-demo) 
-
-
-### 项目相关
-
-> * [项目设计思路](doc/design_cn.md)
-> * [登录模块详细设计](doc/detail/Login-cn.md)
-> * [登录模块整改版V0.1](doc/detail/login_rect.md)
-
-### 相关资料（欢迎贡献）
-
-* [QQ群建议贡献](doc/advice/advice.md)
-
-## 效果展示
-
-![加密](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchatGIF/%E5%8A%A0%E5%AF%86.gif)
-![分布式](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchatGIF/%E5%88%86%E5%B8%83%E5%BC%8F.gif)
-![demo](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_demo.gif)
-![log](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_log.gif)
-![postman](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_postman.gif)
-![send](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_send.gif)
-
-## 下载地址
-
-下载地址：https://github.com/UncleCatMySelf/SBToNettyChat/releases
-
-## 下载 & 问题
-
-https://github.com/UncleCatMySelf/SBToNettyChat/issues
-
-## 关于贡献
-
-[!Noseparte说: 开源项目InChat贡献记](https://www.imooc.com/article/272573)
-
 ## InChat项目里程碑
 
 > 项目研发的开放目标，以Maven包为基本的发布（兼对应版本的文档输出）设定为每个里程碑的产出。
@@ -182,6 +141,47 @@ https://github.com/UncleCatMySelf/SBToNettyChat/issues
     <version>1.1.3</version>
 </dependency>
 ```
+
+### 项目日志
+
+* [项目研发日志更新](doc/Project-Log-cn.md)
+
+### 教程
+
+*  [Netty入门与源码讲解](doc/study/mulu.md)
+*  [官方案例](https://github.com/AwakenCN/InChat/tree/official-demo) 
+
+
+### 项目相关
+
+> * [项目设计思路](doc/design_cn.md)
+> * [登录模块详细设计](doc/detail/Login-cn.md)
+> * [登录模块整改版V0.1](doc/detail/login_rect.md)
+
+### 相关资料（欢迎贡献）
+
+* [QQ群建议贡献](doc/advice/advice.md)
+
+## 效果展示
+
+![加密](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchatGIF/%E5%8A%A0%E5%AF%86.gif)
+![分布式](https://raw.githubusercontent.com/UncleCatMySelf/img-myself/master/img/inchatGIF/%E5%88%86%E5%B8%83%E5%BC%8F.gif)
+![demo](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_demo.gif)
+![log](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_log.gif)
+![postman](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_postman.gif)
+![send](https://github.com/UncleCatMySelf/img-myself/blob/master/img/inchatGIF/inchat_send.gif)
+
+## 下载地址
+
+下载地址：https://github.com/UncleCatMySelf/SBToNettyChat/releases
+
+## 下载 & 问题
+
+https://github.com/UncleCatMySelf/SBToNettyChat/issues
+
+## 关于贡献
+
+[!Noseparte说: 开源项目InChat贡献记](https://www.imooc.com/article/272573)
 
 ## 公众号：Java猫说
 
