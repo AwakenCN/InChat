@@ -31,7 +31,7 @@ import java.util.Map;
  */
 public class HandlerServiceImpl extends HandlerService {
 
-    private final InChatVerifyService inChatVerifyService;
+    private InChatVerifyService inChatVerifyService;
 
     private final InChatBackMapService inChatBackMapService = new InChatBackMapServiceImpl();
 

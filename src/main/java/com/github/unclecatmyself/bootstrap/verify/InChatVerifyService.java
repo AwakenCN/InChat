@@ -6,10 +6,10 @@ import com.alibaba.fastjson.JSONArray;
  * 用户校验层
  * Created by MySelf on 2018/11/22.
  */
-public interface InChatVerifyService {
+public abstract class InChatVerifyService {
 
-    boolean verifyToken(String token);
+    public abstract boolean verifyToken(String token);
 
-    JSONArray getArrayByGroupId(String groupId);
+    public abstract JSONArray getArrayByGroupId(String groupId);
 
 }

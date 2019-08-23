@@ -14,14 +14,14 @@ public class application {
 
     public static void main(String[] args) {
         SpringApplication.run(application.class, args);
-        ConfigFactory.initNetty = new MyInit();
-        ConfigFactory.inChatVerifyService = new VerifyServiceImpl();
-        ConfigFactory.fromServerService = FromServerServiceImpl.TYPE2;
-        ConfigFactory.listenAsynData = new UserTextData();
-//        ConfigFactory.RedisIP = "192.168.0.101";
-//        ConfigFactory.RedisIP = "192.168.192.132";
-
-        InitServer.open();
+//        ConfigFactory.initNetty = new MyInit();
+//        ConfigFactory.inChatVerifyService = new VerifyServiceImpl();
+//        ConfigFactory.fromServerService = FromServerServiceImpl.TYPE2;
+//        ConfigFactory.listenAsynData = new UserTextData();
+////        ConfigFactory.RedisIP = "192.168.0.101";
+////        ConfigFactory.RedisIP = "192.168.192.132";
+//
+//        InitServer.open();
     }
 
 }

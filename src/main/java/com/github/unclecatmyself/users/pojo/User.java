@@ -15,14 +15,14 @@ import javax.persistence.Id;
  * @Date 2019/8/21 22:33
  * @Version 1.0
  **/
-//@Entity
-//@Data
-//@DynamicUpdate
+@Entity
+@Data
+@DynamicUpdate
 public class User {
 
     /**id*/
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String username;
