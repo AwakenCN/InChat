@@ -19,6 +19,7 @@
 
 - [1、Echo简单通讯](doc/echo.md)   [地址](https://github.com/AwakenCN/InChat/tree/official-demo/src/main/java/com/github/unclecatmyself/demo1)
 - [2、异步无限发送](doc/discard.md) [地址](https://github.com/AwakenCN/InChat/tree/official-demo/src/main/java/com/github/unclecatmyself/demo2)
+- [3、自动重连机制](doc/time.md) [地址](https://github.com/AwakenCN/InChat/tree/official-demo/src/main/java/com/github/unclecatmyself/demo3)
 
 ## 公众号：Java猫说
 
