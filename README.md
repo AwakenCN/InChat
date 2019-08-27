@@ -22,11 +22,7 @@
 
 一个轻量级、高效、分布式的异步通信框架, 支持聊天和物联网, 您可以使用它来快速构建具有后台的聊天服务器, 并快速自定义自己的通信 api, 包括具有不同的通讯可以支持的协议。
 
-**欢迎参与QQ群交流与提供建议、业务场景、需求功能等**
-
-**[代码贡献指南](http://www.imooc.com/article/272573)**
-
-> 目前项目更新内容：补充文案、设计稿说明、使用说明等
+## [项目源码学习](doc/javadoc/javadoc.md)
 
 ## Maven版本
 
@@ -53,21 +49,17 @@
 
 **[历史版本说明](doc/go.md)**
 
-### 项目日志
-
-* [项目研发日志更新](doc/Project-Log-cn.md)
-
 ### 教程
 
 *  [Netty入门与源码讲解](doc/study/mulu.md)
 *  [官方案例](https://github.com/AwakenCN/InChat/tree/official-demo) 
-
 
 ### 项目相关
 
 > * [项目设计思路](doc/design_cn.md)
 > * [登录模块详细设计](doc/detail/Login-cn.md)
 > * [登录模块整改版V0.1](doc/detail/login_rect.md)
+> * [项目研发日志更新](doc/Project-Log-cn.md)
 
 ### 相关资料（欢迎贡献）
 
