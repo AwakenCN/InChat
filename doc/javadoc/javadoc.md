@@ -17,8 +17,8 @@
 ### utils
 
 - [SslUtil](common/util/SslUtil.md)
-- [SslUtil](common/util/SnowflakeIdWorker.md)
-- [SslUtil](common/util/TokenGenerator.md)
+- [SnowflakeIdWorker](common/util/SnowflakeIdWorker.md)
+- [TokenGenerator](common/util/TokenGenerator.md)
 
 ## task
 
