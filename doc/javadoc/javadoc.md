@@ -16,6 +16,7 @@
 
 ### utils
 
+- [HttpUtil](common/util/HttpUtil.md)
 - [SslUtil](common/util/SslUtil.md)
 - [SnowflakeIdWorker](common/util/SnowflakeIdWorker.md)
 - [TokenGenerator](common/util/TokenGenerator.md)
