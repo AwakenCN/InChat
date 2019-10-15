@@ -2,6 +2,7 @@ package com.github.unclecatmyself.bootstrap.channel;
 
 import com.alibaba.fastjson.JSONArray;
 import com.github.unclecatmyself.bootstrap.channel.protocol.Response;
+import com.github.unclecatmyself.common.constant.StateConstant;
 import com.github.unclecatmyself.service.InChatResponse;
 import com.github.unclecatmyself.bootstrap.channel.protocol.HttpChannel;
 import com.github.unclecatmyself.bootstrap.channel.http.HttpChannelImpl;
@@ -10,7 +11,7 @@ import com.github.unclecatmyself.service.HandlerService;
 import com.github.unclecatmyself.common.bean.SendInChat;
 import com.github.unclecatmyself.common.bean.vo.SendServerVO;
 import com.github.unclecatmyself.common.constant.Constants;
-import com.github.unclecatmyself.task.AsyncDataListener;
+import com.github.unclecatmyself.task.AsyncListener;
 import com.google.gson.Gson;
 import com.github.unclecatmyself.bootstrap.channel.protocol.SocketChannel;
 import com.github.unclecatmyself.bootstrap.channel.protocol.InChatVerifyService;
@@ -34,11 +35,11 @@ public class AbstractHandlerService extends HandlerService {
 
     private final SocketChannel webSocketChannel = new WebSocketChannel();
 
-    private AsyncDataListener asyncDataListener;
+    private AsyncListener asyncListener;
 
-    public AbstractHandlerService(InChatVerifyService inChatVerifyService, AsyncDataListener asyncDataListener) {
+    public AbstractHandlerService(InChatVerifyService inChatVerifyService, AsyncListener asyncListener) {
         this.inChatVerifyService = inChatVerifyService;
-        this.asyncDataListener = asyncDataListener;
+        this.asyncListener = asyncListener;
     }
 
 
@@ -82,7 +83,8 @@ public class AbstractHandlerService extends HandlerService {
         Gson gson = new Gson();
         channel.writeAndFlush(new TextWebSocketFrame(
                 gson.toJson(response.sendMe((String) maps.get(Constants.VALUE)))));
-        asyncDataListener.asyncData(maps);
+        maps.put(Constants.ONLINE,Constants.TRUE);
+        asyncListener.asyncData(maps);
     }
 
     @Override
@@ -103,11 +105,12 @@ public class AbstractHandlerService extends HandlerService {
             }else{
                 other.writeAndFlush(new TextWebSocketFrame(
                         gson.toJson(response.getMessage(token,value))));
+                maps.put(Constants.ONLINE,Constants.TRUE);
             }
         }else {
-            maps.put(Constants.ON_ONLINE,otherOne);
+            maps.put(Constants.ONLINE,Constants.FALSE);
         }
-        asyncDataListener.asyncData(maps);
+        asyncListener.asyncData(maps);
     }
 
     @Override
@@ -137,7 +140,7 @@ public class AbstractHandlerService extends HandlerService {
             }
         }
         maps.put(Constants.ONLINE_GROUP,no_online.substring(0,no_online.length()-1));
-        asyncDataListener.asyncData(maps);
+        asyncListener.asyncData(maps);
     }
 
     @Override
@@ -159,7 +162,7 @@ public class AbstractHandlerService extends HandlerService {
         System.out.println(maps.get(Constants.VALUE));
         channel.writeAndFlush(new TextWebSocketFrame(
                 gson.toJson(response.sendMe((String) maps.get(Constants.VALUE)))));
-        asyncDataListener.asyncData(maps);
+        asyncListener.asyncData(maps);
     }
 
     private Boolean check(Channel channel, Map<String, Object> maps){
@@ -168,6 +171,7 @@ public class AbstractHandlerService extends HandlerService {
         if (inChatVerifyService.verifyToken(token)){
             channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(response.loginSuccess())));
             webSocketChannel.loginWsSuccess(channel,token);
+            asyncListener.asybcState(StateConstant.ONLINE,token);
             return true;
         }
         channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(response.loginError())));
@@ -177,6 +181,7 @@ public class AbstractHandlerService extends HandlerService {
 
     @Override
     public void close(Channel channel) {
-        webSocketChannel.close(channel);
+        String token = webSocketChannel.close(channel);
+        asyncListener.asybcState(StateConstant.LINE,token);
     }
 }

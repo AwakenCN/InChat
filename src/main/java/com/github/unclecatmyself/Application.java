@@ -16,7 +16,7 @@ public class Application {
     public static void main(String[] args) {
         ConfigManager.initNetty = new InChatInitializer();
         ConfigManager.fromServerService = FromServerServiceImpl.TYPE2;
-        ConfigManager.asyncDataListener = new UserAsyncDataListener();
+        ConfigManager.asyncListener = new UserAsyncDataListener();
         ConfigManager.inChatVerifyService = new VerifyServiceImpl();
         InChatServer.open();
     }

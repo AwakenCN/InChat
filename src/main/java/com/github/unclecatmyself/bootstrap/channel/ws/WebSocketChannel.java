@@ -30,11 +30,12 @@ public class WebSocketChannel implements SocketChannel {
     }
 
     @Override
-    public void close(Channel channel) {
+    public String close(Channel channel) {
         String token = WebSocketCacheMap.getByAddress(channel.remoteAddress().toString());
         WebSocketCacheMap.deleteAd(channel.remoteAddress().toString());
         WebSocketCacheMap.deleteWs(token);
         channel.close();
+        return token;
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.github.unclecatmyself.auto;
 import com.github.unclecatmyself.bootstrap.channel.http.FromServerService;
 import com.github.unclecatmyself.bootstrap.channel.protocol.InChatVerifyService;
 import com.github.unclecatmyself.common.bean.InitNetty;
-import com.github.unclecatmyself.task.AsyncDataListener;
+import com.github.unclecatmyself.task.AsyncListener;
 
 /**
  * 默认配置工厂
@@ -24,6 +24,6 @@ public class ConfigManager {
     public static InitNetty initNetty;
 
     /** 用户监听异步数据伪接口 */
-    public static AsyncDataListener asyncDataListener;
+    public static AsyncListener asyncListener;
 
 }

@@ -35,7 +35,7 @@ public interface SocketChannel {
      * 删除链接与本地存储信息
      * @param channel {@link Channel} 链接实例
      */
-    void close(Channel channel);
+    String close(Channel channel);
 
     /**
      * 以服务端API调用向链接发送信息

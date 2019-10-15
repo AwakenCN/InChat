@@ -45,10 +45,13 @@ public abstract class InitNetty {
     /** 是否启动加密 */
     private boolean ssl = false;
 
+    /** 框架默认jks */
     private String jksFile = "inchat.jks";
 
+    /** 框架默认jks密码 */
     private String jksStorePassword = "123456";
 
+    /** 框架默认jks密码 */
     private String jksCertificatePassword = "123456";
 
     private Class<DefaultAbstractHandler> webSocketHandler = DefaultAbstractHandler.class;

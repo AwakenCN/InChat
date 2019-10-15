@@ -11,7 +11,7 @@ public class Constants {
 
     public static final String ONE = "one";
 
-    public static final String ON_ONLINE = "on_online";
+    public static final String ONLINE = "online";
 
     public static final String ONLINE_GROUP = "online_group";
 

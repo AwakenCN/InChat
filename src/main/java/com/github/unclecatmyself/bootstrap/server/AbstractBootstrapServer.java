@@ -57,7 +57,7 @@ public abstract class AbstractBootstrapServer implements BootstrapServer {
         }
         intProtocolHandler(channelPipeline,serverBean);
         channelPipeline.addLast(new IdleStateHandler(serverBean.getHeart(),0,0));
-        channelPipeline.addLast(new DefaultAbstractHandler(new AbstractHandlerService(ConfigManager.inChatVerifyService, ConfigManager.asyncDataListener)));
+        channelPipeline.addLast(new DefaultAbstractHandler(new AbstractHandlerService(ConfigManager.inChatVerifyService, ConfigManager.asyncListener)));
     }
 
     private  void intProtocolHandler(ChannelPipeline channelPipeline,InitNetty serverBean){

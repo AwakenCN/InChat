@@ -31,8 +31,8 @@ public class MessageConversionUtil {
         if (maps.containsKey(Constants.GROUP_ID)){
             message.setGroupId((String)maps.get(Constants.GROUP_ID));
         }
-        if (maps.containsKey(Constants.ON_ONLINE)){
-            message.setOnline((String)maps.get(Constants.ON_ONLINE));
+        if (maps.containsKey(Constants.ONLINE)){
+            message.setOnline((String)maps.get(Constants.ONLINE));
         }
         if (maps.containsKey(Constants.ONLINE_GROUP)){
             message.setOnlineGroup((String)maps.get(Constants.ONLINE_GROUP));
