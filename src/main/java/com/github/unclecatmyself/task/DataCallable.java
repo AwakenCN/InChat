@@ -1,7 +1,7 @@
 package com.github.unclecatmyself.task;
 
-import com.github.unclecatmyself.bootstrap.data.InChatToDataBaseService;
-import com.github.unclecatmyself.common.utils.MessageChangeUtil;
+import com.github.unclecatmyself.common.utils.MessageConversionUtil;
+import com.github.unclecatmyself.service.InChatDBManager;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -14,18 +14,18 @@ import java.util.concurrent.Callable;
 public class DataCallable implements Callable<Boolean>{
 
     /** 用户读数据接口伪实现 */
-    private final InChatToDataBaseService inChatToDataBaseService;
+    private final InChatDBManager inChatDBManager;
     /** 消息数据 */
     private final Map<String,Object> maps;
 
-    DataCallable(InChatToDataBaseService inChatToDataBaseService,Map<String,Object> maps) {
-        this.inChatToDataBaseService = inChatToDataBaseService;
+    DataCallable(InChatDBManager inChatToDataBaseService,Map<String,Object> maps) {
+        this.inChatDBManager = inChatToDataBaseService;
         this.maps = maps;
     }
 
     @Override
     public Boolean call() throws Exception {
-        inChatToDataBaseService.writeMessage(MessageChangeUtil.Change(maps));
+        inChatDBManager.writeMessage(MessageConversionUtil.convert(maps));
         return true;
     }
 }

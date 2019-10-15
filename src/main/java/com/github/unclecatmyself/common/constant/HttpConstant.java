@@ -9,23 +9,23 @@ public class HttpConstant {
 
     public static final String POST = "POST";
 
-    public static final String GETSIZE = "get_size";
+    public static final String GET_SIZE = "get_size";
 
-    public static final String GETLIST = "get_list";
+    public static final String GET_LIST = "get_list";
 
-    public static final String SENDINCHAT = "send_inchat";
+    public static final String SEND_IN_CHAT = "send_inChat";
 
-    public static final String SENDFROMSERVER = "send_from_server";
+    public static final String SEND_FROM_SERVER = "send_from_server";
 
-    public static final String NOTFINDURI = "not_find_uri";
+    public static final String NOT_FIND_URI = "not_find_uri";
 
-    public static final String URI_GETSIZE = "/get_size";
+    public static final String URI_GET_SIZE = "/uri_get_size";
 
-    public static final String URI_GETLIST = "/get_list";
+    public static final String URI_GET_LIST = "/uri_get_list";
 
-    public static final String URI_SENDINCHAT = "/send_inchat";
+    public static final String URI_SEND_IN_CHAT = "/uri_send_inChat";
 
-    public static final String URI_SENDFROMSERVER = "/send_from_server";
+    public static final String URI_SEND_FROM_SERVER = "/uri_send_from_server";
 
     public static final String CONTENT_TYPE = "Content-Type";
 

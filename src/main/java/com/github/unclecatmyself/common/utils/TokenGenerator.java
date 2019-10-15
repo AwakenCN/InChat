@@ -6,11 +6,11 @@ import java.util.Random;
 import java.util.regex.Pattern;
 
 /**
- * @author Noseparte
- * @date 2019/8/27 18:05
- * @Description
- *          <p>Token<p/>
- *          <p>生成器<p/>
+ * @Auther: Noseparte
+ * @Date: 2019/10/14 18:13
+ * @Description: 
+ * 
+ *          <p>Token 生成器</p>
  */
 public class TokenGenerator {
 

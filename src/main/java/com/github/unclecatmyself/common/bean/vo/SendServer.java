@@ -1,13 +1,13 @@
 package com.github.unclecatmyself.common.bean.vo;
 
-import com.github.unclecatmyself.common.constant.Constans;
+import com.github.unclecatmyself.common.constant.Constants;
 
 /**
  * Created by MySelf on 2019/1/3.
  */
 public class SendServer {
 
-    private String type = Constans.SERVER;
+    private String type = Constants.SERVER;
 
     private String value;
 

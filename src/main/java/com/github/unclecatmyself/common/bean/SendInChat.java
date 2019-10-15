@@ -1,7 +1,5 @@
 package com.github.unclecatmyself.common.bean;
 
-import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-
 import java.util.Map;
 
 /**

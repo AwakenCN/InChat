@@ -1,7 +1,7 @@
 package com.github.unclecatmyself.common.utils;
 
 import com.github.unclecatmyself.common.bean.vo.SendServerVO;
-import com.github.unclecatmyself.common.constant.Constans;
+import com.github.unclecatmyself.common.constant.Constants;
 import com.github.unclecatmyself.common.constant.HttpConstant;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpMethod;
@@ -21,16 +21,16 @@ public class HttpUtil {
         System.out.println(url);
         HttpMethod method = msg.method();
         String meName = method.name();
-        if (url.equals(HttpConstant.URI_GETSIZE) && meName.equals(HttpConstant.GET)){
-            return HttpConstant.GETSIZE;
-        }else if (url.equals(HttpConstant.URI_SENDFROMSERVER) && meName.equals(HttpConstant.POST)){
-            return HttpConstant.SENDFROMSERVER;
-        }else if (url.equals(HttpConstant.URI_GETLIST) && meName.equals(HttpConstant.GET)){
-            return HttpConstant.GETLIST;
-        }else if (url.equals(HttpConstant.URI_SENDINCHAT) && meName.equals(HttpConstant.POST)){
-            return HttpConstant.SENDINCHAT;
+        if (url.equals(HttpConstant.URI_GET_SIZE) && meName.equals(HttpConstant.GET)){
+            return HttpConstant.GET_SIZE;
+        }else if (url.equals(HttpConstant.URI_SEND_FROM_SERVER) && meName.equals(HttpConstant.POST)){
+            return HttpConstant.SEND_FROM_SERVER;
+        }else if (url.equals(HttpConstant.URI_GET_LIST) && meName.equals(HttpConstant.GET)){
+            return HttpConstant.GET_LIST;
+        }else if (url.equals(HttpConstant.URI_SEND_IN_CHAT) && meName.equals(HttpConstant.POST)){
+            return HttpConstant.SEND_IN_CHAT;
         }else {
-            return HttpConstant.NOTFINDURI;
+            return HttpConstant.NOT_FIND_URI;
         }
     }
 
@@ -43,10 +43,10 @@ public class HttpUtil {
             String item = stars[i].toString();
             String firstType = item.substring(0,5);
             String value = item.substring(6,item.length());
-            if (Constans.TOKEN.equals(firstType)){
+            if (Constants.TOKEN.equals(firstType)){
                 //Token
                 sendServerVO.setToken(value);
-            }else if(Constans.VALUE.endsWith(firstType)){
+            }else if(Constants.VALUE.endsWith(firstType)){
                 //value
                 sendServerVO.setValue(value);
             }

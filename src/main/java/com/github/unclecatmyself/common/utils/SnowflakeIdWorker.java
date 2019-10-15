@@ -1,11 +1,13 @@
 package com.github.unclecatmyself.common.utils;
 
+
 /**
- * @author Noseparte
- * @date 2019/8/27 18:05
- * @Description
- *          <p>ID生成器<p/>
- *          <p>Twitter 雪花算法<p/>
+ * @Auther: Noseparte
+ * @Date: 2019/10/14 18:12
+ * @Description:
+ *
+ *          <p>ID生成器</p>
+ *          <p>Twitter 雪花算法</p>
  */
 public class SnowflakeIdWorker {
 

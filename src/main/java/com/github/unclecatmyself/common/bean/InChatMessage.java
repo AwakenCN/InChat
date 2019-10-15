@@ -1,6 +1,5 @@
 package com.github.unclecatmyself.common.bean;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -22,7 +21,7 @@ public class InChatMessage {
     private String token;
 
     /** 群聊Id */
-    private String groudId;
+    private String groupId;
 
     /** 是否在线-个人 */
     private String online;
@@ -73,12 +72,12 @@ public class InChatMessage {
         this.token = token;
     }
 
-    public String getGroudId() {
-        return groudId;
+    public String getGroupId() {
+        return groupId;
     }
 
-    public void setGroudId(String groudId) {
-        this.groudId = groudId;
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 
     public String getOnline() {
@@ -104,7 +103,7 @@ public class InChatMessage {
                 ", type='" + type + '\'' +
                 ", value='" + value + '\'' +
                 ", token='" + token + '\'' +
-                ", groudId='" + groudId + '\'' +
+                ", groupId='" + groupId + '\'' +
                 ", online='" + online + '\'' +
                 ", onlineGroup=" + onlineGroup +
                 ", one='" + one + '\'' +

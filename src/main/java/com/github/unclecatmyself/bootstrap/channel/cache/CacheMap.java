@@ -10,7 +10,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  **/
 public class CacheMap<K,V> {
 
-    private ConcurrentHashMap<K,Node<K,V>> datas = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<K,Node<K,V>> cacheMap = new ConcurrentHashMap<>();
 
     public    boolean putData(K[] topic, V v){
         if(topic.length==1){
@@ -35,10 +35,10 @@ public class CacheMap<K,V> {
 
     public  boolean  delete(K[] ks,V v){
         if(ks.length==1){
-            return datas.get(ks[0]).delValue(v);
+            return cacheMap.get(ks[0]).delValue(v);
         }
         else{
-            Node<K, V> kvNode = datas.get(ks[0]);
+            Node<K, V> kvNode = cacheMap.get(ks[0]);
             for(int i=1;i<ks.length&& kvNode!=null ;i++){
                 kvNode =kvNode.getNext(ks[i]);
             }
@@ -49,10 +49,10 @@ public class CacheMap<K,V> {
 
     public   List<V>  getData(K[] ks){
         if(ks.length==1){
-            return datas.get(ks[0]).get();
+            return cacheMap.get(ks[0]).get();
         }
         else{
-            Node<K, V> node = datas.get(ks[0]);
+            Node<K, V> node = cacheMap.get(ks[0]);
             if(node!=null){
                 List<V> all  = new ArrayList<>();
                 all.addAll(node.get());
@@ -71,7 +71,7 @@ public class CacheMap<K,V> {
 
     public  Node<K,V>   buildOne(K k,V v){
 
-        Node<K, V> node = this.datas.computeIfAbsent(k, key -> {
+        Node<K, V> node = this.cacheMap.computeIfAbsent(k, key -> {
             Node<K, V> kObjectNode = new Node<K,V>(k);
             return kObjectNode;
         });

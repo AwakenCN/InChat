@@ -1,6 +1,6 @@
 package com.github.unclecatmyself.common.bean;
 
-import com.github.unclecatmyself.bootstrap.handler.DefaultHandler;
+import com.github.unclecatmyself.bootstrap.handler.DefaultAbstractHandler;
 
 /**
  * 初始化Netty配置
@@ -9,13 +9,13 @@ import com.github.unclecatmyself.bootstrap.handler.DefaultHandler;
 public abstract class InitNetty {
 
     /** 通信地址 */
-    private int webport = 8090;
+    private int webPort = 8090;
 
     private int bossThread = 1;
 
     private int workerThread = 2;
 
-    private boolean keepalive = true;
+    private boolean keepAlive = true;
 
     private int backlog = 1024;
 
@@ -51,7 +51,7 @@ public abstract class InitNetty {
 
     private String jksCertificatePassword = "123456";
 
-    private Class<DefaultHandler> webSocketHandler = DefaultHandler.class;
+    private Class<DefaultAbstractHandler> webSocketHandler = DefaultAbstractHandler.class;
 
     public Boolean getDistributed() {
         return isDistributed;
@@ -65,8 +65,8 @@ public abstract class InitNetty {
      * 返回WebSocket启动监听端口
      * @return {@link Integer} WebSocket端口
      */
-    public int getWebport() {
-        return webport;
+    public int getWebPort() {
+        return webPort;
     }
 
     /**
@@ -97,8 +97,8 @@ public abstract class InitNetty {
      * 是否保持链接
      * @return {@link Boolean} 是否保持链接
      */
-    public boolean isKeepalive() {
-        return keepalive;
+    public boolean isKeepAlive() {
+        return keepAlive;
     }
 
     /**
@@ -205,7 +205,7 @@ public abstract class InitNetty {
     }
 
 
-    public Class<DefaultHandler> getWebSocketHandler() {
+    public Class<DefaultAbstractHandler> getWebSocketHandler() {
         return webSocketHandler;
     }
 

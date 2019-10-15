@@ -7,7 +7,7 @@ import java.security.MessageDigest;
  */
 public class RedisUtil {
 
-    private static final String STAL = "InChat";
+    private static final String EXTRA = "InChat";
 
     public static String string2MD5(String inStr) {
         MessageDigest md5 = null;
@@ -33,7 +33,7 @@ public class RedisUtil {
     }
 
     public static String convertMD5(String address,String token){
-        String inStr = address+"&"+token+"%"+STAL;
+        String inStr = address+"&"+token+"%"+ EXTRA;
         char[] a = inStr.toCharArray();
         for (int i = 0; i < a.length; i++){
             a[i] = (char) (a[i] ^ 't');

@@ -18,7 +18,7 @@ public class SpringContextUtils implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
+        SpringContextUtils.applicationContext = applicationContext;
     }
 
     /**
@@ -55,12 +55,12 @@ public class SpringContextUtils implements ApplicationContextAware {
      * 通过name,以及Clazz返回指定的Bean
      *
      * @param name
-     * @param clazz
+     * @param requiredType
      * @param <T>
      * @return
      */
-    public static <T> T getBean(String name, Class<T> clazz) {
-        return getApplicationContext().getBean(name, clazz);
+    public static <T> T getBean(String name, Class<T> requiredType) {
+        return applicationContext.getBean(name, requiredType);
     }
 
 }

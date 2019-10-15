@@ -11,7 +11,6 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.*;
-import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslHandler;
 import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
@@ -67,7 +66,7 @@ public class HttpClient {
         // Start the client.
         ChannelFuture f = this.bootstrap.connect(host, port).sync();
 
-        URI uri = new URI(HttpConstant.URI_SENDINCHAT);
+        URI uri = new URI(HttpConstant.URI_SEND_IN_CHAT);
 
         Gson gson = new Gson();
         String content = gson.toJson(new SendInChat(token,value));
