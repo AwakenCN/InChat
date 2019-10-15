@@ -26,6 +26,13 @@ public abstract class HandlerService implements Handler {
     public abstract void getSize(Channel channel);
 
     /**
+     * HTTP获取用户状态
+     * @param channel {@link Channel} 链接实例
+     * @param sendServerVO {@link SendServerVO} 用户标识
+     */
+    public abstract void getState(Channel channel,SendServerVO sendServerVO);
+
+    /**
      * HTTP以服务端向指定用户发送通知
      * @param channel {@link Channel} 链接实例
      * @param sendServerVO {@link SendServerVO} 用户标识

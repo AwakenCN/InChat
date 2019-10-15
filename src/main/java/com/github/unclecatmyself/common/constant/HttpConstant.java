@@ -13,6 +13,8 @@ public class HttpConstant {
 
     public static final String GET_LIST = "get_list";
 
+    public static final String GET_STATE = "get_state";
+
     public static final String SEND_IN_CHAT = "send_inChat";
 
     public static final String SEND_FROM_SERVER = "send_from_server";
@@ -20,6 +22,8 @@ public class HttpConstant {
     public static final String NOT_FIND_URI = "not_find_uri";
 
     public static final String URI_GET_SIZE = "/uri_get_size";
+
+    public static final String URI_GET_STATE = "/uri_get_state";
 
     public static final String URI_GET_LIST = "/uri_get_list";
 

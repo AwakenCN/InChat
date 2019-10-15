@@ -27,6 +27,8 @@ public class HttpUtil {
             return HttpConstant.SEND_FROM_SERVER;
         }else if (url.equals(HttpConstant.URI_GET_LIST) && meName.equals(HttpConstant.GET)){
             return HttpConstant.GET_LIST;
+        }else if (url.equals(HttpConstant.URI_GET_STATE) && meName.equals(HttpConstant.POST)){
+            return HttpConstant.GET_STATE;
         }else if (url.equals(HttpConstant.URI_SEND_IN_CHAT) && meName.equals(HttpConstant.POST)){
             return HttpConstant.SEND_IN_CHAT;
         }else {

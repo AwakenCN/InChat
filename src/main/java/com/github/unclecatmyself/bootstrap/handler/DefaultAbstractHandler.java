@@ -61,10 +61,12 @@ public class DefaultAbstractHandler extends AbstractHandler {
             throw new HandlerNotFoundException(UndefinedInChatConstant.NOT_HANDLER);
         }
         switch (HttpUtil.checkType(msg)){
+            /** 获取在线用户数 */
             case HttpConstant.GET_SIZE:
                 log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_GETSIZE);
                 httpHandlerService.getSize(channel);
                 break;
+            /** 以服务端形式发送出去 */
             case HttpConstant.SEND_FROM_SERVER:
                 log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDFROMSERVER);
                 SendServerVO serverVO = null;
@@ -75,14 +77,28 @@ public class DefaultAbstractHandler extends AbstractHandler {
                 }
                 httpHandlerService.sendFromServer(channel,serverVO);
                 break;
+            /** 获取在线用户列表 */
             case HttpConstant.GET_LIST:
                 log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_GETLIST);
                 httpHandlerService.getList(channel);
                 break;
+            /** 获取用户在线状态 */
+            case HttpConstant.GET_STATE:
+                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_GETSTATE);
+                SendServerVO token = null;
+                try {
+                    token = HttpUtil.getToken(msg);
+                } catch (UnsupportedEncodingException e) {
+                    log.error(e.getMessage());
+                }
+                httpHandlerService.getState(channel,token);
+                break;
+            /** 分布式通讯转接 */
             case HttpConstant.SEND_IN_CHAT:
                 log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDINCHAT);
                 httpHandlerService.sendInChat(channel,msg);
                 break;
+            /** 未匹配到uri */
             case HttpConstant.NOT_FIND_URI:
                 log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_NOTFINDURI);
                 httpHandlerService.notFindUri(channel);

@@ -54,6 +54,11 @@ public class AbstractHandlerService extends HandlerService {
     }
 
     @Override
+    public void getState(Channel channel, SendServerVO sendServerVO) {
+        httpChannel.getState(channel, sendServerVO);
+    }
+
+    @Override
     public void sendFromServer(Channel channel, SendServerVO serverVO) {
         httpChannel.sendFromServer(channel,serverVO);
     }

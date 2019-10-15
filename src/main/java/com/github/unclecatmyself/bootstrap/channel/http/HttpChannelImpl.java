@@ -109,6 +109,23 @@ public class HttpChannelImpl implements HttpChannel {
     }
 
     @Override
+    public void getState(Channel channel, SendServerVO serverVO) {
+        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
+        response.headers().set(HttpConstant.CONTENT_TYPE,HttpConstant.APPLICATION_JSON);
+        if (serverVO.getToken() == ""){
+            notFindUri(channel);
+        }
+        Boolean state = WebSocketCacheMap.hasToken(serverVO.getToken());
+        StateVo stateVo = new StateVo(serverVO.getToken(),state);
+        ResultVO<StateVo> resultVO = new ResultVO<>(HttpResponseStatus.OK.code(),stateVo);
+        Gson gson = new Gson();
+        ByteBuf buf = Unpooled.copiedBuffer(gson.toJson(resultVO), CharsetUtil.UTF_8);
+        response.content().writeBytes(buf);
+        channel.writeAndFlush(response);
+        close(channel);
+    }
+
+    @Override
     public void sendInChat(String token, Map msg) {
         String address = RedisUtil.getAddress(RedisUtil.convertMD5(WebSocketCacheMap.getByJedis(token)));
         String[] str = address.split(":");

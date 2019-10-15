@@ -23,6 +23,8 @@ public interface HttpChannel {
 
     void getList(Channel channel);
 
+    void getState(Channel channel,SendServerVO serverVO);
+
     void sendInChat(String token, Map msg);
 
     void sendByInChat(Channel channel,SendInChat sendInChat);

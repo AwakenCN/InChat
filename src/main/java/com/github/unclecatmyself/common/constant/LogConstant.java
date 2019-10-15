@@ -19,6 +19,8 @@ public class LogConstant {
 
     public static final String DEFAULTWEBSOCKETHANDLER_GETLIST = "[DefaultWebSocketHandler.httpdoMessage.GET_LIST]";
 
+    public static final String DEFAULTWEBSOCKETHANDLER_GETSTATE = "[DefaultWebSocketHandler.httpdoMessage.GET_STATE]";
+
     public static final String DEFAULTWEBSOCKETHANDLER_SENDINCHAT = "[DefaultWebSocketHandler.httpdoMessage.SEND_IN_CHAT]";
 
     public static final String DEFAULTWEBSOCKETHANDLER_LOGIN = "[DefaultWebSocketHandler.textdoMessage.LOGIN]";
