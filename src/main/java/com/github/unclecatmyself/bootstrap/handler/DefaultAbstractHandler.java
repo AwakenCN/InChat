@@ -118,12 +118,16 @@ public class DefaultAbstractHandler extends AbstractHandler {
         }else{
             throw new HandlerNotFoundException(UndefinedInChatConstant.NOT_HANDLER);
         }
+        System.out.println(msg.text());
         Map<String,Object> maps = (Map) JSON.parse(msg.text());
         maps.put(Constants.TIME, new Date());
         switch ((String)maps.get(Constants.TYPE)){
             case Constants.LOGIN:
                 log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_LOGIN);
                 handlerService.login(channel,maps);
+                break;
+            case "jmeter":
+                //Jmeter高并发测试
                 break;
             //针对个人，发送给自己
             case Constants.SEND_ME:
