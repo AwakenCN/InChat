@@ -10,6 +10,6 @@ public abstract class AsyncListener {
 
     public abstract void asyncData(Map<String,Object> asyncData);
 
-    public abstract void asybcState(String state,String token);
+    public abstract void asyncState(String state, String token);
 }
 

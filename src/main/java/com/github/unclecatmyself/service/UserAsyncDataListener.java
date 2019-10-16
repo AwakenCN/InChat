@@ -3,6 +3,8 @@ package com.github.unclecatmyself.service;
 import com.github.unclecatmyself.common.bean.InChatMessage;
 import com.github.unclecatmyself.common.utils.MessageConversionUtil;
 import com.github.unclecatmyself.task.AsyncListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
@@ -11,15 +13,24 @@ import java.util.Map;
  */
 public class UserAsyncDataListener extends AsyncListener {
 
+    private final static Logger logger = LoggerFactory.getLogger(UserAsyncDataListener.class);
+
     @Override
     public void asyncData(Map<String, Object> asyncData) {
         InChatMessage inChatMessage = MessageConversionUtil.convert(asyncData);
-        System.out.println(asyncData);
+        if(logger.isInfoEnabled()){
+            logger.info(
+                    "原始数据： {}", asyncData,
+                    "序列化后的数据为： {}", inChatMessage
+            );
+        }
     }
 
     @Override
-    public void asybcState(String state, String token) {
-        System.out.println("用户："+token+"，更新状态："+state);
+    public void asyncState(String state, String token) {
+        if (logger.isInfoEnabled()) {
+            logger.info("用户 {}, 更新状态：{} ", token, state);
+        }
     }
 
 }

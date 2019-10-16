@@ -176,7 +176,7 @@ public class AbstractHandlerService extends HandlerService {
         if (inChatVerifyService.verifyToken(token)){
             channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(response.loginSuccess())));
             webSocketChannel.loginWsSuccess(channel,token);
-            asyncListener.asybcState(StateConstant.ONLINE,token);
+            asyncListener.asyncState(StateConstant.ONLINE,token);
             return true;
         }
         channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(response.loginError())));
@@ -187,6 +187,6 @@ public class AbstractHandlerService extends HandlerService {
     @Override
     public void close(Channel channel) {
         String token = webSocketChannel.close(channel);
-        asyncListener.asybcState(StateConstant.LINE,token);
+        asyncListener.asyncState(StateConstant.LINE,token);
     }
 }
