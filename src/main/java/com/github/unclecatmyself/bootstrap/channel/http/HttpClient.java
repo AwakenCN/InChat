@@ -1,8 +1,8 @@
 package com.github.unclecatmyself.bootstrap.channel.http;
 
-import com.github.unclecatmyself.common.bean.SendInChat;
-import com.github.unclecatmyself.common.constant.HttpConstant;
-import com.github.unclecatmyself.common.utils.SslUtil;
+import com.github.unclecatmyself.core.bean.SendInChat;
+import com.github.unclecatmyself.core.constant.HttpConstant;
+import com.github.unclecatmyself.core.utils.SslUtil;
 import com.google.gson.Gson;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;

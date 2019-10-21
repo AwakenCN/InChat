@@ -1,10 +1,10 @@
 package com.github.unclecatmyself.bootstrap.server;
 
-import com.github.unclecatmyself.common.config.AutoConfig;
-import com.github.unclecatmyself.common.config.RedisConfig;
-import com.github.unclecatmyself.common.bean.InitNetty;
-import com.github.unclecatmyself.common.utils.UniqueIpUtils;
-import com.github.unclecatmyself.common.utils.RemotingUtil;
+import com.github.unclecatmyself.core.config.AutoConfig;
+import com.github.unclecatmyself.core.config.RedisConfig;
+import com.github.unclecatmyself.core.bean.InitNetty;
+import com.github.unclecatmyself.core.utils.UniqueIpUtils;
+import com.github.unclecatmyself.core.utils.RemotingUtil;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFutureListener;

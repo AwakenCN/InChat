@@ -1,6 +1,6 @@
 package com.github.unclecatmyself.bootstrap.server;
 
-import com.github.unclecatmyself.common.bean.InitNetty;
+import com.github.unclecatmyself.core.bean.InitNetty;
 
 /**
  * Create by UncleCatMySelf in 2018/12/06

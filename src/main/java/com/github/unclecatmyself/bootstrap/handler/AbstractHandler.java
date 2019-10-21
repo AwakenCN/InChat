@@ -1,7 +1,7 @@
 package com.github.unclecatmyself.bootstrap.handler;
 
-import com.github.unclecatmyself.common.constant.LogConstant;
-import com.github.unclecatmyself.common.exception.LoginChannelNotFoundException;
+import com.github.unclecatmyself.core.constant.LogConstant;
+import com.github.unclecatmyself.core.exception.LoginChannelNotFoundException;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.FullHttpRequest;

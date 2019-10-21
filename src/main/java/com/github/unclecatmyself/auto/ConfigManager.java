@@ -2,8 +2,8 @@ package com.github.unclecatmyself.auto;
 
 import com.github.unclecatmyself.bootstrap.channel.http.FromServerService;
 import com.github.unclecatmyself.bootstrap.channel.protocol.InChatVerifyService;
-import com.github.unclecatmyself.common.bean.InitNetty;
-import com.github.unclecatmyself.task.AsyncListener;
+import com.github.unclecatmyself.core.bean.InitNetty;
+import com.github.unclecatmyself.scheduling.AsyncListener;
 
 /**
  * 默认配置工厂

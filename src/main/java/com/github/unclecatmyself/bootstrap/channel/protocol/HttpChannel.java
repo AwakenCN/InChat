@@ -1,10 +1,8 @@
 package com.github.unclecatmyself.bootstrap.channel.protocol;
 
-import com.github.unclecatmyself.common.bean.SendInChat;
-import com.github.unclecatmyself.common.bean.vo.SendServerVO;
+import com.github.unclecatmyself.core.bean.SendInChat;
+import com.github.unclecatmyself.core.bean.vo.SendServerVO;
 import io.netty.channel.Channel;
-import io.netty.channel.ChannelConfig;
-import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 
 import java.util.Map;
 

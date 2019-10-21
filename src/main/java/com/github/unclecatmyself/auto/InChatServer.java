@@ -3,7 +3,7 @@ package com.github.unclecatmyself.auto;
 
 import com.github.unclecatmyself.bootstrap.server.BootstrapServer;
 import com.github.unclecatmyself.bootstrap.server.NettyBootstrapServer;
-import com.github.unclecatmyself.common.bean.InitNetty;
+import com.github.unclecatmyself.core.bean.InitNetty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

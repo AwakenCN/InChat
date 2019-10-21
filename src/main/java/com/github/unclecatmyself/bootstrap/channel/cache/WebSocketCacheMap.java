@@ -1,11 +1,11 @@
 package com.github.unclecatmyself.bootstrap.channel.cache;
 
-import com.github.unclecatmyself.common.config.AutoConfig;
+import com.github.unclecatmyself.core.config.AutoConfig;
 import com.github.unclecatmyself.auto.ConfigManager;
-import com.github.unclecatmyself.common.config.RedisConfig;
-import com.github.unclecatmyself.common.constant.UndefinedInChatConstant;
-import com.github.unclecatmyself.common.exception.LoginChannelNotFoundException;
-import com.github.unclecatmyself.common.utils.RedisUtil;
+import com.github.unclecatmyself.core.config.RedisConfig;
+import com.github.unclecatmyself.core.constant.UndefinedInChatConstant;
+import com.github.unclecatmyself.core.exception.LoginChannelNotFoundException;
+import com.github.unclecatmyself.core.utils.RedisUtil;
 import io.netty.channel.Channel;
 import redis.clients.jedis.Jedis;
 
