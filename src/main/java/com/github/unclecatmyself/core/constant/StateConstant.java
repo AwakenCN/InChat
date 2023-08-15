@@ -9,8 +9,14 @@ package com.github.unclecatmyself.core.constant;
  **/
 public class StateConstant {
 
+    /**
+     * 在线
+     */
     public static final String ONLINE = "online";
 
-    public static final String LINE = "line";
+    /**
+     * 离线
+     */
+    public static final String OFFLINE = "offline";
 
 }

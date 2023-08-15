@@ -187,6 +187,6 @@ public class AbstractHandlerService extends HandlerService {
     @Override
     public void close(Channel channel) {
         String token = webSocketChannel.close(channel);
-        asyncListener.asyncState(StateConstant.LINE, token);
+        asyncListener.asyncState(StateConstant.OFFLINE, token);
     }
 }

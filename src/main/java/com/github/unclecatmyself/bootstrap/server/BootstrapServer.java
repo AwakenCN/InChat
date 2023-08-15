@@ -11,6 +11,6 @@ public interface BootstrapServer {
 
     void setServerBean(InitNetty serverBean);
 
-    void start();
+    void start(int port) throws Exception;
 
 }

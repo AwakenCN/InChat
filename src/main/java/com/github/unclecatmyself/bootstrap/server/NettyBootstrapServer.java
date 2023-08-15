@@ -1,19 +1,19 @@
 package com.github.unclecatmyself.bootstrap.server;
 
+import com.github.unclecatmyself.core.bean.InitNetty;
 import com.github.unclecatmyself.core.config.AutoConfig;
 import com.github.unclecatmyself.core.config.RedisConfig;
-import com.github.unclecatmyself.core.bean.InitNetty;
-import com.github.unclecatmyself.core.utils.UniqueIpUtils;
+import com.github.unclecatmyself.core.utils.PlatformUtil;
 import com.github.unclecatmyself.core.utils.RemotingUtil;
+import com.github.unclecatmyself.core.utils.UniqueIpUtils;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.epoll.Epoll;
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
+import io.netty.channel.kqueue.KQueueEventLoopGroup;
+import io.netty.channel.kqueue.KQueueServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -42,76 +43,66 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
 
     ServerBootstrap bootstrap = null;// 启动辅助类
 
-    Object waitLock = new Object(); //加锁，防止重复启动
+    Channel serverChannel = null;
+    Class<?> serverSocketChannel = null;
+
+    final Object waitLock = new Object(); //加锁，防止重复启动
+
+    private final AtomicBoolean isStart = new AtomicBoolean(false);
 
     /**
      * 服务开启
      */
-    public void start() {
-        synchronized (waitLock) {
-            initEventPool();
-            bootstrap.group(bossGroup, workGroup)
-                    .channel(useEpoll() ? EpollServerSocketChannel.class : NioServerSocketChannel.class)
-                    .option(ChannelOption.SO_REUSEADDR, serverBean.isReuseaddr())
-                    .option(ChannelOption.SO_BACKLOG, serverBean.getBacklog())
-                    .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
-                    .option(ChannelOption.SO_RCVBUF, serverBean.getRevbuf())
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
-                        protected void initChannel(SocketChannel ch) {
-                            initHandler(ch.pipeline(), serverBean);
-                        }
-                    })
-                    .childOption(ChannelOption.TCP_NODELAY, serverBean.isNodelay())
-                    .childOption(ChannelOption.SO_KEEPALIVE, serverBean.isKeepAlive())
-                    .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
-            bootstrap.bind(UniqueIpUtils.getHost(), serverBean.getWebPort()).addListener((ChannelFutureListener) channelFuture -> {
-                if (channelFuture.isSuccess()) {
-                    log.info("服务端启动成功【" + UniqueIpUtils.getHost() + ":" + serverBean.getWebPort() + "】");
-                    AutoConfig.address = UniqueIpUtils.getHost() + ":" + serverBean.getWebPort();
-                    RedisConfig.getInstance();
-                } else {
-                    log.info("服务端启动失败【" + UniqueIpUtils.getHost() + ":" + serverBean.getWebPort() + "】");
+    public void start(int port) throws Exception {
+        if (isStart.compareAndSet(false, true)) {
+            try {
+                if (port < 1) {
+                    throw new RuntimeException(String.format("service port not set %s", port));
                 }
-            });
-        }
-    }
-
-    /**
-     * 初始化EventPool 参数
-     */
-    private void initEventPool() {
-        bootstrap = new ServerBootstrap();
-        if (useEpoll()) {
-            bossGroup = new EpollEventLoopGroup(serverBean.getBossThread(), new ThreadFactory() {
-                private AtomicInteger index = new AtomicInteger(0);
-
-                public Thread newThread(Runnable r) {
-                    return new Thread(r, "LINUX_BOSS_" + index.incrementAndGet());
+                bootstrap = new ServerBootstrap();
+                // 初始化EventPool
+                boolean isUseEpoll = PlatformUtil.useEpoll();
+                int ioModel = IoStrategy.nio;
+                if (isUseEpoll) {
+                    if (PlatformUtil.isLinuxPlatform()) {
+                        ioModel = IoStrategy.epoll;
+                    } else {
+                        ioModel = IoStrategy.kqueue;
+                    }
                 }
-            });
-            workGroup = new EpollEventLoopGroup(serverBean.getWorkerThread(), new ThreadFactory() {
-                private AtomicInteger index = new AtomicInteger(0);
+                new InChatIoStrategy().chooseModel(ioModel);
 
-                public Thread newThread(Runnable r) {
-                    return new Thread(r, "LINUX_WORK_" + index.incrementAndGet());
-                }
-            });
+                bootstrap.group(bossGroup, workGroup)
+                        .channel((Class<? extends ServerChannel>) serverSocketChannel)
+                        .option(ChannelOption.SO_REUSEADDR, serverBean.isReuseaddr())
+                        .option(ChannelOption.SO_BACKLOG, serverBean.getBacklog())
+                        .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
+                        .option(ChannelOption.SO_RCVBUF, serverBean.getRevbuf())
+                        .childHandler(new ChannelInitializer<SocketChannel>() {
+                            protected void initChannel(SocketChannel ch) {
+                                initHandler(ch.pipeline(), serverBean);
+                            }
+                        })
+                        .childOption(ChannelOption.TCP_NODELAY, serverBean.isNodelay())
+                        .childOption(ChannelOption.SO_KEEPALIVE, serverBean.isKeepAlive())
+                        .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
+                ChannelFuture f = bootstrap.bind(port);
+                serverChannel = f.sync().channel();
+                f.addListener((ChannelFutureListener) channelFuture -> {
+                    if (channelFuture.isSuccess()) {
+                        log.info("服务端启动成功【" + UniqueIpUtils.getHost() + ":" + port + "】");
+                        AutoConfig.address = UniqueIpUtils.getHost() + ":" + port;
+                        RedisConfig.getInstance();
+                    } else {
+                        log.info("服务端启动失败【" + UniqueIpUtils.getHost() + ":" + port + "】");
+                    }
+                });
 
-        } else {
-            bossGroup = new NioEventLoopGroup(serverBean.getBossThread(), new ThreadFactory() {
-                private AtomicInteger index = new AtomicInteger(0);
-
-                public Thread newThread(Runnable r) {
-                    return new Thread(r, "BOSS_" + index.incrementAndGet());
-                }
-            });
-            workGroup = new NioEventLoopGroup(serverBean.getWorkerThread(), new ThreadFactory() {
-                private AtomicInteger index = new AtomicInteger(0);
-
-                public Thread newThread(Runnable r) {
-                    return new Thread(r, "WORK_" + index.incrementAndGet());
-                }
-            });
+            } catch (Throwable e) {
+                log.error("rpc service start", e);
+                isStart.set(false);
+                throw e;
+            }
         }
     }
 
@@ -119,14 +110,12 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
      * 关闭资源
      */
     public void shutdown() {
-        synchronized (waitLock) {
+        if(isStart.compareAndSet(true,false)){
             if (workGroup != null && bossGroup != null) {
-                try {
-                    bossGroup.shutdownGracefully().sync();// 优雅关闭
-                    workGroup.shutdownGracefully().sync();
-                } catch (InterruptedException e) {
-                    log.error("服务端关闭资源失败【" + UniqueIpUtils.getHost() + ":" + serverBean.getWebPort() + "】");
-                }
+                ChannelFuture f = serverChannel.close();
+                f.awaitUninterruptibly();
+                bossGroup.shutdownGracefully();
+                workGroup.shutdownGracefully();
             }
         }
     }
@@ -134,6 +123,45 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
     private boolean useEpoll() {
         return RemotingUtil.isLinuxPlatform()
                 && Epoll.isAvailable();
+    }
+
+    class InChatIoStrategy implements IoStrategy {
+
+        @Override
+        public void chooseModel(int model) {
+            switch (model) {
+                case 0: {
+                    serverSocketChannel = NioServerSocketChannel.class;
+                    bossGroup = new NioEventLoopGroup(serverBean.getBossThread(), buildThreadFactory("BOSS_"));
+                    workGroup = new NioEventLoopGroup(serverBean.getWorkerThread(), buildThreadFactory("WORK_"));
+                    break;
+                }
+                case 1: {
+                    serverSocketChannel = EpollServerSocketChannel.class;
+                    bossGroup = new EpollEventLoopGroup(serverBean.getBossThread(), buildThreadFactory("LINUX_BOSS_"));
+                    workGroup = new EpollEventLoopGroup(serverBean.getWorkerThread(), buildThreadFactory("LINUX_WORK_"));
+                    break;
+                }
+                case 2: {
+                    serverSocketChannel = KQueueServerSocketChannel.class;
+                    bossGroup = new KQueueEventLoopGroup(serverBean.getBossThread(), buildThreadFactory("KQUEUE_BOSS_"));
+                    workGroup = new KQueueEventLoopGroup(serverBean.getWorkerThread(), buildThreadFactory("KQUEUE_WORK_"));
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+    }
+
+    public static ThreadFactory buildThreadFactory(String threadName) {
+        return new ThreadFactory() {
+            private final AtomicInteger index = new AtomicInteger(0);
+
+            public Thread newThread(Runnable r) {
+                return new Thread(r, threadName + index.incrementAndGet());
+            }
+        };
     }
 
 }

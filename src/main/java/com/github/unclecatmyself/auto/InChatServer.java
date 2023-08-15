@@ -41,7 +41,11 @@ public class InChatServer {
             if(LOGGER.isInfoEnabled()){
                 LOGGER.info("Server started, listening on " + port);
             }
-            bootstrapServer.start();
+            try {
+                bootstrapServer.start(port);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
