@@ -8,13 +8,13 @@ package com.github.unclecatmyself.bootstrap.server;
  */
 public interface IoStrategy {
 
-    int nio = 0;
-    int epoll = 1;
-    int kqueue = 2;
+    int NIO = 0;
+    int EPOLL = 1;
+    int KQUEUE = 2;
 
     /**
      * 初始化EventPool 参数
      * @param model io模式
      */
-    void chooseModel(int model);
+    void calculateStrategy(int model);
 }

@@ -62,15 +62,15 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
                 bootstrap = new ServerBootstrap();
                 // 初始化EventPool
                 boolean isUseEpoll = PlatformUtil.useEpoll();
-                int ioModel = IoStrategy.nio;
+                int ioModel = IoStrategy.NIO;
                 if (isUseEpoll) {
                     if (PlatformUtil.isLinuxPlatform()) {
-                        ioModel = IoStrategy.epoll;
+                        ioModel = IoStrategy.EPOLL;
                     } else {
-                        ioModel = IoStrategy.kqueue;
+                        ioModel = IoStrategy.KQUEUE;
                     }
                 }
-                new InChatIoStrategy().chooseModel(ioModel);
+                new InChatIoStrategy().calculateStrategy(ioModel);
 
                 bootstrap.group(bossGroup, workGroup)
                         .channel((Class<? extends ServerChannel>) serverSocketChannel)
@@ -128,21 +128,21 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
     class InChatIoStrategy implements IoStrategy {
 
         @Override
-        public void chooseModel(int model) {
-            switch (model) {
-                case 0: {
+        public void calculateStrategy(int ioModel) {
+            switch (ioModel) {
+                case NIO: {
                     serverSocketChannel = NioServerSocketChannel.class;
                     bossGroup = new NioEventLoopGroup(serverBean.getBossThread(), buildThreadFactory("BOSS_"));
                     workGroup = new NioEventLoopGroup(serverBean.getWorkerThread(), buildThreadFactory("WORK_"));
                     break;
                 }
-                case 1: {
+                case EPOLL: {
                     serverSocketChannel = EpollServerSocketChannel.class;
                     bossGroup = new EpollEventLoopGroup(serverBean.getBossThread(), buildThreadFactory("LINUX_BOSS_"));
                     workGroup = new EpollEventLoopGroup(serverBean.getWorkerThread(), buildThreadFactory("LINUX_WORK_"));
                     break;
                 }
-                case 2: {
+                case KQUEUE: {
                     serverSocketChannel = KQueueServerSocketChannel.class;
                     bossGroup = new KQueueEventLoopGroup(serverBean.getBossThread(), buildThreadFactory("KQUEUE_BOSS_"));
                     workGroup = new KQueueEventLoopGroup(serverBean.getWorkerThread(), buildThreadFactory("KQUEUE_WORK_"));
