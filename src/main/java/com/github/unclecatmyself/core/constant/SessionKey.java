@@ -40,11 +40,6 @@ public class SessionKey {
      */
     public static final AttributeKey<Long> CHANNEL_CREATE_TIME = AttributeKey.valueOf("channel_create_time");
     /**
-     * @Author liuzhigang
-     * @Date  8/1/22 4:33 PM
-     * @Param
-     * @return
-     * @Desc
      * 是否http协议
      **/
     public static final AttributeKey<Boolean> IS_HTTP= AttributeKey.valueOf("is_http");

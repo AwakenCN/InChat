@@ -1,4 +1,4 @@
-package com.github.unclecatmyself.support;
+package com.github.unclecatmyself.core.bean;
 
 import com.github.unclecatmyself.bootstrap.channel.protocol.Response;
 import com.github.unclecatmyself.core.constant.Constants;

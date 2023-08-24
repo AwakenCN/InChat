@@ -18,6 +18,8 @@ import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.internal.SystemPropertyUtil;
 import org.apache.commons.lang3.ObjectUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -30,6 +32,8 @@ import java.util.concurrent.Executors;
  * Create by UncleCatMySelf in 2018/12/06
  **/
 public abstract class AbstractBootstrapServer implements BootstrapServer {
+
+    private static Logger logger = LoggerFactory.getLogger(AbstractBootstrapServer.class);
 
     private   String PROTOCOL = "TLS";
 
@@ -52,7 +56,7 @@ public abstract class AbstractBootstrapServer implements BootstrapServer {
                 channelPipeline.addLast(BootstrapConstant.SSL,new SslHandler(engine));
                 System.out.println("open ssl  success");
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("AbstractBootstrapServer initHandler open ssl error, {}", e.getMessage(), e);
             }
         }
         initProtocolHandler(channelPipeline,serverBean);

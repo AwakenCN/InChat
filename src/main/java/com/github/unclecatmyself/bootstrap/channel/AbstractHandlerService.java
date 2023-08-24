@@ -7,6 +7,7 @@ import com.github.unclecatmyself.bootstrap.channel.protocol.InChatVerifyService;
 import com.github.unclecatmyself.bootstrap.channel.protocol.Response;
 import com.github.unclecatmyself.bootstrap.channel.protocol.SocketChannel;
 import com.github.unclecatmyself.bootstrap.channel.ws.WebSocketChannel;
+import com.github.unclecatmyself.bootstrap.handler.InChatMessageHandler;
 import com.github.unclecatmyself.core.bean.InChatMessage;
 import com.github.unclecatmyself.core.bean.SendInChat;
 import com.github.unclecatmyself.core.bean.vo.SendServerVO;
@@ -14,17 +15,22 @@ import com.github.unclecatmyself.core.constant.Constants;
 import com.github.unclecatmyself.core.constant.StateConstant;
 import com.github.unclecatmyself.scheduling.AsyncListener;
 import com.github.unclecatmyself.support.HandlerService;
-import com.github.unclecatmyself.support.InChatResponse;
+import com.github.unclecatmyself.core.bean.InChatResponse;
+import com.github.unclecatmyself.support.MessageFactory;
 import com.google.gson.Gson;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.FullHttpMessage;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.util.CharsetUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by MySelf on 2018/11/21.
  */
 public class AbstractHandlerService extends HandlerService {
+
+    private final static Logger logger = LoggerFactory.getLogger(AbstractHandlerService.class);
 
     private final InChatVerifyService inChatVerifyService;
 
@@ -39,6 +45,7 @@ public class AbstractHandlerService extends HandlerService {
     public AbstractHandlerService(InChatVerifyService inChatVerifyService, AsyncListener asyncListener) {
         this.inChatVerifyService = inChatVerifyService;
         this.asyncListener = asyncListener;
+        registerServiceToProtocolMessageFactory();
     }
 
 
@@ -76,12 +83,14 @@ public class AbstractHandlerService extends HandlerService {
         httpChannel.notFindUri(channel);
     }
 
+    @InChatMessageHandler
     @Override
     public boolean login(Channel channel, InChatMessage message) {
         //校验规则，自定义校验规则
         return check(channel, message);
     }
 
+    @InChatMessageHandler
     @Override
     public void sendMeText(Channel channel, InChatMessage message) {
         Gson gson = new Gson();
@@ -91,6 +100,7 @@ public class AbstractHandlerService extends HandlerService {
         asyncListener.asyncData(message);
     }
 
+    @InChatMessageHandler
     @Override
     public void sendToText(Channel channel, InChatMessage message) {
         Gson gson = new Gson();
@@ -117,6 +127,7 @@ public class AbstractHandlerService extends HandlerService {
         asyncListener.asyncData(message);
     }
 
+    @InChatMessageHandler
     @Override
     public void sendGroupText(Channel channel, InChatMessage message) {
         Gson gson = new Gson();
@@ -147,6 +158,7 @@ public class AbstractHandlerService extends HandlerService {
         asyncListener.asyncData(message);
     }
 
+    @InChatMessageHandler
     @Override
     public void verify(Channel channel, InChatMessage message) {
         Gson gson = new Gson();
@@ -160,6 +172,7 @@ public class AbstractHandlerService extends HandlerService {
         }
     }
 
+    @InChatMessageHandler
     @Override
     public void sendPhotoToMe(Channel channel, InChatMessage message) {
         Gson gson = new Gson();
@@ -187,5 +200,19 @@ public class AbstractHandlerService extends HandlerService {
     public void close(Channel channel) {
         String token = webSocketChannel.close(channel);
         asyncListener.asyncState(StateConstant.OFFLINE, token);
+    }
+
+    /**
+     * 注册服务到协议处理器
+     */
+    private void registerServiceToProtocolMessageFactory() {
+        try {
+            logger.warn("注册服务到协议处理器 begin");
+            MessageFactory.getInstance().registerService(this);
+            logger.warn("注册服务到协议处理器 end");
+        } catch (Exception e) {
+            logger.error("注册协议异常:", e);
+            System.exit(1);
+        }
     }
 }
