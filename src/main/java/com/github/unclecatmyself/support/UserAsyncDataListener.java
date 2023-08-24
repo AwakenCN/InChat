@@ -16,12 +16,10 @@ public class UserAsyncDataListener extends AsyncListener {
     private final static Logger logger = LoggerFactory.getLogger(UserAsyncDataListener.class);
 
     @Override
-    public void asyncData(Map<String, Object> asyncData) {
-        InChatMessage inChatMessage = MessageConversionUtil.convert(asyncData);
+    public void asyncData(InChatMessage message) {
         if(logger.isInfoEnabled()){
             logger.info(
-                    "原始数据： {}", asyncData,
-                    "序列化后的数据为： {}", inChatMessage
+                    "序列化后的数据为： {}", message
             );
         }
     }

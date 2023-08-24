@@ -1,26 +1,25 @@
 package com.github.unclecatmyself.bootstrap.channel;
 
 import com.alibaba.fastjson.JSONArray;
-import com.github.unclecatmyself.bootstrap.channel.protocol.Response;
-import com.github.unclecatmyself.core.constant.StateConstant;
-import com.github.unclecatmyself.support.InChatResponse;
-import com.github.unclecatmyself.bootstrap.channel.protocol.HttpChannel;
 import com.github.unclecatmyself.bootstrap.channel.http.HttpChannelImpl;
+import com.github.unclecatmyself.bootstrap.channel.protocol.HttpChannel;
+import com.github.unclecatmyself.bootstrap.channel.protocol.InChatVerifyService;
+import com.github.unclecatmyself.bootstrap.channel.protocol.Response;
+import com.github.unclecatmyself.bootstrap.channel.protocol.SocketChannel;
 import com.github.unclecatmyself.bootstrap.channel.ws.WebSocketChannel;
-import com.github.unclecatmyself.support.HandlerService;
+import com.github.unclecatmyself.core.bean.InChatMessage;
 import com.github.unclecatmyself.core.bean.SendInChat;
 import com.github.unclecatmyself.core.bean.vo.SendServerVO;
 import com.github.unclecatmyself.core.constant.Constants;
+import com.github.unclecatmyself.core.constant.StateConstant;
 import com.github.unclecatmyself.scheduling.AsyncListener;
+import com.github.unclecatmyself.support.HandlerService;
+import com.github.unclecatmyself.support.InChatResponse;
 import com.google.gson.Gson;
-import com.github.unclecatmyself.bootstrap.channel.protocol.SocketChannel;
-import com.github.unclecatmyself.bootstrap.channel.protocol.InChatVerifyService;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.FullHttpMessage;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.util.CharsetUtil;
-
-import java.util.Map;
 
 /**
  * Created by MySelf on 2018/11/21.
@@ -78,26 +77,26 @@ public class AbstractHandlerService extends HandlerService {
     }
 
     @Override
-    public boolean login(Channel channel, Map<String, Object> maps) {
+    public boolean login(Channel channel, InChatMessage message) {
         //校验规则，自定义校验规则
-        return check(channel, maps);
+        return check(channel, message);
     }
 
     @Override
-    public void sendMeText(Channel channel, Map<String, Object> maps) {
+    public void sendMeText(Channel channel, InChatMessage message) {
         Gson gson = new Gson();
         channel.writeAndFlush(new TextWebSocketFrame(
-                gson.toJson(response.sendMe((String) maps.get(Constants.VALUE)))));
-        maps.put(Constants.ONLINE, Constants.TRUE);
-        asyncListener.asyncData(maps);
+                gson.toJson(response.sendMe(message.getValue()))));
+        message.setOnline(Constants.TRUE);
+        asyncListener.asyncData(message);
     }
 
     @Override
-    public void sendToText(Channel channel, Map<String, Object> maps) {
+    public void sendToText(Channel channel, InChatMessage message) {
         Gson gson = new Gson();
-        String otherOne = (String) maps.get(Constants.ONE);
-        String value = (String) maps.get(Constants.VALUE);
-        String token = (String) maps.get(Constants.TOKEN);
+        String otherOne = message.getOne();
+        String value = message.getValue();
+        String token = message.getToken();
         //返回给自己
         channel.writeAndFlush(new TextWebSocketFrame(
                 gson.toJson(response.sendBack(otherOne, value))));
@@ -110,20 +109,20 @@ public class AbstractHandlerService extends HandlerService {
             } else {
                 other.writeAndFlush(new TextWebSocketFrame(
                         gson.toJson(response.getMessage(token, value))));
-                maps.put(Constants.ONLINE, Constants.TRUE);
+                message.setOnline(Constants.TRUE);
             }
         } else {
-            maps.put(Constants.ONLINE, Constants.FALSE);
+            message.setOnline(Constants.FALSE);
         }
-        asyncListener.asyncData(maps);
+        asyncListener.asyncData(message);
     }
 
     @Override
-    public void sendGroupText(Channel channel, Map<String, Object> maps) {
+    public void sendGroupText(Channel channel, InChatMessage message) {
         Gson gson = new Gson();
-        String groupId = (String) maps.get(Constants.GROUP_ID);
-        String token = (String) maps.get(Constants.TOKEN);
-        String value = (String) maps.get(Constants.VALUE);
+        String groupId = message.getGroupId();
+        String token = message.getToken();
+        String value = message.getValue();
         String no_online = "";
         JSONArray array = inChatVerifyService.getArrayByGroupId(groupId);
         channel.writeAndFlush(new TextWebSocketFrame(
@@ -140,18 +139,18 @@ public class AbstractHandlerService extends HandlerService {
                                 gson.toJson(response.sendGroup(token, value, groupId))));
                     }
                 } else {
-                    no_online = (String) item + "、" + no_online;
+                    no_online = item + "、" + no_online;
                 }
             }
         }
-        maps.put(Constants.ONLINE_GROUP, no_online.substring(0, no_online.length() - 1));
-        asyncListener.asyncData(maps);
+        message.setOnlineGroup(no_online.substring(0, no_online.length() - 1));
+        asyncListener.asyncData(message);
     }
 
     @Override
-    public void verify(Channel channel, Map<String, Object> maps) {
+    public void verify(Channel channel, InChatMessage message) {
         Gson gson = new Gson();
-        String token = (String) maps.get(Constants.TOKEN);
+        String token = message.getToken();
         System.out.println(token);
         if (inChatVerifyService.verifyToken(token)) {
             return;
@@ -162,17 +161,17 @@ public class AbstractHandlerService extends HandlerService {
     }
 
     @Override
-    public void sendPhotoToMe(Channel channel, Map<String, Object> maps) {
+    public void sendPhotoToMe(Channel channel, InChatMessage message) {
         Gson gson = new Gson();
-        System.out.println(maps.get(Constants.VALUE));
+        System.out.println(message.getValue());
         channel.writeAndFlush(new TextWebSocketFrame(
-                gson.toJson(response.sendMe((String) maps.get(Constants.VALUE)))));
-        asyncListener.asyncData(maps);
+                gson.toJson(response.sendMe(message.getValue()))));
+        asyncListener.asyncData(message);
     }
 
-    private Boolean check(Channel channel, Map<String, Object> maps) {
+    private Boolean check(Channel channel, InChatMessage message) {
         Gson gson = new Gson();
-        String token = (String) maps.get(Constants.TOKEN);
+        String token = message.getToken();
         if (inChatVerifyService.verifyToken(token)) {
             channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(response.loginSuccess())));
             webSocketChannel.loginWsSuccess(channel, token);

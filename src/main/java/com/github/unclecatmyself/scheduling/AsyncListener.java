@@ -1,5 +1,7 @@
 package com.github.unclecatmyself.scheduling;
 
+import com.github.unclecatmyself.core.bean.InChatMessage;
+
 import java.util.Map;
 
 /**
@@ -8,7 +10,7 @@ import java.util.Map;
  */
 public abstract class AsyncListener {
 
-    public abstract void asyncData(Map<String,Object> asyncData);
+    public abstract void asyncData(InChatMessage message);
 
     public abstract void asyncState(String state, String token);
 }

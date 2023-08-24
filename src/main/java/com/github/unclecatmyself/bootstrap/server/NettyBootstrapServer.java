@@ -17,6 +17,9 @@ import io.netty.channel.kqueue.KQueueServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
+import io.netty.util.ResourceLeakDetector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,6 +62,7 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
                 if (port < 1) {
                     throw new RuntimeException(String.format("service port not set %s", port));
                 }
+                ResourceLeakDetector.setLevel(ResourceLeakDetector.Level.ADVANCED);//使用标准采样 开销较大
                 bootstrap = new ServerBootstrap();
                 // 初始化EventPool
                 boolean isUseEpoll = PlatformUtil.useEpoll();
@@ -78,6 +82,7 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
                         .option(ChannelOption.SO_BACKLOG, serverBean.getBacklog())
                         .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
                         .option(ChannelOption.SO_RCVBUF, serverBean.getRevbuf())
+                        .handler(new LoggingHandler(LogLevel.DEBUG))
                         .childHandler(new ChannelInitializer<SocketChannel>() {
                             protected void initChannel(SocketChannel ch) {
                                 initHandler(ch.pipeline(), serverBean);
@@ -139,7 +144,8 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
                 case EPOLL: {
                     serverSocketChannel = EpollServerSocketChannel.class;
                     bossGroup = new EpollEventLoopGroup(serverBean.getBossThread(), buildThreadFactory("LINUX_BOSS_"));
-                    workGroup = new EpollEventLoopGroup(serverBean.getWorkerThread(), buildThreadFactory("LINUX_WORK_"));
+                    int workerThread = Runtime.getRuntime().availableProcessors() * 2;
+                    workGroup = new EpollEventLoopGroup(workerThread, buildThreadFactory("LINUX_WORK_"));
                     break;
                 }
                 case KQUEUE: {

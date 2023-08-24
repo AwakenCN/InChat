@@ -1,6 +1,8 @@
 package com.github.unclecatmyself.bootstrap.handler;
 
 import com.alibaba.fastjson.JSON;
+import com.github.unclecatmyself.core.bean.InChatMessage;
+import com.github.unclecatmyself.core.utils.DateUtil;
 import com.github.unclecatmyself.support.HandlerService;
 import com.github.unclecatmyself.core.bean.vo.SendServerVO;
 import com.github.unclecatmyself.core.constant.Constants;
@@ -110,7 +112,7 @@ public class DefaultAbstractHandler extends AbstractHandler {
     }
 
     @Override
-    protected void textdoMessage(ChannelHandlerContext ctx, TextWebSocketFrame msg) {
+    protected void readTextMessage(ChannelHandlerContext ctx, TextWebSocketFrame msg) {
         Channel channel = ctx.channel();
         HandlerService handlerService;
         if (handler instanceof HandlerService){
@@ -119,12 +121,13 @@ public class DefaultAbstractHandler extends AbstractHandler {
             throw new HandlerNotFoundException(UndefinedInChatConstant.NOT_HANDLER);
         }
         System.out.println(msg.text());
-        Map<String,Object> maps = (Map) JSON.parse(msg.text());
-        maps.put(Constants.TIME, new Date());
-        switch ((String)maps.get(Constants.TYPE)){
+        InChatMessage message = JSON.parseObject(msg.text(), InChatMessage.class);
+        int now = DateUtil.getSecond();
+        message.setTime(now);
+        switch (message.getType()){
             case Constants.LOGIN:
                 log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_LOGIN);
-                handlerService.login(channel,maps);
+                handlerService.login(channel,message);
                 break;
             case "jmeter":
                 //Jmeter高并发测试
@@ -132,26 +135,26 @@ public class DefaultAbstractHandler extends AbstractHandler {
             //针对个人，发送给自己
             case Constants.SEND_ME:
                 log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDME);
-                handlerService.verify(channel,maps);
-                handlerService.sendMeText(channel,maps);
+                handlerService.verify(channel,message);
+                handlerService.sendMeText(channel,message);
                 break;
             //针对个人，发送给某人
             case Constants.SEND_TO:
                 log.info(LogConstant.DefaultWebSocketHandler_SENDTO);
-                handlerService.verify(channel,maps);
-                handlerService.sendToText(channel,maps);
+                handlerService.verify(channel,message);
+                handlerService.sendToText(channel,message);
                 break;
             //发送给群组
             case Constants.SEND_GROUP:
                 log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDGROUP);
-                handlerService.verify(channel,maps);
-                handlerService.sendGroupText(channel,maps);
+                handlerService.verify(channel,message);
+                handlerService.sendGroupText(channel,message);
                 break;
             //发送图片，发送给自己
             case Constants.SEND_PHOTO_TO_ME:
                 log.info("图片到个人");
-                handlerService.verify(channel,maps);
-                handlerService.sendPhotoToMe(channel,maps);
+                handlerService.verify(channel,message);
+                handlerService.sendPhotoToMe(channel,message);
                 break;
             default:
                 break;

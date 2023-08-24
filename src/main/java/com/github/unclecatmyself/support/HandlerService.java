@@ -1,6 +1,7 @@
 package com.github.unclecatmyself.support;
 
 import com.github.unclecatmyself.bootstrap.handler.Handler;
+import com.github.unclecatmyself.core.bean.InChatMessage;
 import com.github.unclecatmyself.core.bean.vo.SendServerVO;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.FullHttpMessage;
@@ -54,43 +55,43 @@ public abstract class HandlerService implements Handler {
     /**
      * 登录类型
      * @param channel {@link Channel} 链接实例
-     * @param map {@link Map} 数据信息
+     * @param message {@link InChatMessage} 数据信息
      * @return {@link Boolean} 成功失败
      */
-    public abstract boolean login(Channel channel, Map<String,Object> map);
+    public abstract boolean login(Channel channel, InChatMessage message);
 
     /**
      * 发送给自己
      * @param channel {@link Channel} 链接实例
-     * @param maps {@link Map} 数据信息
+     * @param message {@link InChatMessage} 数据信息
      */
-    public abstract void sendMeText(Channel channel,Map<String,Object> maps);
+    public abstract void sendMeText(Channel channel, InChatMessage message);
 
     /**
      * 发送给某人
      * @param channel {@link Channel} 链接实例
-     * @param maps {@link Map} 数据信息
+     * @param message {@link InChatMessage} 数据信息
      */
-    public abstract void sendToText(Channel channel, Map<String,Object> maps);
+    public abstract void sendToText(Channel channel, InChatMessage message);
 
     /**
      * 发送给群聊
      * @param channel {@link Channel} 链接实例
-     * @param maps {@link Map} 数据信息
+     * @param message {@link InChatMessage} 数据信息
      */
-    public abstract void sendGroupText(Channel channel, Map<String, Object> maps);
+    public abstract void sendGroupText(Channel channel, InChatMessage message);
 
     /**
      * 登录校验
      * @param channel {@link Channel} 链接实例
-     * @param maps {@link Map} 数据信息
+     * @param message {@link InChatMessage} 数据信息
      */
-    public abstract void verify(Channel channel, Map<String, Object> maps);
+    public abstract void verify(Channel channel, InChatMessage message);
 
     /**
      * 发送图片给个人
      * @param channel {@link Channel} 链接实例
-     * @param maps {@link Map} 数据信息
+     * @param message {@link InChatMessage} 数据信息
      */
-    public abstract void sendPhotoToMe(Channel channel, Map<String, Object> maps);
+    public abstract void sendPhotoToMe(Channel channel, InChatMessage message);
 }

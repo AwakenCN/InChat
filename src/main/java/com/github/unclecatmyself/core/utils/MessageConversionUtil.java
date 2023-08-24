@@ -17,7 +17,7 @@ public class MessageConversionUtil {
             message.setToken((String) maps.get(Constants.TOKEN));
         }
         if (maps.containsKey(Constants.TIME)){
-            message.setTime((Date) maps.get(Constants.TIME));
+            message.setTime((int) maps.get(Constants.TIME));
         }
         if (maps.containsKey(Constants.VALUE)){
             message.setValue((String)maps.get(Constants.VALUE));

@@ -28,7 +28,7 @@ public abstract class AbstractHandler extends SimpleChannelInboundHandler<Object
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
         if (msg instanceof TextWebSocketFrame){
             System.out.println("TextWebSocketFrame"+msg);
-            textdoMessage(ctx,(TextWebSocketFrame)msg);
+            readTextMessage(ctx,(TextWebSocketFrame)msg);
         }else if (msg instanceof WebSocketFrame){
             System.out.println("WebSocketFrame"+msg);
             webdoMessage(ctx,(WebSocketFrame)msg);
@@ -40,7 +40,7 @@ public abstract class AbstractHandler extends SimpleChannelInboundHandler<Object
 
     protected abstract void webdoMessage(ChannelHandlerContext ctx, WebSocketFrame msg);
 
-    protected abstract void textdoMessage(ChannelHandlerContext ctx, TextWebSocketFrame msg);
+    protected abstract void readTextMessage(ChannelHandlerContext ctx, TextWebSocketFrame msg);
 
     protected abstract void httpdoMessage(ChannelHandlerContext ctx, FullHttpRequest msg);
 

@@ -55,12 +55,12 @@ public abstract class AbstractBootstrapServer implements BootstrapServer {
                 e.printStackTrace();
             }
         }
-        intProtocolHandler(channelPipeline,serverBean);
+        initProtocolHandler(channelPipeline,serverBean);
         channelPipeline.addLast(new IdleStateHandler(serverBean.getHeart(),0,0));
         channelPipeline.addLast(new DefaultAbstractHandler(new AbstractHandlerService(ConfigManager.inChatVerifyService, ConfigManager.asyncListener)));
     }
 
-    private  void intProtocolHandler(ChannelPipeline channelPipeline,InitNetty serverBean){
+    private  void initProtocolHandler(ChannelPipeline channelPipeline, InitNetty serverBean){
         channelPipeline.addLast(BootstrapConstant.HTTP_CODE,new HttpServerCodec());
 //        channelPipeline.addLast("http-decoder",new HttpRequestDecoder());
         channelPipeline.addLast(BootstrapConstant.AGGREGATOR, new HttpObjectAggregator(serverBean.getMaxContext()));

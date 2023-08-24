@@ -9,7 +9,7 @@ import java.util.Date;
 public class InChatMessage {
 
     /** 消息时间 */
-    private Date time;
+    private int time;
 
     /** 消息类型 */
     private String type;
@@ -40,11 +40,11 @@ public class InChatMessage {
         this.onlineGroup = onlineGroup;
     }
 
-    public Date getTime() {
+    public int getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(int time) {
         this.time = time;
     }
 
@@ -105,7 +105,7 @@ public class InChatMessage {
                 ", token='" + token + '\'' +
                 ", groupId='" + groupId + '\'' +
                 ", online='" + online + '\'' +
-                ", onlineGroup=" + onlineGroup +
+                ", onlineGroup='" + onlineGroup + '\'' +
                 ", one='" + one + '\'' +
                 '}';
     }
