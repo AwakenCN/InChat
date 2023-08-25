@@ -9,7 +9,10 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 命令工厂
+ * @author haoyitao
+ * @implSpec 命令工厂
+ * @since 2023/8/25 - 17:25
+ * @version 1.0
  */
 public class MessageFactory {
 
