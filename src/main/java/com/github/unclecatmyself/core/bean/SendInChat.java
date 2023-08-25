@@ -9,12 +9,12 @@ public class SendInChat {
 
     private String token;
 
-    private Map<String,String> frame;
+    private InChatResponse frame;
 
     public SendInChat() {
     }
 
-    public SendInChat(String token, Map<String, String> frame) {
+    public SendInChat(String token, InChatResponse frame) {
         this.token = token;
         this.frame = frame;
     }
@@ -27,11 +27,11 @@ public class SendInChat {
         this.token = token;
     }
 
-    public Map<String, String> getFrame() {
+    public InChatResponse getFrame() {
         return frame;
     }
 
-    public void setFrame(Map<String, String> frame) {
+    public void setFrame(InChatResponse frame) {
         this.frame = frame;
     }
 }

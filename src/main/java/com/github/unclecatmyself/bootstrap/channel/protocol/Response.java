@@ -1,6 +1,8 @@
 package com.github.unclecatmyself.bootstrap.channel.protocol;
 
 
+import com.github.unclecatmyself.core.bean.InChatResponse;
+
 import java.util.Map;
 
 /**
@@ -13,20 +15,20 @@ public interface Response {
      * 登录成功返回信息
      * @return {@link Map} Json
      */
-    Map<String,String> loginSuccess();
+    InChatResponse loginSuccess();
 
     /**
      * 登录失败返回信息
      * @return {@link Map} Json
      */
-    Map<String,String> loginError();
+    InChatResponse loginError();
 
     /**
      * 发送给自己
      * @param value {@link String} 通讯消息
      * @return {@link Map} Json
      */
-    Map<String,String> sendMe(String value);
+    InChatResponse sendMe(String value);
 
     /**
      * 发送给某人的信息，返回给自己
@@ -34,7 +36,7 @@ public interface Response {
      * @param value {@link String} 通讯消息
      * @return {@link Map} Json
      */
-    Map<String,String> sendBack(String otherOne, String value);
+    InChatResponse sendBack(String otherOne, String value);
 
     /**
      * 某人接收到他人发送给他的消息
@@ -42,7 +44,7 @@ public interface Response {
      * @param value {@link String} 通讯消息
      * @return
      */
-    Map<String,String> getMessage(String me, String value);
+    InChatResponse getMessage(String me, String value);
 
     /**
      * 发送消息到群里
@@ -51,5 +53,5 @@ public interface Response {
      * @param groupId {@link String} 群聊Id
      * @return
      */
-    Map<String,String> sendGroup(String me,String value,String groupId);
+    InChatResponse sendGroup(String me,String value,String groupId);
 }

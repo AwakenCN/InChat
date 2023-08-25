@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.unclecatmyself.auto.ConfigManager;
 import com.github.unclecatmyself.bootstrap.channel.cache.WebSocketCacheMap;
 import com.github.unclecatmyself.bootstrap.channel.protocol.HttpChannel;
+import com.github.unclecatmyself.core.bean.InChatResponse;
 import com.github.unclecatmyself.core.bean.SendInChat;
 import com.github.unclecatmyself.core.bean.vo.*;
 import com.github.unclecatmyself.core.constant.HttpConstant;
@@ -126,11 +127,11 @@ public class HttpChannelImpl implements HttpChannel {
     }
 
     @Override
-    public void sendInChat(String token, Map msg) {
+    public void sendInChat(String token, InChatResponse response) {
         String address = RedisUtil.getAddress(RedisUtil.convertMD5(WebSocketCacheMap.getByJedis(token)));
         String[] str = address.split(":");
         try {
-            HttpClient.getInstance().send(str[0], Integer.parseInt(str[1]), token, msg);
+            HttpClient.getInstance().send(str[0], Integer.parseInt(str[1]), token, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

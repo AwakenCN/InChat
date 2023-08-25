@@ -1,5 +1,6 @@
 package com.github.unclecatmyself.bootstrap.channel.http;
 
+import com.github.unclecatmyself.core.bean.InChatResponse;
 import com.github.unclecatmyself.core.bean.SendInChat;
 import com.github.unclecatmyself.core.constant.HttpConstant;
 import com.github.unclecatmyself.core.utils.SslUtil;
@@ -27,7 +28,7 @@ public class HttpClient {
 
     private static final Logger log = LoggerFactory.getLogger(HttpClient.class);
 
-    private static HttpClient instance = new HttpClient();
+    private final static HttpClient instance = new HttpClient();
 
     public static Bootstrap bootstrap;
 
@@ -55,16 +56,16 @@ public class HttpClient {
             }
             }
         });
-        this.bootstrap = b;
+        bootstrap = b;
     }
 
     public static HttpClient getInstance(){
         return instance;
     }
 
-    public void send(String host, int port,String token,Map value) throws Exception {
+    public void send(String host, int port, String token, InChatResponse value) throws Exception {
         // Start the client.
-        ChannelFuture f = this.bootstrap.connect(host, port).sync();
+        ChannelFuture f = bootstrap.connect(host, port).sync();
 
         URI uri = new URI(HttpConstant.URI_SEND_IN_CHAT);
 

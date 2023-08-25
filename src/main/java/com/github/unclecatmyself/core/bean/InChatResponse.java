@@ -12,52 +12,100 @@ import java.util.Map;
  */
 public class InChatResponse implements Response {
 
-    public Map<String, String> loginSuccess() {
-        Map<String,String> backMap = new HashMap<>();
-        backMap.put(Constants.TYPE, Constants.LOGIN);
-        backMap.put(Constants.SUCCESS, Constants.TRUE);
-        return backMap;
+    private String type;
+    private String result;
+    private String value;
+    private String one;
+    private String from;
+    private String group;
+
+    public InChatResponse loginSuccess() {
+        setType(Constants.LOGIN);
+        setResult(Constants.TRUE);
+        return this;
     }
 
-    public Map<String, String> loginError() {
-        Map<String,String> backMap = new HashMap<>();
-        backMap.put(Constants.TYPE, Constants.LOGIN);
-        backMap.put(Constants.SUCCESS, Constants.FALSE);
-        return backMap;
+    public InChatResponse loginError() {
+        setType(Constants.LOGIN);
+        setResult(Constants.FALSE);
+        return this;
     }
 
-    public Map<String, String> sendMe(String value) {
-        Map<String,String> backMap = new HashMap<>();
-        backMap.put(Constants.TYPE, Constants.SEND_ME);
-        backMap.put(Constants.VALUE,value);
-        return backMap;
+    public InChatResponse sendMe(String value) {
+        setType(Constants.SEND_ME);
+        setValue(value);
+        return this;
     }
 
-    public Map<String, String> sendBack(String otherOne, String value) {
-        Map<String,String> backMap = new HashMap<>();
-        backMap.put(Constants.TYPE, Constants.SEND_TO);
-        backMap.put(Constants.VALUE,value);
-        backMap.put(Constants.ONE,otherOne);
-        return backMap;
-    }
-
-
-    public Map<String, String> getMessage(String token, String value) {
-        Map<String,String> backMap = new HashMap<>();
-        backMap.put(Constants.TYPE, Constants.SEND_TO);
-        backMap.put(Constants.FROM,token);
-        backMap.put(Constants.VALUE,value);
-        return backMap;
+    public InChatResponse sendBack(String otherOne, String value) {
+        Map<String, String> backMap = new HashMap<>();
+        setType(Constants.SEND_TO);
+        setValue(value);
+        setOne(otherOne);
+        return this;
     }
 
 
-    public Map<String, String> sendGroup(String token, String value, String groupId) {
-        Map<String,String> backMap = new HashMap<>();
-        backMap.put(Constants.TYPE, Constants.SEND_GROUP);
-        backMap.put(Constants.FROM,token);
-        backMap.put(Constants.VALUE,value);
-        backMap.put(Constants.GROUP_ID,groupId);
-        return backMap;
+    public InChatResponse getMessage(String token, String value) {
+        setType(Constants.SEND_TO);
+        setFrom(token);
+        setValue(value);
+        return this;
     }
 
+    public InChatResponse sendGroup(String token, String value, String groupId) {
+        setType(Constants.SEND_GROUP);
+        setFrom(token);
+        setValue(value);
+        setGroup(groupId);
+        return this;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public String getOne() {
+        return one;
+    }
+
+    public void setOne(String one) {
+        this.one = one;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
 }

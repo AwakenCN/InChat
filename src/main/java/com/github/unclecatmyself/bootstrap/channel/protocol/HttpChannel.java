@@ -1,5 +1,6 @@
 package com.github.unclecatmyself.bootstrap.channel.protocol;
 
+import com.github.unclecatmyself.core.bean.InChatResponse;
 import com.github.unclecatmyself.core.bean.SendInChat;
 import com.github.unclecatmyself.core.bean.vo.SendServerVO;
 import io.netty.channel.Channel;
@@ -23,7 +24,7 @@ public interface HttpChannel {
 
     void getState(Channel channel,SendServerVO serverVO);
 
-    void sendInChat(String token, Map msg);
+    void sendInChat(String token, InChatResponse response);
 
     void sendByInChat(Channel channel,SendInChat sendInChat);
 

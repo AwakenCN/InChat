@@ -12,6 +12,7 @@ import com.github.unclecatmyself.core.bean.InChatMessage;
 import com.github.unclecatmyself.core.bean.SendInChat;
 import com.github.unclecatmyself.core.bean.vo.SendServerVO;
 import com.github.unclecatmyself.core.constant.Constants;
+import com.github.unclecatmyself.core.constant.LogConstant;
 import com.github.unclecatmyself.core.constant.StateConstant;
 import com.github.unclecatmyself.scheduling.AsyncListener;
 import com.github.unclecatmyself.support.HandlerService;
@@ -86,6 +87,7 @@ public class AbstractHandlerService extends HandlerService {
     @InChatMessageHandler
     @Override
     public boolean login(Channel channel, InChatMessage message) {
+        logger.info(LogConstant.DEFAULTWEBSOCKETHANDLER_LOGIN);
         //校验规则，自定义校验规则
         return check(channel, message);
     }
@@ -93,6 +95,7 @@ public class AbstractHandlerService extends HandlerService {
     @InChatMessageHandler
     @Override
     public void sendMeText(Channel channel, InChatMessage message) {
+        logger.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDME);
         Gson gson = new Gson();
         channel.writeAndFlush(new TextWebSocketFrame(
                 gson.toJson(response.sendMe(message.getValue()))));
@@ -103,6 +106,7 @@ public class AbstractHandlerService extends HandlerService {
     @InChatMessageHandler
     @Override
     public void sendToText(Channel channel, InChatMessage message) {
+        logger.info(LogConstant.DefaultWebSocketHandler_SENDTO);
         Gson gson = new Gson();
         String otherOne = message.getOne();
         String value = message.getValue();
@@ -130,6 +134,7 @@ public class AbstractHandlerService extends HandlerService {
     @InChatMessageHandler
     @Override
     public void sendGroupText(Channel channel, InChatMessage message) {
+        logger.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDGROUP);
         Gson gson = new Gson();
         String groupId = message.getGroupId();
         String token = message.getToken();
@@ -175,6 +180,7 @@ public class AbstractHandlerService extends HandlerService {
     @InChatMessageHandler
     @Override
     public void sendPhotoToMe(Channel channel, InChatMessage message) {
+        logger.info("图片到个人");
         Gson gson = new Gson();
         System.out.println(message.getValue());
         channel.writeAndFlush(new TextWebSocketFrame(

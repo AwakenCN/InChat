@@ -11,6 +11,7 @@ import com.github.unclecatmyself.core.constant.LogConstant;
 import com.github.unclecatmyself.core.constant.UndefinedInChatConstant;
 import com.github.unclecatmyself.core.exception.HandlerNotFoundException;
 import com.github.unclecatmyself.core.utils.HttpUtil;
+import com.github.unclecatmyself.support.MessageFactory;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -20,9 +21,9 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
-import java.util.Map;
+import java.lang.reflect.Method;
 
 /**
  * Create by UncleCatMySelf in 2018/12/06
@@ -30,7 +31,7 @@ import java.util.Map;
 @ChannelHandler.Sharable
 public class DefaultAbstractHandler extends AbstractHandler {
 
-    private final Logger log = LoggerFactory.getLogger(DefaultAbstractHandler.class);
+    private final Logger logger = LoggerFactory.getLogger(DefaultAbstractHandler.class);
 
     private final Handler handler;
 
@@ -43,12 +44,12 @@ public class DefaultAbstractHandler extends AbstractHandler {
     protected void webdoMessage(ChannelHandlerContext ctx, WebSocketFrame msg) {
         Channel channel = ctx.channel();
         HandlerService httpHandlerService;
-        if (handler instanceof HandlerService){
+        if (handler instanceof HandlerService) {
             httpHandlerService = (HandlerService) handler;
-        }else {
+        } else {
             throw new HandlerNotFoundException(UndefinedInChatConstant.NOT_HANDLER);
         }
-        if (msg instanceof BinaryWebSocketFrame){
+        if (msg instanceof BinaryWebSocketFrame) {
             //TODO 实现图片处理
         }
     }
@@ -57,56 +58,56 @@ public class DefaultAbstractHandler extends AbstractHandler {
     protected void httpdoMessage(ChannelHandlerContext ctx, FullHttpRequest msg) {
         Channel channel = ctx.channel();
         HandlerService httpHandlerService;
-        if (handler instanceof HandlerService){
+        if (handler instanceof HandlerService) {
             httpHandlerService = (HandlerService) handler;
-        }else {
+        } else {
             throw new HandlerNotFoundException(UndefinedInChatConstant.NOT_HANDLER);
         }
-        switch (HttpUtil.checkType(msg)){
+        switch (HttpUtil.checkType(msg)) {
             /** 获取在线用户数 */
             case HttpConstant.GET_SIZE:
-                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_GETSIZE);
+                logger.info(LogConstant.DEFAULTWEBSOCKETHANDLER_GETSIZE);
                 httpHandlerService.getSize(channel);
                 break;
             /** 以服务端形式发送出去 */
             case HttpConstant.SEND_FROM_SERVER:
-                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDFROMSERVER);
+                logger.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDFROMSERVER);
                 SendServerVO serverVO = null;
                 try {
                     serverVO = HttpUtil.getToken(msg);
                 } catch (UnsupportedEncodingException e) {
-                    log.error(e.getMessage());
+                    logger.error(e.getMessage());
                 }
-                httpHandlerService.sendFromServer(channel,serverVO);
+                httpHandlerService.sendFromServer(channel, serverVO);
                 break;
             /** 获取在线用户列表 */
             case HttpConstant.GET_LIST:
-                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_GETLIST);
+                logger.info(LogConstant.DEFAULTWEBSOCKETHANDLER_GETLIST);
                 httpHandlerService.getList(channel);
                 break;
             /** 获取用户在线状态 */
             case HttpConstant.GET_STATE:
-                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_GETSTATE);
+                logger.info(LogConstant.DEFAULTWEBSOCKETHANDLER_GETSTATE);
                 SendServerVO token = null;
                 try {
                     token = HttpUtil.getToken(msg);
                 } catch (UnsupportedEncodingException e) {
-                    log.error(e.getMessage());
+                    logger.error(e.getMessage());
                 }
-                httpHandlerService.getState(channel,token);
+                httpHandlerService.getState(channel, token);
                 break;
             /** 分布式通讯转接 */
             case HttpConstant.SEND_IN_CHAT:
-                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDINCHAT);
-                httpHandlerService.sendInChat(channel,msg);
+                logger.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDINCHAT);
+                httpHandlerService.sendInChat(channel, msg);
                 break;
             /** 未匹配到uri */
             case HttpConstant.NOT_FIND_URI:
-                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_NOTFINDURI);
+                logger.info(LogConstant.DEFAULTWEBSOCKETHANDLER_NOTFINDURI);
                 httpHandlerService.notFindUri(channel);
                 break;
             default:
-                System.out.println("未匹配"+msg);
+                System.out.println("未匹配" + msg);
                 break;
         }
     }
@@ -115,61 +116,39 @@ public class DefaultAbstractHandler extends AbstractHandler {
     protected void readTextMessage(ChannelHandlerContext ctx, TextWebSocketFrame msg) {
         Channel channel = ctx.channel();
         HandlerService handlerService;
-        if (handler instanceof HandlerService){
+        if (handler instanceof HandlerService) {
             handlerService = (HandlerService) handler;
-        }else{
+        } else {
             throw new HandlerNotFoundException(UndefinedInChatConstant.NOT_HANDLER);
         }
-        System.out.println(msg.text());
+        logger.debug("readTextMessage success, body: {}", msg.text());
         InChatMessage message = JSON.parseObject(msg.text(), InChatMessage.class);
         int now = DateUtil.getSecond();
         message.setTime(now);
-        switch (message.getType()){
-            case Constants.LOGIN:
-                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_LOGIN);
-                handlerService.login(channel,message);
-                break;
-            case "jmeter":
-                //Jmeter高并发测试
-                break;
-            //针对个人，发送给自己
-            case Constants.SEND_ME:
-                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDME);
-                handlerService.verify(channel,message);
-                handlerService.sendMeText(channel,message);
-                break;
-            //针对个人，发送给某人
-            case Constants.SEND_TO:
-                log.info(LogConstant.DefaultWebSocketHandler_SENDTO);
-                handlerService.verify(channel,message);
-                handlerService.sendToText(channel,message);
-                break;
-            //发送给群组
-            case Constants.SEND_GROUP:
-                log.info(LogConstant.DEFAULTWEBSOCKETHANDLER_SENDGROUP);
-                handlerService.verify(channel,message);
-                handlerService.sendGroupText(channel,message);
-                break;
-            //发送图片，发送给自己
-            case Constants.SEND_PHOTO_TO_ME:
-                log.info("图片到个人");
-                handlerService.verify(channel,message);
-                handlerService.sendPhotoToMe(channel,message);
-                break;
-            default:
-                break;
+        Method method = MessageFactory.getInstance().getMethod(message.getType());
+        if (null == method) {
+            logger.warn("message#{} unregistered!", message.getType());
+            return;
+        }
+        if(!Constants.LOGIN.equals(message.getType())) {
+            handlerService.verify(channel, message);
+        }
+        //TODO 后续改用线程池，异步调用
+        try {
+            method.invoke(handlerService, channel, message);
+        } catch (Exception e) {
+            logger.error("readTextMessage invoke method error, {}", e.getMessage(), e);
         }
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        log.info(LogConstant.CHANNELACTIVE+ctx.channel().remoteAddress().toString()+LogConstant.CHANNEL_SUCCESS);
+        logger.info(LogConstant.CHANNELACTIVE + ctx.channel().remoteAddress().toString() + LogConstant.CHANNEL_SUCCESS);
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception{
-//        log.error("exception",cause);
-        log.info(LogConstant.EXCEPTIONCAUGHT+ctx.channel().remoteAddress().toString()+LogConstant.DISCONNECT);
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        logger.info(LogConstant.EXCEPTIONCAUGHT + ctx.channel().remoteAddress().toString() + LogConstant.DISCONNECT);
         ctx.close();
     }
 }

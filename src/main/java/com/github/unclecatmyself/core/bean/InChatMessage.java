@@ -1,7 +1,5 @@
 package com.github.unclecatmyself.core.bean;
 
-import java.util.Date;
-
 /**
  * 用户层消息Bean封装
  * Created by MySelf on 2018/12/19.
