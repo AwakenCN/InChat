@@ -2,16 +2,15 @@ package com.github.unclecatmyself.bootstrap.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.github.unclecatmyself.core.bean.InChatMessage;
-import com.github.unclecatmyself.core.utils.DateUtil;
+import com.github.unclecatmyself.core.thread.MessageTask;
 import com.github.unclecatmyself.support.HandlerService;
 import com.github.unclecatmyself.core.bean.vo.SendServerVO;
-import com.github.unclecatmyself.core.constant.Constants;
 import com.github.unclecatmyself.core.constant.HttpConstant;
 import com.github.unclecatmyself.core.constant.LogConstant;
 import com.github.unclecatmyself.core.constant.UndefinedInChatConstant;
 import com.github.unclecatmyself.core.exception.HandlerNotFoundException;
 import com.github.unclecatmyself.core.utils.HttpUtil;
-import com.github.unclecatmyself.support.MessageFactory;
+import com.github.unclecatmyself.support.InChatInitializer;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -23,7 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
 
 /**
  * Create by UncleCatMySelf in 2018/12/06
@@ -123,22 +121,8 @@ public class DefaultAbstractHandler extends AbstractHandler {
         }
         logger.debug("readTextMessage success, body: {}", msg.text());
         InChatMessage message = JSON.parseObject(msg.text(), InChatMessage.class);
-        int now = DateUtil.getSecond();
-        message.setTime(now);
-        Method method = MessageFactory.getInstance().getMethod(message.getType());
-        if (null == method) {
-            logger.warn("message#{} unregistered!", message.getType());
-            return;
-        }
-        if(!Constants.LOGIN.equals(message.getType())) {
-            handlerService.verify(channel, message);
-        }
-        //TODO 后续改用线程池，异步调用
-        try {
-            method.invoke(handlerService, channel, message);
-        } catch (Exception e) {
-            logger.error("readTextMessage invoke method error, {}", e.getMessage(), e);
-        }
+        MessageTask task = new MessageTask(handlerService, message, channel);
+        InChatInitializer.optionExecutor.submit(task);
     }
 
     @Override

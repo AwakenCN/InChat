@@ -3,6 +3,7 @@ package com.github.unclecatmyself.bootstrap.server;
 import com.github.unclecatmyself.core.bean.InitNetty;
 import com.github.unclecatmyself.core.config.AutoConfig;
 import com.github.unclecatmyself.core.config.RedisConfig;
+import com.github.unclecatmyself.core.thread.DefaultThreadFactory;
 import com.github.unclecatmyself.core.utils.PlatformUtil;
 import com.github.unclecatmyself.core.utils.RemotingUtil;
 import com.github.unclecatmyself.core.utils.UniqueIpUtils;
@@ -161,13 +162,7 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
     }
 
     public static ThreadFactory buildThreadFactory(String threadName) {
-        return new ThreadFactory() {
-            private final AtomicInteger index = new AtomicInteger(0);
-
-            public Thread newThread(Runnable r) {
-                return new Thread(r, threadName + index.incrementAndGet());
-            }
-        };
+        return new DefaultThreadFactory(threadName);
     }
 
 }

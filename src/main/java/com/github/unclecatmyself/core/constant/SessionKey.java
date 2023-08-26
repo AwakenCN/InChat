@@ -38,7 +38,7 @@ public class SessionKey {
     /**
      * 通道创建时间
      */
-    public static final AttributeKey<Long> CHANNEL_CREATE_TIME = AttributeKey.valueOf("channel_create_time");
+    public static final AttributeKey<Integer> CHANNEL_CREATE_TIME = AttributeKey.valueOf("channel_create_time");
     /**
      * 是否http协议
      **/
