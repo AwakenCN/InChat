@@ -58,6 +58,8 @@ public class MessageTask implements Runnable {
         if(!Constants.LOGIN.equals(message.getType())) {
             handlerService.verify(channel, message);
         }
+        //设置token
+        channel.attr(SessionKey.TOKEN).set(message.getToken());
         try {
             method.invoke(handlerService, channel, message);
         } catch (Exception e) {
